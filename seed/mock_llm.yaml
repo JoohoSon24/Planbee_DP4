@@ -1,0 +1,33 @@
+# Mock LLM 대본. 프록시가 '쓰는' 부분(견적 · 떼어 낼 조각 · 답)만 여기 있고,
+# 들어가는지 · 넘치는지 · 누가 받는지는 전부 Hive 코드가 계산한다.
+# 대본에 없는 경우는 app/llm.py 의 기본 규칙(기록 건수 비례)으로 답한다.
+
+reestimate:       # 새 기록을 읽고 견적을 고치는가
+  - match: {who: mia, contains: "무기_v3"}
+    answer: {task: draw, days: 4, basis: "무기 파일 3번째 다시 올림"}
+  - match: {who: leo, contains: "상태 머신"}
+    answer: {task: code, days: 2.5, basis: "상태 머신 새로 필요"}
+
+split:            # 늦어질 일에서 떼어 낼 조각
+  draw:
+    piece: {id: weapon, title: 무기 그림, days: 1, tag: 캐릭터 그림, what: 무기 그림 파일,
+            reason: 따로 그릴 수 있음, basis: 무기는 별도 레이어 파일, handover: "기준 스케치 · 색 규칙"}
+    to: downstream            # 조각을 받는 쪽: 원래 Handoff를 받는 일
+    keep: {title: 캐릭터 몸}  # 남은 일 이름 (길이는 조각만큼 줄어듦)
+    rename_handoff: 캐릭터 몸
+  code:
+    piece: {id: move, title: 움직임 코드, days: 1, tag: 캐릭터 코드, what: "움직임 코드 (상태 머신)",
+            reason: 따로 만들 수 있음, basis: 상태 머신은 별도 파일}
+    to: self                  # 조각을 받는 쪽: 원래 일 자신 (담당이 붙여 넣음)
+    extra: [{id: sm, title: 상태 머신 연결, days: 1}]
+    keep: {title: 캐릭터 붙이기, days: 0.5}
+
+bid:              # 조각을 맡으면 며칠인가 (조각 이름 → 사람)
+  무기 그림:
+    ivy: {days: 1}
+  움직임 코드:
+    sam: {days: 1}
+    ben: {days: 1.5, say: "Sam이 30분만 봐 주면 돼요."}
+
+reagree_note:     # 약속을 미룰 때 받는 사람에게 덧붙이는 말
+  ben: "반나절 늦어져요. 배우는 시간이에요."

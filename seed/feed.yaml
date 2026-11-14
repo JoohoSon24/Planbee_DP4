@@ -1,0 +1,15 @@
+# 시연 버튼이 넣는 기록 묶음. phase 별로 하나씩.
+mon:              # 월 → 수요일 기록 받기
+  next_phase: wed
+  now: 2
+  narr: "Mia의 프록시가 Mia의 새 기록을 읽는 중"
+  records:
+    - {t: "수 09:10", src: 저장소, who: mia, text: "무기_v3.psd 다시 올림 · 3번째"}
+    - {t: "수 09:12", src: 작업,   who: mia, text: "캐릭터 그리기 '진행 중' 3일째"}
+wed:              # 수 → 목요일 기록 받기
+  next_phase: end
+  now: 3
+  narr: "Leo의 프록시가 Leo의 새 기록을 읽는 중"
+  records:
+    - {t: "목 09:05", src: 저장소, who: leo, text: "캐릭터용 상태 머신 새로 만드는 커밋"}
+    - {t: "목 09:08", src: 작업,   who: leo, text: "캐릭터 넣기 예상 2½일로 고침"}

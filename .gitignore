@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+planbee.db
+.env
+.venv/
+.DS_Store
