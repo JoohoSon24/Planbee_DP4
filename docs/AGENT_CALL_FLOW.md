@@ -375,7 +375,7 @@ flowchart LR
 
 새 경로는 run 시작 시 프롬프트와 개인 카드의 버전을 동결한다. 생성 AI에는 개인 카드나 approved policy의 source_note를 전달하지 않는다. 전체 개인 평가와 카드 원문은 공개 run 응답에 내보내지 않는다. 운영 PM 선택과 사람 라벨은 별도 저장한다. 사람 평가 링크는 최종 LLM 순위/PM 결과를 숨기고, 선택한 역할과 같은 본인 카드·공개 Task/토론을 제공한다. rank-softmax temperature 1의 후보 분포 CE를 공정성/카드 적합성 축별로 계산하며, 후보 1개는 비교 불가로 표시한다. 대리 평가자는 역할을 명시적으로 선택한다. 현재 앱의 기존 localhost 개발 환경 권한 모델을 따른다.
 
-새 기본 로그 위치는 `runs/v2/{mock,live}/`이다. 기존 로그는 보존한다. 각 기록에는 초기 보드와 milestone, 검증 후보 전체, 처리 턴과 공개 대화, 최종 PM 후보/선택, 프롬프트 hash, 호출 사용량과 종료 사유가 들어간다. 코드: `app/candidates/{models,generator,engine,api,evaluation}.py`. 상세 초기 설계는 루트 `CANDIDATE_DISCUSSION_PLAN.md`이며 제안 수치와 실제 구현 수치가 다르면 README의 현행 실행 설정을 따른다.
+새 기본 로그 위치는 `runs/v2/{mock,live}/`이다. 기존 로그는 보존한다. 각 기록에는 초기 보드와 milestone, 검증 후보 전체, 처리 턴과 공개 대화, 최종 PM 후보/선택, 프롬프트 hash, 호출 사용량과 종료 사유가 들어간다. 코드: `app/candidates/{models,generator,engine,api,evaluation}.py`. 상세 초기 설계는 `docs/CANDIDATE_DISCUSSION_PLAN.md`이며 제안 수치와 실제 구현 수치가 다르면 README의 현행 실행 설정을 따른다.
 
 ## M4 Live 프롬프트 개선과 역할 체험
 
@@ -408,4 +408,4 @@ T1은 Dev 단독 판단으로 다른 사람의 불필요한 호출을 줄입니�
 
 실험에서는 단순 이동 6h를 8h로 바꾼 두 반올림 경로, 모델의 “변경 없음” 설명과 숫자 사이 모순, 시간(h)/일(day) 혼동, 잘못된 연산자 필드, 보충 생성 오류로 기존 후보까지 잃는 문제를 구분해 재현했습니다. 현재는 소요량 변경 의도를 숫자와 분리하고, 실제 필드 오류에는 한 번만 복구 요청하며, 복구 시도도 공유 호출 한도에 포함합니다. 실제 실행이 같은 후보는 장식적 설명이나 무효한 release 힌트가 달라도 중복으로 제거합니다.
 
-당시 MD·가설·실패·실제 Live 결과는 [프롬프트 개선 기록](../past_versions/README.md)에 보존합니다. 상세 조작은 [Live 가이드](../LIVE_GUIDE.md)를 따르세요. Live 실험의 PM 선택 대기는 실제 사람 승인·적용 완료와 구분하며, 사람 평가 순위와 CE 라벨은 대신 만들지 않습니다.
+당시 MD·가설·실패·실제 Live 결과는 [프롬프트 개선 기록](../past_versions/README.md)에 보존합니다. 상세 조작은 [Live 가이드](LIVE_GUIDE.md)를 따르세요. Live 실험의 PM 선택 대기는 실제 사람 승인·적용 완료와 구분하며, 사람 평가 순위와 CE 라벨은 대신 만들지 않습니다.

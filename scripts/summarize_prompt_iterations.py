@@ -27,5 +27,5 @@ lines+=['','## 해석과 재실행','',
  '.venv/bin/python scripts/iterate_m4_prompts.py --version past_versions/agent_prompts/버전폴더 --llm live --max-calls 36',
  '.venv/bin/python scripts/summarize_prompt_iterations.py',
  '```','',
- '실험은 버전 manifest와 현재 코드·MD가 같은지 먼저 검사합니다. 이전 코드 hash가 다르면 새 버전을 만들어 실험해야 합니다. 현재 실행·역할 체험은 [Live 가이드](../LIVE_GUIDE.md)를 따르세요.','']
+ '실험은 버전 manifest와 현재 코드·MD가 같은지 먼저 검사합니다. 이전 코드 hash가 다르면 새 버전을 만들어 실험해야 합니다. 현재 실행·역할 체험은 [Live 가이드](../docs/LIVE_GUIDE.md)를 따르세요.','']
 (ROOT/'past_versions'/'README.md').write_text('\n'.join(lines),encoding='utf-8')
