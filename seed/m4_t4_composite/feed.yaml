@@ -1,0 +1,12 @@
+issue:
+  task: character_animation
+  label: T4 · Composite Negotiation · 복합 협상 · 변경 요청
+  now: 4
+  next_phase: end
+  narr: Character Animation은 기존 24h에서 32h(4일)로 증가해 11/20 가용 8h를 추가 사용합니다. FX Assets
+    잔여 4h는 11/23 오전에 수행해 12:00 전달 가능합니다. 임시 에셋은 11/20 제공 가능합니다. Dev·QA와 조정하고 싶습니다.
+  records:
+  - who: art
+    src: 시나리오 변경 요청
+    text: Character Animation은 기존 24h에서 32h(4일)로 증가해 11/20 가용 8h를 추가 사용합니다. FX Assets
+      잔여 4h는 11/23 오전에 수행해 12:00 전달 가능합니다. 임시 에셋은 11/20 제공 가능합니다. Dev·QA와 조정하고 싶습니다.

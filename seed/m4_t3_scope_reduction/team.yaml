@@ -1,0 +1,385 @@
+meta:
+  title: T3 · Scope Reduction · 범위 축소
+  summary: Advanced Effects 구현은 기존 16h에서 32h(4일)가 필요합니다. Core Integration도 다음 주에 마쳐야
+    해서 Alpha 마감을 맞추기 어렵습니다. GD와 선택 기능의 Beta 이관을 논의하고 PM에게 범위 축소 승인을 요청하고 싶습니다.
+  phase: issue
+  now: 5
+  week_start: '2026-11-16'
+  deadline_label: 11/26 Alpha
+  narr: 다음 시나리오 이슈를 눌러 원문의 변경 요청을 처리하세요.
+  source_task: advanced_effects
+  source: Senario/M4 시나리오 설계
+  source_sha256: b792bc750331879c54a5ee8b941eca14588c7da92718618d4c846499ac696d4f
+  engine_support: 선택 범위의 Beta 이관과 잔여 Art FX 동반 이관을 후보로 검증합니다. GD의 범위 판단과 PM의 명시적 최종
+    선택 전에는 이관하지 않습니다. 필수 Core와 Final QA는 유지합니다.
+  normalization_note: 원문 이미지의 막대 위치와 시간 길이가 맞지 않는 곳은 본문 시간(h)을 우선했습니다. T1은 11/23 가용
+    8h 조건에 따라 Bug Fix를 11/24 시작으로 고정하고 Final Test는 11/26~27로 정규화했습니다. T5 초기 보드에는 새로
+    발견된 잔여 수정 16h를 표시합니다.
+people:
+- id: gd
+  name: GD
+  role: 기획
+  notes:
+    prompt_role: gd
+  rec:
+    feature_spec: 6
+    x_lite: 6
+  wants: []
+- id: art
+  name: Art
+  role: 아트
+  notes:
+    prompt_role: art
+  rec:
+    core_assets: 6
+    advanced_fx_done: 6
+    advanced_fx: 6
+    ui_integration: 6
+  wants: []
+- id: dev
+  name: Dev
+  role: 개발
+  notes:
+    prompt_role: dev
+  rec:
+    core_x: 6
+    advanced_effects: 6
+    core_integration: 6
+  wants: []
+- id: qa
+  name: QA
+  role: QA
+  notes:
+    prompt_role: qa
+  rec:
+    smoke: 6
+    final_qa: 6
+  wants: []
+cards:
+- who: gd
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: Core X·Core Integration은 P0 필수. Advanced Effects는 P2 선택이며 제외해도 Alpha 필수 요구사항
+    충족. 범위 축소 제안 가능, 확정 권한 없음.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: art
+  auto_days: 0
+  wait_days: 0
+  gives_help: true
+  note: Advanced FX 12h 중 8h 완료. 잔여 4h는 11/23 예정. PM이 Advanced Effects Beta 이관을 승인하면
+    잔여 FX도 자동 이관되며 별도 Confirm 불필요.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: dev
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 11/23·24 각 8h 가용. Core Integration 8h 필수. Advanced Effects 32h이며 두 작업은 독립적.
+    기능 우선순위는 GD에게 확인해야 함.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable:
+    - start: 4
+      end: 5
+    - start: 7
+      end: 10
+- who: qa
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 11/25~26 Final QA 16h 고정. Advanced Effects 제외 시 Core X와 Core Integration만
+    검증 가능. 기존 일정 변경 없음.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+tasks:
+- id: feature_spec
+  who: gd
+  title: Feature Spec
+  s0: 0
+  d: 1.0
+  tag: feature_spec
+  kind: done
+  context:
+    description: Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Feature Spec 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: x_lite
+  who: gd
+  title: X Lite Review
+  s0: 4
+  d: 0.5
+  tag: x_lite
+  kind: done
+  context:
+    description: X Lite Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: X Lite Review 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: core_assets
+  who: art
+  title: Core Assets
+  s0: 1
+  d: 2.0
+  tag: core_assets
+  kind: done
+  context:
+    description: Core Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core Assets 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: advanced_fx_done
+  who: art
+  title: Advanced FX 완료분
+  s0: 4
+  d: 1.0
+  tag: advanced_fx_done
+  kind: done
+  context:
+    description: Advanced FX 완료분 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Advanced FX 완료분 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: advanced_fx
+  who: art
+  title: Advanced FX 잔여
+  s0: 5
+  d: 0.5
+  tag: advanced_fx
+  kind: ''
+  context:
+    description: Advanced FX 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Advanced FX 잔여 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    latest_finish: 7
+    optional: true
+    beta_requires_pm: true
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+    deferred_with: advanced_effects
+- id: core_x
+  who: dev
+  title: Core X
+  s0: 1
+  d: 3.0
+  tag: core_x
+  kind: done
+  context:
+    description: Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core X 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: advanced_effects
+  who: dev
+  title: Advanced Effects
+  s0: 5
+  d: 2.0
+  tag: advanced_effects
+  kind: ''
+  context:
+    description: Advanced Effects 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Advanced Effects 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    optional: true
+    beta_requires_pm: true
+    latest_finish: 7
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+    active_participants_only: true
+    allowed_change_tasks:
+    - advanced_effects
+    - advanced_fx
+    - core_integration
+    defer_option:
+      milestone: Beta
+      with_tasks:
+      - advanced_fx
+      authorizers:
+      - gd
+      alpha_dependencies:
+      - from: advanced_effects
+        to: final_qa
+- id: core_integration
+  who: dev
+  title: Core Integration
+  s0: 6
+  d: 1.0
+  tag: core_integration
+  kind: ''
+  context:
+    description: Core Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core Integration 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    latest_finish: 7
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: smoke
+  who: qa
+  title: Core Smoke
+  s0: 4
+  d: 1.0
+  tag: smoke
+  kind: done
+  context:
+    description: Core Smoke 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core Smoke 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: final_qa
+  who: qa
+  title: Final QA
+  s0: 7
+  d: 2.0
+  tag: final_qa
+  kind: ''
+  context:
+    description: Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Final QA 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    fixed_start: 7
+    latest_finish: 9
+    source_scenario: m4_t3_scope_reduction
+    time_quantum: 0.25
+- id: milestone
+  who: gd
+  title: Alpha
+  s0: 9
+  d: 0.0
+  tag: milestone
+  kind: milestone
+  context:
+    description: Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Alpha 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    completion_barrier: true
+handoffs:
+- id: h_core_x_core_integration
+  from: core_x
+  to: core_integration
+  title: core_x → core_integration
+  what: core_x 검증 완료본
+  t: 6
+- id: h_core_integration_final_qa
+  from: core_integration
+  to: final_qa
+  title: core_integration → final_qa
+  what: core_integration 검증 완료본
+  t: 7
+- id: h_advanced_effects_final_qa
+  from: advanced_effects
+  to: final_qa
+  title: advanced_effects → final_qa
+  what: advanced_effects 검증 완료본
+  t: 7
+- id: h_final_qa_milestone
+  from: final_qa
+  to: milestone
+  title: final_qa → milestone
+  what: final_qa 검증 완료본
+  t: 9
+records: []
+rules:
+- key: deadline
+  label: 11/26 Alpha
+  value:
+    week_end: 9
+- key: weekly_cap
+  label: 2주 계획·1일 8h·동시 작업 금지
+  value:
+    days: 10
+- key: pm_only
+  label: 범위 축소·마일스톤 변경은 PM 권한
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: 후보 선택 참고
+  value:
+    choice: fair
+  locked: false

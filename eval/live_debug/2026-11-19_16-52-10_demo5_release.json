@@ -1,0 +1,42 @@
+{
+  "demo": "demo5_release",
+  "model": "openai/gpt-4.1",
+  "calls": 4,
+  "failures": 0,
+  "error": null,
+  "phases": [
+    {
+      "phase": "start",
+      "now": 0,
+      "next": "qa"
+    }
+  ],
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "done",
+      "round": 1,
+      "file": "live/2026-11-19_16-52-02_317924_2c16a310.md",
+      "agreement": [
+        "agreement"
+      ]
+    }
+  ],
+  "new_tasks": [
+    {
+      "id": "piece21",
+      "who": "bora",
+      "title": "다중 테넌트 상태 전이 정상 사례 검증 및 테스트 산출",
+      "days": 0.5,
+      "start": 0.0,
+      "end": 0.5
+    }
+  ],
+  "changed_sources": []
+}

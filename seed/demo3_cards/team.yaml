@@ -1,0 +1,103 @@
+meta:
+  title: 데모 3 · 정보와 권한의 네 조건
+  phase: start
+  now: 2
+  deadline_label: 금요일 제출
+  narr: 새 기록을 받아 분담을 비교합니다.
+people:
+- id: mia
+  name: Mia
+  role: 개발
+  rec:
+    개발: 3
+  wants: []
+- id: jun
+  name: Jun
+  role: 개발
+  rec:
+    개발: 3
+  wants: []
+- id: sol
+  name: Sol
+  role: 개발
+  rec:
+    개발: 3
+  wants: []
+- id: ara
+  name: Ara
+  role: 테스트
+  rec:
+    테스트: 3
+  wants: []
+cards:
+- who: mia
+  auto_days: 1
+- who: jun
+  auto_days: 1
+- who: sol
+  auto_days: 1
+- who: ara
+  auto_days: 1
+tasks:
+- id: feature
+  who: mia
+  title: 기능 구현
+  s0: 0
+  d: 3
+  tag: 개발
+- id: mia_other
+  who: mia
+  title: 배포 준비
+  s0: 3
+  d: 2
+  tag: 개발
+- id: jun_work
+  who: jun
+  title: 기존 개발
+  s0: 0
+  d: 4.5
+  tag: 개발
+- id: sol_work
+  who: sol
+  title: 기존 개발
+  s0: 0
+  d: 2
+  tag: 개발
+- id: test
+  who: ara
+  title: 기능 테스트
+  s0: 3
+  d: 1
+  tag: 테스트
+handoffs:
+- id: h1
+  from: feature
+  to: test
+  title: 기능 코드
+  what: 테스트용 빌드
+  t: 3
+records: []
+rules:
+- key: deadline
+  label: 금요일 제출
+  value:
+    week_end: 5
+- key: weekly_cap
+  label: 주 5일
+  value:
+    days: 5
+- key: pm_only
+  label: 미루기·범위 축소는 PM
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: 빠른 사람
+  value:
+    choice: fast
+  locked: false

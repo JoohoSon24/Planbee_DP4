@@ -1,0 +1,93 @@
+{
+  "demo": "demo5_release",
+  "model": "openai/gpt-4o-mini",
+  "calls": 45,
+  "failures": 1,
+  "error": null,
+  "phases": [
+    {
+      "phase": "start",
+      "now": 0,
+      "next": "qa"
+    },
+    {
+      "phase": "qa",
+      "now": 1,
+      "next": "review"
+    },
+    {
+      "phase": "review",
+      "now": 2,
+      "next": "end"
+    }
+  ],
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "done",
+      "round": 9,
+      "file": "live/2026-11-19_16-15-54_172844_88527a96.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    },
+    {
+      "id": 2,
+      "status": "done",
+      "round": 2,
+      "file": "live/2026-11-19_16-17-04_671578_13687d1a.md",
+      "agreement": [
+        "agreement"
+      ]
+    },
+    {
+      "id": 3,
+      "status": "done",
+      "round": 3,
+      "file": "live/2026-11-19_16-17-25_890180_7e76accd.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    }
+  ],
+  "new_tasks": [
+    {
+      "id": "part22",
+      "who": "hana",
+      "title": "다중 테넌트 상태 전이·계약 검증",
+      "days": 1.5,
+      "start": 0.0,
+      "end": 1.5
+    },
+    {
+      "id": "piece21",
+      "who": "faye",
+      "title": "회귀 검사 결과 작성",
+      "days": 1.0,
+      "start": 1.0,
+      "end": 2.0
+    },
+    {
+      "id": "part23",
+      "who": "bora",
+      "title": "계약 검증 조각",
+      "days": 1.5,
+      "start": 1.0,
+      "end": 2.5
+    }
+  ],
+  "changed_sources": [
+    {
+      "id": "contract",
+      "who": "hana",
+      "days": 0.0,
+      "kind": "milestone"
+    }
+  ]
+}

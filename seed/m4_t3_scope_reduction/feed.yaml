@@ -1,0 +1,12 @@
+issue:
+  task: advanced_effects
+  label: T3 · Scope Reduction · 범위 축소 · 변경 요청
+  now: 5
+  next_phase: end
+  narr: Advanced Effects 구현은 기존 16h에서 32h(4일)가 필요합니다. Core Integration도 다음 주에 마쳐야
+    해서 Alpha 마감을 맞추기 어렵습니다. GD와 선택 기능의 Beta 이관을 논의하고 PM에게 범위 축소 승인을 요청하고 싶습니다.
+  records:
+  - who: dev
+    src: 시나리오 변경 요청
+    text: Advanced Effects 구현은 기존 16h에서 32h(4일)가 필요합니다. Core Integration도 다음 주에 마쳐야
+      해서 Alpha 마감을 맞추기 어렵습니다. GD와 선택 기능의 Beta 이관을 논의하고 PM에게 범위 축소 승인을 요청하고 싶습니다.

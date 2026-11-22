@@ -1,0 +1,9 @@
+swap:
+  label: 시연 · x/y 전체 맞교환
+  action: bundle
+  next_phase: end
+  now: 0
+  narr: 두 담당자에게 묶음 전체의 동의를 받고 원자적으로 교환합니다.
+  transfers:
+    - {task: x, to: jun}
+    - {task: y, to: mia}

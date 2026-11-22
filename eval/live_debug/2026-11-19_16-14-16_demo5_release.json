@@ -1,0 +1,86 @@
+{
+  "demo": "demo5_release",
+  "model": "openai/gpt-4o-mini",
+  "calls": 11,
+  "failures": 1,
+  "error": null,
+  "phases": [
+    {
+      "phase": "start",
+      "now": 0,
+      "next": "qa"
+    },
+    {
+      "phase": "qa",
+      "now": 1,
+      "next": "review"
+    },
+    {
+      "phase": "review",
+      "now": 2,
+      "next": "end"
+    }
+  ],
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "done",
+      "round": 1,
+      "file": "live/2026-11-19_16-13-54_040413_a25c9878.md",
+      "agreement": [
+        "agreement"
+      ]
+    },
+    {
+      "id": 2,
+      "status": "done",
+      "round": 1,
+      "file": "live/2026-11-19_16-14-02_650347_3fb9c20c.md",
+      "agreement": [
+        "agreement"
+      ]
+    },
+    {
+      "id": 3,
+      "status": "done",
+      "round": null,
+      "file": "live/2026-11-19_16-14-15_689509_be4d6fb3.md",
+      "agreement": [
+        null
+      ]
+    }
+  ],
+  "new_tasks": [
+    {
+      "id": "piece21",
+      "who": "bora",
+      "title": "계약 검증 조각",
+      "days": 1.5,
+      "start": 0.0,
+      "end": 1.5
+    },
+    {
+      "id": "piece22",
+      "who": "faye",
+      "title": "회귀 검사 결과 작성",
+      "days": 1.0,
+      "start": 1.0,
+      "end": 2.0
+    },
+    {
+      "id": "piece23",
+      "who": "chan",
+      "title": "계약 검증 조각",
+      "days": 0.5,
+      "start": 1.0,
+      "end": 1.5
+    }
+  ],
+  "changed_sources": []
+}

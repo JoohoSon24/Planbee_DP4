@@ -1,0 +1,10 @@
+start:
+  label: 시연 · 위임 정보와 권한 비교
+  now: 2
+  next_phase: end
+  narr: 기능 구현 하루 추가 · 독립 모듈을 나누어 맡깁니다.
+  records:
+  - who: mia
+    src: 메신저
+    text: 기능 구현 하루 추가 필요
+    t: 수 09:00

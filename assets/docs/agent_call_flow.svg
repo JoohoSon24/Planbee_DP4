@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2240" viewBox="0 0 1600 2240" role="img"><title>전체 에이전트 호출 흐름</title><desc>먼저 기한을 회복하고, 그 배분에서 당사자 협상으로 공정성을 조정한다. 화살표는 실행 순서·분기를 나타낸다.</desc><rect width="1600" height="2240" fill="#f5f7fb"/>
+<text x="60" y="38" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="20" font-weight="700" fill="#345bc4">PLANBEE / ENGINEERING FIGURE 01</text>
+<text x="60" y="79" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="44" font-weight="700" fill="#182c43">전체 에이전트 호출 흐름</text>
+<text x="60" y="140" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="23" font-weight="400" fill="#52667c">먼저 기한을 회복하고, 그 배분에서 당사자 협상으로 공정성을 조정한다. 화살표는 실행 순서·분기를 나타낸다.</text>
+<rect x="60" y="190" width="24" height="24" rx="5" fill="#e8efff" stroke="#345bc4"/>
+<text x="96" y="187" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#182c43">Hive · 코드 / 일정·진행 제어</text>
+<rect x="560" y="190" width="24" height="24" rx="5" fill="#e3f4ed" stroke="#187956"/>
+<text x="596" y="187" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#182c43">Proxy · 개인 LLM / 위임 판단</text>
+<rect x="1090" y="190" width="24" height="24" rx="5" fill="#fff1d9" stroke="#94600d"/>
+<text x="1126" y="187" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#182c43">사람 · 당사자 / PM</text>
+<text x="60" y="255" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="19" font-weight="700" fill="#345bc4">01</text>
+<text x="145" y="251" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="29" font-weight="700" fill="#182c43">입력 → 담당자 재견적 → 전체 일정 검사</text>
+<text x="145" y="291" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="21" font-weight="400" fill="#52667c">LLM은 새 정보의 의미를 해석하고, Hive가 의존성과 마감을 계산한다.</text>
+<rect x="60" y="340" width="460" height="170" rx="18" fill="#fff1d9" stroke="none"/>
+<rect x="60" y="340" width="5" height="170" rx="2" fill="#94600d" stroke="none"/>
+<text x="83" y="359" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">업무 기록 입력</text>
+<text x="83" y="405" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">사용자 → API → Run 생성</text>
+<text x="83" y="436" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">초기 보드·마일스톤 스냅샷</text>
+<text x="83" y="467" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">POST /records</text>
+<rect x="570" y="340" width="460" height="170" rx="18" fill="#e3f4ed" stroke="none"/>
+<rect x="570" y="340" width="5" height="170" rx="2" fill="#187956" stroke="none"/>
+<text x="593" y="359" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">담당자 A · reestimate()</text>
+<text x="593" y="405" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">기록 + 자신의 업무를 읽음</text>
+<text x="593" y="436" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">근거가 있는 소요 변경만 반환</text>
+<text x="593" y="467" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">ingest → 견적 갱신</text>
+<rect x="1080" y="340" width="460" height="170" rx="18" fill="#e8efff" stroke="none"/>
+<rect x="1080" y="340" width="5" height="170" rx="2" fill="#345bc4" stroke="none"/>
+<text x="1103" y="359" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">Hive · deadline_gate</text>
+<text x="1103" y="405" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">dependency_check → 일정 재계산</text>
+<text x="1103" y="436" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">마감·용량·승인 가용 시간 검사</text>
+<text x="1103" y="467" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">위험 → 02 / 안전 → 03 / 위반 보류</text>
+<polyline points="525,425 564,425" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="564,425 554.0950818741205,429.78462087522354 554.0950818741205,420.21537912477646" fill="#a3b2c4"/>
+<polyline points="1035,425 1074,425" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="1074,425 1064.0950818741205,429.78462087522354 1064.0950818741205,420.21537912477646" fill="#a3b2c4"/>
+<polyline points="1310,510 1310,546 800,546 800,593" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="800,593 795.2153791247765,583.0950818741205 804.7846208752235,583.0950818741205" fill="#a3b2c4"/>
+<text x="60" y="595" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="19" font-weight="700" fill="#345bc4">02</text>
+<text x="145" y="591" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="29" font-weight="700" fill="#182c43">기한 회복 · 위험이 있을 때만 실행</text>
+<text x="145" y="631" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="21" font-weight="400" fill="#52667c">거절은 불가능성 증명이 아니다. 공개 사유를 가지고 다자간 대안을 찾는다.</text>
+<rect x="60" y="680" width="460" height="170" rx="18" fill="#e3f4ed" stroke="none"/>
+<rect x="60" y="680" width="5" height="170" rx="2" fill="#187956" stroke="none"/>
+<text x="83" y="699" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">분할·전체 양도·일정 재배치</text>
+<text x="83" y="745" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">A: split()으로 첫 분할안 제안</text>
+<text x="83" y="776" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">분리안 없음 → 전체 업무 토론</text>
+<text x="83" y="807" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">각 참여자: 양도·순서 변경 재제안</text>
+<rect x="570" y="680" width="460" height="170" rx="18" fill="#e3f4ed" stroke="none"/>
+<rect x="570" y="680" width="5" height="170" rx="2" fill="#187956" stroke="none"/>
+<text x="593" y="699" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">당사자 A·B·C… · 토론</text>
+<text x="593" y="745" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">reply() / help_reply(): 최초 응답</text>
+<text x="593" y="776" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">discuss(): 거절·재제안·제3자 합류</text>
+<text x="593" y="807" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">변경된 제안 → 영향 당사자 재동의</text>
+<rect x="1080" y="680" width="460" height="170" rx="18" fill="#e8efff" stroke="none"/>
+<rect x="1080" y="680" width="5" height="170" rx="2" fill="#345bc4" stroke="none"/>
+<text x="1103" y="699" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">Hive · 합의 후 최종 제약 검증</text>
+<text x="1103" y="745" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">최신 보드의 마감·용량·가용 검사</text>
+<text x="1103" y="776" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">통과 → 원자적 반영 / 실패 → 재협상</text>
+<text x="1103" y="807" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">미합의 종료 → PM 검토·재시도</text>
+<polyline points="525,765 564,765" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="564,765 554.0950818741205,769.7846208752235 554.0950818741205,760.2153791247765" fill="#a3b2c4"/>
+<polyline points="1035,765 1074,765" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="1074,765 1064.0950818741205,769.7846208752235 1064.0950818741205,760.2153791247765" fill="#a3b2c4"/>
+<text x="65" y="865" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="21" font-weight="400" fill="#52667c">초기 요청·조건 응답은 bids/tally 경로. 다자간 토론은 같은 bids에서 discussion.turn()으로 전환한다.</text>
+<polyline points="1310,850 1535,850 1535,940 1490,940" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="1490,940 1499.9049181258795,935.2153791247765 1499.9049181258795,944.7846208752235" fill="#a3b2c4"/>
+<rect x="60" y="920" width="1430" height="140" rx="18" fill="#e8efff" stroke="none"/>
+<rect x="60" y="920" width="5" height="140" rx="2" fill="#345bc4" stroke="none"/>
+<text x="83" y="939" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">Hive · 검증·합의된 기한 충족 배분 저장</text>
+<text x="83" y="985" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">finish 또는 discussion_commit → 전체 일정 재검증 → record_feasible_baseline()</text>
+<text x="83" y="1016" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">기한 회복 완료 경로도 반드시 fairness_gate로 이어진다. 아직 기한·용량이 불안전하면 공정성 협상을 보류한다.</text>
+<polyline points="800,1060 800,1094" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="800,1094 795.2153791247765,1084.0950818741205 804.7846208752235,1084.0950818741205" fill="#a3b2c4"/>
+<text x="60" y="1100" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="19" font-weight="700" fill="#345bc4">03</text>
+<text x="145" y="1096" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="29" font-weight="700" fill="#182c43">공정성 검토 → 실제 분담 협상</text>
+<text x="145" y="1136" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="21" font-weight="400" fill="#52667c">공정성 지표는 시작할 업무·후보를 제안한다. 지표 자체가 최종 합의를 선택하지 않는다.</text>
+<rect x="60" y="1185" width="460" height="170" rx="18" fill="#e8efff" stroke="none"/>
+<rect x="60" y="1185" width="5" height="170" rx="2" fill="#345bc4" stroke="none"/>
+<text x="83" y="1204" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">Hive · fairness_gate</text>
+<text x="83" y="1250" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">과거 부담 + 이번 주 업무량 계산</text>
+<text x="83" y="1281" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">부담 차이·연결 업무·역할 확인</text>
+<text x="83" y="1312" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">기준 미달 / 후보 없음 → 유지</text>
+<rect x="570" y="1185" width="460" height="170" rx="18" fill="#e3f4ed" stroke="none"/>
+<rect x="570" y="1185" width="5" height="170" rx="2" fill="#187956" stroke="none"/>
+<text x="593" y="1204" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">담당자 A · split()</text>
+<text x="593" y="1250" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">기한 충족 기준 배분에서 출발</text>
+<text x="593" y="1281" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">어떤 업무를 나눌지 먼저 제안</text>
+<text x="593" y="1312" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">Hive card_check → 최초 수신자 B</text>
+<rect x="1080" y="1185" width="460" height="170" rx="18" fill="#e3f4ed" stroke="none"/>
+<rect x="1080" y="1185" width="5" height="170" rx="2" fill="#187956" stroke="none"/>
+<text x="1103" y="1204" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">A·B·C… · discuss()</text>
+<text x="1103" y="1250" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">B 응답 → 거절 사유 공개</text>
+<text x="1103" y="1281" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">모든 참여자가 수정·재제안 가능</text>
+<text x="1103" y="1312" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">새 수신자 C도 직접 판단 [Fig.02]</text>
+<polyline points="525,1270 564,1270" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="564,1270 554.0950818741205,1274.7846208752235 554.0950818741205,1265.2153791247765" fill="#a3b2c4"/>
+<polyline points="1035,1270 1074,1270" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="1074,1270 1064.0950818741205,1274.7846208752235 1064.0950818741205,1265.2153791247765" fill="#a3b2c4"/>
+<polyline points="1310,1355 1310,1395 290,1395 290,1435" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="290,1435 285.21537912477646,1425.0950818741205 294.78462087522354,1425.0950818741205" fill="#a3b2c4"/>
+<rect x="60" y="1440" width="460" height="170" rx="18" fill="#fff1d9" stroke="none"/>
+<rect x="60" y="1440" width="5" height="170" rx="2" fill="#94600d" stroke="none"/>
+<text x="83" y="1459" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">각 당사자 · 동일 버전 동의</text>
+<text x="83" y="1505" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">주는 사람·받는 사람·영향받는 사람</text>
+<text x="83" y="1536" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">변경안 v+1 → 기존 수락 전부 초기화</text>
+<text x="83" y="1567" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">한도·민감 조건은 사람 확인</text>
+<rect x="570" y="1440" width="460" height="170" rx="18" fill="#e8efff" stroke="none"/>
+<rect x="570" y="1440" width="5" height="170" rx="2" fill="#345bc4" stroke="none"/>
+<text x="593" y="1459" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">Hive · discussion_commit</text>
+<text x="593" y="1505" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">최신 보드에서 마감·용량 재검증</text>
+<text x="593" y="1536" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">일정 변경 → 재동의 요청</text>
+<text x="593" y="1567" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">검증·동의 충족 시 원자적 반영</text>
+<rect x="1080" y="1440" width="460" height="170" rx="18" fill="#e8efff" stroke="none"/>
+<rect x="1080" y="1440" width="5" height="170" rx="2" fill="#345bc4" stroke="none"/>
+<text x="1103" y="1459" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">최종 배분 또는 기준 배분 유지</text>
+<text x="1103" y="1505" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">합의: 배분 확정 + 전후 지표 기록</text>
+<text x="1103" y="1536" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">대안 소진 / 한도: 미합의안 폐기</text>
+<text x="1103" y="1567" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">공정성 실패 → 기한 충족 배분 유지</text>
+<polyline points="525,1525 564,1525" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="564,1525 554.0950818741205,1529.7846208752235 554.0950818741205,1520.2153791247765" fill="#a3b2c4"/>
+<polyline points="1035,1525 1074,1525" fill="none" stroke="#a3b2c4" stroke-width="2"/>
+<polygon points="1074,1525 1064.0950818741205,1529.7846208752235 1064.0950818741205,1520.2153791247765" fill="#a3b2c4"/>
+<text x="60" y="1655" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="19" font-weight="700" fill="#345bc4">04</text>
+<text x="145" y="1651" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="29" font-weight="700" fill="#182c43">주 흐름을 보조하는 호출과 사람의 결정</text>
+<text x="145" y="1691" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="21" font-weight="400" fill="#52667c">일반 기한 회복에서 수신 마감 연장으로 위험을 숨기지 않는다.</text>
+<rect x="60" y="1740" width="460" height="170" rx="18" fill="#e3f4ed" stroke="none"/>
+<rect x="60" y="1740" width="5" height="170" rx="2" fill="#187956" stroke="none"/>
+<text x="83" y="1759" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">위임카드 작성 · 별도 API</text>
+<text x="83" y="1805" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">interpret_card(): 자연어 → 정책 초안</text>
+<text x="83" y="1836" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">당사자가 확인·저장한 뒤 사용</text>
+<text x="83" y="1867" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">분리 분석 API도 split() 별도 호출</text>
+<rect x="570" y="1740" width="460" height="170" rx="18" fill="#fff1d9" stroke="none"/>
+<rect x="570" y="1740" width="5" height="170" rx="2" fill="#94600d" stroke="none"/>
+<text x="593" y="1759" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">PM · 예외와 재개</text>
+<text x="593" y="1805" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">ask: 범위 축소·유예안 검토</text>
+<text x="593" y="1836" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">grant/reject → 필요한 당사자 확인</text>
+<text x="593" y="1867" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">라운드 확대 후 retry → 이력 유지</text>
+<rect x="1080" y="1740" width="460" height="170" rx="18" fill="#fff1d9" stroke="none"/>
+<rect x="1080" y="1740" width="5" height="170" rx="2" fill="#94600d" stroke="none"/>
+<text x="1103" y="1759" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#182c43">명시적 조작 · 별도 경로</text>
+<text x="1103" y="1805" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">수신 시점 변경: 확인 후 재계산</text>
+<text x="1103" y="1836" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">wait_reply(): 수신 조건 응답용</text>
+<text x="1103" y="1867" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="22" font-weight="400" fill="#52667c">묶음 이동: 사람 합의 + 코드 반영</text>
+<rect x="60" y="1950" width="1480" height="210" rx="16" fill="#182c43" stroke="none"/>
+<text x="85" y="1973" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="27" font-weight="700" fill="#ffffff">모든 단계의 공통 계약</text>
+<text x="85" y="2020" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="23" font-weight="400" fill="#e0e9f8">정보 경계  |  각 LLM에는 자기 위임카드만 전달. 다른 사람의 카드 원문은 전달하지 않는다.</text>
+<text x="85" y="2056" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="23" font-weight="400" fill="#e0e9f8">판단 분리  |  LLM은 수락·거절·재제안 / Hive 코드는 일정·역할·용량 검증과 상태 전이를 담당한다.</text>
+<text x="85" y="2092" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="23" font-weight="400" fill="#e0e9f8">관측·재개  |  Run에 턴·요청자·수신자·사유·버전·Hive 활동·초기/이후 마일스톤을 순서대로 기록한다.</text>
+<text x="60" y="2190" dominant-baseline="text-before-edge" font-family="Apple SD Gothic Neo,Noto Sans CJK KR,sans-serif" font-size="19" font-weight="400" fill="#52667c">SOURCE  app/workflow.py · app/discussion.py · app/llm.py · app/task_partition.py · app/runlogs.py</text>
+</svg>

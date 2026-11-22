@@ -1,0 +1,461 @@
+meta:
+  title: T4 · Composite Negotiation · 복합 협상
+  summary: Character Animation은 기존 24h에서 32h(4일)로 증가해 11/20 가용 8h를 추가 사용합니다. FX Assets
+    잔여 4h는 11/23 오전에 수행해 12:00 전달 가능합니다. 임시 에셋은 11/20 제공 가능합니다. Dev·QA와 조정하고 싶습니다.
+  phase: issue
+  now: 4
+  week_start: '2026-11-16'
+  deadline_label: 11/26 Alpha
+  narr: 다음 시나리오 이슈를 눌러 원문의 변경 요청을 처리하세요.
+  source_task: character_animation
+  source: Senario/M4 시나리오 설계
+  source_sha256: b792bc750331879c54a5ee8b941eca14588c7da92718618d4c846499ac696d4f
+  engine_support: 임시 Integration과 최종 교체의 단계별 분해, 선행 FX의 최종 교체 연결, 선택 Retest의 동일 항목
+    Final QA 포함을 검증합니다. Retest 생략 후보에는 QA 본인 Confirm이 필요합니다. 월요일에 두 Integration 단계를
+    모두 끝내면 Retest 유지도 가능하므로 생략을 정답으로 강제하지 않습니다. V2 공통 정책상 적용에는 PM 최종 선택이 필요합니다.
+  normalization_note: 원문 이미지의 막대 위치와 시간 길이가 맞지 않는 곳은 본문 시간(h)을 우선했습니다. T1은 11/23 가용
+    8h 조건에 따라 Bug Fix를 11/24 시작으로 고정하고 Final Test는 11/26~27로 정규화했습니다. T5 초기 보드에는 새로
+    발견된 잔여 수정 16h를 표시합니다.
+people:
+- id: gd
+  name: GD
+  role: 기획
+  notes:
+    prompt_role: gd
+  rec:
+    feature_spec: 6
+    ux_review: 6
+    scope_review: 6
+  wants: []
+- id: art
+  name: Art
+  role: 아트
+  notes:
+    prompt_role: art
+  rec:
+    character_animation: 6
+    fx_assets: 6
+    beta_handoff: 6
+    ui_integration: 6
+  wants: []
+- id: dev
+  name: Dev
+  role: 개발
+  notes:
+    prompt_role: dev
+  rec:
+    core_x: 6
+    anim_integration: 6
+    critical_fix: 6
+  wants: []
+- id: qa
+  name: QA
+  role: QA
+  notes:
+    prompt_role: qa
+  rec:
+    smoke: 6
+    retest: 6
+    final_qa: 6
+  wants: []
+cards:
+- who: gd
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 기존 범위 내 재배치와 선택 중간 검증 생략에 PM 승인 불필요.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: art
+  auto_days: 0
+  wait_days: 0
+  gives_help: true
+  note: Character Animation 추가 8h는 11/20에 수행. FX Assets 잔여 4h는 11/23 오전, 12:00 전달.
+    임시 에셋은 11/20 제공 가능.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: dev
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 11/23·24 각 8h 가용. Anim Integration 8h와 Critical Fix 8h 필수. 임시 에셋 Integration
+    6h와 최종 교체 2h로 분해 가능. 교체는 최종 FX 수신 후. Critical Fix는 독립적.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable:
+    - start: 4
+      end: 5
+    - start: 7
+      end: 10
+- who: qa
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 11/24 Retest 8h는 최종 Integration이 전 영업일까지 끝나야 함. Retest 선택 검증이며 본인 Confirm
+    후 생략 가능. 동일 항목을 11/25~26 Final QA 16h에 포함. Final QA는 Anim Integration과 Critical
+    Fix 모두 완료 후.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+tasks:
+- id: feature_spec
+  who: gd
+  title: Feature Spec
+  s0: 0
+  d: 1.0
+  tag: feature_spec
+  kind: done
+  context:
+    description: Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Feature Spec 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: ux_review
+  who: gd
+  title: UX Review
+  s0: 3
+  d: 1.0
+  tag: ux_review
+  kind: done
+  context:
+    description: UX Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: UX Review 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: scope_review
+  who: gd
+  title: Scope Review
+  s0: 5
+  d: 1.0
+  tag: scope_review
+  kind: ''
+  context:
+    description: Scope Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Scope Review 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    latest_finish: 7
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: character_animation
+  who: art
+  title: Character Animation
+  s0: 1
+  d: 3.0
+  tag: character_animation
+  kind: ''
+  context:
+    description: Character Animation 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Character Animation 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    latest_finish: 5
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+    active_participants_only: true
+    allowed_change_tasks:
+    - character_animation
+    - fx_assets
+    - anim_integration
+    - critical_fix
+    - retest
+- id: fx_assets
+  who: art
+  title: FX Assets 잔여
+  s0: 4
+  d: 0.5
+  tag: fx_assets
+  kind: ''
+  context:
+    description: FX Assets 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: FX Assets 잔여 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    latest_finish: 5.5
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: beta_handoff
+  who: art
+  title: Beta Handoff
+  s0: 6
+  d: 1.0
+  tag: beta_handoff
+  kind: ''
+  context:
+    description: Beta Handoff 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Beta Handoff 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    latest_finish: 8
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: core_x
+  who: dev
+  title: Core X
+  s0: 1
+  d: 3.0
+  tag: core_x
+  kind: done
+  context:
+    description: Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core X 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: anim_integration
+  who: dev
+  title: Anim Integration
+  s0: 5
+  d: 1.0
+  tag: anim_integration
+  kind: ''
+  context:
+    description: Anim Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Anim Integration 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: true
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    latest_finish: 7
+    split_boundary: 임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은
+      조건부로 검증해야 함.
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+    required_parts:
+    - key: temporary
+      title: 임시 에셋 Integration
+      what: 임시 에셋 기반 Integration 6h
+      effort: 0.75
+      assignees:
+      - dev
+    - key: final
+      title: 최종 에셋 교체
+      what: 전달받은 최종 에셋 교체 2h
+      effort: 0.25
+      assignees:
+      - dev
+      depends_on:
+      - temporary
+    inbound_scope:
+      fx_assets:
+      - final
+- id: critical_fix
+  who: dev
+  title: Critical Fix
+  s0: 6
+  d: 1.0
+  tag: critical_fix
+  kind: ''
+  context:
+    description: Critical Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Critical Fix 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    latest_finish: 7
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: smoke
+  who: qa
+  title: Smoke Test
+  s0: 4
+  d: 1.0
+  tag: smoke
+  kind: ''
+  context:
+    description: Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Smoke Test 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+- id: retest
+  who: qa
+  title: Integration Retest
+  s0: 6
+  d: 1.0
+  tag: retest
+  kind: ''
+  context:
+    description: Integration Retest 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Integration Retest 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    fixed_start: 6
+    latest_finish: 7
+    optional: true
+    omit_requires_confirm: qa
+    split_boundary: Retest 시작 전 영업일까지 최종 Integration 완료 필요. 생략은 QA 본인 Confirm 필요.
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+    covered_by: final_qa
+    coverage:
+    - animation_integration
+- id: final_qa
+  who: qa
+  title: Final QA
+  s0: 7
+  d: 2.0
+  tag: final_qa
+  kind: ''
+  context:
+    description: Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Final QA 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    fixed_start: 7
+    latest_finish: 9
+    source_scenario: m4_t4_composite
+    time_quantum: 0.25
+    coverage:
+    - animation_integration
+    - critical_fix
+    minimum_days: 2
+- id: milestone
+  who: gd
+  title: Alpha
+  s0: 9
+  d: 0.0
+  tag: milestone
+  kind: milestone
+  context:
+    description: Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Alpha 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    completion_barrier: true
+handoffs:
+- id: h_character_animation_fx_assets
+  from: character_animation
+  to: fx_assets
+  title: character_animation → fx_assets
+  what: character_animation 검증 완료본
+  t: 5
+- id: h_fx_assets_anim_integration
+  from: fx_assets
+  to: anim_integration
+  title: fx_assets → anim_integration
+  what: fx_assets 검증 완료본
+  t: 6
+- id: h_anim_integration_retest
+  from: anim_integration
+  to: retest
+  title: anim_integration → retest
+  what: anim_integration 검증 완료본
+  t: 6
+- id: h_anim_integration_final_qa
+  from: anim_integration
+  to: final_qa
+  title: anim_integration → final_qa
+  what: anim_integration 검증 완료본
+  t: 7
+- id: h_critical_fix_final_qa
+  from: critical_fix
+  to: final_qa
+  title: critical_fix → final_qa
+  what: critical_fix 검증 완료본
+  t: 7
+- id: h_final_qa_milestone
+  from: final_qa
+  to: milestone
+  title: final_qa → milestone
+  what: final_qa 검증 완료본
+  t: 9
+records: []
+rules:
+- key: deadline
+  label: 11/26 Alpha
+  value:
+    week_end: 9
+- key: weekly_cap
+  label: 2주 계획·1일 8h·동시 작업 금지
+  value:
+    days: 10
+- key: pm_only
+  label: 범위 축소·마일스톤 변경은 PM 권한
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: 후보 선택 참고
+  value:
+    choice: fair
+  locked: false

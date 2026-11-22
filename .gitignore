@@ -5,3 +5,10 @@ planbee.db
 .env
 .venv/
 .DS_Store
+planbee_*.db
+
+# Generated conversation transcripts
+runs/
+
+# Rendered PDF quality checks (final report and figures remain tracked)
+/tmp/pdfs/

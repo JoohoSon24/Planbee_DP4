@@ -1,0 +1,10 @@
+tue:
+  next_phase: end
+  label: 시연 · 재개 버그 기록 받기
+  now: 1
+  narr: 중복 재개 버그를 읽고 독립 조회 부분의 분리를 판단합니다.
+  records:
+  - who: yk
+    src: 저장소
+    text: 협상 재개 중복 확정 버그 · 하루 추가 필요
+    t: 화 09:05

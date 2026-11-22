@@ -1,0 +1,340 @@
+meta:
+  title: T1 · Simple Rescheduling · 일정 이동
+  summary: Polish 작업을 하루 뒤인 11/23으로 이동하고 싶습니다. Bug Fix와 Core X 일정은 그대로 유지하고 싶습니다.
+    Polish 소요량은 6h 그대로입니다.
+  phase: issue
+  now: 4
+  week_start: '2026-11-16'
+  deadline_label: 11/27 Alpha
+  narr: 다음 시나리오 이슈를 눌러 원문의 변경 요청을 처리하세요.
+  source_task: polish
+  source: Senario/M4 시나리오 설계
+  source_sha256: b792bc750331879c54a5ee8b941eca14588c7da92718618d4c846499ac696d4f
+  engine_support: Dev 단독으로 일정 이동 후보를 평가하며 GD·Art·QA LLM을 불필요하게 호출하지 않습니다. Hive가 제약을
+    검증합니다. 공통 V2 정책상 최종 적용에는 PM 선택이 필요합니다. 원안의 단독 자동 처리와는 다릅니다.
+  normalization_note: 원문 이미지의 막대 위치와 시간 길이가 맞지 않는 곳은 본문 시간(h)을 우선했습니다. T1은 11/23 가용
+    8h 조건에 따라 Bug Fix를 11/24 시작으로 고정하고 Final Test는 11/26~27로 정규화했습니다. T5 초기 보드에는 새로
+    발견된 잔여 수정 16h를 표시합니다.
+people:
+- id: gd
+  name: GD
+  role: 기획
+  notes:
+    prompt_role: gd
+  rec:
+    x_spec: 6
+    ux_review: 6
+  wants: []
+- id: art
+  name: Art
+  role: 아트
+  notes:
+    prompt_role: art
+  rec:
+    icons: 6
+    charge_anim: 6
+    ui_integration: 6
+  wants: []
+- id: dev
+  name: Dev
+  role: 개발
+  notes:
+    prompt_role: dev
+  rec:
+    core_x: 6
+    polish: 6
+    bug_fix: 6
+  wants: []
+- id: qa
+  name: QA
+  role: QA
+  notes:
+    prompt_role: qa
+  rec:
+    smoke: 6
+    final_test: 6
+  wants: []
+cards:
+- who: gd
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 다른 사람 일정에 영향 없는 Polish 이동에는 협의가 필요하지 않음.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: art
+  auto_days: 0
+  wait_days: 0
+  gives_help: true
+  note: Polish 변경은 내 업무에 영향 없음.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: dev
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: Polish는 P3, 11/25까지 완료. 본인 작업은 1영업일 이내 이동 가능. 11/23 가용 8h. Bug Fix와 Core X
+    일정 유지.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: qa
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: Final Test는 Core X와 Bug Fix 완료 후 수행. Polish는 필수 테스트 선행 작업이 아님.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+tasks:
+- id: x_spec
+  who: gd
+  title: X Spec
+  s0: 0
+  d: 1.0
+  tag: x_spec
+  kind: done
+  context:
+    description: X Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: X Spec 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: ux_review
+  who: gd
+  title: UX Review
+  s0: 2
+  d: 1.0
+  tag: ux_review
+  kind: done
+  context:
+    description: UX Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: UX Review 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: icons
+  who: art
+  title: Icons
+  s0: 0
+  d: 1.5
+  tag: icons
+  kind: done
+  context:
+    description: Icons 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Icons 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: charge_anim
+  who: art
+  title: Charge Anim
+  s0: 2
+  d: 2.0
+  tag: charge_anim
+  kind: done
+  context:
+    description: Charge Anim 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Charge Anim 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: core_x
+  who: dev
+  title: Core X
+  s0: 1
+  d: 3.0
+  tag: core_x
+  kind: done
+  context:
+    description: Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core X 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: polish
+  who: dev
+  title: Polish
+  s0: 4
+  d: 0.75
+  tag: polish
+  kind: ''
+  context:
+    description: Polish 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Polish 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    requested_start: 5
+    latest_finish: 8
+    max_shift_days: 1
+    original_start: 4
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+    active_participants_only: true
+    allowed_change_tasks:
+    - polish
+    single_actor: true
+- id: bug_fix
+  who: dev
+  title: Bug Fix
+  s0: 6
+  d: 1.5
+  tag: bug_fix
+  kind: ''
+  context:
+    description: Bug Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Bug Fix 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    fixed_start: 6
+    latest_finish: 8
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: smoke
+  who: qa
+  title: Smoke Test
+  s0: 3
+  d: 1.0
+  tag: smoke
+  kind: done
+  context:
+    description: Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Smoke Test 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: final_test
+  who: qa
+  title: Final Test
+  s0: 8
+  d: 2.0
+  tag: final_test
+  kind: ''
+  context:
+    description: Final Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Final Test 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    fixed_start: 8
+    latest_finish: 10
+    source_scenario: m4_t1_rescheduling
+    time_quantum: 0.25
+- id: milestone
+  who: gd
+  title: Alpha
+  s0: 10
+  d: 0.0
+  tag: milestone
+  kind: milestone
+  context:
+    description: Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Alpha 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    completion_barrier: true
+handoffs:
+- id: h_core_x_final_test
+  from: core_x
+  to: final_test
+  title: core_x → final_test
+  what: core_x 검증 완료본
+  t: 8
+- id: h_bug_fix_final_test
+  from: bug_fix
+  to: final_test
+  title: bug_fix → final_test
+  what: bug_fix 검증 완료본
+  t: 8
+- id: h_final_test_milestone
+  from: final_test
+  to: milestone
+  title: final_test → milestone
+  what: final_test 검증 완료본
+  t: 10
+records: []
+rules:
+- key: deadline
+  label: 11/27 Alpha
+  value:
+    week_end: 10
+- key: weekly_cap
+  label: 2주 계획·1일 8h·동시 작업 금지
+  value:
+    days: 10
+- key: pm_only
+  label: 범위 축소·마일스톤 변경은 PM 권한
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: 후보 선택 참고
+  value:
+    choice: fair
+  locked: false

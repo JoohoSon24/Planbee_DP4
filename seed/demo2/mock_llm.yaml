@@ -1,0 +1,19 @@
+# 데모 2 의 Mock 대본. 일수는 적지 않았다: 프록시의 기본 규칙(기록 건수 비례)으로 답한다.
+reestimate:
+  - match: {who: yk, contains: "되돌림 · 3번째"}
+    answer: {task: eng, days: 3.5, basis: "재개 커밋을 3번 되돌림"}
+  - match: {who: jm, contains: "시드 어댑터"}
+    answer: {task: base, days: 3, basis: "엔진 시드를 그대로 못 읽음"}
+
+split:
+  eng:
+    # 이 조각은 DB · API 일이라 에이전트 쪽이 아니라 화면 쪽(role: 화면)에게 묻는다
+    piece: {id: resume, title: "재개 로직 (DB 저장)", days: 1, tag: API, role: 화면, what: "협상 상태를 run 표에 두고 이어 돌리는 코드",
+            reason: 그래프 본체와 따로 만들 수 있음, basis: "interrupt 대신 run 표에 단계를 저장하는 방식", handover: "run 표 구조 · 실패 로그"}
+    to: downstream            # 조각은 받는 일(화면–API 연결)에 바로 넘어간다
+    keep: {title: "협상 엔진 (라운드 본체)"}
+  base:
+    piece: {id: adapter, title: 시드 어댑터, days: 1, tag: 베이스라인, what: 엔진 시드를 베이스라인 입력으로 바꾸는 코드,
+            reason: 프롬프트와 따로 만들 수 있음, basis: 입력 형식만 맞추면 됨, handover: "시드 YAML 구조 · 기대 출력 예시"}
+    to: downstream
+    keep: {title: "싱글 에이전트 베이스라인 (프롬프트)"}

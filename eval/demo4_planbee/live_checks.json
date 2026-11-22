@@ -1,0 +1,136 @@
+[
+  {
+    "kind": "card",
+    "person": "jm",
+    "draft": {
+      "week_start": "2026-11-16",
+      "source_note": "11월 19일부터 20일까지 휴가라 그때는 일을 못 해요. 그 전의 독립 API는 1.5일까지 맡겨도 괜찮아요.",
+      "busy": true,
+      "unavailable": [
+        {
+          "start": 3.0,
+          "end": 5.0,
+          "reason": "",
+          "start_date": "2026-11-19",
+          "end_date_exclusive": "2026-11-21"
+        }
+      ],
+      "weekly_limit": null,
+      "questions": [],
+      "approved": false
+    },
+    "failures": 0
+  },
+  {
+    "kind": "card",
+    "person": "jh",
+    "draft": {
+      "week_start": "2026-11-16",
+      "source_note": "최근 배포와 긴급 수정이 계속돼서 나 너무 바쁨. 작은 API라도 새로 맡기기 전에 나에게 확인해 주세요.",
+      "busy": true,
+      "unavailable": [],
+      "weekly_limit": null,
+      "questions": [],
+      "approved": false
+    },
+    "failures": 0
+  },
+  {
+    "kind": "split",
+    "task": "resume",
+    "decision": {
+      "splittable": true,
+      "rationale": "읽기 전용 조회는 DB 스키마와 테스트 픽스처를 넘기면 독립적으로 진행할 수 있다.",
+      "piece": {
+        "id": null,
+        "title": "읽기 전용 증거 로그 조회 API",
+        "days": 1.5,
+        "tag": "API",
+        "role": null,
+        "what": "재개 코어와 읽기 전용 증거 로그 조회 API 개발",
+        "reason": "독립적으로 진행 가능",
+        "basis": "DB 스키마와 테스트 픽스처 제공",
+        "handover": "DB 스키마 및 테스트 픽스처 문서",
+        "context": {
+          "purpose": "중단된 협상을 이어가고 근거를 조회한다",
+          "files": [
+            "app/workflow.py",
+            "app/store.py",
+            "app/api.py"
+          ],
+          "deliverable": "재개 코어와 읽기 전용 증거 로그 조회 API",
+          "split_boundary": "읽기 전용 조회는 DB 스키마와 테스트 픽스처를 넘기면 독립 가능. 상태 전이·동의 확정 트랜잭션은 나누지 않는다.",
+          "acceptance": [
+            "정상·실패 테스트 포함",
+            "원래 권한과 동의 경계를 유지"
+          ]
+        }
+      },
+      "to": "self",
+      "keep": {
+        "id": null,
+        "title": "협상 재개와 증거 로그",
+        "days": 0.5
+      },
+      "extra": [],
+      "rename_handoff": null
+    },
+    "split": {
+      "splittable": true,
+      "rationale": "읽기 전용 조회는 DB 스키마와 테스트 픽스처를 넘기면 독립적으로 진행할 수 있다.",
+      "piece": {
+        "id": null,
+        "title": "읽기 전용 증거 로그 조회 API",
+        "days": 1.5,
+        "tag": "API",
+        "role": null,
+        "what": "재개 코어와 읽기 전용 증거 로그 조회 API 개발",
+        "reason": "독립적으로 진행 가능",
+        "basis": "DB 스키마와 테스트 픽스처 제공",
+        "handover": "DB 스키마 및 테스트 픽스처 문서",
+        "context": {
+          "purpose": "중단된 협상을 이어가고 근거를 조회한다",
+          "files": [
+            "app/workflow.py",
+            "app/store.py",
+            "app/api.py"
+          ],
+          "deliverable": "재개 코어와 읽기 전용 증거 로그 조회 API",
+          "split_boundary": "읽기 전용 조회는 DB 스키마와 테스트 픽스처를 넘기면 독립 가능. 상태 전이·동의 확정 트랜잭션은 나누지 않는다.",
+          "acceptance": [
+            "정상·실패 테스트 포함",
+            "원래 권한과 동의 경계를 유지"
+          ]
+        }
+      },
+      "to": "self",
+      "keep": {
+        "id": null,
+        "title": "협상 재개와 증거 로그",
+        "days": null
+      },
+      "extra": [],
+      "rename_handoff": null
+    },
+    "failures": 0
+  },
+  {
+    "kind": "split",
+    "task": "signoff",
+    "decision": {
+      "splittable": false,
+      "rationale": "공유 키와 감사 기록이 한 번에 바뀌어야 하며, 서로 다른 담당자가 병렬 변경하면 안 되기 때문에 독립적으로 분리할 수 없습니다.",
+      "piece": null,
+      "to": "self",
+      "keep": {
+        "id": null,
+        "title": "일회성 승인과 서명 키 교체",
+        "days": 1.0
+      },
+      "extra": [],
+      "rename_handoff": null
+    },
+    "split": null,
+    "failures": 0
+  }
+]

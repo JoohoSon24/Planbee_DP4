@@ -1,0 +1,12 @@
+issue:
+  task: critical_fix
+  label: T5 · Infeasible Conflict · 해결 불가능 충돌 · 변경 요청
+  now: 8
+  next_phase: end
+  narr: Critical Fix의 기존 작업은 완료했지만 추가 결함으로 잔여 수정 16h(2일)가 더 필요합니다. 이 잔여 작업은 11/26·27
+    각 8h에만 가능합니다. QA는 완료 후 연속 2영업일 16h가 필요합니다. 11/27 릴리스 일정을 지킬 수 있는지 확인해 주세요.
+  records:
+  - who: dev
+    src: 시나리오 변경 요청
+    text: Critical Fix의 기존 작업은 완료했지만 추가 결함으로 잔여 수정 16h(2일)가 더 필요합니다. 이 잔여 작업은 11/26·27
+      각 8h에만 가능합니다. QA는 완료 후 연속 2영업일 16h가 필요합니다. 11/27 릴리스 일정을 지킬 수 있는지 확인해 주세요.

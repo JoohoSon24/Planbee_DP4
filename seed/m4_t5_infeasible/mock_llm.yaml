@@ -1,0 +1,9 @@
+reestimate:
+- match:
+    who: dev
+    contains: Critical Fix의 기존 작
+  answer:
+    task: critical_fix
+    days: 2
+    basis: 명시된 원 시나리오의 소요량
+split: {}

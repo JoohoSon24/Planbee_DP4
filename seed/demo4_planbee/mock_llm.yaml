@@ -1,0 +1,65 @@
+reestimate:
+- match:
+    who: yk
+    contains: 중복 확정
+  answer:
+    task: resume
+    days: 3
+    basis: 상태 전이 재개 버그 수정에 하루 추가
+split:
+  resume:
+    splittable: true
+    rationale: 읽기 전용 조회는 재개 코어의 상태 변경과 분리된다.
+    piece:
+      id: evidence_part
+      title: 읽기 전용 증거 로그 API
+      days: 1
+      tag: API
+      context:
+        deliverable: GET /evidence 응답과 필터 테스트
+        files:
+        - app/api.py
+        acceptance: 조회만 수행하고 동의 상태를 쓰지 않음
+      basis: 조회와 상태 변경의 경계가 명확함
+      handover: run/message 스키마와 응답 예시
+    to: downstream
+    keep:
+      title: 협상 재개 코어
+bid:
+  읽기 전용 증거 로그 API:
+    jm:
+      days: 1.5
+    jh:
+      days: 1
+card_interpretations:
+  yk:
+    source_note: 재개 로직은 내가 마무리할게요. 읽기 전용 조회처럼 독립된 부분만 다른 사람에게 맡겨주세요.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: false
+  jm:
+    source_note: 11월 19일부터 20일까지 휴가라 그때는 일을 못 해요. 그 전의 독립 API는 1.5일까지 맡겨도 괜찮아요.
+    busy: false
+    unavailable:
+    - start: 3
+      end: 5
+      reason: 11/19~20 휴가
+    weekly_limit: null
+    questions: []
+    approved: false
+  jh:
+    source_note: 최근 배포와 긴급 수정이 계속돼서 나 너무 바쁨. 작은 API라도 새로 맡기기 전에 나에게 확인해 주세요.
+    busy: true
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: false
+  nj:
+    source_note: 테스트와 문서에서 모호한 요구사항은 먼저 물어봐 주세요. 실제 사용자의 동의서는 함부로 쪼개지 말아주세요.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: false

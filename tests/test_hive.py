@@ -83,3 +83,67 @@ def test_check_reply_only_checks_rules():
     assert ok("b", {"type": "COUNTER", "days": 1, "cond": {"kind": "help", "who": "q"}})[1]["code"] == "BAD_CONDITION"  # 역할이 다름
     assert ok("a", {"type": "ACCEPT"}, help_request=True)[1]["code"] == "OVERLOAD"
     assert ok("b", {"type": "ACCEPT"}, help_request=True)[1] is None
+
+
+def test_preview_offer_and_receiver_check():
+    b = make()
+    b.tasks["t1"].d = 4                                   # a 가 하루 늦어짐 → h1(t1 → q 의 t3) 이 늦어질 판
+    hive.schedule(b)
+    piece = {"title": "조각", "days": 1, "tag": "x"}
+    # 조각을 받는 일(t3)에 바로 넘기면 a 의 남은 3일은 제때 끝난다
+    assert hive.preview_offer(b, {"piece": piece, "to": "downstream"}, "t1", "h1", "b", 1)["late_to"] is None
+    # 조각을 a 가 받아 붙여야 하면(to: self) a 의 일이 조각 뒤로 밀려 그래도 늦는다. 원본 판은 그대로
+    pv = hive.preview_offer(b, {"piece": piece, "to": "self"}, "t1", "h1", "b", 1)
+    assert pv["late_to"] == 6 and pv["late_by"] == 3 and pv["receiver"] == "q" and b.tasks["t1"].d == 4
+    assert pv["pushed"] == ["t3"]                         # 받는 사람 q 의 일이 제출일 뒤로 밀림
+    assert hive.check_wait_reply({"type": "ACCEPT"}, pv)[1] is None
+    assert hive.check_wait_reply({"type": "COUNTER"}, pv)[1]["code"] == "BAD_TYPE"
+    assert hive.check_wait_reply({"type": "ACCEPT"}, {**pv, "breaks": ["빌드"]})[1]["code"] == "PROMISE_BROKEN"
+
+
+def approval_board(at=4.5, *, barrier=False):
+    b = hive.Board({'h': P('h', 'ops'), 'a': P('a', 'dev')}, {
+        'approval': T('approval','h',at,0,role='ops',kind='milestone',context={'completion_barrier':barrier}),
+        'final': T('final','a',4.5,.5),
+    }, {'release': H('release','approval','final',4.5)}, now=0)
+    b.extra['policies'] = {'h': {'approved':True,'unavailable':[{'start':4.5,'end':5,'reason':'교육'}]}}
+    return b
+
+
+def test_zero_effort_approval_checks_unavailability_start_boundary_and_propagates():
+    b = approval_board()
+    hive.schedule(b)
+    assert b.tasks['approval'].s == 5
+    assert b.tasks['final'].s == 5
+    gate = hive.gate(b)
+    assert not gate['ok']
+    assert gate['adjustments'][0]['who'] == 'h'
+    assert gate['adjustments'][0]['requested'] == 4.5
+    assert gate['adjustments'][0]['scheduled'] == 5
+    assert any(v['code']=='HANDOFF_LATE' for v in gate['violations'])
+    assert any(w['task']=='final' for w in gate['warnings'])
+
+
+def test_gate_detects_unscheduled_unavailable_approval_and_interval_end_is_available():
+    b = approval_board()
+    assert any(v['code']=='MILESTONE_UNAVAILABLE' for v in hive.gate(b)['violations'])
+    assert hive.available_start(b,'h',4.5,0) == 5
+    assert hive.available_start(b,'h',4.75,0) == 5
+    assert hive.available_start(b,'h',5,0) == 5
+    assert hive.available_start(b,'h',4,0) == 4
+
+
+def test_completion_barrier_does_not_require_nominal_owner_attendance():
+    b = approval_board(barrier=True)
+    hive.schedule(b)
+    assert b.tasks['approval'].s == 4.5
+    assert hive.gate(b)['ok']
+    assert not hive.gate(b)['adjustments']
+
+
+def test_unapproved_time_off_does_not_become_a_hard_constraint():
+    b=approval_board()
+    b.extra['policies']['h']['approved']=False
+    hive.schedule(b)
+    assert b.tasks['approval'].s==4.5
+    assert hive.gate(b)['ok']

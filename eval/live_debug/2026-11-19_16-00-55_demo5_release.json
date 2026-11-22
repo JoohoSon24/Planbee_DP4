@@ -1,0 +1,26 @@
+{
+  "demo": "demo5_release",
+  "model": "openai/gpt-4o-mini",
+  "calls": 7,
+  "failures": 0,
+  "error": null,
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "done",
+      "round": 2,
+      "file": "live/2026-11-19_16-00-35_259341_006ab6d2.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    }
+  ],
+  "new_tasks": [],
+  "changed_sources": []
+}

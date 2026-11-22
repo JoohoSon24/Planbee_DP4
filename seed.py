@@ -1,4 +1,4 @@
-"""DB를 비우고 seed/team.yaml 로 다시 채운다.   python seed.py"""
+"""DB를 비우고 seed/<데모>/team.yaml 로 다시 채운다.   python seed.py   (데모 2: PLANBEE_DEMO=demo2 python seed.py)"""
 from app import store
 
 engine = store.make_engine()

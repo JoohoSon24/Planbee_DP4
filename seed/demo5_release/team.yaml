@@ -1,0 +1,608 @@
+meta:
+  title: 데모 5 · 8인 릴리스와 5라운드 분담
+  phase: start
+  now: 0
+  week_start: '2026-11-16'
+  deadline_label: 릴리스 · 11/20 금
+  narr: 계약 동결 → QA → 릴리스의 세 단계를 실행해 보세요.
+  summary: 8명·20개 작업·4개 milestone. 거절, 제3자, 재동의와 QA 지연 복구.
+  scenario_doc: demo5_release_discussion.md
+people:
+- id: hana
+  name: 하나
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 8
+- id: bora
+  name: 보라
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 0
+- id: chan
+  name: 찬
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 0
+- id: duri
+  name: 두리
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: eun
+  name: 은
+  role: QA
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: faye
+  name: 페이
+  role: QA
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: geo
+  name: 지오
+  role: 운영
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: haru
+  name: 하루
+  role: 운영
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+cards:
+- who: hana
+  auto_days: 1
+  refuse_tags: []
+  note: 상태 전이 코어는 유지하고 독립 계약 테스트만 나눕니다.
+  policy:
+    source_note: 상태 전이 코어는 유지하고 독립 계약 테스트만 나눕니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: bora
+  auto_days: 0.75
+  refuse_tags: []
+  note: 계약 검증은 0.75일 분량만 맡고 나머지는 동료에게 제안합니다.
+  policy:
+    source_note: 계약 검증은 0.75일 분량만 맡고 나머지는 동료에게 제안합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: chan
+  auto_days: 0.5
+  refuse_tags: []
+  note: 기존 약속 때문에 새 계약 검증은 0.5일만 약속합니다.
+  policy:
+    source_note: 기존 약속 때문에 새 계약 검증은 0.5일만 약속합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: duri
+  auto_days: 1
+  refuse_tags:
+  - 계약
+  note: 보안 담당이라 새 계약 작업은 맡지 않습니다.
+  policy:
+    source_note: 보안 담당이라 새 계약 작업은 맡지 않습니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: eun
+  auto_days: 1
+  refuse_tags: []
+  note: 릴리스 QA의 판단과 승인 책임은 유지합니다.
+  policy:
+    source_note: 릴리스 QA의 판단과 승인 책임은 유지합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: faye
+  auto_days: 1
+  refuse_tags: []
+  note: 독립된 회귀 픽스처를 검증합니다.
+  policy:
+    source_note: 독립된 회귀 픽스처를 검증합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: geo
+  auto_days: 1
+  refuse_tags: []
+  note: QA 산출물을 받은 뒤 배포합니다.
+  policy:
+    source_note: QA 산출물을 받은 뒤 배포합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: haru
+  auto_days: 1
+  refuse_tags: []
+  note: 금요일 오후는 가용 시간이 없습니다.
+  policy:
+    source_note: 금요일 오후는 가용 시간이 없습니다.
+    busy: false
+    unavailable:
+    - start: 4.5
+      end: 5
+      reason: 교육
+    weekly_limit: null
+    questions: []
+    approved: true
+tasks:
+- id: contract
+  who: hana
+  title: 다중 테넌트 상태 전이·계약 검증
+  s0: 0
+  d: 3
+  tag: 계약
+  kind: ''
+  context:
+    description: 다중 테넌트 상태 전이·계약 검증 작업을 수행하고 상태 전이 코어와 계약 테스트을 전달한다.
+    purpose: 다중 테넌트 상태 전이·계약 검증
+    deliverable: 상태 전이 코어와 계약 테스트
+    splittable_hint: true
+    split_boundary: 계약·픽스처를 공유한 독립 검증 조각만 분리한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: audit
+  who: hana
+  title: 감사 로그 승인
+  s0: 3
+  d: 1
+  tag: 운영
+  kind: ''
+  context:
+    description: 감사 로그 승인 작업을 수행하고 승인된 감사 이벤트 목록을 전달한다.
+    purpose: 감사 로그 승인
+    deliverable: 승인된 감사 이벤트 목록
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: bora_base
+  who: bora
+  title: 기존 파서 호환성
+  s0: 3.5
+  d: 0.5
+  tag: 계약
+  kind: ''
+  context:
+    description: 기존 파서 호환성 작업을 수행하고 호환성 결과을 전달한다.
+    purpose: 기존 파서 호환성
+    deliverable: 호환성 결과
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: chan_base
+  who: chan
+  title: 멱등키 조사
+  s0: 3.5
+  d: 0.5
+  tag: 계약
+  kind: ''
+  context:
+    description: 멱등키 조사 작업을 수행하고 멱등성 샘플을 전달한다.
+    purpose: 멱등키 조사
+    deliverable: 멱등성 샘플
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: security
+  who: duri
+  title: 접근 제어 감사
+  s0: 0
+  d: 1
+  tag: 운영
+  kind: ''
+  context:
+    description: 접근 제어 감사 작업을 수행하고 접근 제어 판정을 전달한다.
+    purpose: 접근 제어 감사
+    deliverable: 접근 제어 판정
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: rotate
+  who: duri
+  title: 서명 키 회전
+  s0: 2
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 서명 키 회전 작업을 수행하고 키 전환 체크리스트을 전달한다.
+    purpose: 서명 키 회전
+    deliverable: 키 전환 체크리스트
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: qa_setup
+  who: eun
+  title: 릴리스 QA 환경
+  s0: 0
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: 릴리스 QA 환경 작업을 수행하고 재현 가능한 환경을 전달한다.
+    purpose: 릴리스 QA 환경
+    deliverable: 재현 가능한 환경
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: qa_pack
+  who: eun
+  title: 승인·실패 경로 회귀
+  s0: 3
+  d: 1
+  tag: 테스트
+  kind: ''
+  context:
+    description: 승인·실패 경로 회귀 작업을 수행하고 회귀 검사 결과을 전달한다.
+    purpose: 승인·실패 경로 회귀
+    deliverable: 회귀 검사 결과
+    splittable_hint: true
+    split_boundary: 계약·픽스처를 공유한 독립 검증 조각만 분리한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: faye_base
+  who: faye
+  title: 테스트 데이터 비식별화
+  s0: 0
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: 테스트 데이터 비식별화 작업을 수행하고 비식별 픽스처을 전달한다.
+    purpose: 테스트 데이터 비식별화
+    deliverable: 비식별 픽스처
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: faye_docs
+  who: faye
+  title: QA 인수 문서
+  s0: 4
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: QA 인수 문서 작업을 수행하고 인수 체크리스트을 전달한다.
+    purpose: QA 인수 문서
+    deliverable: 인수 체크리스트
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: infra
+  who: geo
+  title: 스테이징 네트워크
+  s0: 0
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 스테이징 네트워크 작업을 수행하고 스테이징 주소을 전달한다.
+    purpose: 스테이징 네트워크
+    deliverable: 스테이징 주소
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: release
+  who: geo
+  title: 통합 릴리스 점검
+  s0: 4
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 통합 릴리스 점검 작업을 수행하고 배포 가능 빌드을 전달한다.
+    purpose: 통합 릴리스 점검
+    deliverable: 배포 가능 빌드
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: observe
+  who: haru
+  title: 관측 대시보드
+  s0: 0
+  d: 1
+  tag: 운영
+  kind: ''
+  context:
+    description: 관측 대시보드 작업을 수행하고 오류율·지연 대시보드을 전달한다.
+    purpose: 관측 대시보드
+    deliverable: 오류율·지연 대시보드
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: rollback
+  who: haru
+  title: 롤백 모의훈련
+  s0: 3
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 롤백 모의훈련 작업을 수행하고 복구 시간 기록을 전달한다.
+    purpose: 롤백 모의훈련
+    deliverable: 복구 시간 기록
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: contract_gate
+  who: duri
+  title: M1 계약 동결
+  s0: 3
+  d: 0
+  tag: 계약
+  kind: milestone
+  context:
+    description: M1 계약 동결 작업을 수행하고 계약 동결을 전달한다.
+    purpose: M1 계약 동결
+    deliverable: 계약 동결
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: security_gate
+  who: duri
+  title: M2 보안 승인
+  s0: 3
+  d: 0
+  tag: 운영
+  kind: milestone
+  context:
+    description: M2 보안 승인 작업을 수행하고 보안 승인을 전달한다.
+    purpose: M2 보안 승인
+    deliverable: 보안 승인
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: qa_gate
+  who: faye
+  title: M3 QA 통과
+  s0: 4
+  d: 0
+  tag: 테스트
+  kind: milestone
+  context:
+    description: M3 QA 통과 작업을 수행하고 QA 판정을 전달한다.
+    purpose: M3 QA 통과
+    deliverable: QA 판정
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: release_gate
+  who: geo
+  title: M4 릴리스 승인
+  s0: 4.5
+  d: 0
+  tag: 운영
+  kind: milestone
+  context:
+    description: M4 릴리스 승인 작업을 수행하고 릴리스 승인을 전달한다.
+    purpose: M4 릴리스 승인
+    deliverable: 릴리스 승인
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: monitor
+  who: geo
+  title: 배포 후 관측
+  s0: 4.5
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 배포 후 관측 작업을 수행하고 30분 관측 요약을 전달한다.
+    purpose: 배포 후 관측
+    deliverable: 30분 관측 요약
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: final
+  who: hana
+  title: 최종 체크리스트 확인
+  s0: 4.5
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 최종 체크리스트 확인 작업을 수행하고 릴리스 체크리스트을 전달한다.
+    purpose: 최종 체크리스트 확인
+    deliverable: 릴리스 체크리스트
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+handoffs:
+- id: contract_ready
+  from: contract
+  to: contract_gate
+  title: 계약 동결본
+  what: 계약 동결본 검증 산출물
+  t: 3
+- id: qa_input
+  from: contract
+  to: qa_pack
+  title: 테스트 가능한 계약 코어
+  what: 테스트 가능한 계약 코어 검증 산출물
+  t: 3
+- id: security_ready
+  from: security
+  to: security_gate
+  title: 접근 제어 결과
+  what: 접근 제어 결과 검증 산출물
+  t: 2
+- id: qa_ready
+  from: qa_pack
+  to: release
+  title: 릴리스 QA 판정
+  what: 릴리스 QA 판정 검증 산출물
+  t: 4
+- id: qa_checkpoint
+  from: qa_pack
+  to: qa_gate
+  title: 회귀 결과
+  what: 회귀 결과 검증 산출물
+  t: 4
+- id: audit_ready
+  from: audit
+  to: release_gate
+  title: 감사 로그 승인
+  what: 감사 로그 승인 검증 산출물
+  t: 4
+- id: release_ready
+  from: release
+  to: release_gate
+  title: 릴리스 빌드
+  what: 릴리스 빌드 검증 산출물
+  t: 4.5
+- id: monitor_ready
+  from: release
+  to: monitor
+  title: 관측 시작 승인
+  what: 관측 시작 승인 검증 산출물
+  t: 4.5
+- id: final_ready
+  from: release_gate
+  to: final
+  title: 배포 체크리스트
+  what: 배포 체크리스트 검증 산출물
+  t: 4.5
+records: []
+rules:
+- key: deadline
+  label: 금요일 11/20 제출
+  value:
+    week_end: 5
+- key: weekly_cap
+  label: 주 5일
+  value:
+    days: 5
+- key: pm_only
+  label: 범위·미루기는 PM
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: '최초 요청 참고: 부담 균형'
+  value:
+    choice: fair
+- key: fairness
+  label: 부담 차이 검토
+  value:
+    min_range: 10
+    min_gap: 2

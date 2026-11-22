@@ -14,6 +14,7 @@ people:
   - {id: zoe, name: Zoe, role: 테스트, rec: {테스트: 12}, wants: [화면 코드]}
 
 cards:   # 위임 카드: auto_days 까지는 프록시가 알아서 수락, 넘으면 본인에게 물음
+         # wait_days: 받기로 한 것이 이만큼 늦어져도 알아서 수락 (기본 0) · model: 이 프록시만 쓸 LLM (Live)
   - {who: mia, auto_days: 1}
   - {who: ivy, auto_days: 0.5}
   - {who: leo, auto_days: 1}
@@ -86,5 +87,5 @@ rules:
   - {key: deadline,   label: "제출일 11/20 고정",            value: {week_end: 5}}
   - {key: weekly_cap, label: "한 사람 한 주 5일까지",         value: {days: 5}}
   - {key: pm_only,    label: "범위 줄이기 · 미루기는 PM만",   value: {actions: [cut, defer]}}
-  - {key: rounds,     label: "프록시끼리 3라운드까지",        value: {max: 3}}
+  - {key: rounds,     label: "프록시끼리 15라운드까지",        value: {max: 15}}
   - {key: pref,       label: "받을 사람이 여럿이면",          value: {choice: fast}, locked: false}   # fast | learn

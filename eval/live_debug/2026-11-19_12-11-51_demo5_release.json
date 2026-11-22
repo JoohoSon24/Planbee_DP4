@@ -1,0 +1,26 @@
+{
+  "demo": "demo5_release",
+  "model": "openai/gpt-4o-mini",
+  "calls": 1,
+  "failures": 1,
+  "error": "Live transport unavailable: {\"type\": \"ConnectError\", \"status\": null}",
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "blocked",
+      "round": null,
+      "file": "live/2026-11-19_12-11-51_187865_ade89fa3.md",
+      "agreement": [
+        null
+      ]
+    }
+  ],
+  "new_tasks": [],
+  "changed_sources": []
+}

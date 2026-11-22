@@ -1,0 +1,7 @@
+default: m4_t1_rescheduling
+scenarios:
+- m4_t1_rescheduling
+- m4_t2_reallocation
+- m4_t3_scope_reduction
+- m4_t4_composite
+- m4_t5_infeasible

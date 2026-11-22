@@ -1,0 +1,481 @@
+{
+  "date": "2026-11-18",
+  "provider": "Mock",
+  "mode": "planbee",
+  "default_metrics": {
+    "demo1": {
+      "pm_decisions": 1,
+      "pm_talks": 0,
+      "confirms": 3,
+      "proxy_msgs": 27,
+      "rounds": 5,
+      "hive_rejects": 0,
+      "late_end": 0,
+      "promises_moved": 0,
+      "past_deadline": 0,
+      "scope_cut": 0,
+      "overload": 0,
+      "overrides": 0,
+      "cost": {
+        "Ivy": {
+          "늘어남": 1.0,
+          "밀림": 0
+        },
+        "Leo": {
+          "늘어남": 1.0,
+          "밀림": 0
+        },
+        "Sam": {
+          "늘어남": 1.0,
+          "밀림": 2.0
+        }
+      },
+      "cost_people": 3,
+      "top_share": 0.6,
+      "top_who": "Sam",
+      "fairness": {
+        "totals": {
+          "mia": 5.0,
+          "ivy": 3.0,
+          "leo": 4.5,
+          "sam": 4.0,
+          "ben": 2.0,
+          "zoe": 4.0
+        },
+        "variance": 0.9791666666666666,
+        "range": 3.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      }
+    },
+    "demo2": {
+      "pm_decisions": 1,
+      "pm_talks": 0,
+      "confirms": 2,
+      "proxy_msgs": 23,
+      "rounds": 4,
+      "hive_rejects": 0,
+      "late_end": 0,
+      "promises_moved": 0,
+      "past_deadline": 0,
+      "scope_cut": 0,
+      "overload": 0,
+      "overrides": 0,
+      "cost": {
+        "여경": {
+          "늘어남": 1.0,
+          "밀림": 1.5
+        },
+        "주호": {
+          "늘어남": 1.0,
+          "밀림": 0
+        }
+      },
+      "cost_people": 2,
+      "top_share": 0.71,
+      "top_who": "여경",
+      "fairness": {
+        "totals": {
+          "yk": 4.0,
+          "jm": 4.0,
+          "jh": 4.0,
+          "nj": 4.0
+        },
+        "variance": 0.0,
+        "range": 0.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      }
+    },
+    "demo3_cards": {
+      "pm_decisions": 0,
+      "pm_talks": 0,
+      "confirms": 1,
+      "proxy_msgs": 9,
+      "rounds": 1,
+      "hive_rejects": 0,
+      "late_end": 0,
+      "promises_moved": 0,
+      "past_deadline": 0,
+      "scope_cut": 0,
+      "overload": 0,
+      "overrides": 0,
+      "cost": {
+        "Sol": {
+          "늘어남": 1.0,
+          "밀림": 0
+        }
+      },
+      "cost_people": 1,
+      "top_share": 1.0,
+      "top_who": "Sol",
+      "fairness": {
+        "totals": {
+          "mia": 5.0,
+          "jun": 4.5,
+          "sol": 3.0,
+          "ara": 1.0
+        },
+        "variance": 2.421875,
+        "range": 4.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      }
+    },
+    "demo4_planbee": {
+      "pm_decisions": 0,
+      "pm_talks": 0,
+      "confirms": 2,
+      "proxy_msgs": 12,
+      "rounds": 1,
+      "hive_rejects": 0,
+      "late_end": 0,
+      "promises_moved": 0,
+      "past_deadline": 0,
+      "scope_cut": 0,
+      "overload": 0,
+      "overrides": 0,
+      "cost": {
+        "주호": {
+          "늘어남": 1.0,
+          "밀림": 0
+        }
+      },
+      "cost_people": 1,
+      "top_share": 1.0,
+      "top_who": "주호",
+      "fairness": {
+        "totals": {
+          "yk": 6.0,
+          "jm": 2.0,
+          "jh": 11.0,
+          "nj": 4.5
+        },
+        "variance": 10.796875,
+        "range": 9.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      }
+    },
+    "demo4_no_deadline_risk": {
+      "pm_decisions": 0,
+      "pm_talks": 0,
+      "confirms": 1,
+      "proxy_msgs": 10,
+      "rounds": 1,
+      "hive_rejects": 0,
+      "late_end": 0,
+      "promises_moved": 0,
+      "past_deadline": 0,
+      "scope_cut": 0,
+      "overload": 0,
+      "overrides": 0,
+      "cost": {
+        "정민": {
+          "늘어남": 1.5,
+          "밀림": 0
+        }
+      },
+      "cost_people": 1,
+      "top_share": 1.0,
+      "top_who": "정민",
+      "fairness": {
+        "totals": {
+          "yk": 6.0,
+          "jm": 3.5,
+          "jh": 10.0,
+          "nj": 4.5
+        },
+        "variance": 6.125,
+        "range": 6.5,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      }
+    }
+  },
+  "default_runs": {
+    "demo1": {
+      "metrics": {
+        "pm_decisions": 1,
+        "pm_talks": 0,
+        "confirms": 3,
+        "proxy_msgs": 27,
+        "rounds": 5,
+        "hive_rejects": 0,
+        "late_end": 0,
+        "promises_moved": 0,
+        "past_deadline": 0,
+        "scope_cut": 0,
+        "overload": 0,
+        "overrides": 0,
+        "cost": {
+          "Ivy": {
+            "늘어남": 1.0,
+            "밀림": 0
+          },
+          "Leo": {
+            "늘어남": 1.0,
+            "밀림": 0
+          },
+          "Sam": {
+            "늘어남": 1.0,
+            "밀림": 2.0
+          }
+        },
+        "cost_people": 3,
+        "top_share": 0.6,
+        "top_who": "Sam",
+        "fairness": {
+          "totals": {
+            "mia": 5.0,
+            "ivy": 3.0,
+            "leo": 4.5,
+            "sam": 4.0,
+            "ben": 2.0,
+            "zoe": 4.0
+          },
+          "variance": 0.9791666666666666,
+          "range": 3.0,
+          "definition": "past_effort + current-week allocated days (done included once)"
+        }
+      },
+      "resolved": [
+        {
+          "hid": "h1",
+          "body": "Ivy가 무기 그림 1일을 맡음 · 캐릭터 몸 수 저녁",
+          "why": "규칙 안 · Ivy 본인 확인 · Mia 확인 · 1라운드 · PM 결정 없음"
+        },
+        {
+          "hid": "h2",
+          "body": "Sam이 움직임 코드 1일을 맡음 · 캐릭터 코드 금 오전",
+          "why": "PM이 허락 · 버그 고치기 미루기 · 받을 사람은 내 규칙 '빨리 끝나는 쪽' · Sam의 프록시가 카드 한도 안에서 수락 · Leo 확인 · 2라운드"
+        }
+      ],
+      "granted": [
+        "버그 고치기(Sam)를 2주차로 미뤄도 됨"
+      ],
+      "stats": {
+        "msgs": 27,
+        "pm_direct_asks": 0,
+        "confirms": 3,
+        "decisions": 1
+      },
+      "warnings": [],
+      "phase": null
+    },
+    "demo2": {
+      "metrics": {
+        "pm_decisions": 1,
+        "pm_talks": 0,
+        "confirms": 2,
+        "proxy_msgs": 23,
+        "rounds": 4,
+        "hive_rejects": 0,
+        "late_end": 0,
+        "promises_moved": 0,
+        "past_deadline": 0,
+        "scope_cut": 0,
+        "overload": 0,
+        "overrides": 0,
+        "cost": {
+          "여경": {
+            "늘어남": 1.0,
+            "밀림": 1.5
+          },
+          "주호": {
+            "늘어남": 1.0,
+            "밀림": 0
+          }
+        },
+        "cost_people": 2,
+        "top_share": 0.71,
+        "top_who": "여경",
+        "fairness": {
+          "totals": {
+            "yk": 4.0,
+            "jm": 4.0,
+            "jh": 4.0,
+            "nj": 4.0
+          },
+          "variance": 0.0,
+          "range": 0.0,
+          "definition": "past_effort + current-week allocated days (done included once)"
+        }
+      },
+      "resolved": [
+        {
+          "hid": "h1",
+          "body": "주호가 재개 로직 (DB 저장) 1일을 맡음 · 협상 엔진 API 수 오전",
+          "why": "규칙 안 · 받을 사람은 내 규칙 '빨리 끝나는 쪽' · 주호의 프록시가 카드 한도 안에서 수락 · 여경 확인 · 2라운드 · PM 결정 없음"
+        },
+        {
+          "hid": "h3",
+          "body": "여경이 시드 어댑터 1일을 맡음 · 베이스라인 결과 목 저녁",
+          "why": "PM이 허락 · 엣지 케이스 · 교착 처리 미루기 · 여경의 프록시가 카드 한도 안에서 수락 · 정민 확인 · 1라운드"
+        }
+      ],
+      "granted": [
+        "엣지 케이스 · 교착 처리(여경)를 2주차로 미뤄도 됨"
+      ],
+      "stats": {
+        "msgs": 23,
+        "pm_direct_asks": 0,
+        "confirms": 2,
+        "decisions": 1
+      },
+      "warnings": [],
+      "phase": null
+    },
+    "demo3_cards": {
+      "metrics": {
+        "pm_decisions": 0,
+        "pm_talks": 0,
+        "confirms": 1,
+        "proxy_msgs": 9,
+        "rounds": 1,
+        "hive_rejects": 0,
+        "late_end": 0,
+        "promises_moved": 0,
+        "past_deadline": 0,
+        "scope_cut": 0,
+        "overload": 0,
+        "overrides": 0,
+        "cost": {
+          "Sol": {
+            "늘어남": 1.0,
+            "밀림": 0
+          }
+        },
+        "cost_people": 1,
+        "top_share": 1.0,
+        "top_who": "Sol",
+        "fairness": {
+          "totals": {
+            "mia": 5.0,
+            "jun": 4.5,
+            "sol": 3.0,
+            "ara": 1.0
+          },
+          "variance": 2.421875,
+          "range": 4.0,
+          "definition": "past_effort + current-week allocated days (done included once)"
+        }
+      },
+      "resolved": [
+        {
+          "hid": "h1",
+          "body": "Sol이 독립 기능 코드 1일을 맡음 · 기능 코드 수 저녁",
+          "why": "규칙 안 · Sol의 프록시가 카드 한도 안에서 수락 · Mia 확인 · 1라운드 · PM 결정 없음"
+        }
+      ],
+      "granted": [],
+      "stats": {
+        "msgs": 9,
+        "pm_direct_asks": 0,
+        "confirms": 1,
+        "decisions": 0
+      },
+      "warnings": [],
+      "phase": null
+    },
+    "demo4_planbee": {
+      "metrics": {
+        "pm_decisions": 0,
+        "pm_talks": 0,
+        "confirms": 2,
+        "proxy_msgs": 12,
+        "rounds": 1,
+        "hive_rejects": 0,
+        "late_end": 0,
+        "promises_moved": 0,
+        "past_deadline": 0,
+        "scope_cut": 0,
+        "overload": 0,
+        "overrides": 0,
+        "cost": {
+          "주호": {
+            "늘어남": 1.0,
+            "밀림": 0
+          }
+        },
+        "cost_people": 1,
+        "top_share": 1.0,
+        "top_who": "주호",
+        "fairness": {
+          "totals": {
+            "yk": 6.0,
+            "jm": 2.0,
+            "jh": 11.0,
+            "nj": 4.5
+          },
+          "variance": 10.796875,
+          "range": 9.0,
+          "definition": "past_effort + current-week allocated days (done included once)"
+        }
+      },
+      "resolved": [
+        {
+          "hid": "evidence",
+          "body": "주호가 읽기 전용 증거 로그 API 1일을 맡음 · 증거 로그 조회 API 화 저녁",
+          "why": "규칙 안 · 받을 사람은 내 규칙 '빨리 끝나는 쪽' · 주호 본인 확인 · 여경 확인 · 1라운드 · PM 결정 없음"
+        }
+      ],
+      "granted": [],
+      "stats": {
+        "msgs": 12,
+        "pm_direct_asks": 0,
+        "confirms": 2,
+        "decisions": 0
+      },
+      "warnings": [],
+      "phase": null
+    },
+    "demo4_no_deadline_risk": {
+      "metrics": {
+        "pm_decisions": 0,
+        "pm_talks": 0,
+        "confirms": 1,
+        "proxy_msgs": 10,
+        "rounds": 1,
+        "hive_rejects": 0,
+        "late_end": 0,
+        "promises_moved": 0,
+        "past_deadline": 0,
+        "scope_cut": 0,
+        "overload": 0,
+        "overrides": 0,
+        "cost": {
+          "정민": {
+            "늘어남": 1.5,
+            "밀림": 0
+          }
+        },
+        "cost_people": 1,
+        "top_share": 1.0,
+        "top_who": "정민",
+        "fairness": {
+          "totals": {
+            "yk": 6.0,
+            "jm": 3.5,
+            "jh": 10.0,
+            "nj": 4.5
+          },
+          "variance": 6.125,
+          "range": 6.5,
+          "definition": "past_effort + current-week allocated days (done included once)"
+        }
+      },
+      "resolved": [
+        {
+          "hid": "evidence",
+          "body": "정민이 읽기 전용 증거 로그 API 1½일을 맡음 · 증거 로그 조회 API 화 저녁",
+          "why": "규칙 안 · 기한 위험 없는 공정성 분담 검토 · 부담 분산 8.80→6.12 · 정민의 프록시가 카드 한도 안에서 수락 · 여경 확인 · 1라운드 · PM 결정 없음"
+        }
+      ],
+      "stats": {
+        "msgs": 10,
+        "pm_direct_asks": 0,
+        "confirms": 1,
+        "decisions": 0
+      },
+      "warnings": [],
+      "phase": null,
+      "scenario": "same Demo 4 input, evidence handoff relaxed to Friday evening so the initial dependency check has no deadline risk"
+    }
+  }
+}

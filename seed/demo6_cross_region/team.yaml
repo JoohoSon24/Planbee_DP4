@@ -1,0 +1,708 @@
+meta:
+  title: 데모 6 · 10인 교차 리전·미합의와 원자적 복구
+  phase: start
+  now: 0
+  week_start: '2026-11-16'
+  deadline_label: 양 리전 릴리스 · 11/20 금
+  narr: 첫 협상 실패 뒤 묶음 재배치로 전체 동의를 받습니다.
+  summary: 10명·24개 작업·4개 milestone. 일정 위반 차단, 최대 라운드, 분할·맞교환.
+  scenario_doc: demo6_cross_region.md
+people:
+- id: ira
+  name: 이라
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 12
+- id: june
+  name: 준
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 0
+- id: kai
+  name: 카이
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 0
+- id: lena
+  name: 레나
+  role: 백엔드
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: mina
+  name: 미나
+  role: QA
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: pia
+  name: 피아
+  role: QA
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: quinn
+  name: 퀸
+  role: QA
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: noel
+  name: 노엘
+  role: 운영
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: olin
+  name: 올린
+  role: 운영
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+- id: rhea
+  name: 레아
+  role: 운영
+  rec:
+    계약: 6
+    테스트: 6
+    운영: 6
+  wants: []
+  notes:
+    past_effort: 2
+cards:
+- who: ira
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: june
+  auto_days: 1
+  refuse_tags: []
+  note: 한 명이 계약 검증 전체를 맡지 않습니다. 작업 범위를 분리해 주세요.
+  policy:
+    source_note: 한 명이 계약 검증 전체를 맡지 않습니다. 작업 범위를 분리해 주세요.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: kai
+  auto_days: 1
+  refuse_tags: []
+  note: 검증 캐시를 활용할 수 있지만 확정안의 일정과 범위에 다시 동의해야 합니다.
+  policy:
+    source_note: 검증 캐시를 활용할 수 있지만 확정안의 일정과 범위에 다시 동의해야 합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: lena
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: mina
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: pia
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: quinn
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: noel
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: olin
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: rhea
+  auto_days: 1
+  refuse_tags: []
+  note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+  policy:
+    source_note: 전체 묶음과 선후 약속을 확인한 뒤 동의합니다.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+tasks:
+- id: ledger
+  who: ira
+  title: 교차 리전 원장과 계약 검증
+  s0: 0
+  d: 4
+  tag: 계약
+  kind: ''
+  context:
+    description: 교차 리전 원장과 계약 검증 작업을 수행하고 원장 코어와 리전별 독립 검증을 전달한다.
+    purpose: 교차 리전 원장과 계약 검증
+    deliverable: 원장 코어와 리전별 독립 검증
+    splittable_hint: true
+    split_boundary: 계약·픽스처를 공유한 독립 검증 조각만 분리한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: ira_final
+  who: ira
+  title: 원장 최종 승인
+  s0: 4
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 원장 최종 승인 작업을 수행하고 원장 승인 기록을 전달한다.
+    purpose: 원장 최종 승인
+    deliverable: 원장 승인 기록
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: june_base
+  who: june
+  title: 기존 중복 처리 분석
+  s0: 3
+  d: 0.5
+  tag: 계약
+  kind: ''
+  context:
+    description: 기존 중복 처리 분석 작업을 수행하고 중복 처리 샘플을 전달한다.
+    purpose: 기존 중복 처리 분석
+    deliverable: 중복 처리 샘플
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: june_docs
+  who: june
+  title: 계약 인수 문서
+  s0: 3.5
+  d: 0.5
+  tag: 계약
+  kind: ''
+  context:
+    description: 계약 인수 문서 작업을 수행하고 API 계약 설명을 전달한다.
+    purpose: 계약 인수 문서
+    deliverable: API 계약 설명
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: kai_base
+  who: kai
+  title: 재시도 캐시 준비
+  s0: 3
+  d: 0.5
+  tag: 계약
+  kind: ''
+  context:
+    description: 재시도 캐시 준비 작업을 수행하고 공유 테스트 캐시을 전달한다.
+    purpose: 재시도 캐시 준비
+    deliverable: 공유 테스트 캐시
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: kai_docs
+  who: kai
+  title: 운영 오류 사례
+  s0: 3.5
+  d: 0.5
+  tag: 계약
+  kind: ''
+  context:
+    description: 운영 오류 사례 작업을 수행하고 오류 사례 문서을 전달한다.
+    purpose: 운영 오류 사례
+    deliverable: 오류 사례 문서
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: schema
+  who: lena
+  title: 결제 스키마 마이그레이션
+  s0: 0
+  d: 1
+  tag: 계약
+  kind: ''
+  context:
+    description: 결제 스키마 마이그레이션 작업을 수행하고 변환 스키마을 전달한다.
+    purpose: 결제 스키마 마이그레이션
+    deliverable: 변환 스키마
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: backfill
+  who: lena
+  title: 이력 데이터 점검
+  s0: 2
+  d: 1
+  tag: 계약
+  kind: ''
+  context:
+    description: 이력 데이터 점검 작업을 수행하고 백필 검증 기록을 전달한다.
+    purpose: 이력 데이터 점검
+    deliverable: 백필 검증 기록
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: qa_setup
+  who: mina
+  title: QA 환경 점검
+  s0: 0
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: QA 환경 점검 작업을 수행하고 QA 실행 환경을 전달한다.
+    purpose: QA 환경 점검
+    deliverable: QA 실행 환경
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: qa_batch
+  who: mina
+  title: 리전별 정합성 QA
+  s0: 4
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: 리전별 정합성 QA 작업을 수행하고 정합성 결과을 전달한다.
+    purpose: 리전별 정합성 QA
+    deliverable: 정합성 결과
+    splittable_hint: true
+    split_boundary: 계약·픽스처를 공유한 독립 검증 조각만 분리한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: pia_base
+  who: pia
+  title: 회귀 픽스처 정리
+  s0: 0
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: 회귀 픽스처 정리 작업을 수행하고 정리된 픽스처을 전달한다.
+    purpose: 회귀 픽스처 정리
+    deliverable: 정리된 픽스처
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: pia_check
+  who: pia
+  title: 실패 복구 사례 검토
+  s0: 2
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: 실패 복구 사례 검토 작업을 수행하고 복구 사례 목록을 전달한다.
+    purpose: 실패 복구 사례 검토
+    deliverable: 복구 사례 목록
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: quinn_base
+  who: quinn
+  title: 부하 샘플 수집
+  s0: 0
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: 부하 샘플 수집 작업을 수행하고 부하 샘플을 전달한다.
+    purpose: 부하 샘플 수집
+    deliverable: 부하 샘플
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: quinn_check
+  who: quinn
+  title: 최종 QA 확인
+  s0: 4.5
+  d: 0.5
+  tag: 테스트
+  kind: ''
+  context:
+    description: 최종 QA 확인 작업을 수행하고 QA 서명을 전달한다.
+    purpose: 최종 QA 확인
+    deliverable: QA 서명
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: ops_a
+  who: noel
+  title: 동부 리전 배포 자동화
+  s0: 0
+  d: 1
+  tag: 운영
+  kind: ''
+  context:
+    description: 동부 리전 배포 자동화 작업을 수행하고 동부 배포 스크립트을 전달한다.
+    purpose: 동부 리전 배포 자동화
+    deliverable: 동부 배포 스크립트
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: noel_check
+  who: noel
+  title: 오류 알림 검증
+  s0: 3
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 오류 알림 검증 작업을 수행하고 알림 증거을 전달한다.
+    purpose: 오류 알림 검증
+    deliverable: 알림 증거
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: ops_b
+  who: olin
+  title: 서부 리전 롤백 자동화
+  s0: 0
+  d: 1
+  tag: 운영
+  kind: ''
+  context:
+    description: 서부 리전 롤백 자동화 작업을 수행하고 서부 롤백 스크립트을 전달한다.
+    purpose: 서부 리전 롤백 자동화
+    deliverable: 서부 롤백 스크립트
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: olin_check
+  who: olin
+  title: 복구 문서 정리
+  s0: 3
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 복구 문서 정리 작업을 수행하고 운영 런북을 전달한다.
+    purpose: 복구 문서 정리
+    deliverable: 운영 런북
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: rhea_base
+  who: rhea
+  title: 운영 관측 환경
+  s0: 0
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 운영 관측 환경 작업을 수행하고 관측 대시보드을 전달한다.
+    purpose: 운영 관측 환경
+    deliverable: 관측 대시보드
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: deploy
+  who: rhea
+  title: 양 리전 릴리스 승인
+  s0: 4.5
+  d: 0.5
+  tag: 운영
+  kind: ''
+  context:
+    description: 양 리전 릴리스 승인 작업을 수행하고 승인된 릴리스을 전달한다.
+    purpose: 양 리전 릴리스 승인
+    deliverable: 승인된 릴리스
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: schema_gate
+  who: lena
+  title: M1 스키마 준비
+  s0: 1
+  d: 0
+  tag: 계약
+  kind: milestone
+  context:
+    description: M1 스키마 준비 작업을 수행하고 스키마 동결을 전달한다.
+    purpose: M1 스키마 준비
+    deliverable: 스키마 동결
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: ledger_gate
+  who: lena
+  title: M2 원장 계약 동결
+  s0: 4
+  d: 0
+  tag: 계약
+  kind: milestone
+  context:
+    description: M2 원장 계약 동결 작업을 수행하고 원장 계약 동결을 전달한다.
+    purpose: M2 원장 계약 동결
+    deliverable: 원장 계약 동결
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: qa_gate
+  who: quinn
+  title: M3 정합성 QA 완료
+  s0: 4.5
+  d: 0
+  tag: 테스트
+  kind: milestone
+  context:
+    description: M3 정합성 QA 완료 작업을 수행하고 QA 완료을 전달한다.
+    purpose: M3 정합성 QA 완료
+    deliverable: QA 완료
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+- id: release_gate
+  who: rhea
+  title: M4 양 리전 릴리스
+  s0: 5
+  d: 0
+  tag: 운영
+  kind: milestone
+  context:
+    description: M4 양 리전 릴리스 작업을 수행하고 릴리스 완료을 전달한다.
+    purpose: M4 양 리전 릴리스
+    deliverable: 릴리스 완료
+    splittable_hint: false
+    split_boundary: 동일 담당자가 전체를 검증한다.
+    acceptance:
+    - 재현 가능한 정상·실패 사례 포함
+    - 기존 데이터·권한 경계를 유지
+    - 후속 담당자가 산출물을 검증
+handoffs:
+- id: schema_ready
+  from: schema
+  to: schema_gate
+  title: 스키마 동결
+  what: 스키마 동결 검증 산출물
+  t: 1
+- id: ledger_ready
+  from: ledger
+  to: ledger_gate
+  title: 원장 계약
+  what: 원장 계약 검증 산출물
+  t: 4
+- id: ledger_qa
+  from: ledger
+  to: qa_batch
+  title: 정합성 QA 입력
+  what: 정합성 QA 입력 검증 산출물
+  t: 4
+- id: qa_ready
+  from: qa_batch
+  to: deploy
+  title: QA 판정
+  what: QA 판정 검증 산출물
+  t: 4.5
+- id: qa_checkpoint
+  from: qa_batch
+  to: qa_gate
+  title: 정합성 결과
+  what: 정합성 결과 검증 산출물
+  t: 4.5
+- id: ops_ready
+  from: ops_a
+  to: deploy
+  title: 동부 배포 스크립트
+  what: 동부 배포 스크립트 검증 산출물
+  t: 2
+- id: rollback_ready
+  from: ops_b
+  to: deploy
+  title: 서부 롤백 스크립트
+  what: 서부 롤백 스크립트 검증 산출물
+  t: 2
+- id: release_ready
+  from: deploy
+  to: release_gate
+  title: 릴리스 결과
+  what: 릴리스 결과 검증 산출물
+  t: 5
+records: []
+rules:
+- key: deadline
+  label: 금요일 11/20 제출
+  value:
+    week_end: 5
+- key: weekly_cap
+  label: 주 5일
+  value:
+    days: 5
+- key: pm_only
+  label: 범위·미루기는 PM
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 3라운드
+  value:
+    max: 3
+- key: pref
+  label: '최초 요청 참고: 부담 균형'
+  value:
+    choice: fair
+- key: fairness
+  label: 부담 차이 검토
+  value:
+    min_range: 14
+    min_gap: 2

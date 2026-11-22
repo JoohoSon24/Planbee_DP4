@@ -1,0 +1,53 @@
+reestimate: []
+split:
+  ledger:
+    piece:
+      title: 리전별 독립 계약 검증
+      days: 2
+      tag: 계약
+      what: 두 리전 계약 검증
+    keep:
+      title: 원장 트랜잭션 코어
+      days: 2
+discussion:
+- match:
+    who: june
+    mode: respond
+    version: 1
+    tag: 계약
+  answer:
+    action: REJECT
+    reason: 전체 검증을 한 사람에게 넘길 수 없습니다. 분담이 필요합니다.
+- match:
+    who: june
+    mode: revise
+    version: 1
+    tag: 계약
+  answer:
+    action: COUNTER
+    reason: 카이에게 긴 검증 실행을 요청합니다. 실제 기한 충족은 Hive가 확인해 주세요.
+    allocations:
+    - who: kai
+      title: 느린 전체 검증
+      days: 6
+      effort: 2
+      what: 느린 전체 검증 독립 검증
+- match:
+    who: kai
+    mode: revise
+    version: 2
+    tag: 계약
+  answer:
+    action: COUNTER
+    reason: 느린 제안은 기한을 넘었습니다. 준과 캐시를 공유하는 안전한 수정안을 냅니다.
+    allocations:
+    - who: june
+      title: 동부 계약
+      days: 1
+      effort: 1
+      what: 동부 계약 독립 검증
+    - who: kai
+      title: 서부 계약
+      days: 1
+      effort: 1
+      what: 서부 계약 독립 검증

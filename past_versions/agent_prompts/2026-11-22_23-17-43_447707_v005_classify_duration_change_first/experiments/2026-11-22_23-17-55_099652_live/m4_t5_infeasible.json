@@ -1,0 +1,622 @@
+{
+  "report": {
+    "scenario": "m4_t5_infeasible",
+    "seed": 17,
+    "version": "2026-11-22_23-17-43_447707_v005_classify_duration_change_first",
+    "llm_mode": "live",
+    "model": "openai/gpt-4o-mini",
+    "duration_seconds": 26.1,
+    "logical_llm_calls": 6,
+    "output_failures": 1,
+    "schema_repairs": 1,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_budget": {
+      "used": 6,
+      "max": 36
+    },
+    "transcript_file": "live/2026-11-22_23-20-29_500558_ca53eeb6.md",
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "acda1d98e7f4ec91b8287f0cd35e93c861cfbc85f1ff076ca2705e283085cdd6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "8d781e834467aa2d4dd05285d10a61c74647b1324c71b0b9013159fc59035fa1",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "ad398a575d4434c9068dcbbe0e28f67278dcd3d9b6d43ed380eebd7e1891b63b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "6cc636780f7d664611ef2796af53481bb98665becbd8df837d5e9289f43cc060",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "be3d3d3c841c5306487fb2ea811e4379886332d252796ae0a1f517275321e622",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    }
+  },
+  "public_run": {
+    "id": 1,
+    "kind": "candidate",
+    "status": "waiting_pm",
+    "step": "candidate_failed",
+    "task": "critical_fix",
+    "issue": "Critical Fix의 기존 작업은 완료했지만 추가 결함으로 잔여 수정 16h(2일)가 더 필요합니다. 이 잔여 작업은 11/26·27 각 8h에만 가능합니다. QA는 완료 후 연속 2영업일 16h가 필요합니다. 11/27 릴리스 일정을 지킬 수 있는지 확인해 주세요.",
+    "phase": "deadline",
+    "round": 0,
+    "pool_revision": 1,
+    "pool_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "generation": {
+      "attempted": 1,
+      "rejected": 1,
+      "duplicates": 0,
+      "reasons": {
+        "데드라인 위반: h_critical_fix_final_qa, h_final_qa_milestone": 1
+      },
+      "templates": 2,
+      "feasible": 0,
+      "retained": 0,
+      "truncated": false
+    },
+    "generation_reason": "기존 작업의 완료 후 추가 결함으로 인해 Critical Fix 추가 수정이 필요하며, QA를 위한 재구성이 요구됩니다.",
+    "shortlist": null,
+    "final_candidates": null,
+    "public_history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 0,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPAIR_REQUEST",
+        "reason": "현재 구조로 통과한 계획이 없어요. 제약 위반을 근거로 한 번만 구조를 다시 요청합니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 2,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SCHEMA_REPAIR",
+        "reason": "생성 응답 형식이 잘못되어 필드별 오류를 한 번만 전달합니다. 같은 요청의 무제한 재시도는 하지 않습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 3,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "dev",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Critical Fix 추가 수정 작업이 11/26·27에 각각 8시간씩 필요합니다. QA는 완료 후 16시간이 필요하며, 11/27 릴리스 일정을 지키기 위해서는 QA가 11/28에 시작해야 합니다. 따라서, QA가 11/28에 시작할 수 있도록 Critical Fix 추가 수정이 11/27까지 완료되어야 합니다. 이 일정이 가능한지 확인해 주세요. 11/27 릴리스 일정 준수 여부 확인",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 5,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "qa",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Critical Fix 추가 수정 작업이 11/26·27에 각각 8시간씩 필요합니다. QA는 완료 후 연속 2영업일 16시간이 필요하며, 11/27 릴리스 일정을 지키기 위해서는 QA가 11/28에 시작해야 합니다. 따라서, Critical Fix 추가 수정이 11/27까지 완료되어야 QA가 11/28에 시작할 수 있습니다. 이 일정이 가능한지 확인해 주세요. 11/27 릴리스 일정 준수 여부 확인",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 6,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "END",
+        "reason": "협상을 마쳤어요. search_exhausted · 미합의 변경은 적용하지 않고 PM에게 상황을 전달합니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 6,
+          "max": 36
+        }
+      }
+    ],
+    "llm_budget": {
+      "used": 6,
+      "max": 36
+    },
+    "termination": "search_exhausted",
+    "pm_selection": null,
+    "pm_handoff": {
+      "message": "협상 실패 → PM에게 전달됨",
+      "review_required": true,
+      "summary": {
+        "title": "Critical Fix의 기존 작업은 완료했지만 추가 결함으로 잔여 수정 16h(2일)가 더 필요합니다. 이 잔여 작업은 11/26·27 각 8h에만 가능합니다. QA는 완료 후 연속 2영업일 16h가 필요합니다. 11/27 릴리스 일정을 지킬 수 있는지 확인해 주세요.",
+        "termination": "search_exhausted",
+        "llm_budget": {
+          "used": 6,
+          "max": 36
+        },
+        "engine_support": "Dev 전담·분리 금지·협업 단축 금지·수정 완료 후 QA 2일·11/27 마감을 하드 제약으로 보존합니다. 미해결 시 PM에게 보류 검토를 전달하며 릴리스/마일스톤을 자동 연장하지 않습니다.",
+        "generation": {
+          "attempted": 1,
+          "rejected": 1,
+          "duplicates": 0,
+          "reasons": {
+            "데드라인 위반: h_critical_fix_final_qa, h_final_qa_milestone": 1
+          },
+          "templates": 2,
+          "feasible": 0,
+          "retained": 0,
+          "truncated": false
+        },
+        "candidate_count": 0,
+        "last_messages": [
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "hive",
+            "recipient": null,
+            "response": "ISSUE",
+            "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 0,
+              "max": 36
+            }
+          },
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "hive",
+            "recipient": null,
+            "response": "REPAIR_REQUEST",
+            "reason": "현재 구조로 통과한 계획이 없어요. 제약 위반을 근거로 한 번만 구조를 다시 요청합니다.",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 2,
+              "max": 36
+            }
+          },
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "hive",
+            "recipient": null,
+            "response": "SCHEMA_REPAIR",
+            "reason": "생성 응답 형식이 잘못되어 필드별 오류를 한 번만 전달합니다. 같은 요청의 무제한 재시도는 하지 않습니다.",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 3,
+              "max": 36
+            }
+          },
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "dev",
+            "recipient": "pm",
+            "response": "CONSTRAINT_REVIEW",
+            "reason": "현재 Critical Fix 추가 수정 작업이 11/26·27에 각각 8시간씩 필요합니다. QA는 완료 후 16시간이 필요하며, 11/27 릴리스 일정을 지키기 위해서는 QA가 11/28에 시작해야 합니다. 따라서, QA가 11/28에 시작할 수 있도록 Critical Fix 추가 수정이 11/27까지 완료되어야 합니다. 이 일정이 가능한지 확인해 주세요. 11/27 릴리스 일정 준수 여부 확인",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 5,
+              "max": 36
+            }
+          },
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "qa",
+            "recipient": "pm",
+            "response": "CONSTRAINT_REVIEW",
+            "reason": "현재 Critical Fix 추가 수정 작업이 11/26·27에 각각 8시간씩 필요합니다. QA는 완료 후 연속 2영업일 16시간이 필요하며, 11/27 릴리스 일정을 지키기 위해서는 QA가 11/28에 시작해야 합니다. 따라서, Critical Fix 추가 수정이 11/27까지 완료되어야 QA가 11/28에 시작할 수 있습니다. 이 일정이 가능한지 확인해 주세요. 11/27 릴리스 일정 준수 여부 확인",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 6,
+              "max": 36
+            }
+          }
+        ],
+        "disposition": "미합의 변경 미적용 · 마지막 검증·합의 배분 유지"
+      }
+    },
+    "participants": null,
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "acda1d98e7f4ec91b8287f0cd35e93c861cfbc85f1ff076ca2705e283085cdd6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "8d781e834467aa2d4dd05285d10a61c74647b1324c71b0b9013159fc59035fa1",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "ad398a575d4434c9068dcbbe0e28f67278dcd3d9b6d43ed380eebd7e1891b63b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "6cc636780f7d664611ef2796af53481bb98665becbd8df837d5e9289f43cc060",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "be3d3d3c841c5306487fb2ea811e4379886332d252796ae0a1f517275321e622",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "snapshot_hash": "f75c1952ac0534662acad17e369e2e80e6213efd6afa9985ccd0f717e6ba8cc5",
+    "initial_board": {
+      "tasks": [
+        {
+          "id": "feature_spec",
+          "who": "gd",
+          "title": "Feature Spec",
+          "start": 0.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Feature Spec 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "release_notes",
+          "who": "gd",
+          "title": "Release Notes",
+          "start": 7.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Release Notes 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Release Notes 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "core_assets",
+          "who": "art",
+          "title": "Core Assets",
+          "start": 1.0,
+          "days": 2.0,
+          "kind": "done",
+          "context": {
+            "description": "Core Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core Assets 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "final_assets",
+          "who": "art",
+          "title": "Final Assets",
+          "start": 5.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Final Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Final Assets 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "core_x",
+          "who": "dev",
+          "title": "Core X",
+          "start": 1.0,
+          "days": 3.0,
+          "kind": "done",
+          "context": {
+            "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core X 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "critical_fix_done",
+          "who": "dev",
+          "title": "Critical Fix 완료분",
+          "start": 5.0,
+          "days": 3.0,
+          "kind": "done",
+          "context": {
+            "description": "Critical Fix 완료분 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Critical Fix 완료분 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "critical_fix",
+          "who": "dev",
+          "title": "Critical Fix 추가 수정",
+          "start": 8.0,
+          "days": 2.0,
+          "kind": "",
+          "context": {
+            "description": "Critical Fix 추가 수정 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Critical Fix 추가 수정 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "earliest_start": 8,
+            "latest_finish": 10,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25,
+            "active_participants_only": true,
+            "allowed_change_tasks": [
+              "critical_fix"
+            ],
+            "review_no_options": true
+          }
+        },
+        {
+          "id": "smoke",
+          "who": "qa",
+          "title": "Smoke Test",
+          "start": 4.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Smoke Test 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "final_qa",
+          "who": "qa",
+          "title": "Final QA",
+          "start": 10.0,
+          "days": 2.0,
+          "kind": "",
+          "context": {
+            "description": "Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Final QA 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "earliest_start": 8,
+            "latest_finish": 10,
+            "source_scenario": "m4_t5_infeasible",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "milestone",
+          "who": "gd",
+          "title": "Release",
+          "start": 12.0,
+          "days": 0.0,
+          "kind": "milestone",
+          "context": {
+            "description": "Release 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Release 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "completion_barrier": true
+          }
+        }
+      ],
+      "handoffs": [
+        {
+          "id": "h_critical_fix_final_qa",
+          "source": "critical_fix",
+          "target": "final_qa",
+          "title": "critical_fix → final_qa",
+          "due": 8.0,
+          "expected": 10.0,
+          "agreed": false
+        },
+        {
+          "id": "h_final_qa_milestone",
+          "source": "final_qa",
+          "target": "milestone",
+          "title": "final_qa → milestone",
+          "due": 10.0,
+          "expected": 12.0,
+          "agreed": false
+        }
+      ],
+      "milestones": [
+        {
+          "id": "milestone",
+          "title": "Release",
+          "who": "gd",
+          "start": 12.0,
+          "end": 12.0
+        }
+      ],
+      "deferred": [],
+      "omitted": [],
+      "fairness": {
+        "totals": {
+          "gd": 2.0,
+          "art": 3.0,
+          "dev": 8.0,
+          "qa": 1.0
+        },
+        "variance": 7.25,
+        "range": 7.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      },
+      "gate": {
+        "ok": false,
+        "violations": [
+          {
+            "code": "HANDOFF_LATE",
+            "hid": "h_critical_fix_final_qa",
+            "promised": 8.0,
+            "predicted": 10.0,
+            "text": "critical_fix → final_qa 2주차 수 저녁 → 2주차 금 저녁"
+          },
+          {
+            "code": "HANDOFF_LATE",
+            "hid": "h_final_qa_milestone",
+            "promised": 10.0,
+            "predicted": 12.0,
+            "text": "final_qa → milestone 2주차 금 저녁 → 3주차 화 저녁"
+          },
+          {
+            "code": "TASK_DEADLINE",
+            "task": "final_qa",
+            "text": "Final QA · Task 완료 기한 초과"
+          }
+        ],
+        "warnings": [
+          {
+            "code": "PUSHED_PAST_DEADLINE",
+            "task": "final_qa",
+            "starts": 10.0,
+            "text": "Final QA 제출일 뒤로 밀림"
+          }
+        ],
+        "adjustments": []
+      }
+    },
+    "final_board": null,
+    "transcript_file": "live/2026-11-22_23-20-29_500558_ca53eeb6.md",
+    "llm_mode": "live",
+    "assessment_progress": null,
+    "candidates": []
+  }
+}

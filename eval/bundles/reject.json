@@ -1,0 +1,2044 @@
+{
+  "case": "reject",
+  "transfers": [
+    {
+      "task": "x",
+      "to": "jun"
+    },
+    {
+      "task": "y",
+      "to": "mia"
+    }
+  ],
+  "result": {
+    "id": 1,
+    "status": "done",
+    "outcome": "cancelled",
+    "error": "당사자가 묶음 전체를 거절함",
+    "preview": {
+      "transfers": [
+        {
+          "task": "x",
+          "to": "jun"
+        },
+        {
+          "task": "y",
+          "to": "mia"
+        }
+      ],
+      "fairness": {
+        "totals": {
+          "mia": 5.0,
+          "jun": 5.0,
+          "sol": 0.0,
+          "ara": 1.0
+        },
+        "variance": 5.1875,
+        "range": 5.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      },
+      "loads": {
+        "mia": 5.0,
+        "jun": 5.0,
+        "sol": 0,
+        "ara": 1.0
+      },
+      "incoming": {
+        "jun": 2.0,
+        "mia": 2.0
+      },
+      "confirmations": [
+        {
+          "who": "jun",
+          "reasons": [
+            "내 작업을 넘기는 데 동의"
+          ]
+        },
+        {
+          "who": "mia",
+          "reasons": [
+            "내 작업을 넘기는 데 동의"
+          ]
+        }
+      ],
+      "tasks": [
+        {
+          "id": "x",
+          "who": "jun",
+          "who0": "mia",
+          "title": "x",
+          "s0": 0.0,
+          "s": 0.0,
+          "d": 2.0,
+          "plan": 2.0,
+          "base": 2.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "new",
+          "oi": 0,
+          "cut": false,
+          "got": true,
+          "cut_options": [],
+          "context": {}
+        },
+        {
+          "id": "a_other",
+          "who": "mia",
+          "who0": null,
+          "title": "a_other",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 3.0,
+          "plan": 3.0,
+          "base": 3.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "oi": 0,
+          "cut": false,
+          "got": false,
+          "cut_options": [],
+          "context": {}
+        },
+        {
+          "id": "y",
+          "who": "mia",
+          "who0": "jun",
+          "title": "y",
+          "s0": 0.0,
+          "s": 0.0,
+          "d": 2.0,
+          "plan": 2.0,
+          "base": 2.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "new",
+          "oi": 0,
+          "cut": false,
+          "got": true,
+          "cut_options": [],
+          "context": {}
+        },
+        {
+          "id": "b_other",
+          "who": "jun",
+          "who0": null,
+          "title": "b_other",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 3.0,
+          "plan": 3.0,
+          "base": 3.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "oi": 0,
+          "cut": false,
+          "got": false,
+          "cut_options": [],
+          "context": {}
+        },
+        {
+          "id": "qa",
+          "who": "ara",
+          "who0": null,
+          "title": "qa",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 1.0,
+          "plan": 1.0,
+          "base": 1.0,
+          "tag": "테스트",
+          "role": "테스트",
+          "kind": "",
+          "oi": 0,
+          "cut": false,
+          "got": false,
+          "cut_options": [],
+          "context": {}
+        }
+      ],
+      "handoffs": [
+        {
+          "id": "h",
+          "from_task": "x",
+          "to_task": "qa",
+          "title": "완료본",
+          "what": "빌드",
+          "t": 2.0,
+          "done": false,
+          "prop": false,
+          "agreed": false,
+          "basis": "",
+          "oi": 0
+        }
+      ]
+    },
+    "waiting_for": [
+      1,
+      2
+    ]
+  },
+  "before": {
+    "fairness": {
+      "totals": {
+        "mia": 5.0,
+        "jun": 5.0,
+        "sol": 0.0,
+        "ara": 1.0
+      },
+      "variance": 5.1875,
+      "range": 5.0,
+      "definition": "past_effort + current-week allocated days (done included once)"
+    },
+    "capacities": {
+      "mia": 5,
+      "jun": 5,
+      "sol": 5,
+      "ara": 5
+    },
+    "phase": "start",
+    "now": 0,
+    "narr": "새 기록을 받아 분담을 비교합니다.",
+    "now_label": "1주차 · 월요일 오전",
+    "demo": {
+      "id": "demo3_cards",
+      "title": "데모 3 · 정보와 권한의 네 조건",
+      "all": [
+        "demo1",
+        "demo2",
+        "demo3_cards",
+        "demo4_bundles",
+        "demo4_planbee"
+      ]
+    },
+    "feed_label": null,
+    "deadline_label": "금요일 제출",
+    "people": [
+      {
+        "id": "mia",
+        "name": "Mia",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "jun",
+        "name": "Jun",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "sol",
+        "name": "Sol",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 0,
+        "free": 5,
+        "cap": 5
+      },
+      {
+        "id": "ara",
+        "name": "Ara",
+        "role": "테스트",
+        "rec": {
+          "테스트": 3
+        },
+        "wants": [],
+        "load": 1.0,
+        "free": 4.0,
+        "cap": 5
+      }
+    ],
+    "tasks": {
+      "x": {
+        "id": "x",
+        "who": "mia",
+        "who0": null,
+        "title": "x",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "개발 3건"
+      },
+      "a_other": {
+        "id": "a_other",
+        "who": "mia",
+        "who0": null,
+        "title": "a_other",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "금 저녁",
+        "basis": "개발 3건"
+      },
+      "y": {
+        "id": "y",
+        "who": "jun",
+        "who0": null,
+        "title": "y",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "개발 3건"
+      },
+      "b_other": {
+        "id": "b_other",
+        "who": "jun",
+        "who0": null,
+        "title": "b_other",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "금 저녁",
+        "basis": "개발 3건"
+      },
+      "qa": {
+        "id": "qa",
+        "who": "ara",
+        "who0": null,
+        "title": "qa",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "수 저녁",
+        "basis": "테스트 3건"
+      }
+    },
+    "hand": {
+      "h": {
+        "id": "h",
+        "from": "x",
+        "to": "qa",
+        "from_who": "mia",
+        "to_who": "ara",
+        "title": "완료본",
+        "what": "빌드",
+        "t": 2.0,
+        "t_label": "화 저녁",
+        "pred": 2.0,
+        "pred_label": "화 저녁",
+        "state": "ok",
+        "state_label": "On track",
+        "done": false,
+        "prop": false,
+        "agreed": false,
+        "basis": "",
+        "hist": []
+      }
+    },
+    "recs": [],
+    "rules": [
+      {
+        "key": "deadline",
+        "label": "금요일 제출",
+        "value": {
+          "week_end": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "weekly_cap",
+        "label": "주 5일",
+        "value": {
+          "days": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "pm_only",
+        "label": "미루기·범위 축소는 PM",
+        "value": {
+          "actions": [
+            "cut",
+            "defer"
+          ]
+        },
+        "locked": true
+      },
+      {
+        "key": "rounds",
+        "label": "최대 3라운드",
+        "value": {
+          "max": 3
+        },
+        "locked": true
+      },
+      {
+        "key": "pref",
+        "label": "빠른 사람",
+        "value": {
+          "choice": "fast"
+        },
+        "locked": false
+      }
+    ],
+    "pref": "fast",
+    "cards": [
+      {
+        "who": "mia",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "jun",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "sol",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "ara",
+        "auto_days": 1.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      }
+    ],
+    "max_rounds": 3,
+    "granted": [],
+    "confirms": [],
+    "pending_confirms": [],
+    "log": [],
+    "asks": [],
+    "resolved": [],
+    "stats": {
+      "msgs": 0,
+      "pm_direct_asks": 0,
+      "confirms": 0,
+      "decisions": 0
+    },
+    "gate": {
+      "ok": true,
+      "violations": [],
+      "warnings": []
+    },
+    "waiting": [],
+    "negotiations": [],
+    "can_undo": false
+  },
+  "proposed": {
+    "fairness": {
+      "totals": {
+        "mia": 5.0,
+        "jun": 5.0,
+        "sol": 0.0,
+        "ara": 1.0
+      },
+      "variance": 5.1875,
+      "range": 5.0,
+      "definition": "past_effort + current-week allocated days (done included once)"
+    },
+    "capacities": {
+      "mia": 5,
+      "jun": 5,
+      "sol": 5,
+      "ara": 5
+    },
+    "phase": "start",
+    "now": 0,
+    "narr": "새 기록을 받아 분담을 비교합니다.",
+    "now_label": "1주차 · 월요일 오전",
+    "demo": {
+      "id": "demo3_cards",
+      "title": "데모 3 · 정보와 권한의 네 조건",
+      "all": [
+        "demo1",
+        "demo2",
+        "demo3_cards",
+        "demo4_bundles",
+        "demo4_planbee"
+      ]
+    },
+    "feed_label": null,
+    "deadline_label": "금요일 제출",
+    "people": [
+      {
+        "id": "mia",
+        "name": "Mia",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "jun",
+        "name": "Jun",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "sol",
+        "name": "Sol",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 0,
+        "free": 5,
+        "cap": 5
+      },
+      {
+        "id": "ara",
+        "name": "Ara",
+        "role": "테스트",
+        "rec": {
+          "테스트": 3
+        },
+        "wants": [],
+        "load": 1.0,
+        "free": 4.0,
+        "cap": 5
+      }
+    ],
+    "tasks": {
+      "x": {
+        "id": "x",
+        "who": "mia",
+        "who0": null,
+        "title": "x",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "개발 3건"
+      },
+      "a_other": {
+        "id": "a_other",
+        "who": "mia",
+        "who0": null,
+        "title": "a_other",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "금 저녁",
+        "basis": "개발 3건"
+      },
+      "y": {
+        "id": "y",
+        "who": "jun",
+        "who0": null,
+        "title": "y",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "개발 3건"
+      },
+      "b_other": {
+        "id": "b_other",
+        "who": "jun",
+        "who0": null,
+        "title": "b_other",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "금 저녁",
+        "basis": "개발 3건"
+      },
+      "qa": {
+        "id": "qa",
+        "who": "ara",
+        "who0": null,
+        "title": "qa",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "수 저녁",
+        "basis": "테스트 3건"
+      }
+    },
+    "hand": {
+      "h": {
+        "id": "h",
+        "from": "x",
+        "to": "qa",
+        "from_who": "mia",
+        "to_who": "ara",
+        "title": "완료본",
+        "what": "빌드",
+        "t": 2.0,
+        "t_label": "화 저녁",
+        "pred": 2.0,
+        "pred_label": "화 저녁",
+        "state": "ok",
+        "state_label": "On track",
+        "done": false,
+        "prop": false,
+        "agreed": false,
+        "basis": "",
+        "hist": []
+      }
+    },
+    "recs": [],
+    "rules": [
+      {
+        "key": "deadline",
+        "label": "금요일 제출",
+        "value": {
+          "week_end": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "weekly_cap",
+        "label": "주 5일",
+        "value": {
+          "days": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "pm_only",
+        "label": "미루기·범위 축소는 PM",
+        "value": {
+          "actions": [
+            "cut",
+            "defer"
+          ]
+        },
+        "locked": true
+      },
+      {
+        "key": "rounds",
+        "label": "최대 3라운드",
+        "value": {
+          "max": 3
+        },
+        "locked": true
+      },
+      {
+        "key": "pref",
+        "label": "빠른 사람",
+        "value": {
+          "choice": "fast"
+        },
+        "locked": false
+      }
+    ],
+    "pref": "fast",
+    "cards": [
+      {
+        "who": "mia",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "jun",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "sol",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "ara",
+        "auto_days": 1.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      }
+    ],
+    "max_rounds": 3,
+    "granted": [],
+    "confirms": [],
+    "pending_confirms": [
+      {
+        "id": 1,
+        "who": "jun",
+        "prompt": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의",
+        "text": "묶음 이동 전체에 동의",
+        "hid": null,
+        "status": "pending",
+        "t": ""
+      },
+      {
+        "id": 2,
+        "who": "mia",
+        "prompt": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의",
+        "text": "묶음 이동 전체에 동의",
+        "hid": null,
+        "status": "pending",
+        "t": ""
+      }
+    ],
+    "log": [
+      {
+        "id": 1,
+        "k": "hive",
+        "text": "묶음 1 제안 · 2개 이동 · 아직 작업 배정은 변경하지 않음",
+        "who": null,
+        "hid": null,
+        "t": "월 09:10",
+        "run": 1,
+        "round": null
+      }
+    ],
+    "asks": [],
+    "resolved": [],
+    "stats": {
+      "msgs": 0,
+      "pm_direct_asks": 0,
+      "confirms": 0,
+      "decisions": 0
+    },
+    "gate": {
+      "ok": true,
+      "violations": [],
+      "warnings": []
+    },
+    "waiting": [
+      {
+        "run": 1,
+        "kind": "bundle",
+        "status": "waiting_confirm"
+      }
+    ],
+    "negotiations": [],
+    "can_undo": true
+  },
+  "confirmation_steps": [
+    {
+      "fairness": {
+        "totals": {
+          "mia": 5.0,
+          "jun": 5.0,
+          "sol": 0.0,
+          "ara": 1.0
+        },
+        "variance": 5.1875,
+        "range": 5.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      },
+      "capacities": {
+        "mia": 5,
+        "jun": 5,
+        "sol": 5,
+        "ara": 5
+      },
+      "phase": "start",
+      "now": 0,
+      "narr": "새 기록을 받아 분담을 비교합니다.",
+      "now_label": "1주차 · 월요일 오전",
+      "demo": {
+        "id": "demo3_cards",
+        "title": "데모 3 · 정보와 권한의 네 조건",
+        "all": [
+          "demo1",
+          "demo2",
+          "demo3_cards",
+          "demo4_bundles",
+          "demo4_planbee"
+        ]
+      },
+      "feed_label": null,
+      "deadline_label": "금요일 제출",
+      "people": [
+        {
+          "id": "mia",
+          "name": "Mia",
+          "role": "개발",
+          "rec": {
+            "개발": 3
+          },
+          "wants": [],
+          "load": 5.0,
+          "free": 0.0,
+          "cap": 5
+        },
+        {
+          "id": "jun",
+          "name": "Jun",
+          "role": "개발",
+          "rec": {
+            "개발": 3
+          },
+          "wants": [],
+          "load": 5.0,
+          "free": 0.0,
+          "cap": 5
+        },
+        {
+          "id": "sol",
+          "name": "Sol",
+          "role": "개발",
+          "rec": {
+            "개발": 3
+          },
+          "wants": [],
+          "load": 0,
+          "free": 5,
+          "cap": 5
+        },
+        {
+          "id": "ara",
+          "name": "Ara",
+          "role": "테스트",
+          "rec": {
+            "테스트": 3
+          },
+          "wants": [],
+          "load": 1.0,
+          "free": 4.0,
+          "cap": 5
+        }
+      ],
+      "tasks": {
+        "x": {
+          "id": "x",
+          "who": "mia",
+          "who0": null,
+          "title": "x",
+          "s0": 0.0,
+          "s": 0.0,
+          "d": 2.0,
+          "plan": 2.0,
+          "base": 2.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "월",
+          "end_label": "화 저녁",
+          "basis": "개발 3건"
+        },
+        "a_other": {
+          "id": "a_other",
+          "who": "mia",
+          "who0": null,
+          "title": "a_other",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 3.0,
+          "plan": 3.0,
+          "base": 3.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "수",
+          "end_label": "금 저녁",
+          "basis": "개발 3건"
+        },
+        "y": {
+          "id": "y",
+          "who": "jun",
+          "who0": null,
+          "title": "y",
+          "s0": 0.0,
+          "s": 0.0,
+          "d": 2.0,
+          "plan": 2.0,
+          "base": 2.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "월",
+          "end_label": "화 저녁",
+          "basis": "개발 3건"
+        },
+        "b_other": {
+          "id": "b_other",
+          "who": "jun",
+          "who0": null,
+          "title": "b_other",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 3.0,
+          "plan": 3.0,
+          "base": 3.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "수",
+          "end_label": "금 저녁",
+          "basis": "개발 3건"
+        },
+        "qa": {
+          "id": "qa",
+          "who": "ara",
+          "who0": null,
+          "title": "qa",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 1.0,
+          "plan": 1.0,
+          "base": 1.0,
+          "tag": "테스트",
+          "role": "테스트",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "수",
+          "end_label": "수 저녁",
+          "basis": "테스트 3건"
+        }
+      },
+      "hand": {
+        "h": {
+          "id": "h",
+          "from": "x",
+          "to": "qa",
+          "from_who": "mia",
+          "to_who": "ara",
+          "title": "완료본",
+          "what": "빌드",
+          "t": 2.0,
+          "t_label": "화 저녁",
+          "pred": 2.0,
+          "pred_label": "화 저녁",
+          "state": "ok",
+          "state_label": "On track",
+          "done": false,
+          "prop": false,
+          "agreed": false,
+          "basis": "",
+          "hist": []
+        }
+      },
+      "recs": [],
+      "rules": [
+        {
+          "key": "deadline",
+          "label": "금요일 제출",
+          "value": {
+            "week_end": 5
+          },
+          "locked": true
+        },
+        {
+          "key": "weekly_cap",
+          "label": "주 5일",
+          "value": {
+            "days": 5
+          },
+          "locked": true
+        },
+        {
+          "key": "pm_only",
+          "label": "미루기·범위 축소는 PM",
+          "value": {
+            "actions": [
+              "cut",
+              "defer"
+            ]
+          },
+          "locked": true
+        },
+        {
+          "key": "rounds",
+          "label": "최대 3라운드",
+          "value": {
+            "max": 3
+          },
+          "locked": true
+        },
+        {
+          "key": "pref",
+          "label": "빠른 사람",
+          "value": {
+            "choice": "fast"
+          },
+          "locked": false
+        }
+      ],
+      "pref": "fast",
+      "cards": [
+        {
+          "who": "mia",
+          "auto_days": 2.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        },
+        {
+          "who": "jun",
+          "auto_days": 2.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        },
+        {
+          "who": "sol",
+          "auto_days": 2.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        },
+        {
+          "who": "ara",
+          "auto_days": 1.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        }
+      ],
+      "max_rounds": 3,
+      "granted": [],
+      "confirms": [
+        {
+          "id": 1,
+          "who": "jun",
+          "prompt": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의",
+          "text": "묶음 이동 전체에 동의",
+          "hid": null,
+          "status": "confirmed",
+          "t": "월 09:11"
+        }
+      ],
+      "pending_confirms": [
+        {
+          "id": 2,
+          "who": "mia",
+          "prompt": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의",
+          "text": "묶음 이동 전체에 동의",
+          "hid": null,
+          "status": "pending",
+          "t": ""
+        }
+      ],
+      "log": [
+        {
+          "id": 1,
+          "k": "hive",
+          "text": "묶음 1 제안 · 2개 이동 · 아직 작업 배정은 변경하지 않음",
+          "who": null,
+          "hid": null,
+          "t": "월 09:10",
+          "run": 1,
+          "round": null
+        },
+        {
+          "id": 2,
+          "k": "person",
+          "text": "묶음 이동 전체에 동의",
+          "who": "jun",
+          "hid": null,
+          "t": "월 09:11",
+          "run": 1,
+          "round": 0
+        }
+      ],
+      "asks": [],
+      "resolved": [],
+      "stats": {
+        "msgs": 0,
+        "pm_direct_asks": 0,
+        "confirms": 1,
+        "decisions": 0
+      },
+      "gate": {
+        "ok": true,
+        "violations": [],
+        "warnings": []
+      },
+      "waiting": [
+        {
+          "run": 1,
+          "kind": "bundle",
+          "status": "waiting_confirm"
+        }
+      ],
+      "negotiations": [],
+      "can_undo": true
+    },
+    {
+      "fairness": {
+        "totals": {
+          "mia": 5.0,
+          "jun": 5.0,
+          "sol": 0.0,
+          "ara": 1.0
+        },
+        "variance": 5.1875,
+        "range": 5.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      },
+      "capacities": {
+        "mia": 5,
+        "jun": 5,
+        "sol": 5,
+        "ara": 5
+      },
+      "phase": "start",
+      "now": 0,
+      "narr": "새 기록을 받아 분담을 비교합니다.",
+      "now_label": "1주차 · 월요일 오전",
+      "demo": {
+        "id": "demo3_cards",
+        "title": "데모 3 · 정보와 권한의 네 조건",
+        "all": [
+          "demo1",
+          "demo2",
+          "demo3_cards",
+          "demo4_bundles",
+          "demo4_planbee"
+        ]
+      },
+      "feed_label": null,
+      "deadline_label": "금요일 제출",
+      "people": [
+        {
+          "id": "mia",
+          "name": "Mia",
+          "role": "개발",
+          "rec": {
+            "개발": 3
+          },
+          "wants": [],
+          "load": 5.0,
+          "free": 0.0,
+          "cap": 5
+        },
+        {
+          "id": "jun",
+          "name": "Jun",
+          "role": "개발",
+          "rec": {
+            "개발": 3
+          },
+          "wants": [],
+          "load": 5.0,
+          "free": 0.0,
+          "cap": 5
+        },
+        {
+          "id": "sol",
+          "name": "Sol",
+          "role": "개발",
+          "rec": {
+            "개발": 3
+          },
+          "wants": [],
+          "load": 0,
+          "free": 5,
+          "cap": 5
+        },
+        {
+          "id": "ara",
+          "name": "Ara",
+          "role": "테스트",
+          "rec": {
+            "테스트": 3
+          },
+          "wants": [],
+          "load": 1.0,
+          "free": 4.0,
+          "cap": 5
+        }
+      ],
+      "tasks": {
+        "x": {
+          "id": "x",
+          "who": "mia",
+          "who0": null,
+          "title": "x",
+          "s0": 0.0,
+          "s": 0.0,
+          "d": 2.0,
+          "plan": 2.0,
+          "base": 2.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "월",
+          "end_label": "화 저녁",
+          "basis": "개발 3건"
+        },
+        "a_other": {
+          "id": "a_other",
+          "who": "mia",
+          "who0": null,
+          "title": "a_other",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 3.0,
+          "plan": 3.0,
+          "base": 3.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "수",
+          "end_label": "금 저녁",
+          "basis": "개발 3건"
+        },
+        "y": {
+          "id": "y",
+          "who": "jun",
+          "who0": null,
+          "title": "y",
+          "s0": 0.0,
+          "s": 0.0,
+          "d": 2.0,
+          "plan": 2.0,
+          "base": 2.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "월",
+          "end_label": "화 저녁",
+          "basis": "개발 3건"
+        },
+        "b_other": {
+          "id": "b_other",
+          "who": "jun",
+          "who0": null,
+          "title": "b_other",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 3.0,
+          "plan": 3.0,
+          "base": 3.0,
+          "tag": "개발",
+          "role": "개발",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "수",
+          "end_label": "금 저녁",
+          "basis": "개발 3건"
+        },
+        "qa": {
+          "id": "qa",
+          "who": "ara",
+          "who0": null,
+          "title": "qa",
+          "s0": 2.0,
+          "s": 2.0,
+          "d": 1.0,
+          "plan": 1.0,
+          "base": 1.0,
+          "tag": "테스트",
+          "role": "테스트",
+          "kind": "",
+          "cut": false,
+          "got": false,
+          "oi": 0,
+          "context": {},
+          "spill": false,
+          "moved": false,
+          "start_label": "수",
+          "end_label": "수 저녁",
+          "basis": "테스트 3건"
+        }
+      },
+      "hand": {
+        "h": {
+          "id": "h",
+          "from": "x",
+          "to": "qa",
+          "from_who": "mia",
+          "to_who": "ara",
+          "title": "완료본",
+          "what": "빌드",
+          "t": 2.0,
+          "t_label": "화 저녁",
+          "pred": 2.0,
+          "pred_label": "화 저녁",
+          "state": "ok",
+          "state_label": "On track",
+          "done": false,
+          "prop": false,
+          "agreed": false,
+          "basis": "",
+          "hist": []
+        }
+      },
+      "recs": [],
+      "rules": [
+        {
+          "key": "deadline",
+          "label": "금요일 제출",
+          "value": {
+            "week_end": 5
+          },
+          "locked": true
+        },
+        {
+          "key": "weekly_cap",
+          "label": "주 5일",
+          "value": {
+            "days": 5
+          },
+          "locked": true
+        },
+        {
+          "key": "pm_only",
+          "label": "미루기·범위 축소는 PM",
+          "value": {
+            "actions": [
+              "cut",
+              "defer"
+            ]
+          },
+          "locked": true
+        },
+        {
+          "key": "rounds",
+          "label": "최대 3라운드",
+          "value": {
+            "max": 3
+          },
+          "locked": true
+        },
+        {
+          "key": "pref",
+          "label": "빠른 사람",
+          "value": {
+            "choice": "fast"
+          },
+          "locked": false
+        }
+      ],
+      "pref": "fast",
+      "cards": [
+        {
+          "who": "mia",
+          "auto_days": 2.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        },
+        {
+          "who": "jun",
+          "auto_days": 2.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        },
+        {
+          "who": "sol",
+          "auto_days": 2.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        },
+        {
+          "who": "ara",
+          "auto_days": 1.0,
+          "refuse_tags": [],
+          "gives_help": true,
+          "note": "",
+          "wait_days": 0.0,
+          "model": null,
+          "policy": {}
+        }
+      ],
+      "max_rounds": 3,
+      "granted": [],
+      "confirms": [
+        {
+          "id": 1,
+          "who": "jun",
+          "prompt": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의",
+          "text": "묶음 이동 전체에 동의",
+          "hid": null,
+          "status": "confirmed",
+          "t": "월 09:11"
+        }
+      ],
+      "pending_confirms": [],
+      "log": [
+        {
+          "id": 1,
+          "k": "hive",
+          "text": "묶음 1 제안 · 2개 이동 · 아직 작업 배정은 변경하지 않음",
+          "who": null,
+          "hid": null,
+          "t": "월 09:10",
+          "run": 1,
+          "round": null
+        },
+        {
+          "id": 2,
+          "k": "person",
+          "text": "묶음 이동 전체에 동의",
+          "who": "jun",
+          "hid": null,
+          "t": "월 09:11",
+          "run": 1,
+          "round": 0
+        },
+        {
+          "id": 3,
+          "k": "person",
+          "text": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의 · 거절",
+          "who": "mia",
+          "hid": null,
+          "t": "월 09:12",
+          "run": 1,
+          "round": 0
+        },
+        {
+          "id": 4,
+          "k": "hive",
+          "text": "묶음 1 cancelled · 배정 변경 없음 · 당사자가 묶음 전체를 거절함",
+          "who": null,
+          "hid": null,
+          "t": "월 09:13",
+          "run": 1,
+          "round": null
+        }
+      ],
+      "asks": [],
+      "resolved": [],
+      "stats": {
+        "msgs": 0,
+        "pm_direct_asks": 0,
+        "confirms": 1,
+        "decisions": 0
+      },
+      "gate": {
+        "ok": true,
+        "violations": [],
+        "warnings": []
+      },
+      "waiting": [],
+      "negotiations": [],
+      "can_undo": true
+    }
+  ],
+  "after": {
+    "fairness": {
+      "totals": {
+        "mia": 5.0,
+        "jun": 5.0,
+        "sol": 0.0,
+        "ara": 1.0
+      },
+      "variance": 5.1875,
+      "range": 5.0,
+      "definition": "past_effort + current-week allocated days (done included once)"
+    },
+    "capacities": {
+      "mia": 5,
+      "jun": 5,
+      "sol": 5,
+      "ara": 5
+    },
+    "phase": "start",
+    "now": 0,
+    "narr": "새 기록을 받아 분담을 비교합니다.",
+    "now_label": "1주차 · 월요일 오전",
+    "demo": {
+      "id": "demo3_cards",
+      "title": "데모 3 · 정보와 권한의 네 조건",
+      "all": [
+        "demo1",
+        "demo2",
+        "demo3_cards",
+        "demo4_bundles",
+        "demo4_planbee"
+      ]
+    },
+    "feed_label": null,
+    "deadline_label": "금요일 제출",
+    "people": [
+      {
+        "id": "mia",
+        "name": "Mia",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "jun",
+        "name": "Jun",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "sol",
+        "name": "Sol",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 0,
+        "free": 5,
+        "cap": 5
+      },
+      {
+        "id": "ara",
+        "name": "Ara",
+        "role": "테스트",
+        "rec": {
+          "테스트": 3
+        },
+        "wants": [],
+        "load": 1.0,
+        "free": 4.0,
+        "cap": 5
+      }
+    ],
+    "tasks": {
+      "x": {
+        "id": "x",
+        "who": "mia",
+        "who0": null,
+        "title": "x",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "개발 3건"
+      },
+      "a_other": {
+        "id": "a_other",
+        "who": "mia",
+        "who0": null,
+        "title": "a_other",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "금 저녁",
+        "basis": "개발 3건"
+      },
+      "y": {
+        "id": "y",
+        "who": "jun",
+        "who0": null,
+        "title": "y",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "개발 3건"
+      },
+      "b_other": {
+        "id": "b_other",
+        "who": "jun",
+        "who0": null,
+        "title": "b_other",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "금 저녁",
+        "basis": "개발 3건"
+      },
+      "qa": {
+        "id": "qa",
+        "who": "ara",
+        "who0": null,
+        "title": "qa",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "수 저녁",
+        "basis": "테스트 3건"
+      }
+    },
+    "hand": {
+      "h": {
+        "id": "h",
+        "from": "x",
+        "to": "qa",
+        "from_who": "mia",
+        "to_who": "ara",
+        "title": "완료본",
+        "what": "빌드",
+        "t": 2.0,
+        "t_label": "화 저녁",
+        "pred": 2.0,
+        "pred_label": "화 저녁",
+        "state": "ok",
+        "state_label": "On track",
+        "done": false,
+        "prop": false,
+        "agreed": false,
+        "basis": "",
+        "hist": []
+      }
+    },
+    "recs": [],
+    "rules": [
+      {
+        "key": "deadline",
+        "label": "금요일 제출",
+        "value": {
+          "week_end": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "weekly_cap",
+        "label": "주 5일",
+        "value": {
+          "days": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "pm_only",
+        "label": "미루기·범위 축소는 PM",
+        "value": {
+          "actions": [
+            "cut",
+            "defer"
+          ]
+        },
+        "locked": true
+      },
+      {
+        "key": "rounds",
+        "label": "최대 3라운드",
+        "value": {
+          "max": 3
+        },
+        "locked": true
+      },
+      {
+        "key": "pref",
+        "label": "빠른 사람",
+        "value": {
+          "choice": "fast"
+        },
+        "locked": false
+      }
+    ],
+    "pref": "fast",
+    "cards": [
+      {
+        "who": "mia",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "jun",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "sol",
+        "auto_days": 2.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "ara",
+        "auto_days": 1.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      }
+    ],
+    "max_rounds": 3,
+    "granted": [],
+    "confirms": [
+      {
+        "id": 1,
+        "who": "jun",
+        "prompt": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의",
+        "text": "묶음 이동 전체에 동의",
+        "hid": null,
+        "status": "confirmed",
+        "t": "월 09:11"
+      }
+    ],
+    "pending_confirms": [],
+    "log": [
+      {
+        "id": 1,
+        "k": "hive",
+        "text": "묶음 1 제안 · 2개 이동 · 아직 작업 배정은 변경하지 않음",
+        "who": null,
+        "hid": null,
+        "t": "월 09:10",
+        "run": 1,
+        "round": null
+      },
+      {
+        "id": 2,
+        "k": "person",
+        "text": "묶음 이동 전체에 동의",
+        "who": "jun",
+        "hid": null,
+        "t": "월 09:11",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 3,
+        "k": "person",
+        "text": "묶음 전체에 동의하나요? 내 작업을 넘기는 데 동의 · 거절",
+        "who": "mia",
+        "hid": null,
+        "t": "월 09:12",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 4,
+        "k": "hive",
+        "text": "묶음 1 cancelled · 배정 변경 없음 · 당사자가 묶음 전체를 거절함",
+        "who": null,
+        "hid": null,
+        "t": "월 09:13",
+        "run": 1,
+        "round": null
+      }
+    ],
+    "asks": [],
+    "resolved": [],
+    "stats": {
+      "msgs": 0,
+      "pm_direct_asks": 0,
+      "confirms": 1,
+      "decisions": 0
+    },
+    "gate": {
+      "ok": true,
+      "violations": [],
+      "warnings": []
+    },
+    "waiting": [],
+    "negotiations": [],
+    "can_undo": true
+  }
+}

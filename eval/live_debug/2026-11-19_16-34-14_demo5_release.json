@@ -1,0 +1,70 @@
+{
+  "demo": "demo5_release",
+  "model": "openai/gpt-4o-mini",
+  "calls": 53,
+  "failures": 0,
+  "error": null,
+  "phases": [
+    {
+      "phase": "start",
+      "now": 0,
+      "next": "qa"
+    },
+    {
+      "phase": "qa",
+      "now": 1,
+      "next": "review"
+    },
+    {
+      "phase": "review",
+      "now": 2,
+      "next": "end"
+    }
+  ],
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "done",
+      "round": 4,
+      "file": "live/2026-11-19_16-31-02_834796_0622955b.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    },
+    {
+      "id": 2,
+      "status": "done",
+      "round": 5,
+      "file": "live/2026-11-19_16-32-07_124653_dfd0a0aa.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    },
+    {
+      "id": 3,
+      "status": "done",
+      "round": 3,
+      "file": "live/2026-11-19_16-33-23_169474_ca81b499.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    }
+  ],
+  "new_tasks": [
+    {
+      "id": "piece21",
+      "who": "faye",
+      "title": "회귀 검사 결과 작성",
+      "days": 1.0,
+      "start": 1.0,
+      "end": 2.0
+    }
+  ],
+  "changed_sources": []
+}

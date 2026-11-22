@@ -1,0 +1,815 @@
+{
+  "id": "2_objective",
+  "label": "객관적 여건만",
+  "objective": true,
+  "authority": false,
+  "metrics": {
+    "pm_decisions": 0,
+    "pm_talks": 0,
+    "confirms": 2,
+    "proxy_msgs": 9,
+    "rounds": 1,
+    "hive_rejects": 0,
+    "late_end": 0,
+    "promises_moved": 0,
+    "past_deadline": 0,
+    "scope_cut": 0,
+    "overload": 0,
+    "overrides": 0,
+    "cost": {
+      "Sol": {
+        "늘어남": 1.0,
+        "밀림": 0
+      }
+    },
+    "cost_people": 1,
+    "top_share": 1.0,
+    "top_who": "Sol",
+    "fairness": {
+      "totals": {
+        "mia": 5.0,
+        "jun": 4.5,
+        "sol": 3.0,
+        "ara": 1.0
+      },
+      "variance": 2.421875,
+      "range": 4.0,
+      "definition": "past_effort + current-week allocated days (done included once)"
+    }
+  },
+  "state": {
+    "fairness": {
+      "totals": {
+        "mia": 5.0,
+        "jun": 4.5,
+        "sol": 3.0,
+        "ara": 1.0
+      },
+      "variance": 2.421875,
+      "range": 4.0,
+      "definition": "past_effort + current-week allocated days (done included once)"
+    },
+    "capacities": {
+      "mia": 5,
+      "jun": 5,
+      "sol": 5,
+      "ara": 5
+    },
+    "phase": "end",
+    "now": 2,
+    "narr": "해결됨 · PM 결정 없이 당사자 확인으로 끝남",
+    "now_label": "1주차 · 수요일 오전",
+    "demo": {
+      "id": "demo3_cards",
+      "title": "데모 3 · 정보와 권한의 네 조건",
+      "all": [
+        "demo1",
+        "demo2",
+        "demo3_cards",
+        "demo4_bundles",
+        "demo4_planbee"
+      ]
+    },
+    "feed_label": null,
+    "deadline_label": "금요일 제출",
+    "people": [
+      {
+        "id": "mia",
+        "name": "Mia",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "jun",
+        "name": "Jun",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 4.5,
+        "free": 0.5,
+        "cap": 5
+      },
+      {
+        "id": "sol",
+        "name": "Sol",
+        "role": "개발",
+        "rec": {
+          "개발": 3
+        },
+        "wants": [],
+        "load": 3.0,
+        "free": 2.0,
+        "cap": 5
+      },
+      {
+        "id": "ara",
+        "name": "Ara",
+        "role": "테스트",
+        "rec": {
+          "테스트": 3
+        },
+        "wants": [],
+        "load": 1.0,
+        "free": 4.0,
+        "cap": 5
+      }
+    ],
+    "tasks": {
+      "feature": {
+        "id": "feature",
+        "who": "mia",
+        "who0": null,
+        "title": "나머지 기능",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "수 저녁",
+        "basis": "개발 3건"
+      },
+      "mia_other": {
+        "id": "mia_other",
+        "who": "mia",
+        "who0": null,
+        "title": "배포 준비",
+        "s0": 3.0,
+        "s": 3.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 1,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "목",
+        "end_label": "금 저녁",
+        "basis": "개발 3건"
+      },
+      "jun_work": {
+        "id": "jun_work",
+        "who": "jun",
+        "who0": null,
+        "title": "기존 개발",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 4.5,
+        "plan": 4.5,
+        "base": 4.5,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 2,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "금 오전",
+        "basis": "개발 3건"
+      },
+      "sol_work": {
+        "id": "sol_work",
+        "who": "sol",
+        "who0": null,
+        "title": "기존 개발",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 3,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "개발 3건"
+      },
+      "test": {
+        "id": "test",
+        "who": "ara",
+        "who0": null,
+        "title": "기능 테스트",
+        "s0": 3.0,
+        "s": 3.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 4,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "목",
+        "end_label": "목 저녁",
+        "basis": "테스트 3건"
+      },
+      "piece_feature": {
+        "id": "piece_feature",
+        "who": "sol",
+        "who0": null,
+        "title": "독립 기능 코드",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "개발",
+        "role": "개발",
+        "kind": "new",
+        "cut": false,
+        "got": false,
+        "oi": 5,
+        "context": {},
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "수 저녁",
+        "basis": "개발 3건"
+      }
+    },
+    "hand": {
+      "h1": {
+        "id": "h1",
+        "from": "feature",
+        "to": "test",
+        "from_who": "mia",
+        "to_who": "ara",
+        "title": "기능 코드",
+        "what": "테스트용 빌드",
+        "t": 3.0,
+        "t_label": "수 저녁",
+        "pred": 3.0,
+        "pred_label": "수 저녁",
+        "state": "ok",
+        "state_label": "On track",
+        "done": false,
+        "prop": false,
+        "agreed": false,
+        "basis": "",
+        "hist": [
+          {
+            "t": "수 09:11",
+            "kind": "proxy",
+            "who": "mia",
+            "text": "예상 수 저녁 → 목 저녁 · At risk"
+          },
+          {
+            "t": "수 09:14",
+            "kind": "hive",
+            "who": null,
+            "text": "도움 요청 열림"
+          },
+          {
+            "t": "수 09:26",
+            "kind": "person",
+            "who": "mia",
+            "text": "Mia 확인 · 독립 기능 코드는 Sol이"
+          },
+          {
+            "t": "수 09:26",
+            "kind": "proxy",
+            "who": "mia",
+            "text": "다시 제때 → On track"
+          }
+        ]
+      },
+      "h2": {
+        "id": "h2",
+        "from": "piece_feature",
+        "to": "test",
+        "from_who": "sol",
+        "to_who": "ara",
+        "title": "독립 기능 코드",
+        "what": "독립 모듈",
+        "t": 3.0,
+        "t_label": "수 저녁",
+        "pred": 3.0,
+        "pred_label": "수 저녁",
+        "state": "agreed",
+        "state_label": "Agreed",
+        "done": false,
+        "prop": false,
+        "agreed": true,
+        "basis": "",
+        "hist": [
+          {
+            "t": "수 09:24",
+            "kind": "proxy",
+            "who": "sol",
+            "text": "가약속 · 수 저녁"
+          },
+          {
+            "t": "수 09:26",
+            "kind": "person",
+            "who": "sol",
+            "text": "Sol 확인 → Agreed"
+          }
+        ]
+      }
+    },
+    "recs": [
+      {
+        "id": 1,
+        "t": "수 09:00",
+        "src": "메신저",
+        "who": "mia",
+        "text": "기능 구현 하루 추가 필요",
+        "old": false,
+        "fresh": true
+      }
+    ],
+    "rules": [
+      {
+        "key": "deadline",
+        "label": "금요일 제출",
+        "value": {
+          "week_end": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "weekly_cap",
+        "label": "주 5일",
+        "value": {
+          "days": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "pm_only",
+        "label": "미루기·범위 축소는 PM",
+        "value": {
+          "actions": [
+            "cut",
+            "defer"
+          ]
+        },
+        "locked": true
+      },
+      {
+        "key": "rounds",
+        "label": "최대 3라운드",
+        "value": {
+          "max": 3
+        },
+        "locked": true
+      },
+      {
+        "key": "pref",
+        "label": "빠른 사람",
+        "value": {
+          "choice": "fast"
+        },
+        "locked": false
+      }
+    ],
+    "pref": "fast",
+    "cards": [
+      {
+        "who": "mia",
+        "auto_days": 0.0,
+        "refuse_tags": [],
+        "gives_help": false,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "jun",
+        "auto_days": 0.0,
+        "refuse_tags": [],
+        "gives_help": false,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "sol",
+        "auto_days": 0.0,
+        "refuse_tags": [],
+        "gives_help": false,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      },
+      {
+        "who": "ara",
+        "auto_days": 0.0,
+        "refuse_tags": [],
+        "gives_help": false,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null,
+        "policy": {}
+      }
+    ],
+    "max_rounds": 3,
+    "granted": [],
+    "confirms": [
+      {
+        "id": 1,
+        "who": "sol",
+        "prompt": "독립 기능 코드 1일 · 내 한도(0일)를 넘어요. 맡아도 될까요?",
+        "text": "독립 기능 코드 1일 맡을게요 · 확인",
+        "hid": "h1",
+        "status": "confirmed",
+        "t": "수 09:22"
+      },
+      {
+        "id": 2,
+        "who": "mia",
+        "prompt": "독립 기능 코드는 Sol에게 넘겨도 될까요?",
+        "text": "독립 기능 코드는 Sol에게 · 확인",
+        "hid": "h1",
+        "status": "confirmed",
+        "t": "수 09:25"
+      }
+    ],
+    "pending_confirms": [],
+    "log": [
+      {
+        "id": 1,
+        "k": "proxy",
+        "from": "mia",
+        "to": null,
+        "a": "견적",
+        "f": [
+          {
+            "t": "기능 구현",
+            "tk": true
+          },
+          {
+            "t": "3일 → 4일",
+            "n": true
+          }
+        ],
+        "basis": "기능 구현 하루 추가 필요",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:10",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 2,
+        "k": "proxy",
+        "from": "mia",
+        "to": "ara",
+        "a": "알림",
+        "f": [
+          {
+            "t": "기능 코드",
+            "tk": true
+          },
+          {
+            "t": "수 저녁 → 목 저녁",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:11",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 3,
+        "k": "hive",
+        "text": "마감 판정 · 기능 코드 수 저녁 위험 · 담당 Proxy에게 실행 가능한 분담안을 요청",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:12",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 4,
+        "k": "hive",
+        "text": "도움 요청 · 기능 코드 · 수 저녁까지 · 개발",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:13",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 5,
+        "k": "proxy",
+        "from": "mia",
+        "to": null,
+        "a": "조건",
+        "f": [
+          {
+            "t": "독립 기능 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "따로 할 수 있음"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:14",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 6,
+        "k": "hive",
+        "text": "위임카드 확인 단계 · 2명의 '개발' Proxy에게 각자 자기 카드와 일정으로 요청",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:15",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 7,
+        "k": "hive",
+        "text": "1라운드 · 위임 요청 · Jun의 프록시, Sol의 프록시",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:16",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 8,
+        "k": "proxy",
+        "from": "mia",
+        "to": "jun",
+        "a": "질문",
+        "f": [
+          {
+            "t": "독립 기능 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "수 저녁까지 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:17",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 9,
+        "k": "proxy",
+        "from": "jun",
+        "to": "mia",
+        "a": "견적",
+        "f": [
+          {
+            "t": "독립 기능 코드",
+            "tk": true
+          },
+          {
+            "t": "거절"
+          }
+        ],
+        "basis": "금까지 4½/5일로 꽉 참",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:18",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 10,
+        "k": "proxy",
+        "from": "mia",
+        "to": "sol",
+        "a": "질문",
+        "f": [
+          {
+            "t": "독립 기능 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "수 저녁까지 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:19",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 11,
+        "k": "proxy",
+        "from": "sol",
+        "to": "mia",
+        "a": "견적",
+        "f": [
+          {
+            "t": "독립 기능 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "본인 확인 필요"
+          }
+        ],
+        "basis": "개발 3건 · 내 한도 0일을 넘음",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:20",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 12,
+        "k": "hive",
+        "text": "권한 확인 · Sol의 한도 또는 바쁨·미확인 메모 → 본인 확인",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:21",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 13,
+        "k": "person",
+        "text": "독립 기능 코드 1일 맡을게요 · 확인",
+        "who": "sol",
+        "hid": "h1",
+        "t": "수 09:22",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 14,
+        "k": "proxy",
+        "from": "sol",
+        "to": "ara",
+        "a": "약속",
+        "f": [
+          {
+            "t": "독립 기능 코드",
+            "tk": true
+          },
+          {
+            "t": "수 저녁",
+            "n": true
+          },
+          {
+            "t": "가약속"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "수 09:23",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 15,
+        "k": "hive",
+        "text": "규칙 확인 · 넘침 없음 · 제출일 · 범위 그대로 · Sol: 본인이 확인함 → 담당 확인만",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:24",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 16,
+        "k": "person",
+        "text": "독립 기능 코드는 Sol에게 · 확인",
+        "who": "mia",
+        "hid": "h1",
+        "t": "수 09:25",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 17,
+        "k": "proxy",
+        "from": "mia",
+        "to": "ara",
+        "a": "약속",
+        "f": [
+          {
+            "t": "기능 코드",
+            "tk": true
+          },
+          {
+            "t": "수 저녁",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:26",
+        "run": 1,
+        "round": 1
+      }
+    ],
+    "asks": [],
+    "resolved": [
+      {
+        "hid": "h1",
+        "body": "Sol이 독립 기능 코드 1일을 맡음 · 기능 코드 수 저녁",
+        "why": "규칙 안 · Sol 본인 확인 · Mia 확인 · 1라운드 · PM 결정 없음"
+      }
+    ],
+    "stats": {
+      "msgs": 9,
+      "pm_direct_asks": 0,
+      "confirms": 2,
+      "decisions": 0
+    },
+    "gate": {
+      "ok": true,
+      "violations": [],
+      "warnings": []
+    },
+    "waiting": [],
+    "negotiations": [
+      {
+        "id": 1,
+        "kind": "record",
+        "status": "done",
+        "step": "done",
+        "hid": "h1",
+        "task": "feature",
+        "owner": "mia",
+        "round": 1,
+        "attempt": 0,
+        "max_rounds": 3
+      }
+    ],
+    "can_undo": false
+  }
+}

@@ -1,0 +1,92 @@
+# 프로토타입 "Handoffs 세 화면"의 초기 상태 (1주차 수요일 오전, 제출 11/20 금)
+meta:
+  title: "데모 1 · 게임 개발팀 (프로토타입 대본)"
+  phase: mon          # mon → wed → ask → end
+  now: 2              # 2 = 수요일 오전
+  deadline_label: "데모 제출 · 11/20 금"
+  narr: "시연 버튼으로 새 기록을 받아 보세요 · 막대나 화살표를 누르면 자세히"
+
+people:
+  - {id: mia, name: Mia, role: 그림,   rec: {캐릭터 그림: 6, 효과: 4, 배경: 3}, wants: []}
+  - {id: ivy, name: Ivy, role: 그림,   rec: {배경: 8, 효과: 2, 캐릭터 그림: 1}, wants: [캐릭터 그림]}
+  - {id: leo, name: Leo, role: 개발,   rec: {화면 코드: 10, 저장: 6, 캐릭터 코드: 4}, wants: []}
+  - {id: sam, name: Sam, role: 개발,   rec: {전투 코드: 12, 버그: 9, 캐릭터 코드: 5}, wants: []}
+  - {id: ben, name: Ben, role: 개발,   rec: {빌드: 5, 버그: 3}, wants: [캐릭터 코드, 전투 코드]}
+  - {id: zoe, name: Zoe, role: 테스트, rec: {테스트: 12}, wants: [화면 코드]}
+
+cards:   # 위임 카드: auto_days 까지는 프록시가 알아서 수락, 넘으면 본인에게 물음
+         # wait_days: 받기로 한 것이 이만큼 늦어져도 알아서 수락 (기본 0) · model: 이 프록시만 쓸 LLM (Live)
+  - {who: mia, auto_days: 1}
+  - {who: ivy, auto_days: 0.5}
+  - {who: leo, auto_days: 1}
+  - {who: sam, auto_days: 1, note: "오전엔 리뷰 안 받음"}
+  - {who: ben, auto_days: 1}
+  - {who: zoe, auto_days: 0.5}
+
+tasks:   # s0 = 시작(일), d = 길이(일)
+  - {id: draw,   who: mia, title: 캐릭터 그리기,     s0: 0,   d: 3,   tag: 캐릭터 그림}
+  - {id: enemy,  who: mia, title: 적 캐릭터 다듬기,  s0: 3,   d: 2,   tag: 캐릭터 그림}
+  - {id: bg,     who: ivy, title: 배경 그리기,       s0: 0,   d: 2,   tag: 배경}
+  - {id: menu,   who: leo, title: 메뉴 화면 연결,    s0: 0,   d: 1.5, tag: 화면 코드, kind: done}
+  - {id: save,   who: leo, title: 저장 기능,         s0: 1.5, d: 1.5, tag: 저장}
+  - id: code
+    who: leo
+    title: 캐릭터 넣기
+    s0: 3
+    d: 1.5
+    tag: 캐릭터 코드
+    cut_options:
+      - {key: weapon_fx, label: 데모에서 캐릭터 무기 효과 빼기, note: 캐릭터 무기 효과, saves: 1}
+  - {id: battle, who: sam, title: 전투 기능,         s0: 0,   d: 3,   tag: 전투 코드}
+  - {id: bugs,   who: sam, title: 버그 고치기,       s0: 3,   d: 2,   tag: 버그}
+  - {id: build,  who: ben, title: 빌드 정리,         s0: 0,   d: 1,   tag: 빌드, kind: done}
+  - {id: tools,  who: ben, title: 툴 정리,           s0: 1,   d: 1,   tag: 빌드}
+  - {id: tidy,   who: zoe, title: 테스트 정리,       s0: 0,   d: 1,   tag: 테스트, kind: done}
+  - {id: mtest,  who: zoe, title: 메뉴 테스트,       s0: 1.5, d: 1,   tag: 테스트}
+  - {id: btest,  who: zoe, title: 전투 테스트,       s0: 3,   d: 1.5, tag: 테스트}
+  - {id: ctest,  who: zoe, title: 캐릭터 테스트,     s0: 4.5, d: 0.5, tag: 테스트}
+
+handoffs:   # t = 약속 시각
+  - id: h1
+    from: draw
+    to: code
+    title: 캐릭터 그림
+    what: 캐릭터 그림 파일
+    t: 3
+    hist: [{t: "월 09:00", kind: hive, text: "계획의 순서에서 생김 · 약속 수 저녁"}]
+  - id: h2
+    from: code
+    to: ctest
+    title: 캐릭터 코드
+    what: 게임에 들어간 캐릭터 빌드
+    t: 4.5
+    hist: [{t: "월 09:00", kind: hive, text: "계획의 순서에서 생김 · 약속 금 오전"}]
+  - id: h3
+    from: battle
+    to: btest
+    title: 전투 기능
+    what: 전투 기능 빌드
+    t: 3
+    hist: [{t: "월 09:00", kind: hive, text: "계획의 순서에서 생김 · 약속 수 저녁"}]
+  - id: h4
+    from: menu
+    to: mtest
+    title: 메뉴 화면
+    what: 메뉴 화면 빌드
+    t: 1.5
+    done: true
+    hist:
+      - {t: "월 09:00", kind: hive, text: "계획의 순서에서 생김"}
+      - {t: "화 12:12", kind: proxy, who: zoe, text: "받음 확인 → Delivered"}
+
+records:
+  - {t: "월 09:00", src: 작업,   who: mia, text: "캐릭터 그리기 시작 · 3일", old: true}
+  - {t: "화 12:10", src: 메신저, who: leo, text: "메뉴 화면 연결 넘김", old: true}
+  - {t: "화 18:20", src: 저장소, who: mia, text: "무기_v2.psd 다시 올림", old: true}
+
+rules:
+  - {key: deadline,   label: "제출일 11/20 고정",            value: {week_end: 5}}
+  - {key: weekly_cap, label: "한 사람 한 주 5일까지",         value: {days: 5}}
+  - {key: pm_only,    label: "범위 줄이기 · 미루기는 PM만",   value: {actions: [cut, defer]}}
+  - {key: rounds,     label: "프록시끼리 15라운드까지",        value: {max: 15}}
+  - {key: pref,       label: "받을 사람이 여럿이면",          value: {choice: fast}, locked: false}   # fast | learn

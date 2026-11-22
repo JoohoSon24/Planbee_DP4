@@ -1,0 +1,12 @@
+issue:
+  task: ui_integration
+  label: T2 · Task Reallocation · 업무 재분배 · 변경 요청
+  now: 5
+  next_phase: end
+  narr: UI Integration 작업에 예상보다 하루가 더 필요합니다. 기존 8h에서 총 16h(2일)로 증가했습니다. 로직 연결 8h는
+    Dev 전담, 에셋 연결 8h는 Art에게 분담 가능합니다. Bug Fix는 예정대로 끝내야 합니다. 작업의 재분배를 요청합니다.
+  records:
+  - who: dev
+    src: 시나리오 변경 요청
+    text: UI Integration 작업에 예상보다 하루가 더 필요합니다. 기존 8h에서 총 16h(2일)로 증가했습니다. 로직 연결 8h는
+      Dev 전담, 에셋 연결 8h는 Art에게 분담 가능합니다. Bug Fix는 예정대로 끝내야 합니다. 작업의 재분배를 요청합니다.

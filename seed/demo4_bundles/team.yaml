@@ -1,0 +1,108 @@
+meta:
+  title: 데모 4 · 원자적 작업 맞교환
+  phase: swap
+  now: 0
+  deadline_label: 금요일 제출
+  narr: 시연 버튼으로 x와 y를 하나의 묶음으로 교환합니다.
+people:
+- id: mia
+  name: Mia
+  role: 개발
+  rec:
+    개발: 3
+  wants: []
+- id: jun
+  name: Jun
+  role: 개발
+  rec:
+    개발: 3
+  wants: []
+- id: sol
+  name: Sol
+  role: 개발
+  rec:
+    개발: 3
+  wants: []
+- id: ara
+  name: Ara
+  role: 테스트
+  rec:
+    테스트: 3
+  wants: []
+cards:
+- who: mia
+  auto_days: 2
+- who: jun
+  auto_days: 2
+- who: sol
+  auto_days: 2
+- who: ara
+  auto_days: 2
+tasks:
+- id: x
+  who: mia
+  title: x
+  s0: 0.0
+  d: 2.0
+  tag: 개발
+  kind: ''
+- id: a_other
+  who: mia
+  title: a_other
+  s0: 2.0
+  d: 3.0
+  tag: 개발
+  kind: ''
+- id: y
+  who: jun
+  title: y
+  s0: 0.0
+  d: 2.0
+  tag: 개발
+  kind: ''
+- id: b_other
+  who: jun
+  title: b_other
+  s0: 2.0
+  d: 3.0
+  tag: 개발
+  kind: ''
+- id: qa
+  who: ara
+  title: qa
+  s0: 2.0
+  d: 1.0
+  tag: 테스트
+  kind: ''
+handoffs:
+- id: h
+  from: x
+  to: qa
+  title: 완료본
+  what: 빌드
+  t: 2.0
+records: []
+rules:
+- key: deadline
+  label: 금요일 제출
+  value:
+    week_end: 5
+- key: weekly_cap
+  label: 주 5일
+  value:
+    days: 5
+- key: pm_only
+  label: 미루기·범위 축소는 PM
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: 빠른 사람
+  value:
+    choice: fast
+  locked: false

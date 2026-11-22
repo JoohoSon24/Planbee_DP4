@@ -12,6 +12,8 @@ from app.api import app
 
 @pytest.fixture()
 def c():
+    from app import store
+    store.use_demo("demo1")
     with TestClient(app) as client:
         client.post("/reset")
         yield client
@@ -48,7 +50,8 @@ def test_S1_wednesday_solved_inside_rules(c):
     assert s["hand"]["h1"]["state"] == "ok" and s["hand"]["h1"]["title"] == "캐릭터 몸"
     assert s["hand"]["h5"]["state"] == "agreed" and s["hand"]["h5"]["to"] == "code"
     assert s["hand"]["h2"]["state"] == "ok"
-    assert s["stats"] == {"msgs": 10, "pm_direct_asks": 0, "confirms": 2, "decisions": 0}
+    assert s["stats"]["msgs"] >= 10  # Deadline repair is followed by public fairness discussion.
+    assert {k: v for k, v in s["stats"].items() if k != "msgs"} == {"pm_direct_asks": 0, "confirms": 2, "decisions": 0}
     assert s["resolved"][0]["hid"] == "h1" and "PM 결정 없음" in s["resolved"][0]["why"]
     assert not s["asks"] and s["gate"]["ok"]
 
@@ -76,8 +79,11 @@ def test_S3_taker_rejects_goes_to_pm(c):
     assert s["phase"] == "ask" and s["hand"]["h1"]["state"] == "risk"
     ask = [a for a in s["asks"] if a["open"]][0]
     assert ask["hid"] == "h1" and ask["grants"] == [] and ask["why"] == ["Ivy: 본인이 거절"]
-    s = c.post("/handoffs/h1/reagree", json={"auto_confirm": True})
-    assert s.status_code == 409                                  # PM 확인이 열려 있는 동안은 잠김
+    assert c.post("/handoffs/h3/reagree", json={"auto_confirm": True}).status_code == 409    # 다른 조작은 잠김
+    # 고를 허락이 없으니 PM 은 그 Handoff 의 약속을 늦추는 것으로 답한다
+    s = c.post("/handoffs/h1/reagree", json={"auto_confirm": True}).json()
+    assert s["hand"]["h1"]["state"] == "agreed" and s["hand"]["h1"]["t"] == 4 and s["phase"] == "wed"
+    assert not [a for a in s["asks"] if a["open"]] and not s["waiting"]
 
 
 def test_S4_thursday_needs_pm(c):
@@ -85,10 +91,14 @@ def test_S4_thursday_needs_pm(c):
     s, ask = to_thursday_ask(c)
     assert ask["hid"] == "h2"
     # 이유는 프록시가 쓴 말 그대로이고, 미루기 선택지는 Sam 의 프록시가 낸 조건에서 나온다
-    assert ask["why"] == ["Sam: 버그 고치기를 2주차로 미루면 가능",
-                          "Ben: Sam의 30분 도움이 필요 → Sam: 버그 고치기를 2주차로 미루면 가능"]
+    assert {"Sam: 버그 고치기를 2주차로 미루면 가능",
+            "Ben: Sam의 30분 도움이 필요 → Sam: 버그 고치기를 2주차로 미루면 가능"} <= set(ask['why'])
+    assert any('협상 한도 내 합의 실패' in reason for reason in ask['why'])
     assert "Sam의 프록시가 낸 조건" in ask["grants"][0]["effect"]
-    assert any("2라운드 끝" in m.get("text", "") for m in s["log"])
+    assert any("라운드 끝" in m.get("text", "") for m in s["log"])
+    detail=c.get(f"/negotiations/{ask['run']}").json()
+    strategies=' '.join(e['reason'] for e in detail['discussion']['history'] if e['response']=='STRATEGY_CHANGE')
+    assert all(strategy in strategies for strategy in ('whole_transfer','move_other_work','collaborate'))
     assert [g["key"] for g in ask["grants"]] == ["defer:bugs", "cut:code:weapon_fx"]
     assert s["hand"]["h2"]["state"] == "risk" and s["tasks"]["code"]["d"] == 2.5
     assert s["stats"]["decisions"] == 0
@@ -105,20 +115,19 @@ def test_S5_grant_defer_fast_picks_sam(c):
     assert s["hand"]["h6"]["state"] == "agreed" and s["hand"]["h2"]["state"] == "ok" and s["hand"]["h2"]["t"] == 4.5
     assert s["stats"]["decisions"] == 1 and s["granted"] == ["버그 고치기(Sam)를 2주차로 미뤄도 됨"]
     # Sam 은 카드 한도(1일) 안이라 프록시가 알아서 수락: 목요일에 확인한 사람은 담당 Leo 뿐
-    assert [x["who"] for x in s["confirms"]] == ["ivy", "mia", "leo"]
-    assert "Sam의 프록시가 카드 한도 안에서 수락" in s["resolved"][-1]["why"]
+    assert [x["who"] for x in s["confirms"]][:3] == ["ivy", "mia", "leo"]
+    assert any("Sam의 프록시가 카드 한도 안에서 수락" in r["why"] for r in s["resolved"])
     assert s["gate"]["ok"] and not s["gate"]["warnings"]
 
 
-def test_S6_grant_defer_learn_picks_ben_and_reagrees(c):
-    c.put("/rules/pref", json={"choice": "learn"})
-    s, ask = to_thursday_ask(c)
-    s = c.post(f"/asks/{ask['id']}/grant", json={"index": 0}).json()
-    assert s["tasks"]["move"]["who"] == "ben" and s["tasks"]["move"]["d"] == 1.5
-    assert s["hand"]["h2"]["state"] == "agreed" and s["hand"]["h2"]["t"] == 5      # 금 오전 → 금 저녁
-    assert [x["who"] for x in s["confirms"]] == ["ivy", "mia", "ben", "leo", "zoe"]   # Ben 은 1½일 > 한도 1일이라 본인 확인
-    # 받는 쪽 테스트가 제출일 뒤로 밀린 것을 경고로 알린다
-    assert [w["code"] for w in s["gate"]["warnings"]] == ["PUSHED_PAST_DEADLINE"]
+def test_S6_learning_preference_preserves_original_deadline(c):
+    c.put('/rules/pref',json={'choice':'learn'})
+    s,ask=to_thursday_ask(c)
+    s=c.post(f"/asks/{ask['id']}/grant",json={'index':0}).json()
+    assert s['tasks']['move']['who']=='sam'
+    assert s['hand']['h2']['t']==4.5 and s['hand']['h2']['state']=='ok'
+    assert not s['gate']['warnings'] and s['gate']['ok']
+    assert 'zoe' not in [x['who'] for x in s['confirms']]
 
 
 def test_S7_grant_cut_scope(c):
@@ -143,7 +152,7 @@ def test_undo_restores_before_grant(c):
 
 def test_unscripted_record_and_undo(c):
     """대본에 없는 기록은 견적을 바꾸지 않고, 거절 뒤에도 되돌리기로 기록 받기 전으로 간다."""
-    r = c.post("/records", json={"records": [{"src": "작업", "who": "zoe", "text": "전투 테스트 예상 2일로"}]})
+    r = c.post("/records", json={"records": [{"src": "작업", "who": "zoe", "text": "전투 테스트 예상 2일로"}], "auto_confirm": True})
     assert r.status_code == 200                                    # 대본에 없는 기록: 견적 그대로
     assert c.post("/handoffs/h1/reagree").status_code == 409       # 제때인 Handoff 는 못 고침
     s = advance(c, auto=False)                                     # h1 이 risk 인 채 멈춤
@@ -190,7 +199,7 @@ def test_card_refuse_tag_makes_proxy_reject(c):
     c.put("/people/ivy/card", json={"refuse_tags": ["캐릭터 그림"]})
     s = advance(c)
     ask = [a for a in s["asks"] if a["open"]][0]
-    assert s["phase"] == "ask" and ask["why"] == ["Ivy: 카드에 '캐릭터 그림'은 받지 않는다고 되어 있음"]
+    assert s["phase"] == "ask" and "Ivy: 카드에 '캐릭터 그림'은 받지 않는다고 되어 있음" in ask["why"]
 
 
 def test_card_no_help_blocks_the_learner(c):
@@ -237,3 +246,68 @@ def to_thursday_ask_or_done(c):
     s = advance(c)
     open_asks = [a for a in s["asks"] if a["open"]]
     return s, (open_asks[0] if open_asks else None)
+
+
+# ── 받는 쪽 프록시의 참여 · 협상 보기 ─────────────────────────────────
+def test_unsafe_offer_never_requests_receiver_to_extend_deadline(c):
+    c.put('/rules/pref',json={'choice':'learn'})
+    advance(c);s=advance(c)
+    ask=next(a for a in s['asks'] if a['open'])
+    c.post('/undo')
+    s=c.post('/demo/advance',json={'auto_confirm':False}).json()
+    ask=next(a for a in s['asks'] if a['open'])
+    s=c.post(f"/asks/{ask['id']}/grant",json={'key':'defer:bugs'}).json()
+    assert [p['who'] for p in s['pending_confirms']]==['leo']
+    assert s['tasks']['move']['who']=='sam' and s['tasks']['move']['kind']=='prop'
+    s=c.post(f"/confirmations/{s['pending_confirms'][0]['id']}").json()
+    assert s['hand']['h2']['t']==4.5 and s['hand']['h2']['state']=='ok'
+    assert not s['gate']['warnings']
+
+
+def test_wait_card_permission_is_not_permission_to_break_project_deadline(c):
+    c.put('/rules/pref',json={'choice':'learn'})
+    c.put('/people/zoe/card',json={'wait_days':.5})
+    s,ask=to_thursday_ask(c)
+    s=c.post(f"/asks/{ask['id']}/grant",json={'key':'defer:bugs'}).json()
+    assert 'zoe' not in [x['who'] for x in s['confirms']]
+    assert s['hand']['h2']['t']==4.5 and not s['gate']['warnings']
+
+
+def test_negotiation_view_groups_by_round(c):
+    s, ask = to_thursday_ask(c)
+    runs = c.get("/negotiations").json()
+    assert [r["status"] for r in runs] == ["done", "waiting_pm"]
+    n = c.get(f"/negotiations/{runs[1]['id']}").json()
+    assert [g['label'] for g in n['rounds']]==['준비']+[f'{i}라운드' for i in range(1,n['round']+1)]
+    assert n['round']>=3 and n['max_rounds']==15
+    assert n["discussion"]["termination"] == "no_valid_alternative"
+    assert n["proposal"]["piece"]["title"] == "움직임 코드" and n["ask"]["id"] == ask["id"]
+    by = {r["who"]: r for r in n["replies"]}
+    assert by["sam"]["type"] == "COUNTER" and by["sam"]["cond"] == {"kind": "defer", "who": None, "task": "bugs", "minutes": 30}
+    assert by["ben"]["cond"]["kind"] == "help" and by["ben"]["help"] == "defer" and by["ben"]["late_to"] == 5
+    s = c.post(f"/asks/{ask['id']}/grant", json={"key": "defer:bugs"}).json()
+    n = c.get(f"/negotiations/{runs[1]['id']}").json()
+    assert {"1라운드 · PM 답 1회 뒤", "2라운드 · PM 답 1회 뒤"} <= {g["label"] for g in n["rounds"]}
+    assert n["status"] == "done" and n["discussion"]["termination"]
+    assert n["chosen"]["who"] == "sam" and c.get("/negotiations/999").status_code == 404
+
+
+def test_final_hive_constraints_after_consents_rollback_initial_offer(c):
+    """An initial recipient's earlier acceptance cannot bypass a changed time-off policy."""
+    from app import api
+    from app.models import Card
+    state=advance(c,False)
+    recipient=next(x for x in state['pending_confirms'] if x['who']=='ivy')
+    state=c.post(f"/confirmations/{recipient['id']}",json={'ok':True}).json()
+    source=next(x for x in state['pending_confirms'] if x['who']=='mia')
+    with api.SessionLocal() as db:
+        card=db.get(Card,'ivy')
+        card.policy={'approved':True,'unavailable':[{'start':2,'end':5,'reason':'교육'}]}
+        db.commit()
+    response=c.post(f"/confirmations/{source['id']}",json={'ok':True})
+    assert response.status_code==200,response.text
+    state=response.json()
+    assert state['tasks']['draw']['d']==4 and 'weapon' not in state['tasks']
+    assert state['hand']['h1']['t']==3 and not state['resolved']
+    assert any('최종 제약 검증 실패' in m.get('text','') for m in state['log'])
+    assert state['negotiations'][0]['status']=='waiting_pm'

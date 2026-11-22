@@ -1,0 +1,3162 @@
+{
+  "report": {
+    "scenario": "m4_t4_composite",
+    "version": "2026-11-22_23-02-03_253746_v003_units_schema_and_participants",
+    "llm_mode": "live",
+    "model": "openai/gpt-4o-mini",
+    "duration_seconds": 57.03,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_budget": {
+      "used": 16,
+      "max": 36
+    },
+    "transcript_file": "live/2026-11-22_23-08-04_969647_a17d4bc5.md",
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "acda1d98e7f4ec91b8287f0cd35e93c861cfbc85f1ff076ca2705e283085cdd6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "ad9c77d12309909b3f447a82f6ce1456ffa79fe24d07433caa3eb7decc0107f6",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "ad398a575d4434c9068dcbbe0e28f67278dcd3d9b6d43ed380eebd7e1891b63b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "6cc636780f7d664611ef2796af53481bb98665becbd8df837d5e9289f43cc060",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "be3d3d3c841c5306487fb2ea811e4379886332d252796ae0a1f517275321e622",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_be7c3f743b82cc17",
+        "c_d8d8514fb7755742",
+        "c_7fbf6dff7ad3e910",
+        "c_b04dbd5ca66f609c"
+      ],
+      "matching_pm_options": [
+        "c_be7c3f743b82cc17"
+      ],
+      "qa_confirm_compromise_candidates": [
+        "c_d8d8514fb7755742",
+        "c_b04dbd5ca66f609c"
+      ],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    }
+  },
+  "public_run": {
+    "id": 1,
+    "kind": "candidate",
+    "status": "awaiting_pm_selection",
+    "step": "candidate_pm",
+    "task": "character_animation",
+    "issue": "Character Animation은 기존 24h에서 32h(4일)로 증가해 11/20 가용 8h를 추가 사용합니다. FX Assets 잔여 4h는 11/23 오전에 수행해 12:00 전달 가능합니다. 임시 에셋은 11/20 제공 가능합니다. Dev·QA와 조정하고 싶습니다.",
+    "phase": "deadline",
+    "round": 2,
+    "pool_revision": 1,
+    "pool_hash": "5e2a5d1bbf623241620b0e39720a078d4817c7291bb64b754a9fc8fdb48dad98",
+    "generation": {
+      "attempted": 60,
+      "rejected": 41,
+      "duplicates": 0,
+      "reasons": {
+        "데드라인 위반: h_anim_integration_retest, h_critical_fix_final_qa, h_final_qa_milestone": 14,
+        "이미 시작된 업무의 범위 이관·단계별 재구조화 금지": 15,
+        "변경 계획 전체 제약 위반: anim_integration → retest 2주차 월 저녁 → 2주차 화 오전; critical_fix → final_qa 2주차 화 저녁 → 3주차 월 저녁; final_qa → milestone 2주차 목 저녁 → 3주차 수 저녁; Critical Fix · Task 완료 기한 초과; Integration Retest · Task 완료 기한 초과; Integration Retest · 고정 시작 시각 변경 금지; Final QA · Task 완료 기한 초과; Final QA · 고정 시작 시각 변경 금지; Critical Fix 제출일 뒤로 밀림; Final QA 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: critical_fix → final_qa 2주차 화 저녁 → 3주차 월 저녁; final_qa → milestone 2주차 목 저녁 → 3주차 수 저녁; Critical Fix · Task 완료 기한 초과; Final QA · Task 완료 기한 초과; Final QA · 고정 시작 시각 변경 금지; Critical Fix 제출일 뒤로 밀림; Final QA 제출일 뒤로 밀림": 6,
+        "데드라인 위반: h_anim_integration_retest, h_final_qa_milestone": 1,
+        "변경 계획 전체 제약 위반: anim_integration → retest 2주차 월 저녁 → 2주차 화 저녁; final_qa → milestone 2주차 목 저녁 → 2주차 금 저녁; Integration Retest · Task 완료 기한 초과; Integration Retest · 고정 시작 시각 변경 금지; Final QA · Task 완료 기한 초과; Final QA · 고정 시작 시각 변경 금지; Final QA 제출일을 넘겨 2주차 금 저녁에 끝남": 1,
+        "변경 계획 전체 제약 위반: final_qa → milestone 2주차 목 저녁 → 2주차 금 오전; Integration Retest · Task 완료 기한 초과; Integration Retest · 고정 시작 시각 변경 금지; Final QA · Task 완료 기한 초과; Final QA · 고정 시작 시각 변경 금지; Final QA 제출일을 넘겨 2주차 금 오전에 끝남": 2
+      },
+      "templates": 6,
+      "feasible": 19,
+      "retained": 4,
+      "truncated": true
+    },
+    "generation_reason": "제안된 구조는 각 작업의 요구 사항을 충족하며, 작업량 증가에 따른 재구성을 반영합니다.",
+    "shortlist": [
+      "c_7fbf6dff7ad3e910",
+      "c_be7c3f743b82cc17",
+      "c_b04dbd5ca66f609c",
+      "c_d8d8514fb7755742"
+    ],
+    "final_candidates": [
+      "c_be7c3f743b82cc17"
+    ],
+    "public_history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 0,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "art",
+        "recipient": null,
+        "response": "ESTIMATE",
+        "reason": "이슈를 읽고 이 업무를 4일로 다시 견적했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 1,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SCHEMA_REPAIR",
+        "reason": "생성 응답 형식이 잘못되어 필드별 오류를 한 번만 전달합니다. 같은 요청의 무제한 재시도는 하지 않습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 2,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "일정 검증을 통과한 새 milestone 계획 4개를 준비했어요. 이제 각자 카드로 비교합니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 2,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "art",
+        "recipient": null,
+        "response": "ASSESS",
+        "reason": "제 위임 범위와 일정으로 후보들을 비교했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 3,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "dev",
+        "recipient": null,
+        "response": "ASSESS",
+        "reason": "제 위임 범위와 일정으로 후보들을 비교했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 4,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "qa",
+        "recipient": null,
+        "response": "ASSESS",
+        "reason": "제 위임 범위와 일정으로 후보들을 비교했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 5,
+          "max": 36
+        }
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "art",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_be7c3f743b82cc17",
+        "llm_budget": {
+          "used": 6,
+          "max": 36
+        }
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "dev",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_be7c3f743b82cc17",
+        "llm_budget": {
+          "used": 7,
+          "max": 36
+        }
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "qa",
+        "recipient": "qa",
+        "response": "ANSWER",
+        "reason": "동일 검증 항목이 최종 검증에 포함되므로, Integration Retest는 본인 Confirm 후 생략 가능합니다. 최종 QA는 Anim Integration과 Critical Fix 모두 완료 후 11/25~26에 진행됩니다.",
+        "candidate_id": "c_d8d8514fb7755742",
+        "llm_budget": {
+          "used": 8,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Dev의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 9,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "qa",
+        "recipient": "qa",
+        "response": "ANSWER",
+        "reason": "Integration Retest는 동일 검증 항목이 최종 검증에 포함되므로 본인 Confirm 후 생략 가능합니다. 최종 QA는 Anim Integration과 Critical Fix 모두 완료 후 11/25~26에 진행됩니다.",
+        "candidate_id": "c_d8d8514fb7755742",
+        "llm_budget": {
+          "used": 10,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Art의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 11,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "art",
+        "recipient": null,
+        "response": "RANK",
+        "reason": "토론 조건을 반영해서 제 최종 선호를 정리했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 12,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "dev",
+        "recipient": null,
+        "response": "RANK",
+        "reason": "토론 조건을 반영해서 제 최종 선호를 정리했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 13,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "qa",
+        "recipient": null,
+        "response": "RANK",
+        "reason": "토론 조건을 반영해서 제 최종 선호를 정리했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 14,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "art",
+        "recipient": null,
+        "response": "NEEDS_INPUT",
+        "reason": "신규 인수로 본인 확인이 필요합니다.",
+        "candidate_id": "c_be7c3f743b82cc17",
+        "llm_budget": {
+          "used": 15,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "dev",
+        "recipient": null,
+        "response": "NEEDS_INPUT",
+        "reason": "새로운 인수로 본인 확인이 필요합니다.",
+        "candidate_id": "c_be7c3f743b82cc17",
+        "llm_budget": {
+          "used": 16,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "후보 1개를 추렸어요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 16,
+          "max": 36
+        }
+      }
+    ],
+    "llm_budget": {
+      "used": 16,
+      "max": 36
+    },
+    "termination": null,
+    "pm_selection": null,
+    "pm_handoff": null,
+    "participants": [
+      "art",
+      "dev",
+      "qa"
+    ],
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "acda1d98e7f4ec91b8287f0cd35e93c861cfbc85f1ff076ca2705e283085cdd6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "ad9c77d12309909b3f447a82f6ce1456ffa79fe24d07433caa3eb7decc0107f6",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "ad398a575d4434c9068dcbbe0e28f67278dcd3d9b6d43ed380eebd7e1891b63b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "6cc636780f7d664611ef2796af53481bb98665becbd8df837d5e9289f43cc060",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "be3d3d3c841c5306487fb2ea811e4379886332d252796ae0a1f517275321e622",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "snapshot_hash": "eb324cfa9bc2deccb7284c2fd8b5b0d2c9b5fc79cfa450906f797dd027a4a308",
+    "initial_board": {
+      "tasks": [
+        {
+          "id": "feature_spec",
+          "who": "gd",
+          "title": "Feature Spec",
+          "start": 0.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Feature Spec 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "ux_review",
+          "who": "gd",
+          "title": "UX Review",
+          "start": 3.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "UX Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "UX Review 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "scope_review",
+          "who": "gd",
+          "title": "Scope Review",
+          "start": 5.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Scope Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Scope Review 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 7,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "character_animation",
+          "who": "art",
+          "title": "Character Animation",
+          "start": 1.0,
+          "days": 3.0,
+          "kind": "",
+          "context": {
+            "description": "Character Animation 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Character Animation 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 5,
+            "source_scenario": "m4_t4_composite",
+            "active_participants_only": true,
+            "allowed_change_tasks": [
+              "character_animation",
+              "fx_assets",
+              "anim_integration",
+              "critical_fix",
+              "retest"
+            ]
+          }
+        },
+        {
+          "id": "fx_assets",
+          "who": "art",
+          "title": "FX Assets 잔여",
+          "start": 4.0,
+          "days": 0.5,
+          "kind": "",
+          "context": {
+            "description": "FX Assets 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "FX Assets 잔여 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 5.5,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "beta_handoff",
+          "who": "art",
+          "title": "Beta Handoff",
+          "start": 6.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Beta Handoff 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Beta Handoff 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 8,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "core_x",
+          "who": "dev",
+          "title": "Core X",
+          "start": 1.0,
+          "days": 3.0,
+          "kind": "done",
+          "context": {
+            "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core X 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "anim_integration",
+          "who": "dev",
+          "title": "Anim Integration",
+          "start": 5.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Anim Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Anim Integration 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": true,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 7,
+            "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+            "source_scenario": "m4_t4_composite",
+            "required_parts": [
+              {
+                "key": "temporary",
+                "title": "임시 에셋 Integration",
+                "what": "임시 에셋 기반 Integration 6h",
+                "effort": 0.75,
+                "assignees": [
+                  "dev"
+                ]
+              },
+              {
+                "key": "final",
+                "title": "최종 에셋 교체",
+                "what": "전달받은 최종 에셋 교체 2h",
+                "effort": 0.25,
+                "assignees": [
+                  "dev"
+                ],
+                "depends_on": [
+                  "temporary"
+                ]
+              }
+            ],
+            "inbound_scope": {
+              "fx_assets": [
+                "final"
+              ]
+            }
+          }
+        },
+        {
+          "id": "critical_fix",
+          "who": "dev",
+          "title": "Critical Fix",
+          "start": 6.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Critical Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Critical Fix 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 7,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "smoke",
+          "who": "qa",
+          "title": "Smoke Test",
+          "start": 4.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Smoke Test 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t4_composite"
+          }
+        },
+        {
+          "id": "retest",
+          "who": "qa",
+          "title": "Integration Retest",
+          "start": 6.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Integration Retest 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Integration Retest 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "fixed_start": 6,
+            "latest_finish": 7,
+            "optional": true,
+            "omit_requires_confirm": "qa",
+            "split_boundary": "Retest 시작 전 영업일까지 최종 Integration 완료 필요. 생략은 QA 본인 Confirm 필요.",
+            "source_scenario": "m4_t4_composite",
+            "covered_by": "final_qa",
+            "coverage": [
+              "animation_integration"
+            ]
+          }
+        },
+        {
+          "id": "final_qa",
+          "who": "qa",
+          "title": "Final QA",
+          "start": 7.0,
+          "days": 2.0,
+          "kind": "",
+          "context": {
+            "description": "Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Final QA 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "fixed_start": 7,
+            "latest_finish": 9,
+            "source_scenario": "m4_t4_composite",
+            "coverage": [
+              "animation_integration",
+              "critical_fix"
+            ],
+            "minimum_days": 2
+          }
+        },
+        {
+          "id": "milestone",
+          "who": "gd",
+          "title": "Alpha",
+          "start": 9.0,
+          "days": 0.0,
+          "kind": "milestone",
+          "context": {
+            "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Alpha 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "completion_barrier": true
+          }
+        }
+      ],
+      "handoffs": [
+        {
+          "id": "h_character_animation_fx_assets",
+          "source": "character_animation",
+          "target": "fx_assets",
+          "title": "character_animation → fx_assets",
+          "due": 5.0,
+          "expected": 4.0,
+          "agreed": false
+        },
+        {
+          "id": "h_fx_assets_anim_integration",
+          "source": "fx_assets",
+          "target": "anim_integration",
+          "title": "fx_assets → anim_integration",
+          "due": 6.0,
+          "expected": 4.5,
+          "agreed": false
+        },
+        {
+          "id": "h_anim_integration_retest",
+          "source": "anim_integration",
+          "target": "retest",
+          "title": "anim_integration → retest",
+          "due": 6.0,
+          "expected": 6.0,
+          "agreed": false
+        },
+        {
+          "id": "h_anim_integration_final_qa",
+          "source": "anim_integration",
+          "target": "final_qa",
+          "title": "anim_integration → final_qa",
+          "due": 7.0,
+          "expected": 6.0,
+          "agreed": false
+        },
+        {
+          "id": "h_critical_fix_final_qa",
+          "source": "critical_fix",
+          "target": "final_qa",
+          "title": "critical_fix → final_qa",
+          "due": 7.0,
+          "expected": 7.0,
+          "agreed": false
+        },
+        {
+          "id": "h_final_qa_milestone",
+          "source": "final_qa",
+          "target": "milestone",
+          "title": "final_qa → milestone",
+          "due": 9.0,
+          "expected": 9.0,
+          "agreed": false
+        }
+      ],
+      "milestones": [
+        {
+          "id": "milestone",
+          "title": "Alpha",
+          "who": "gd",
+          "start": 9.0,
+          "end": 9.0
+        }
+      ],
+      "deferred": [],
+      "omitted": [],
+      "fairness": {
+        "totals": {
+          "gd": 3.0,
+          "art": 4.5,
+          "dev": 5.0,
+          "qa": 4.0
+        },
+        "variance": 0.546875,
+        "range": 2.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      },
+      "gate": {
+        "ok": true,
+        "violations": [],
+        "warnings": [],
+        "adjustments": []
+      }
+    },
+    "final_board": null,
+    "transcript_file": "live/2026-11-22_23-08-04_969647_a17d4bc5.md",
+    "llm_mode": "live",
+    "assessment_progress": {
+      "completed": 3,
+      "total": 3,
+      "stage": "final"
+    },
+    "candidates": [
+      {
+        "id": "c_be7c3f743b82cc17",
+        "revision": 1,
+        "plan_hash": "be7c3f743b82cc1773aad82ac8fec0b33f4723c496028d44146fe19534fea421",
+        "operator": "transfer",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "allocations": [
+          {
+            "who": "art",
+            "title": "Character Animation",
+            "what": "Character Animation 완료본",
+            "key": "whole",
+            "depends_on": [],
+            "effort": 4.0,
+            "days": 4.0
+          }
+        ],
+        "schedule_changes": [],
+        "plan_actions": [
+          {
+            "kind": "restructure",
+            "task": "anim_integration",
+            "parts": [
+              {
+                "key": "temporary",
+                "title": "임시 에셋 Integration",
+                "what": "임시 에셋 기반 Integration 6h",
+                "effort": 0.75,
+                "depends_on": []
+              },
+              {
+                "key": "final",
+                "title": "최종 에셋 교체",
+                "what": "전달받은 최종 에셋 교체 2h",
+                "effort": 0.25,
+                "depends_on": [
+                  "temporary"
+                ]
+              }
+            ],
+            "basis": "명시된 중간 산출물 범위를 보존하고 선행 산출물은 필요한 최종 조각에만 연결한다."
+          }
+        ],
+        "required_confirmations": [],
+        "requires_scope_approval": false,
+        "scope": "whole_task",
+        "basis": "원 업무의 산출물과 완료 기준 전체를 보존한다.",
+        "affected": [
+          "art",
+          "dev"
+        ],
+        "board": {
+          "tasks": [
+            {
+              "id": "feature_spec",
+              "who": "gd",
+              "title": "Feature Spec",
+              "start": 0.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Feature Spec 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "ux_review",
+              "who": "gd",
+              "title": "UX Review",
+              "start": 3.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "UX Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UX Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "scope_review",
+              "who": "gd",
+              "title": "Scope Review",
+              "start": 5.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Scope Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Scope Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "character_animation",
+              "who": "art",
+              "title": "Character Animation",
+              "start": 1.0,
+              "days": 4.0,
+              "kind": "",
+              "context": {
+                "description": "Character Animation 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Character Animation 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5,
+                "source_scenario": "m4_t4_composite",
+                "active_participants_only": true,
+                "allowed_change_tasks": [
+                  "character_animation",
+                  "fx_assets",
+                  "anim_integration",
+                  "critical_fix",
+                  "retest"
+                ]
+              }
+            },
+            {
+              "id": "fx_assets",
+              "who": "art",
+              "title": "FX Assets 잔여",
+              "start": 5.0,
+              "days": 0.5,
+              "kind": "",
+              "context": {
+                "description": "FX Assets 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "FX Assets 잔여 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5.5,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "beta_handoff",
+              "who": "art",
+              "title": "Beta Handoff",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Beta Handoff 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Beta Handoff 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 8,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "core_x",
+              "who": "dev",
+              "title": "Core X",
+              "start": 1.0,
+              "days": 3.0,
+              "kind": "done",
+              "context": {
+                "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Core X 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "anim_integration",
+              "who": "dev",
+              "title": "Anim Integration",
+              "start": 6.0,
+              "days": 0,
+              "kind": "milestone",
+              "context": {
+                "description": "Anim Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Anim Integration 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": true,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [
+                  {
+                    "key": "temporary",
+                    "title": "임시 에셋 Integration",
+                    "what": "임시 에셋 기반 Integration 6h",
+                    "effort": 0.75,
+                    "assignees": [
+                      "dev"
+                    ]
+                  },
+                  {
+                    "key": "final",
+                    "title": "최종 에셋 교체",
+                    "what": "전달받은 최종 에셋 교체 2h",
+                    "effort": 0.25,
+                    "assignees": [
+                      "dev"
+                    ],
+                    "depends_on": [
+                      "temporary"
+                    ]
+                  }
+                ],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "critical_fix",
+              "who": "dev",
+              "title": "Critical Fix",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Critical Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Critical Fix 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "smoke",
+              "who": "qa",
+              "title": "Smoke Test",
+              "start": 4.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Smoke Test 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "retest",
+              "who": "qa",
+              "title": "Integration Retest",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Integration Retest 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Integration Retest 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 6,
+                "latest_finish": 7,
+                "optional": true,
+                "omit_requires_confirm": "qa",
+                "split_boundary": "Retest 시작 전 영업일까지 최종 Integration 완료 필요. 생략은 QA 본인 Confirm 필요.",
+                "source_scenario": "m4_t4_composite",
+                "covered_by": "final_qa",
+                "coverage": [
+                  "animation_integration"
+                ]
+              }
+            },
+            {
+              "id": "final_qa",
+              "who": "qa",
+              "title": "Final QA",
+              "start": 7.0,
+              "days": 2.0,
+              "kind": "",
+              "context": {
+                "description": "Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Final QA 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 7,
+                "latest_finish": 9,
+                "source_scenario": "m4_t4_composite",
+                "coverage": [
+                  "animation_integration",
+                  "critical_fix"
+                ],
+                "minimum_days": 2
+              }
+            },
+            {
+              "id": "milestone",
+              "who": "gd",
+              "title": "Alpha",
+              "start": 9.0,
+              "days": 0.0,
+              "kind": "milestone",
+              "context": {
+                "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Alpha 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "__stage_anim_integration_temporary",
+              "who": "dev",
+              "title": "임시 에셋 Integration",
+              "start": 5.0,
+              "days": 0.75,
+              "kind": "new",
+              "context": {
+                "description": "임시 에셋 기반 Integration 6h",
+                "deliverable": "임시 에셋 기반 Integration 6h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            },
+            {
+              "id": "__stage_anim_integration_final",
+              "who": "dev",
+              "title": "최종 에셋 교체",
+              "start": 5.75,
+              "days": 0.25,
+              "kind": "new",
+              "context": {
+                "description": "전달받은 최종 에셋 교체 2h",
+                "deliverable": "전달받은 최종 에셋 교체 2h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "h_character_animation_fx_assets",
+              "source": "character_animation",
+              "target": "fx_assets",
+              "title": "character_animation → fx_assets",
+              "due": 5.0,
+              "expected": 5.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_retest",
+              "source": "anim_integration",
+              "target": "retest",
+              "title": "anim_integration → retest",
+              "due": 6.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_final_qa",
+              "source": "anim_integration",
+              "target": "final_qa",
+              "title": "anim_integration → final_qa",
+              "due": 7.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_critical_fix_final_qa",
+              "source": "critical_fix",
+              "target": "final_qa",
+              "title": "critical_fix → final_qa",
+              "due": 7.0,
+              "expected": 7.0,
+              "agreed": false
+            },
+            {
+              "id": "h_final_qa_milestone",
+              "source": "final_qa",
+              "target": "milestone",
+              "title": "final_qa → milestone",
+              "due": 9.0,
+              "expected": 9.0,
+              "agreed": false
+            },
+            {
+              "id": "__action_link_5",
+              "source": "__stage_anim_integration_temporary",
+              "target": "anim_integration",
+              "title": "임시 에셋 기반 Integration 6h",
+              "due": 9,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_6",
+              "source": "__stage_anim_integration_temporary",
+              "target": "__stage_anim_integration_final",
+              "title": "단계 선후관계",
+              "due": 5.75,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_7",
+              "source": "fx_assets",
+              "target": "__stage_anim_integration_final",
+              "title": "fx_assets 검증 완료본",
+              "due": 6.0,
+              "expected": 5.5,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_8",
+              "source": "__stage_anim_integration_final",
+              "target": "anim_integration",
+              "title": "전달받은 최종 에셋 교체 2h",
+              "due": 9,
+              "expected": 6.0,
+              "agreed": true
+            }
+          ],
+          "milestones": [
+            {
+              "id": "anim_integration",
+              "title": "Anim Integration",
+              "who": "dev",
+              "start": 6.0,
+              "end": 6.0
+            },
+            {
+              "id": "milestone",
+              "title": "Alpha",
+              "who": "gd",
+              "start": 9.0,
+              "end": 9.0
+            }
+          ],
+          "deferred": [],
+          "omitted": [],
+          "fairness": {
+            "totals": {
+              "gd": 3.0,
+              "art": 5.5,
+              "dev": 5.0,
+              "qa": 4.0
+            },
+            "variance": 0.921875,
+            "range": 2.5,
+            "definition": "past_effort + current-week allocated days (done included once)"
+          },
+          "gate": {
+            "ok": true,
+            "violations": [],
+            "warnings": [],
+            "adjustments": []
+          }
+        },
+        "snapshot_hash": "eb324cfa9bc2deccb7284c2fd8b5b0d2c9b5fc79cfa450906f797dd027a4a308",
+        "consents": {
+          "art": {
+            "action": "NEEDS_INPUT",
+            "reason": "신규 인수로 본인 확인이 필요합니다."
+          },
+          "dev": {
+            "action": "NEEDS_INPUT",
+            "reason": "새로운 인수로 본인 확인이 필요합니다."
+          }
+        }
+      },
+      {
+        "id": "c_d8d8514fb7755742",
+        "revision": 1,
+        "plan_hash": "d8d8514fb77557428e0fb0a932294d312ac3a8996d7321a3261bdf089aa0b860",
+        "operator": "transfer",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "allocations": [
+          {
+            "who": "art",
+            "title": "Character Animation",
+            "what": "Character Animation 완료본",
+            "key": "whole",
+            "depends_on": [],
+            "effort": 4.0,
+            "days": 4.0
+          }
+        ],
+        "schedule_changes": [],
+        "plan_actions": [
+          {
+            "kind": "restructure",
+            "task": "anim_integration",
+            "parts": [
+              {
+                "key": "temporary",
+                "title": "임시 에셋 Integration",
+                "what": "임시 에셋 기반 Integration 6h",
+                "effort": 0.75,
+                "depends_on": []
+              },
+              {
+                "key": "final",
+                "title": "최종 에셋 교체",
+                "what": "전달받은 최종 에셋 교체 2h",
+                "effort": 0.25,
+                "depends_on": [
+                  "temporary"
+                ]
+              }
+            ],
+            "basis": "명시된 중간 산출물 범위를 보존하고 선행 산출물은 필요한 최종 조각에만 연결한다."
+          },
+          {
+            "kind": "omit",
+            "task": "retest",
+            "parts": [],
+            "basis": "동일 검증 항목이 최종 검증에 포함되는 선택 중간 검증만 본인 확인을 조건으로 생략한다."
+          }
+        ],
+        "required_confirmations": [
+          "qa"
+        ],
+        "requires_scope_approval": false,
+        "scope": "whole_task",
+        "basis": "원 업무의 산출물과 완료 기준 전체를 보존한다.",
+        "affected": [
+          "art",
+          "dev",
+          "qa"
+        ],
+        "board": {
+          "tasks": [
+            {
+              "id": "feature_spec",
+              "who": "gd",
+              "title": "Feature Spec",
+              "start": 0.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Feature Spec 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "ux_review",
+              "who": "gd",
+              "title": "UX Review",
+              "start": 3.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "UX Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UX Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "scope_review",
+              "who": "gd",
+              "title": "Scope Review",
+              "start": 5.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Scope Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Scope Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "character_animation",
+              "who": "art",
+              "title": "Character Animation",
+              "start": 1.0,
+              "days": 4.0,
+              "kind": "",
+              "context": {
+                "description": "Character Animation 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Character Animation 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5,
+                "source_scenario": "m4_t4_composite",
+                "active_participants_only": true,
+                "allowed_change_tasks": [
+                  "character_animation",
+                  "fx_assets",
+                  "anim_integration",
+                  "critical_fix",
+                  "retest"
+                ]
+              }
+            },
+            {
+              "id": "fx_assets",
+              "who": "art",
+              "title": "FX Assets 잔여",
+              "start": 5.0,
+              "days": 0.5,
+              "kind": "",
+              "context": {
+                "description": "FX Assets 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "FX Assets 잔여 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5.5,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "beta_handoff",
+              "who": "art",
+              "title": "Beta Handoff",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Beta Handoff 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Beta Handoff 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 8,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "core_x",
+              "who": "dev",
+              "title": "Core X",
+              "start": 1.0,
+              "days": 3.0,
+              "kind": "done",
+              "context": {
+                "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Core X 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "anim_integration",
+              "who": "dev",
+              "title": "Anim Integration",
+              "start": 6.0,
+              "days": 0,
+              "kind": "milestone",
+              "context": {
+                "description": "Anim Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Anim Integration 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": true,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [
+                  {
+                    "key": "temporary",
+                    "title": "임시 에셋 Integration",
+                    "what": "임시 에셋 기반 Integration 6h",
+                    "effort": 0.75,
+                    "assignees": [
+                      "dev"
+                    ]
+                  },
+                  {
+                    "key": "final",
+                    "title": "최종 에셋 교체",
+                    "what": "전달받은 최종 에셋 교체 2h",
+                    "effort": 0.25,
+                    "assignees": [
+                      "dev"
+                    ],
+                    "depends_on": [
+                      "temporary"
+                    ]
+                  }
+                ],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "critical_fix",
+              "who": "dev",
+              "title": "Critical Fix",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Critical Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Critical Fix 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "smoke",
+              "who": "qa",
+              "title": "Smoke Test",
+              "start": 4.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Smoke Test 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "final_qa",
+              "who": "qa",
+              "title": "Final QA",
+              "start": 7.0,
+              "days": 2.0,
+              "kind": "",
+              "context": {
+                "description": "Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Final QA 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 7,
+                "latest_finish": 9,
+                "source_scenario": "m4_t4_composite",
+                "coverage": [
+                  "animation_integration",
+                  "critical_fix"
+                ],
+                "minimum_days": 2
+              }
+            },
+            {
+              "id": "milestone",
+              "who": "gd",
+              "title": "Alpha",
+              "start": 9.0,
+              "days": 0.0,
+              "kind": "milestone",
+              "context": {
+                "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Alpha 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "__stage_anim_integration_temporary",
+              "who": "dev",
+              "title": "임시 에셋 Integration",
+              "start": 5.0,
+              "days": 0.75,
+              "kind": "new",
+              "context": {
+                "description": "임시 에셋 기반 Integration 6h",
+                "deliverable": "임시 에셋 기반 Integration 6h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            },
+            {
+              "id": "__stage_anim_integration_final",
+              "who": "dev",
+              "title": "최종 에셋 교체",
+              "start": 5.75,
+              "days": 0.25,
+              "kind": "new",
+              "context": {
+                "description": "전달받은 최종 에셋 교체 2h",
+                "deliverable": "전달받은 최종 에셋 교체 2h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "h_character_animation_fx_assets",
+              "source": "character_animation",
+              "target": "fx_assets",
+              "title": "character_animation → fx_assets",
+              "due": 5.0,
+              "expected": 5.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_retest",
+              "source": "anim_integration",
+              "target": "retest",
+              "title": "anim_integration → retest",
+              "due": 6.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_final_qa",
+              "source": "anim_integration",
+              "target": "final_qa",
+              "title": "anim_integration → final_qa",
+              "due": 7.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_critical_fix_final_qa",
+              "source": "critical_fix",
+              "target": "final_qa",
+              "title": "critical_fix → final_qa",
+              "due": 7.0,
+              "expected": 7.0,
+              "agreed": false
+            },
+            {
+              "id": "h_final_qa_milestone",
+              "source": "final_qa",
+              "target": "milestone",
+              "title": "final_qa → milestone",
+              "due": 9.0,
+              "expected": 9.0,
+              "agreed": false
+            },
+            {
+              "id": "__action_link_5",
+              "source": "__stage_anim_integration_temporary",
+              "target": "anim_integration",
+              "title": "임시 에셋 기반 Integration 6h",
+              "due": 9,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_6",
+              "source": "__stage_anim_integration_temporary",
+              "target": "__stage_anim_integration_final",
+              "title": "단계 선후관계",
+              "due": 5.75,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_7",
+              "source": "fx_assets",
+              "target": "__stage_anim_integration_final",
+              "title": "fx_assets 검증 완료본",
+              "due": 6.0,
+              "expected": 5.5,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_8",
+              "source": "__stage_anim_integration_final",
+              "target": "anim_integration",
+              "title": "전달받은 최종 에셋 교체 2h",
+              "due": 9,
+              "expected": 6.0,
+              "agreed": true
+            }
+          ],
+          "milestones": [
+            {
+              "id": "anim_integration",
+              "title": "Anim Integration",
+              "who": "dev",
+              "start": 6.0,
+              "end": 6.0
+            },
+            {
+              "id": "milestone",
+              "title": "Alpha",
+              "who": "gd",
+              "start": 9.0,
+              "end": 9.0
+            }
+          ],
+          "deferred": [],
+          "omitted": [
+            {
+              "id": "retest",
+              "title": "Integration Retest",
+              "covered_by": "final_qa"
+            }
+          ],
+          "fairness": {
+            "totals": {
+              "gd": 3.0,
+              "art": 5.5,
+              "dev": 5.0,
+              "qa": 3.0
+            },
+            "variance": 1.296875,
+            "range": 2.5,
+            "definition": "past_effort + current-week allocated days (done included once)"
+          },
+          "gate": {
+            "ok": true,
+            "violations": [],
+            "warnings": [],
+            "adjustments": []
+          }
+        },
+        "snapshot_hash": "eb324cfa9bc2deccb7284c2fd8b5b0d2c9b5fc79cfa450906f797dd027a4a308"
+      },
+      {
+        "id": "c_7fbf6dff7ad3e910",
+        "revision": 1,
+        "plan_hash": "7fbf6dff7ad3e9105afe0a77903db652b66af28c67adbec6a4afc7bac07a5b13",
+        "operator": "move",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "allocations": [
+          {
+            "who": "art",
+            "title": "Character Animation",
+            "what": "Character Animation 완료본",
+            "key": "whole",
+            "depends_on": [],
+            "effort": 4.0,
+            "days": 4.0
+          }
+        ],
+        "schedule_changes": [
+          {
+            "task": "fx_assets",
+            "start": 4.5
+          }
+        ],
+        "plan_actions": [
+          {
+            "kind": "restructure",
+            "task": "anim_integration",
+            "parts": [
+              {
+                "key": "temporary",
+                "title": "임시 에셋 Integration",
+                "what": "임시 에셋 기반 Integration 6h",
+                "effort": 0.75,
+                "depends_on": []
+              },
+              {
+                "key": "final",
+                "title": "최종 에셋 교체",
+                "what": "전달받은 최종 에셋 교체 2h",
+                "effort": 0.25,
+                "depends_on": [
+                  "temporary"
+                ]
+              }
+            ],
+            "basis": "명시된 중간 산출물 범위를 보존하고 선행 산출물은 필요한 최종 조각에만 연결한다."
+          }
+        ],
+        "required_confirmations": [],
+        "requires_scope_approval": false,
+        "scope": "whole_task",
+        "basis": "원 업무의 산출물과 완료 기준 전체를 보존한다.",
+        "affected": [
+          "art",
+          "dev"
+        ],
+        "board": {
+          "tasks": [
+            {
+              "id": "feature_spec",
+              "who": "gd",
+              "title": "Feature Spec",
+              "start": 0.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Feature Spec 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "ux_review",
+              "who": "gd",
+              "title": "UX Review",
+              "start": 3.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "UX Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UX Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "scope_review",
+              "who": "gd",
+              "title": "Scope Review",
+              "start": 5.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Scope Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Scope Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "character_animation",
+              "who": "art",
+              "title": "Character Animation",
+              "start": 1.0,
+              "days": 4.0,
+              "kind": "",
+              "context": {
+                "description": "Character Animation 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Character Animation 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5,
+                "source_scenario": "m4_t4_composite",
+                "active_participants_only": true,
+                "allowed_change_tasks": [
+                  "character_animation",
+                  "fx_assets",
+                  "anim_integration",
+                  "critical_fix",
+                  "retest"
+                ]
+              }
+            },
+            {
+              "id": "fx_assets",
+              "who": "art",
+              "title": "FX Assets 잔여",
+              "start": 5.0,
+              "days": 0.5,
+              "kind": "",
+              "context": {
+                "description": "FX Assets 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "FX Assets 잔여 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5.5,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "beta_handoff",
+              "who": "art",
+              "title": "Beta Handoff",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Beta Handoff 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Beta Handoff 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 8,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "core_x",
+              "who": "dev",
+              "title": "Core X",
+              "start": 1.0,
+              "days": 3.0,
+              "kind": "done",
+              "context": {
+                "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Core X 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "anim_integration",
+              "who": "dev",
+              "title": "Anim Integration",
+              "start": 6.0,
+              "days": 0,
+              "kind": "milestone",
+              "context": {
+                "description": "Anim Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Anim Integration 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": true,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [
+                  {
+                    "key": "temporary",
+                    "title": "임시 에셋 Integration",
+                    "what": "임시 에셋 기반 Integration 6h",
+                    "effort": 0.75,
+                    "assignees": [
+                      "dev"
+                    ]
+                  },
+                  {
+                    "key": "final",
+                    "title": "최종 에셋 교체",
+                    "what": "전달받은 최종 에셋 교체 2h",
+                    "effort": 0.25,
+                    "assignees": [
+                      "dev"
+                    ],
+                    "depends_on": [
+                      "temporary"
+                    ]
+                  }
+                ],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "critical_fix",
+              "who": "dev",
+              "title": "Critical Fix",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Critical Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Critical Fix 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "smoke",
+              "who": "qa",
+              "title": "Smoke Test",
+              "start": 4.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Smoke Test 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "retest",
+              "who": "qa",
+              "title": "Integration Retest",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Integration Retest 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Integration Retest 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 6,
+                "latest_finish": 7,
+                "optional": true,
+                "omit_requires_confirm": "qa",
+                "split_boundary": "Retest 시작 전 영업일까지 최종 Integration 완료 필요. 생략은 QA 본인 Confirm 필요.",
+                "source_scenario": "m4_t4_composite",
+                "covered_by": "final_qa",
+                "coverage": [
+                  "animation_integration"
+                ]
+              }
+            },
+            {
+              "id": "final_qa",
+              "who": "qa",
+              "title": "Final QA",
+              "start": 7.0,
+              "days": 2.0,
+              "kind": "",
+              "context": {
+                "description": "Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Final QA 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 7,
+                "latest_finish": 9,
+                "source_scenario": "m4_t4_composite",
+                "coverage": [
+                  "animation_integration",
+                  "critical_fix"
+                ],
+                "minimum_days": 2
+              }
+            },
+            {
+              "id": "milestone",
+              "who": "gd",
+              "title": "Alpha",
+              "start": 9.0,
+              "days": 0.0,
+              "kind": "milestone",
+              "context": {
+                "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Alpha 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "__stage_anim_integration_temporary",
+              "who": "dev",
+              "title": "임시 에셋 Integration",
+              "start": 5.0,
+              "days": 0.75,
+              "kind": "new",
+              "context": {
+                "description": "임시 에셋 기반 Integration 6h",
+                "deliverable": "임시 에셋 기반 Integration 6h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            },
+            {
+              "id": "__stage_anim_integration_final",
+              "who": "dev",
+              "title": "최종 에셋 교체",
+              "start": 5.75,
+              "days": 0.25,
+              "kind": "new",
+              "context": {
+                "description": "전달받은 최종 에셋 교체 2h",
+                "deliverable": "전달받은 최종 에셋 교체 2h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "h_character_animation_fx_assets",
+              "source": "character_animation",
+              "target": "fx_assets",
+              "title": "character_animation → fx_assets",
+              "due": 5.0,
+              "expected": 5.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_retest",
+              "source": "anim_integration",
+              "target": "retest",
+              "title": "anim_integration → retest",
+              "due": 6.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_final_qa",
+              "source": "anim_integration",
+              "target": "final_qa",
+              "title": "anim_integration → final_qa",
+              "due": 7.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_critical_fix_final_qa",
+              "source": "critical_fix",
+              "target": "final_qa",
+              "title": "critical_fix → final_qa",
+              "due": 7.0,
+              "expected": 7.0,
+              "agreed": false
+            },
+            {
+              "id": "h_final_qa_milestone",
+              "source": "final_qa",
+              "target": "milestone",
+              "title": "final_qa → milestone",
+              "due": 9.0,
+              "expected": 9.0,
+              "agreed": false
+            },
+            {
+              "id": "__action_link_5",
+              "source": "__stage_anim_integration_temporary",
+              "target": "anim_integration",
+              "title": "임시 에셋 기반 Integration 6h",
+              "due": 9,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_6",
+              "source": "__stage_anim_integration_temporary",
+              "target": "__stage_anim_integration_final",
+              "title": "단계 선후관계",
+              "due": 5.75,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_7",
+              "source": "fx_assets",
+              "target": "__stage_anim_integration_final",
+              "title": "fx_assets 검증 완료본",
+              "due": 6.0,
+              "expected": 5.5,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_8",
+              "source": "__stage_anim_integration_final",
+              "target": "anim_integration",
+              "title": "전달받은 최종 에셋 교체 2h",
+              "due": 9,
+              "expected": 6.0,
+              "agreed": true
+            }
+          ],
+          "milestones": [
+            {
+              "id": "anim_integration",
+              "title": "Anim Integration",
+              "who": "dev",
+              "start": 6.0,
+              "end": 6.0
+            },
+            {
+              "id": "milestone",
+              "title": "Alpha",
+              "who": "gd",
+              "start": 9.0,
+              "end": 9.0
+            }
+          ],
+          "deferred": [],
+          "omitted": [],
+          "fairness": {
+            "totals": {
+              "gd": 3.0,
+              "art": 5.5,
+              "dev": 5.0,
+              "qa": 4.0
+            },
+            "variance": 0.921875,
+            "range": 2.5,
+            "definition": "past_effort + current-week allocated days (done included once)"
+          },
+          "gate": {
+            "ok": true,
+            "violations": [],
+            "warnings": [],
+            "adjustments": []
+          }
+        },
+        "snapshot_hash": "eb324cfa9bc2deccb7284c2fd8b5b0d2c9b5fc79cfa450906f797dd027a4a308"
+      },
+      {
+        "id": "c_b04dbd5ca66f609c",
+        "revision": 1,
+        "plan_hash": "b04dbd5ca66f609cff849b75795a58bdb685bc40ec50c91025856108fc7e1828",
+        "operator": "move",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "allocations": [
+          {
+            "who": "art",
+            "title": "Character Animation",
+            "what": "Character Animation 완료본",
+            "key": "whole",
+            "depends_on": [],
+            "effort": 4.0,
+            "days": 4.0
+          }
+        ],
+        "schedule_changes": [
+          {
+            "task": "retest",
+            "start": 6.25
+          }
+        ],
+        "plan_actions": [
+          {
+            "kind": "restructure",
+            "task": "anim_integration",
+            "parts": [
+              {
+                "key": "temporary",
+                "title": "임시 에셋 Integration",
+                "what": "임시 에셋 기반 Integration 6h",
+                "effort": 0.75,
+                "depends_on": []
+              },
+              {
+                "key": "final",
+                "title": "최종 에셋 교체",
+                "what": "전달받은 최종 에셋 교체 2h",
+                "effort": 0.25,
+                "depends_on": [
+                  "temporary"
+                ]
+              }
+            ],
+            "basis": "명시된 중간 산출물 범위를 보존하고 선행 산출물은 필요한 최종 조각에만 연결한다."
+          },
+          {
+            "kind": "omit",
+            "task": "retest",
+            "parts": [],
+            "basis": "동일 검증 항목이 최종 검증에 포함되는 선택 중간 검증만 본인 확인을 조건으로 생략한다."
+          }
+        ],
+        "required_confirmations": [
+          "qa"
+        ],
+        "requires_scope_approval": false,
+        "scope": "whole_task",
+        "basis": "원 업무의 산출물과 완료 기준 전체를 보존한다.",
+        "affected": [
+          "art",
+          "dev",
+          "qa"
+        ],
+        "board": {
+          "tasks": [
+            {
+              "id": "feature_spec",
+              "who": "gd",
+              "title": "Feature Spec",
+              "start": 0.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Feature Spec 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "ux_review",
+              "who": "gd",
+              "title": "UX Review",
+              "start": 3.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "UX Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UX Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "scope_review",
+              "who": "gd",
+              "title": "Scope Review",
+              "start": 5.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Scope Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Scope Review 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "character_animation",
+              "who": "art",
+              "title": "Character Animation",
+              "start": 1.0,
+              "days": 4.0,
+              "kind": "",
+              "context": {
+                "description": "Character Animation 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Character Animation 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5,
+                "source_scenario": "m4_t4_composite",
+                "active_participants_only": true,
+                "allowed_change_tasks": [
+                  "character_animation",
+                  "fx_assets",
+                  "anim_integration",
+                  "critical_fix",
+                  "retest"
+                ]
+              }
+            },
+            {
+              "id": "fx_assets",
+              "who": "art",
+              "title": "FX Assets 잔여",
+              "start": 5.0,
+              "days": 0.5,
+              "kind": "",
+              "context": {
+                "description": "FX Assets 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "FX Assets 잔여 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 5.5,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "beta_handoff",
+              "who": "art",
+              "title": "Beta Handoff",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Beta Handoff 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Beta Handoff 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 8,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "core_x",
+              "who": "dev",
+              "title": "Core X",
+              "start": 1.0,
+              "days": 3.0,
+              "kind": "done",
+              "context": {
+                "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Core X 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "anim_integration",
+              "who": "dev",
+              "title": "Anim Integration",
+              "start": 6.0,
+              "days": 0,
+              "kind": "milestone",
+              "context": {
+                "description": "Anim Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Anim Integration 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": true,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [
+                  {
+                    "key": "temporary",
+                    "title": "임시 에셋 Integration",
+                    "what": "임시 에셋 기반 Integration 6h",
+                    "effort": 0.75,
+                    "assignees": [
+                      "dev"
+                    ]
+                  },
+                  {
+                    "key": "final",
+                    "title": "최종 에셋 교체",
+                    "what": "전달받은 최종 에셋 교체 2h",
+                    "effort": 0.25,
+                    "assignees": [
+                      "dev"
+                    ],
+                    "depends_on": [
+                      "temporary"
+                    ]
+                  }
+                ],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "critical_fix",
+              "who": "dev",
+              "title": "Critical Fix",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Critical Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Critical Fix 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "smoke",
+              "who": "qa",
+              "title": "Smoke Test",
+              "start": 4.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Smoke Test 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t4_composite"
+              }
+            },
+            {
+              "id": "final_qa",
+              "who": "qa",
+              "title": "Final QA",
+              "start": 7.0,
+              "days": 2.0,
+              "kind": "",
+              "context": {
+                "description": "Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Final QA 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 7,
+                "latest_finish": 9,
+                "source_scenario": "m4_t4_composite",
+                "coverage": [
+                  "animation_integration",
+                  "critical_fix"
+                ],
+                "minimum_days": 2
+              }
+            },
+            {
+              "id": "milestone",
+              "who": "gd",
+              "title": "Alpha",
+              "start": 9.0,
+              "days": 0.0,
+              "kind": "milestone",
+              "context": {
+                "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Alpha 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "__stage_anim_integration_temporary",
+              "who": "dev",
+              "title": "임시 에셋 Integration",
+              "start": 5.0,
+              "days": 0.75,
+              "kind": "new",
+              "context": {
+                "description": "임시 에셋 기반 Integration 6h",
+                "deliverable": "임시 에셋 기반 Integration 6h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            },
+            {
+              "id": "__stage_anim_integration_final",
+              "who": "dev",
+              "title": "최종 에셋 교체",
+              "start": 5.75,
+              "days": 0.25,
+              "kind": "new",
+              "context": {
+                "description": "전달받은 최종 에셋 교체 2h",
+                "deliverable": "전달받은 최종 에셋 교체 2h",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 7,
+                "split_boundary": "임시 에셋 Integration 6h + 최종 교체 2h; 최종 교체는 FX Assets 수신 후. 선행관계 변경은 조건부로 검증해야 함.",
+                "source_scenario": "m4_t4_composite",
+                "required_parts": [],
+                "inbound_scope": {
+                  "fx_assets": [
+                    "final"
+                  ]
+                },
+                "partition_of": "anim_integration"
+              }
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "h_character_animation_fx_assets",
+              "source": "character_animation",
+              "target": "fx_assets",
+              "title": "character_animation → fx_assets",
+              "due": 5.0,
+              "expected": 5.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_retest",
+              "source": "anim_integration",
+              "target": "retest",
+              "title": "anim_integration → retest",
+              "due": 6.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_anim_integration_final_qa",
+              "source": "anim_integration",
+              "target": "final_qa",
+              "title": "anim_integration → final_qa",
+              "due": 7.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_critical_fix_final_qa",
+              "source": "critical_fix",
+              "target": "final_qa",
+              "title": "critical_fix → final_qa",
+              "due": 7.0,
+              "expected": 7.0,
+              "agreed": false
+            },
+            {
+              "id": "h_final_qa_milestone",
+              "source": "final_qa",
+              "target": "milestone",
+              "title": "final_qa → milestone",
+              "due": 9.0,
+              "expected": 9.0,
+              "agreed": false
+            },
+            {
+              "id": "__action_link_5",
+              "source": "__stage_anim_integration_temporary",
+              "target": "anim_integration",
+              "title": "임시 에셋 기반 Integration 6h",
+              "due": 9,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_6",
+              "source": "__stage_anim_integration_temporary",
+              "target": "__stage_anim_integration_final",
+              "title": "단계 선후관계",
+              "due": 5.75,
+              "expected": 5.75,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_7",
+              "source": "fx_assets",
+              "target": "__stage_anim_integration_final",
+              "title": "fx_assets 검증 완료본",
+              "due": 6.0,
+              "expected": 5.5,
+              "agreed": true
+            },
+            {
+              "id": "__action_link_8",
+              "source": "__stage_anim_integration_final",
+              "target": "anim_integration",
+              "title": "전달받은 최종 에셋 교체 2h",
+              "due": 9,
+              "expected": 6.0,
+              "agreed": true
+            }
+          ],
+          "milestones": [
+            {
+              "id": "anim_integration",
+              "title": "Anim Integration",
+              "who": "dev",
+              "start": 6.0,
+              "end": 6.0
+            },
+            {
+              "id": "milestone",
+              "title": "Alpha",
+              "who": "gd",
+              "start": 9.0,
+              "end": 9.0
+            }
+          ],
+          "deferred": [],
+          "omitted": [
+            {
+              "id": "retest",
+              "title": "Integration Retest",
+              "covered_by": "final_qa"
+            }
+          ],
+          "fairness": {
+            "totals": {
+              "gd": 3.0,
+              "art": 5.5,
+              "dev": 5.0,
+              "qa": 3.0
+            },
+            "variance": 1.296875,
+            "range": 2.5,
+            "definition": "past_effort + current-week allocated days (done included once)"
+          },
+          "gate": {
+            "ok": true,
+            "violations": [],
+            "warnings": [],
+            "adjustments": []
+          }
+        },
+        "snapshot_hash": "eb324cfa9bc2deccb7284c2fd8b5b0d2c9b5fc79cfa450906f797dd027a4a308"
+      }
+    ]
+  }
+}

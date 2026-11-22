@@ -1,0 +1,33 @@
+{
+  "demo": "demo4_planbee",
+  "model": "openai/gpt-4o-mini",
+  "calls": 14,
+  "failures": 0,
+  "error": null,
+  "phases": [
+    {
+      "phase": "tue",
+      "now": 1,
+      "next": "end"
+    }
+  ],
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "done",
+      "round": 3,
+      "file": "live/2026-11-19_16-21-01_703665_53ec5cfb.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    }
+  ],
+  "new_tasks": [],
+  "changed_sources": []
+}

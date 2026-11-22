@@ -1,0 +1,101 @@
+{
+  "demo": "demo5_release",
+  "model": "openai/gpt-4.1",
+  "calls": 40,
+  "failures": 0,
+  "error": null,
+  "phases": [
+    {
+      "phase": "start",
+      "now": 0,
+      "next": "qa"
+    },
+    {
+      "phase": "qa",
+      "now": 1,
+      "next": "review"
+    },
+    {
+      "phase": "review",
+      "now": 2,
+      "next": "end"
+    }
+  ],
+  "gate": {
+    "ok": true,
+    "violations": [],
+    "warnings": [],
+    "adjustments": []
+  },
+  "runs": [
+    {
+      "id": 1,
+      "status": "done",
+      "round": 1,
+      "file": "live/2026-11-19_16-52-58_301575_d546791e.md",
+      "agreement": [
+        "agreement"
+      ]
+    },
+    {
+      "id": 2,
+      "status": "done",
+      "round": 3,
+      "file": "live/2026-11-19_16-53-06_059451_7c3484c7.md",
+      "agreement": [
+        "agreement"
+      ]
+    },
+    {
+      "id": 3,
+      "status": "done",
+      "round": 6,
+      "file": "live/2026-11-19_16-53-40_616239_9b38d72a.md",
+      "agreement": [
+        "no_valid_alternative"
+      ]
+    }
+  ],
+  "new_tasks": [
+    {
+      "id": "part23",
+      "who": "hana",
+      "title": "다중 테넌트 상태 전이·계약 검증 - 실패 사례 및 정상 일부 테스트",
+      "days": 1.75,
+      "start": 0.0,
+      "end": 1.75
+    },
+    {
+      "id": "piece21",
+      "who": "bora",
+      "title": "다중 테넌트 상태 전이·계약 검증 - 정상 사례 테스트",
+      "days": 0.5,
+      "start": 0.0,
+      "end": 0.5
+    },
+    {
+      "id": "piece22",
+      "who": "faye",
+      "title": "실패 경로 회귀 및 결과 전달",
+      "days": 0.5,
+      "start": 1.0,
+      "end": 1.5
+    },
+    {
+      "id": "part24",
+      "who": "bora",
+      "title": "다중 테넌트 상태 전이·계약 검증 - 정상 사례 및 통합",
+      "days": 0.75,
+      "start": 1.75,
+      "end": 2.5
+    }
+  ],
+  "changed_sources": [
+    {
+      "id": "contract",
+      "who": "hana",
+      "days": 0.0,
+      "kind": "milestone"
+    }
+  ]
+}

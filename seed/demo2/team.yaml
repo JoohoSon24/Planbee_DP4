@@ -1,0 +1,88 @@
+# 데모 2 · Plan Bee 팀의 M4 직전 주 (11/16 월 ~ 11/20 금)
+# 네 명이 Plan Bee 자체를 만드는 주간. 금요일 저녁이 통합 리허설(이 판의 제출일)이고 M4 제출은 11/24 화.
+# 일 · 숫자 · 기록은 시연용으로 지어낸 것이다. 실제 분담과 다르면 이 파일만 고치면 된다.
+meta:
+  title: "데모 2 · Plan Bee 팀의 M4 주간"
+  phase: tue          # tue → thu → end
+  now: 1              # 1 = 화요일 오전
+  deadline_label: "통합 리허설 · 11/20 금 (M4 제출 11/24)"
+  narr: "시연 버튼으로 화요일 기록을 받아 보세요 · 막대나 화살표를 누르면 자세히"
+
+people:   # DP2 리포트의 분담대로 두 쪽: 에이전트 쪽(협상 엔진 · 베이스라인)과 화면 쪽(화면 · API · 사용자 조사)
+  - {id: yk, name: 여경, role: 에이전트, rec: {협상 엔진: 6, 프롬프트: 4, 베이스라인: 2}, wants: []}
+  - {id: jm, name: 정민, role: 에이전트, rec: {베이스라인: 3, 협상 엔진: 2, 평가: 2}, wants: [협상 엔진]}
+  - {id: jh, name: 주호, role: 화면,     rec: {API: 5, 화면: 4, 배포: 1}, wants: [협상 엔진]}
+  - {id: nj, name: 나정, role: 화면,     rec: {화면: 6, 사용자 조사: 5, API: 1}, wants: [API]}
+
+cards:
+  - {who: yk, auto_days: 1}
+  - {who: jm, auto_days: 1, note: "저녁에만 리뷰 가능"}
+  - {who: jh, auto_days: 1}
+  - {who: nj, auto_days: 0.5}
+
+tasks:
+  - {id: eng,    who: yk, title: "협상 엔진 (3라운드)",       s0: 0,   d: 2.5, tag: 협상 엔진}
+  - {id: edge,   who: yk, title: "엣지 케이스 · 교착 처리",    s0: 3,   d: 1.5, tag: 협상 엔진}
+  - {id: prompt, who: yk, title: "프록시 프롬프트 다듬기",     s0: 4.5, d: 0.5, tag: 프롬프트}
+  - {id: gate,   who: jm, title: "코드 게이트",               s0: 0,   d: 1,   tag: 협상 엔진, kind: done}
+  - {id: log,    who: jm, title: "측정 로그",                 s0: 1,   d: 1,   tag: 평가}
+  - id: base
+    who: jm
+    title: "싱글 에이전트 베이스라인"
+    s0: 2
+    d: 2
+    tag: 베이스라인
+    cut_options:
+      - {key: one_scn, label: "베이스라인을 시나리오 1개로만 돌리기", note: "베이스라인 시나리오 2개 중 1개", saves: 1}
+  - {id: db,     who: jh, title: "DB · 시드 데이터",           s0: 0,   d: 1,   tag: API, kind: done}
+  - {id: api,    who: jh, title: "화면–API 연결",              s0: 2.5, d: 1,   tag: API}
+  - {id: deploy, who: jh, title: "배포 · URL",                s0: 4,   d: 1,   tag: 배포}
+  - {id: study,  who: nj, title: "테스트 과제 · 동의서",        s0: 0,   d: 1,   tag: 사용자 조사, kind: done}
+  - {id: cardui, who: nj, title: "위임 카드 화면",             s0: 1,   d: 1.5, tag: 화면}
+  - {id: test,   who: nj, title: "think-aloud 2회",           s0: 3.5, d: 1,   tag: 사용자 조사}
+  - {id: ab,     who: nj, title: "A/B 비교 · 결과 정리",        s0: 4.5, d: 0.5, tag: 사용자 조사}
+
+handoffs:
+  - id: h1
+    from: eng
+    to: api
+    title: 협상 엔진 API
+    what: 라운드가 도는 협상 API
+    t: 2.5
+    hist: [{t: "월 09:00", kind: hive, text: "계획의 순서에서 생김 · 약속 수 오전"}]
+  - id: h2
+    from: api
+    to: test
+    title: 돌아가는 화면
+    what: 서버에 붙은 화면 URL
+    t: 3.5
+    hist: [{t: "월 09:00", kind: hive, text: "계획의 순서에서 생김 · 약속 목 오전"}]
+  - id: h3
+    from: base
+    to: ab
+    title: 베이스라인 결과
+    what: 같은 시드로 돌린 베이스라인 출력
+    t: 4
+    hist: [{t: "월 09:00", kind: hive, text: "계획의 순서에서 생김 · 약속 목 저녁"}]
+  - id: h4
+    from: db
+    to: cardui
+    title: 시드 데이터
+    what: 화면이 읽을 사람 · 일 · Handoff 시드
+    t: 1
+    done: true
+    hist:
+      - {t: "월 09:00", kind: hive, text: "계획의 순서에서 생김"}
+      - {t: "월 18:05", kind: proxy, who: nj, text: "받음 확인 → Delivered"}
+
+records:
+  - {t: "월 09:10", src: 작업,   who: yk, text: "협상 엔진 시작 · 2½일", old: true}
+  - {t: "월 18:00", src: 저장소, who: jh, text: "seed.py · team.yaml 커밋", old: true}
+  - {t: "월 22:40", src: 저장소, who: yk, text: "interrupt 재개 커밋 되돌림 · 2번째", old: true}
+
+rules:
+  - {key: deadline,   label: "통합 리허설 11/20 고정",        value: {week_end: 5}}
+  - {key: weekly_cap, label: "한 사람 한 주 5일까지",         value: {days: 5}}
+  - {key: pm_only,    label: "범위 줄이기 · 미루기는 PM만",   value: {actions: [cut, defer]}}
+  - {key: rounds,     label: "프록시끼리 15라운드까지",        value: {max: 15}}
+  - {key: pref,       label: "받을 사람이 여럿이면",          value: {choice: fast}, locked: false}

@@ -1,0 +1,630 @@
+{
+  "report": {
+    "scenario": "m4_t3_scope_reduction",
+    "seed": 17,
+    "version": "2026-11-22_23-38-48_694248_v007_assessment_reference_repair",
+    "llm_mode": "live",
+    "model": "openai/gpt-4o-mini",
+    "duration_seconds": 14.3,
+    "logical_llm_calls": 3,
+    "output_failures": 2,
+    "schema_repairs": 1,
+    "status": "waiting_pm",
+    "termination": "model_output_invalid",
+    "llm_budget": {
+      "used": 3,
+      "max": 36
+    },
+    "transcript_file": "live/2026-11-22_23-41-58_410457_07d3f83b.md",
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "bb6bd54611e7b847c98d4f8132978a6037e1485fcb4ff6c5f57ed342ab5f1ef6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "8d781e834467aa2d4dd05285d10a61c74647b1324c71b0b9013159fc59035fa1",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "8e03aa15d33290dd4d867c79f4d76566a2251f856b5b09ba0cd7a12a4831703b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "0b306e14ffb172130ac7485c1310eaedaca79f1ed39ec429fc1b8389e078d013",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "f48908770bddddeb284b5c45248fefa39048e1297afe176650d422d42f9223f4",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/assessment_repair.md": "a156ee98939d10915eab464a1748fb0cf4d7ece9558f9dee31652f2231bc8d7c",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "model_error": "{\"type\": \"ValidationError\", \"status\": null, \"fields\": [{\"path\": \"templates.1.parts\", \"type\": \"too_short\"}]}",
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    }
+  },
+  "public_run": {
+    "id": 1,
+    "kind": "candidate",
+    "status": "waiting_pm",
+    "step": "candidate_failed",
+    "task": "advanced_effects",
+    "issue": "Advanced Effects 구현은 기존 16h에서 32h(4일)가 필요합니다. Core Integration도 다음 주에 마쳐야 해서 Alpha 마감을 맞추기 어렵습니다. GD와 선택 기능의 Beta 이관을 논의하고 PM에게 범위 축소 승인을 요청하고 싶습니다.",
+    "phase": "deadline",
+    "round": 0,
+    "pool_revision": 1,
+    "pool_hash": null,
+    "generation": null,
+    "generation_reason": null,
+    "shortlist": null,
+    "final_candidates": null,
+    "public_history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 0,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "dev",
+        "recipient": null,
+        "response": "ESTIMATE",
+        "reason": "이슈를 읽고 이 업무를 4일로 다시 견적했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 1,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SCHEMA_REPAIR",
+        "reason": "생성 응답 형식이 잘못되어 필드별 오류를 한 번만 전달합니다. 같은 요청의 무제한 재시도는 하지 않습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 2,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "END",
+        "reason": "협상을 마쳤어요. model_output_invalid · 미합의 변경은 적용하지 않고 PM에게 상황을 전달합니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 3,
+          "max": 36
+        }
+      }
+    ],
+    "llm_budget": {
+      "used": 3,
+      "max": 36
+    },
+    "termination": "model_output_invalid",
+    "pm_selection": null,
+    "pm_handoff": {
+      "message": "협상 실패 → PM에게 전달됨",
+      "review_required": true,
+      "summary": {
+        "title": "Advanced Effects 구현은 기존 16h에서 32h(4일)가 필요합니다. Core Integration도 다음 주에 마쳐야 해서 Alpha 마감을 맞추기 어렵습니다. GD와 선택 기능의 Beta 이관을 논의하고 PM에게 범위 축소 승인을 요청하고 싶습니다.",
+        "termination": "model_output_invalid",
+        "llm_budget": {
+          "used": 3,
+          "max": 36
+        },
+        "engine_support": "선택 범위의 Beta 이관과 잔여 Art FX 동반 이관을 후보로 검증합니다. GD의 범위 판단과 PM의 명시적 최종 선택 전에는 이관하지 않습니다. 필수 Core와 Final QA는 유지합니다.",
+        "generation": null,
+        "candidate_count": 0,
+        "last_messages": [
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "hive",
+            "recipient": null,
+            "response": "ISSUE",
+            "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 0,
+              "max": 36
+            }
+          },
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "dev",
+            "recipient": null,
+            "response": "ESTIMATE",
+            "reason": "이슈를 읽고 이 업무를 4일로 다시 견적했어요.",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 1,
+              "max": 36
+            }
+          },
+          {
+            "round": 0,
+            "phase": "generate",
+            "requester": "hive",
+            "recipient": null,
+            "response": "SCHEMA_REPAIR",
+            "reason": "생성 응답 형식이 잘못되어 필드별 오류를 한 번만 전달합니다. 같은 요청의 무제한 재시도는 하지 않습니다.",
+            "candidate_id": null,
+            "llm_budget": {
+              "used": 2,
+              "max": 36
+            }
+          }
+        ],
+        "disposition": "미합의 변경 미적용 · 마지막 검증·합의 배분 유지"
+      }
+    },
+    "participants": null,
+    "supplement_error": null,
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "bb6bd54611e7b847c98d4f8132978a6037e1485fcb4ff6c5f57ed342ab5f1ef6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "8d781e834467aa2d4dd05285d10a61c74647b1324c71b0b9013159fc59035fa1",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "8e03aa15d33290dd4d867c79f4d76566a2251f856b5b09ba0cd7a12a4831703b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "0b306e14ffb172130ac7485c1310eaedaca79f1ed39ec429fc1b8389e078d013",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "f48908770bddddeb284b5c45248fefa39048e1297afe176650d422d42f9223f4",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/assessment_repair.md": "a156ee98939d10915eab464a1748fb0cf4d7ece9558f9dee31652f2231bc8d7c",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "snapshot_hash": "9414a8aa8e705ee4b5d14cc5a90e944ed1337cab938bdcce57497de7b9a756ad",
+    "initial_board": {
+      "tasks": [
+        {
+          "id": "feature_spec",
+          "who": "gd",
+          "title": "Feature Spec",
+          "start": 0.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Feature Spec 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "x_lite",
+          "who": "gd",
+          "title": "X Lite Review",
+          "start": 4.0,
+          "days": 0.5,
+          "kind": "done",
+          "context": {
+            "description": "X Lite Review 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "X Lite Review 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "core_assets",
+          "who": "art",
+          "title": "Core Assets",
+          "start": 1.0,
+          "days": 2.0,
+          "kind": "done",
+          "context": {
+            "description": "Core Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core Assets 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "advanced_fx_done",
+          "who": "art",
+          "title": "Advanced FX 완료분",
+          "start": 4.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Advanced FX 완료분 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Advanced FX 완료분 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "advanced_fx",
+          "who": "art",
+          "title": "Advanced FX 잔여",
+          "start": 5.0,
+          "days": 0.5,
+          "kind": "",
+          "context": {
+            "description": "Advanced FX 잔여 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Advanced FX 잔여 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 7,
+            "optional": true,
+            "beta_requires_pm": true,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25,
+            "deferred_with": "advanced_effects"
+          }
+        },
+        {
+          "id": "core_x",
+          "who": "dev",
+          "title": "Core X",
+          "start": 1.0,
+          "days": 3.0,
+          "kind": "done",
+          "context": {
+            "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core X 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "advanced_effects",
+          "who": "dev",
+          "title": "Advanced Effects",
+          "start": 5.0,
+          "days": 2.0,
+          "kind": "",
+          "context": {
+            "description": "Advanced Effects 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Advanced Effects 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "optional": true,
+            "beta_requires_pm": true,
+            "latest_finish": 7,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25,
+            "active_participants_only": true,
+            "allowed_change_tasks": [
+              "advanced_effects",
+              "advanced_fx",
+              "core_integration"
+            ],
+            "defer_option": {
+              "milestone": "Beta",
+              "with_tasks": [
+                "advanced_fx"
+              ],
+              "authorizers": [
+                "gd"
+              ],
+              "alpha_dependencies": [
+                {
+                  "from": "advanced_effects",
+                  "to": "final_qa"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "core_integration",
+          "who": "dev",
+          "title": "Core Integration",
+          "start": 10,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Core Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core Integration 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 7,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "smoke",
+          "who": "qa",
+          "title": "Core Smoke",
+          "start": 4.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Core Smoke 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core Smoke 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "final_qa",
+          "who": "qa",
+          "title": "Final QA",
+          "start": 11.0,
+          "days": 2.0,
+          "kind": "",
+          "context": {
+            "description": "Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Final QA 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "fixed_start": 7,
+            "latest_finish": 9,
+            "source_scenario": "m4_t3_scope_reduction",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "milestone",
+          "who": "gd",
+          "title": "Alpha",
+          "start": 13.0,
+          "days": 0.0,
+          "kind": "milestone",
+          "context": {
+            "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Alpha 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "completion_barrier": true
+          }
+        }
+      ],
+      "handoffs": [
+        {
+          "id": "h_core_x_core_integration",
+          "source": "core_x",
+          "target": "core_integration",
+          "title": "core_x → core_integration",
+          "due": 6.0,
+          "expected": 4.0,
+          "agreed": false
+        },
+        {
+          "id": "h_core_integration_final_qa",
+          "source": "core_integration",
+          "target": "final_qa",
+          "title": "core_integration → final_qa",
+          "due": 7.0,
+          "expected": 11.0,
+          "agreed": false
+        },
+        {
+          "id": "h_advanced_effects_final_qa",
+          "source": "advanced_effects",
+          "target": "final_qa",
+          "title": "advanced_effects → final_qa",
+          "due": 7.0,
+          "expected": 7.0,
+          "agreed": false
+        },
+        {
+          "id": "h_final_qa_milestone",
+          "source": "final_qa",
+          "target": "milestone",
+          "title": "final_qa → milestone",
+          "due": 9.0,
+          "expected": 13.0,
+          "agreed": false
+        }
+      ],
+      "milestones": [
+        {
+          "id": "milestone",
+          "title": "Alpha",
+          "who": "gd",
+          "start": 13.0,
+          "end": 13.0
+        }
+      ],
+      "deferred": [],
+      "omitted": [],
+      "fairness": {
+        "totals": {
+          "gd": 1.5,
+          "art": 3.5,
+          "dev": 5.0,
+          "qa": 1.0
+        },
+        "variance": 2.5625,
+        "range": 4.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      },
+      "gate": {
+        "ok": false,
+        "violations": [
+          {
+            "code": "HANDOFF_LATE",
+            "hid": "h_core_integration_final_qa",
+            "promised": 7.0,
+            "predicted": 11.0,
+            "text": "core_integration → final_qa 2주차 화 저녁 → 3주차 월 저녁"
+          },
+          {
+            "code": "HANDOFF_LATE",
+            "hid": "h_final_qa_milestone",
+            "promised": 9.0,
+            "predicted": 13.0,
+            "text": "final_qa → milestone 2주차 목 저녁 → 3주차 수 저녁"
+          },
+          {
+            "code": "TASK_DEADLINE",
+            "task": "core_integration",
+            "text": "Core Integration · Task 완료 기한 초과"
+          },
+          {
+            "code": "TASK_DEADLINE",
+            "task": "final_qa",
+            "text": "Final QA · Task 완료 기한 초과"
+          },
+          {
+            "code": "TASK_FIXED_START",
+            "task": "final_qa",
+            "text": "Final QA · 고정 시작 시각 변경 금지"
+          }
+        ],
+        "warnings": [
+          {
+            "code": "PUSHED_PAST_DEADLINE",
+            "task": "core_integration",
+            "starts": 10,
+            "text": "Core Integration 제출일 뒤로 밀림"
+          },
+          {
+            "code": "PUSHED_PAST_DEADLINE",
+            "task": "final_qa",
+            "starts": 11.0,
+            "text": "Final QA 제출일 뒤로 밀림"
+          }
+        ],
+        "adjustments": []
+      }
+    },
+    "final_board": null,
+    "transcript_file": "live/2026-11-22_23-41-58_410457_07d3f83b.md",
+    "llm_mode": "live",
+    "assessment_progress": null,
+    "candidates": []
+  }
+}

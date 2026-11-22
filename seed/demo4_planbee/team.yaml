@@ -1,0 +1,240 @@
+meta:
+  title: 데모 4 · Plan Bee 업무 맥락과 공정한 분담
+  phase: tue
+  now: 1
+  week_start: '2026-11-16'
+  deadline_label: 리허설 · 11/20 금
+  narr: 시연 버튼으로 재개 로직 지연을 받아 보세요.
+people:
+- id: yk
+  name: 여경
+  role: Plan Bee
+  rec:
+    API: 3
+    사용자 조사: 1
+  wants: []
+  notes:
+    past_effort: 3
+- id: jm
+  name: 정민
+  role: Plan Bee
+  rec:
+    API: 3
+    사용자 조사: 1
+  wants:
+  - API
+  notes:
+    past_effort: 1
+- id: jh
+  name: 주호
+  role: Plan Bee
+  rec:
+    API: 8
+    사용자 조사: 1
+  wants: []
+  notes:
+    past_effort: 8
+- id: nj
+  name: 나정
+  role: Plan Bee
+  rec:
+    API: 1
+    사용자 조사: 5
+  wants: []
+  notes:
+    past_effort: 3
+cards:
+- who: yk
+  auto_days: 1
+  note: 재개 로직은 내가 마무리할게요. 읽기 전용 조회처럼 독립된 부분만 다른 사람에게 맡겨주세요.
+  policy:
+    source_note: 재개 로직은 내가 마무리할게요. 읽기 전용 조회처럼 독립된 부분만 다른 사람에게 맡겨주세요.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: jm
+  auto_days: 1.5
+  note: 11월 19일부터 20일까지 휴가라 그때는 일을 못 해요. 그 전의 독립 API는 1.5일까지 맡겨도 괜찮아요.
+  policy:
+    source_note: 11월 19일부터 20일까지 휴가라 그때는 일을 못 해요. 그 전의 독립 API는 1.5일까지 맡겨도 괜찮아요.
+    busy: false
+    unavailable:
+    - start: 3
+      end: 5
+      reason: 11/19~20 휴가
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: jh
+  auto_days: 1
+  note: 최근 배포와 긴급 수정이 계속돼서 나 너무 바쁨. 작은 API라도 새로 맡기기 전에 나에게 확인해 주세요.
+  policy:
+    source_note: 최근 배포와 긴급 수정이 계속돼서 나 너무 바쁨. 작은 API라도 새로 맡기기 전에 나에게 확인해 주세요.
+    busy: true
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+- who: nj
+  auto_days: 1
+  note: 테스트와 문서에서 모호한 요구사항은 먼저 물어봐 주세요. 실제 사용자의 동의서는 함부로 쪼개지 말아주세요.
+  policy:
+    source_note: 테스트와 문서에서 모호한 요구사항은 먼저 물어봐 주세요. 실제 사용자의 동의서는 함부로 쪼개지 말아주세요.
+    busy: false
+    unavailable: []
+    weekly_limit: null
+    questions: []
+    approved: true
+tasks:
+- id: resume
+  who: yk
+  title: 협상 재개와 증거 로그
+  s0: 0
+  d: 2
+  tag: API
+  context:
+    purpose: 중단된 협상을 이어가고 근거를 조회한다
+    files:
+    - app/workflow.py
+    - app/store.py
+    - app/api.py
+    deliverable: 재개 코어와 읽기 전용 증거 로그 조회 API
+    split_boundary: 읽기 전용 조회는 DB 스키마와 테스트 픽스처를 넘기면 독립 가능. 상태 전이·동의 확정 트랜잭션은 나누지 않는다.
+    splittable_hint: true
+    acceptance:
+    - 정상·실패 테스트 포함
+    - 원래 권한과 동의 경계를 유지
+- id: signoff
+  who: yk
+  title: 일회성 승인과 서명 키 교체
+  s0: 3
+  d: 1
+  tag: API
+  context:
+    purpose: 승인 토큰 교체 중 이중 확정을 방지한다
+    files:
+    - app/workflow.py
+    - app/store.py
+    deliverable: 한 트랜잭션 안의 키 교체·동의 상태 기록
+    split_boundary: 공유 키와 감사 기록이 한 번에 바뀌어야 한다. 서로 다른 담당자가 병렬 변경하면 안 된다.
+    splittable_hint: false
+    acceptance:
+    - 정상·실패 테스트 포함
+    - 원래 권한과 동의 경계를 유지
+- id: metrics
+  who: jm
+  title: 평가 로그 정리
+  s0: 0
+  d: 1
+  tag: API
+  kind: done
+  context:
+    purpose: 실험 로그를 정리했다
+    files:
+    - eval/
+    deliverable: 정리된 측정표
+    split_boundary: 완료된 일은 분리하지 않는다.
+    splittable_hint: false
+    acceptance:
+    - 정상·실패 테스트 포함
+    - 원래 권한과 동의 경계를 유지
+- id: seed
+  who: jh
+  title: DB·시드 수정
+  s0: 0
+  d: 1
+  tag: API
+  kind: done
+  context:
+    purpose: 기존 화면용 시드를 고쳤다
+    files:
+    - seed/
+    deliverable: 시드 데이터
+    split_boundary: 이미 완료
+    splittable_hint: false
+    acceptance:
+    - 정상·실패 테스트 포함
+    - 원래 권한과 동의 경계를 유지
+- id: deploy
+  who: jh
+  title: 리허설 배포 점검
+  s0: 3
+  d: 1
+  tag: API
+  context:
+    purpose: 리허설 환경과 API를 확인한다
+    files:
+    - app/api.py
+    deliverable: 정상 동작하는 URL
+    split_boundary: 체크리스트 기반 점검은 독립 가능
+    splittable_hint: true
+    acceptance:
+    - 정상·실패 테스트 포함
+    - 원래 권한과 동의 경계를 유지
+- id: consent
+  who: nj
+  title: 사용자 인터뷰 동의서
+  s0: 0
+  d: 1
+  tag: 사용자 조사
+  kind: done
+  context:
+    purpose: 사용자 동의 범위를 점검했다
+    files:
+    - docs/
+    deliverable: 확인된 동의서
+    split_boundary: 개인정보 원문을 다른 담당자에게 나누지 않는다.
+    splittable_hint: false
+    acceptance:
+    - 정상·실패 테스트 포함
+    - 원래 권한과 동의 경계를 유지
+- id: review
+  who: nj
+  title: 증거 로그 사용자 테스트
+  s0: 2.5
+  d: 0.5
+  tag: 사용자 조사
+  context:
+    purpose: 증거 로그가 이해되는지 확인한다
+    files:
+    - web/index.html
+    deliverable: 짧은 think-aloud 메모
+    split_boundary: 실행 가능한 증거 조회 화면을 받은 뒤 시작한다.
+    splittable_hint: false
+    acceptance:
+    - 정상·실패 테스트 포함
+    - 원래 권한과 동의 경계를 유지
+handoffs:
+- id: evidence
+  from: resume
+  to: review
+  title: 증거 로그 조회 API
+  what: 테스트할 API
+  t: 2.5
+records: []
+rules:
+- key: deadline
+  label: 리허설 금요일
+  value:
+    week_end: 5
+- key: weekly_cap
+  label: 주 5일
+  value:
+    days: 5
+- key: pm_only
+  label: 미루기·범위 축소는 PM
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: 누적 부담 균형
+  value:
+    choice: fair
+  locked: false

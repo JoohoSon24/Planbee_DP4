@@ -1,0 +1,1140 @@
+{
+  "report": {
+    "scenario": "m4_t2_reallocation",
+    "seed": 17,
+    "version": "2026-11-22_23-38-48_694248_v007_assessment_reference_repair",
+    "llm_mode": "live",
+    "model": "openai/gpt-4o-mini",
+    "duration_seconds": 31.74,
+    "logical_llm_calls": 14,
+    "output_failures": 1,
+    "schema_repairs": 1,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_budget": {
+      "used": 14,
+      "max": 36
+    },
+    "transcript_file": "live/2026-11-22_23-41-26_669326_84783f5e.md",
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "bb6bd54611e7b847c98d4f8132978a6037e1485fcb4ff6c5f57ed342ab5f1ef6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "8d781e834467aa2d4dd05285d10a61c74647b1324c71b0b9013159fc59035fa1",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "8e03aa15d33290dd4d867c79f4d76566a2251f856b5b09ba0cd7a12a4831703b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "0b306e14ffb172130ac7485c1310eaedaca79f1ed39ec429fc1b8389e078d013",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "f48908770bddddeb284b5c45248fefa39048e1297afe176650d422d42f9223f4",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/assessment_repair.md": "a156ee98939d10915eab464a1748fb0cf4d7ece9558f9dee31652f2231bc8d7c",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_bf03188dc6204179"
+      ],
+      "matching_pm_options": [
+        "c_bf03188dc6204179"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    }
+  },
+  "public_run": {
+    "id": 1,
+    "kind": "candidate",
+    "status": "awaiting_pm_selection",
+    "step": "candidate_pm",
+    "task": "ui_integration",
+    "issue": "UI Integration 작업에 예상보다 하루가 더 필요합니다. 기존 8h에서 총 16h(2일)로 증가했습니다. 로직 연결 8h는 Dev 전담, 에셋 연결 8h는 Art에게 분담 가능합니다. Bug Fix는 예정대로 끝내야 합니다. 작업의 재분배를 요청합니다.",
+    "phase": "deadline",
+    "round": 2,
+    "pool_revision": 1,
+    "pool_hash": "e1864bc0aadc5685faa2750ecb957280e8b18f8491d860f8ef24863e09b4b3d3",
+    "generation": {
+      "attempted": 15,
+      "rejected": 12,
+      "duplicates": 2,
+      "reasons": {
+        "데드라인 위반: h_bug_fix_integration_test, h_integration_test_milestone": 7,
+        "조각 의존관계의 순환 또는 없는 key 참조": 5
+      },
+      "templates": 3,
+      "feasible": 1,
+      "retained": 1,
+      "truncated": false
+    },
+    "generation_reason": "UI Integration 작업의 재분배를 통해 각 담당자에게 적절한 작업을 할당하여 효율성을 높입니다.",
+    "shortlist": [
+      "c_bf03188dc6204179"
+    ],
+    "final_candidates": [
+      "c_bf03188dc6204179"
+    ],
+    "public_history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 0,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "dev",
+        "recipient": null,
+        "response": "ESTIMATE",
+        "reason": "이슈를 읽고 이 업무를 2일로 다시 견적했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 1,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SCHEMA_REPAIR",
+        "reason": "생성 응답 형식이 잘못되어 필드별 오류를 한 번만 전달합니다. 같은 요청의 무제한 재시도는 하지 않습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 2,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "일정 검증을 통과한 새 milestone 계획 1개를 준비했어요. 이제 각자 카드로 비교합니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 3,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ASSESSMENT_REPAIR",
+        "reason": "평가에 잘못된 후보 참조가 있어 정확한 후보 목록으로 한 번만 다시 요청합니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 4,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "art",
+        "recipient": null,
+        "response": "ASSESS",
+        "reason": "제 위임 범위와 일정으로 후보들을 비교했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 5,
+          "max": 36
+        }
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "dev",
+        "recipient": null,
+        "response": "ASSESS",
+        "reason": "제 위임 범위와 일정으로 후보들을 비교했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 6,
+          "max": 36
+        }
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "art",
+        "recipient": null,
+        "response": "ANSWER",
+        "reason": "UI 에셋 연결은 할 수 있어요. 신규 인수라 제 본인 확인 뒤 확정해 주세요.",
+        "candidate_id": "c_bf03188dc6204179",
+        "llm_budget": {
+          "used": 7,
+          "max": 36
+        }
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "dev",
+        "recipient": null,
+        "response": "ANSWER",
+        "reason": "로직 8시간은 제가 유지할게요. 에셋 연결 8시간을 맡을 수 있는지 Art에게 확인하고 싶어요.",
+        "candidate_id": "c_bf03188dc6204179",
+        "llm_budget": {
+          "used": 8,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "dev",
+        "recipient": null,
+        "response": "QUESTION",
+        "reason": "Art에게 에셋 연결 8시간을 맡을 수 있는지 확인해도 될까요? 로직 연결 8시간은 제가 유지할게요.",
+        "candidate_id": "c_bf03188dc6204179",
+        "llm_budget": {
+          "used": 9,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "art",
+        "recipient": null,
+        "response": "ANSWER",
+        "reason": "에셋 연결 8시간을 맡을 수 있어요. 로직 연결 8시간은 Dev가 유지할 수 있습니다.",
+        "candidate_id": "c_bf03188dc6204179",
+        "llm_budget": {
+          "used": 10,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "art",
+        "recipient": null,
+        "response": "RANK",
+        "reason": "토론 조건을 반영해서 제 최종 선호를 정리했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 11,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "dev",
+        "recipient": null,
+        "response": "RANK",
+        "reason": "토론 조건을 반영해서 제 최종 선호를 정리했어요.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 12,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "art",
+        "recipient": null,
+        "response": "NEEDS_INPUT",
+        "reason": "신규 인수라 제 본인 확인 뒤 확정해 주세요.",
+        "candidate_id": "c_bf03188dc6204179",
+        "llm_budget": {
+          "used": 13,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "dev",
+        "recipient": null,
+        "response": "NEEDS_INPUT",
+        "reason": "Art의 확인이 필요합니다.",
+        "candidate_id": "c_bf03188dc6204179",
+        "llm_budget": {
+          "used": 14,
+          "max": 36
+        }
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "후보 1개를 추렸어요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.",
+        "candidate_id": null,
+        "llm_budget": {
+          "used": 14,
+          "max": 36
+        }
+      }
+    ],
+    "llm_budget": {
+      "used": 14,
+      "max": 36
+    },
+    "termination": null,
+    "pm_selection": null,
+    "pm_handoff": null,
+    "participants": [
+      "art",
+      "dev"
+    ],
+    "supplement_error": null,
+    "prompt_hashes": {
+      "candidate_generation/transform.md": "52aafd390b4ff4c3c7818abcec51e85a3e89c9694fb8fc99138d756fb361c1b3",
+      "candidate_generation/format_repair.md": "69036e5c80f0b9c8d88751c5b680c1b81ec16698c16090ff17394eb650655385",
+      "candidate_generation/repair.md": "be1aa0d6f862ef7e2c909725faf0a02f63926909df89ac394e20147fe66d2a8a",
+      "candidate_generation/system.md": "f61d70e20a2886048ee1fc6588ce468a0a58d1fd7ebd1bfe82f1e85489b9ca12",
+      "agents/art.md": "d27a3a96048ec99c0c562189eacee001e9f7304728823fce527543235821ee4d",
+      "agents/qa.md": "e9f234500bef44327f55035f5caf6e174ebc15fd204c7e669b372d5d54cbdbae",
+      "agents/dev.md": "bb6bd54611e7b847c98d4f8132978a6037e1485fcb4ff6c5f57ed342ab5f1ef6",
+      "agents/gd.md": "3efdc16f024698adb0b8c9ba4204ffc37e06fbb6fd37fb20d733b7fc5ab588f4",
+      "agents/reestimate.md": "8d781e834467aa2d4dd05285d10a61c74647b1324c71b0b9013159fc59035fa1",
+      "evaluation/fairness.md": "64aaf6e64082837c96ee0e260b7644434c9703da09e7390c89ae3dba22475b07",
+      "evaluation/rubric.md": "736993de60c8a3e6983d35e8d50819cc99b43ff012fd9e3059530b918119ee00",
+      "evaluation/card_fit.md": "3bf51125bab78741e9bf5ee36a837d8a3aa75bd60d5b0ef89f7b6912776aaea0",
+      "discussion/strategy_independent_split.md": "a7a1be206e8be140bc718f38759b5d575e310f44c897a9981ca81a149da96b80",
+      "discussion/revision.md": "12e9c04ae0818c9eb606dcfad132d260704724495523b495d269c8c70754a973",
+      "discussion/strategy_whole_transfer.md": "3a8cd70398b997300b4722979b339164c26e6c1114b279308a9a434bf8a1a8f6",
+      "discussion/assess.md": "8e03aa15d33290dd4d867c79f4d76566a2251f856b5b09ba0cd7a12a4831703b",
+      "discussion/no_options.md": "9a0422496bd7d38e62d68a1f93b8e10ea94711c6af405b856a7fde913ed29934",
+      "discussion/consent.md": "b446d38b9ba53486a1b4c9b56f62e74635d517766e9eadc979e0e8d23ea4258d",
+      "discussion/strategy_feedback.md": "1cc03d7c3c5131cb60570f857409232abc322f1907a613d8747d1835a2c71834",
+      "discussion/rank.md": "49309b987569b5bec5a077ce7ae9d76f19b4d0519765519c1fe9fda00b487b3a",
+      "discussion/actor.md": "424dfa7c379bbbbfced74e60b012c1c1cb59328bc2d21b065a9663fcb81d1d17",
+      "discussion/format_repair.md": "52d037db5e971e92b42afb61c6f585e20e3f2a2b927d998f2d0340fe66cca25f",
+      "discussion/partition.md": "de3b1f1c6f0dc72a4690dd42adc7f997b872499240a2a862b003c626dc8aa28c",
+      "discussion/speak.md": "0b306e14ffb172130ac7485c1310eaedaca79f1ed39ec429fc1b8389e078d013",
+      "discussion/system.md": "431f7d5446e3ce671b0ff404538e7f5817f4c9c62355ea3485eb5b1681b21c76",
+      "discussion/candidate_consent.md": "f48908770bddddeb284b5c45248fefa39048e1297afe176650d422d42f9223f4",
+      "discussion/strategy_move_other_work.md": "fe3f266b19ccd00a45d6141914c5c0cdceb7f0b18bdba2e8dfef5db07e49a22a",
+      "discussion/design.md": "5989f220ae9a4c82332719cb7469cddc9636939cb20d295b337d4cc52af36a38",
+      "discussion/assessment_repair.md": "a156ee98939d10915eab464a1748fb0cf4d7ece9558f9dee31652f2231bc8d7c",
+      "discussion/strategy_collaborate.md": "ce41824b0a730a8e4e194c28bfd9edc6ff116d68bdbf5880f2b6411ba925715a"
+    },
+    "snapshot_hash": "7b95a3bb1bcfbe0c6be90cd3cebf89f12cfaa51c4667b8d2a5618ce6d19f77a0",
+    "initial_board": {
+      "tasks": [
+        {
+          "id": "x_spec",
+          "who": "gd",
+          "title": "X Spec",
+          "start": 0.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "X Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "X Spec 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "ui_copy",
+          "who": "gd",
+          "title": "UI Copy",
+          "start": 2.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "UI Copy 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "UI Copy 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "ui_assets",
+          "who": "art",
+          "title": "UI Assets",
+          "start": 1.0,
+          "days": 2.0,
+          "kind": "done",
+          "context": {
+            "description": "UI Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "UI Assets 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "fx_assets",
+          "who": "art",
+          "title": "FX Assets",
+          "start": 4.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "FX Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "FX Assets 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "art"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "core_x",
+          "who": "dev",
+          "title": "Core X",
+          "start": 1.0,
+          "days": 3.0,
+          "kind": "done",
+          "context": {
+            "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Core X 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "ui_integration",
+          "who": "dev",
+          "title": "UI Integration",
+          "start": 5.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "UI Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "UI Integration 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": true,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "latest_finish": 6,
+            "required_parts": [
+              {
+                "key": "logic",
+                "title": "UI 로직 연결",
+                "what": "UI 로직 연결 8h",
+                "effort": 1,
+                "assignees": [
+                  "dev"
+                ]
+              },
+              {
+                "key": "assets",
+                "title": "UI 에셋 연결",
+                "what": "UI 에셋 연결 8h",
+                "effort": 1,
+                "assignees": [
+                  "art"
+                ]
+              }
+            ],
+            "split_boundary": "총 16h일 때 로직 연결 8h(Dev 전담) + 에셋 연결 8h(Art 가능). 다른 임의 조각은 허용하지 않음.",
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25,
+            "active_participants_only": true,
+            "allowed_change_tasks": [
+              "ui_integration",
+              "bug_fix"
+            ]
+          }
+        },
+        {
+          "id": "bug_fix",
+          "who": "dev",
+          "title": "Bug Fix",
+          "start": 6.0,
+          "days": 1.0,
+          "kind": "",
+          "context": {
+            "description": "Bug Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Bug Fix 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "dev"
+            ],
+            "allow_collaboration": false,
+            "fixed_start": 6,
+            "latest_finish": 7,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "smoke",
+          "who": "qa",
+          "title": "Smoke Test",
+          "start": 4.0,
+          "days": 1.0,
+          "kind": "done",
+          "context": {
+            "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Smoke Test 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "integration_test",
+          "who": "qa",
+          "title": "Integration Test",
+          "start": 7.0,
+          "days": 2.0,
+          "kind": "",
+          "context": {
+            "description": "Integration Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Integration Test 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "qa"
+            ],
+            "allow_collaboration": false,
+            "fixed_start": 7,
+            "latest_finish": 9,
+            "source_scenario": "m4_t2_reallocation",
+            "time_quantum": 0.25
+          }
+        },
+        {
+          "id": "milestone",
+          "who": "gd",
+          "title": "Alpha",
+          "start": 9.0,
+          "days": 0.0,
+          "kind": "milestone",
+          "context": {
+            "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+            "deliverable": "Alpha 완료본",
+            "acceptance": [
+              "원 시나리오의 필수 산출물 유지",
+              "담당 권한과 선행 조건 준수"
+            ],
+            "splittable_hint": false,
+            "allowed_assignees": [
+              "gd"
+            ],
+            "allow_collaboration": false,
+            "completion_barrier": true
+          }
+        }
+      ],
+      "handoffs": [
+        {
+          "id": "h_ui_integration_integration_test",
+          "source": "ui_integration",
+          "target": "integration_test",
+          "title": "ui_integration → integration_test",
+          "due": 7.0,
+          "expected": 6.0,
+          "agreed": false
+        },
+        {
+          "id": "h_bug_fix_integration_test",
+          "source": "bug_fix",
+          "target": "integration_test",
+          "title": "bug_fix → integration_test",
+          "due": 7.0,
+          "expected": 7.0,
+          "agreed": false
+        },
+        {
+          "id": "h_integration_test_milestone",
+          "source": "integration_test",
+          "target": "milestone",
+          "title": "integration_test → milestone",
+          "due": 9.0,
+          "expected": 9.0,
+          "agreed": false
+        }
+      ],
+      "milestones": [
+        {
+          "id": "milestone",
+          "title": "Alpha",
+          "who": "gd",
+          "start": 9.0,
+          "end": 9.0
+        }
+      ],
+      "deferred": [],
+      "omitted": [],
+      "fairness": {
+        "totals": {
+          "gd": 2.0,
+          "art": 3.0,
+          "dev": 5.0,
+          "qa": 3.0
+        },
+        "variance": 1.1875,
+        "range": 3.0,
+        "definition": "past_effort + current-week allocated days (done included once)"
+      },
+      "gate": {
+        "ok": true,
+        "violations": [],
+        "warnings": [],
+        "adjustments": []
+      }
+    },
+    "final_board": null,
+    "transcript_file": "live/2026-11-22_23-41-26_669326_84783f5e.md",
+    "llm_mode": "live",
+    "assessment_progress": {
+      "completed": 2,
+      "total": 2,
+      "stage": "final"
+    },
+    "candidates": [
+      {
+        "id": "c_bf03188dc6204179",
+        "revision": 1,
+        "plan_hash": "bf03188dc6204179af534ef272c7bb798babaab2e10d1f066059092004558ca2",
+        "operator": "split",
+        "title": "Task에 명시된 산출물 분담",
+        "allocations": [
+          {
+            "who": "dev",
+            "title": "UI 로직 연결",
+            "what": "UI 로직 연결 8h",
+            "key": "logic",
+            "depends_on": [],
+            "effort": 1.0,
+            "days": 1.0
+          },
+          {
+            "who": "art",
+            "title": "UI 에셋 연결",
+            "what": "UI 에셋 연결 8h",
+            "key": "assets",
+            "depends_on": [],
+            "effort": 1.0,
+            "days": 1.0
+          }
+        ],
+        "schedule_changes": [],
+        "plan_actions": [],
+        "required_confirmations": [],
+        "requires_scope_approval": false,
+        "scope": "whole_task",
+        "basis": "Task 원문에 명시된 분리 경계·분량·담당 권한을 그대로 보존한다.",
+        "affected": [
+          "art",
+          "dev"
+        ],
+        "board": {
+          "tasks": [
+            {
+              "id": "x_spec",
+              "who": "gd",
+              "title": "X Spec",
+              "start": 0.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "X Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "X Spec 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "ui_copy",
+              "who": "gd",
+              "title": "UI Copy",
+              "start": 2.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "UI Copy 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UI Copy 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "ui_assets",
+              "who": "art",
+              "title": "UI Assets",
+              "start": 1.0,
+              "days": 2.0,
+              "kind": "done",
+              "context": {
+                "description": "UI Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UI Assets 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "fx_assets",
+              "who": "art",
+              "title": "FX Assets",
+              "start": 4.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "FX Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "FX Assets 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "core_x",
+              "who": "dev",
+              "title": "Core X",
+              "start": 1.0,
+              "days": 3.0,
+              "kind": "done",
+              "context": {
+                "description": "Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Core X 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "ui_integration",
+              "who": "dev",
+              "title": "UI Integration",
+              "start": 6.0,
+              "days": 0,
+              "kind": "milestone",
+              "context": {
+                "description": "UI Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UI Integration 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": true,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 6,
+                "required_parts": [
+                  {
+                    "key": "logic",
+                    "title": "UI 로직 연결",
+                    "what": "UI 로직 연결 8h",
+                    "effort": 1,
+                    "assignees": [
+                      "dev"
+                    ]
+                  },
+                  {
+                    "key": "assets",
+                    "title": "UI 에셋 연결",
+                    "what": "UI 에셋 연결 8h",
+                    "effort": 1,
+                    "assignees": [
+                      "art"
+                    ]
+                  }
+                ],
+                "split_boundary": "총 16h일 때 로직 연결 8h(Dev 전담) + 에셋 연결 8h(Art 가능). 다른 임의 조각은 허용하지 않음.",
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25,
+                "active_participants_only": true,
+                "allowed_change_tasks": [
+                  "ui_integration",
+                  "bug_fix"
+                ],
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "bug_fix",
+              "who": "dev",
+              "title": "Bug Fix",
+              "start": 6.0,
+              "days": 1.0,
+              "kind": "",
+              "context": {
+                "description": "Bug Fix 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Bug Fix 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 6,
+                "latest_finish": 7,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "smoke",
+              "who": "qa",
+              "title": "Smoke Test",
+              "start": 4.0,
+              "days": 1.0,
+              "kind": "done",
+              "context": {
+                "description": "Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Smoke Test 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "integration_test",
+              "who": "qa",
+              "title": "Integration Test",
+              "start": 7.0,
+              "days": 2.0,
+              "kind": "",
+              "context": {
+                "description": "Integration Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Integration Test 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "qa"
+                ],
+                "allow_collaboration": false,
+                "fixed_start": 7,
+                "latest_finish": 9,
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25
+              }
+            },
+            {
+              "id": "milestone",
+              "who": "gd",
+              "title": "Alpha",
+              "start": 9.0,
+              "days": 0.0,
+              "kind": "milestone",
+              "context": {
+                "description": "Alpha 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "Alpha 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "gd"
+                ],
+                "allow_collaboration": false,
+                "completion_barrier": true
+              }
+            },
+            {
+              "id": "__discussion_0",
+              "who": "dev",
+              "title": "UI 로직 연결",
+              "start": 5.0,
+              "days": 1.0,
+              "kind": "new",
+              "context": {
+                "description": "UI Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UI Integration 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "dev"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 6,
+                "required_parts": [],
+                "split_boundary": "총 16h일 때 로직 연결 8h(Dev 전담) + 에셋 연결 8h(Art 가능). 다른 임의 조각은 허용하지 않음.",
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25,
+                "active_participants_only": true,
+                "allowed_change_tasks": [
+                  "ui_integration",
+                  "bug_fix"
+                ]
+              }
+            },
+            {
+              "id": "__discussion_1",
+              "who": "art",
+              "title": "UI 에셋 연결",
+              "start": 5,
+              "days": 1.0,
+              "kind": "new",
+              "context": {
+                "description": "UI Integration 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.",
+                "deliverable": "UI Integration 완료본",
+                "acceptance": [
+                  "원 시나리오의 필수 산출물 유지",
+                  "담당 권한과 선행 조건 준수"
+                ],
+                "splittable_hint": false,
+                "allowed_assignees": [
+                  "art"
+                ],
+                "allow_collaboration": false,
+                "latest_finish": 6,
+                "required_parts": [],
+                "split_boundary": "총 16h일 때 로직 연결 8h(Dev 전담) + 에셋 연결 8h(Art 가능). 다른 임의 조각은 허용하지 않음.",
+                "source_scenario": "m4_t2_reallocation",
+                "time_quantum": 0.25,
+                "active_participants_only": true,
+                "allowed_change_tasks": [
+                  "ui_integration",
+                  "bug_fix"
+                ]
+              }
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "h_ui_integration_integration_test",
+              "source": "ui_integration",
+              "target": "integration_test",
+              "title": "ui_integration → integration_test",
+              "due": 7.0,
+              "expected": 6.0,
+              "agreed": false
+            },
+            {
+              "id": "h_bug_fix_integration_test",
+              "source": "bug_fix",
+              "target": "integration_test",
+              "title": "bug_fix → integration_test",
+              "due": 7.0,
+              "expected": 7.0,
+              "agreed": false
+            },
+            {
+              "id": "h_integration_test_milestone",
+              "source": "integration_test",
+              "target": "milestone",
+              "title": "integration_test → milestone",
+              "due": 9.0,
+              "expected": 9.0,
+              "agreed": false
+            },
+            {
+              "id": "__partition_link_3",
+              "source": "__discussion_0",
+              "target": "ui_integration",
+              "title": "UI 로직 연결 8h",
+              "due": 6.0,
+              "expected": 6.0,
+              "agreed": true
+            },
+            {
+              "id": "__partition_link_4",
+              "source": "__discussion_1",
+              "target": "ui_integration",
+              "title": "UI 에셋 연결 8h",
+              "due": 6.0,
+              "expected": 6.0,
+              "agreed": true
+            }
+          ],
+          "milestones": [
+            {
+              "id": "ui_integration",
+              "title": "UI Integration",
+              "who": "dev",
+              "start": 6.0,
+              "end": 6.0
+            },
+            {
+              "id": "milestone",
+              "title": "Alpha",
+              "who": "gd",
+              "start": 9.0,
+              "end": 9.0
+            }
+          ],
+          "deferred": [],
+          "omitted": [],
+          "fairness": {
+            "totals": {
+              "gd": 2.0,
+              "art": 4.0,
+              "dev": 5.0,
+              "qa": 3.0
+            },
+            "variance": 1.25,
+            "range": 3.0,
+            "definition": "past_effort + current-week allocated days (done included once)"
+          },
+          "gate": {
+            "ok": true,
+            "violations": [],
+            "warnings": [],
+            "adjustments": []
+          }
+        },
+        "snapshot_hash": "7b95a3bb1bcfbe0c6be90cd3cebf89f12cfaa51c4667b8d2a5618ce6d19f77a0",
+        "consents": {
+          "art": {
+            "action": "NEEDS_INPUT",
+            "reason": "신규 인수라 제 본인 확인 뒤 확정해 주세요."
+          },
+          "dev": {
+            "action": "NEEDS_INPUT",
+            "reason": "Art의 확인이 필요합니다."
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,2005 @@
+{
+  "id": "I_wait_zero",
+  "label": "C에서 Zoe의 자동 지연 수락만 0",
+  "pref": "fast",
+  "omit_cards": false,
+  "overrides": {
+    "zoe": {
+      "wait_days": 0
+    }
+  },
+  "metrics": {
+    "pm_decisions": 0,
+    "pm_talks": 0,
+    "confirms": 4,
+    "proxy_msgs": 29,
+    "rounds": 3,
+    "hive_rejects": 0,
+    "late_end": 0,
+    "promises_moved": 1,
+    "past_deadline": 1,
+    "scope_cut": 0,
+    "overload": 0,
+    "overrides": 0,
+    "cost": {
+      "Ivy": {
+        "늘어남": 1.0,
+        "밀림": 0
+      },
+      "Leo": {
+        "늘어남": 1.0,
+        "밀림": 0
+      },
+      "Ben": {
+        "늘어남": 1.5,
+        "밀림": 0
+      },
+      "Zoe": {
+        "늘어남": 0.0,
+        "밀림": 0.5
+      }
+    },
+    "cost_people": 4,
+    "top_share": 0.38,
+    "top_who": "Ben"
+  },
+  "state": {
+    "phase": "end",
+    "now": 3,
+    "narr": "해결됨 · PM 결정 없이 당사자 확인으로 끝남",
+    "now_label": "1주차 · 목요일 오전",
+    "demo": {
+      "id": "demo3_cards",
+      "title": "데모 3 · 서로 다른 위임 권한을 가진 8명",
+      "all": [
+        "demo1",
+        "demo2",
+        "demo3_cards"
+      ]
+    },
+    "feed_label": null,
+    "deadline_label": "데모 제출 · 11/20 금",
+    "people": [
+      {
+        "id": "mia",
+        "name": "Mia",
+        "role": "그림",
+        "rec": {
+          "캐릭터 그림": 6,
+          "효과": 4,
+          "배경": 3
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "ivy",
+        "name": "Ivy",
+        "role": "그림",
+        "rec": {
+          "배경": 8,
+          "효과": 2,
+          "캐릭터 그림": 1
+        },
+        "wants": [
+          "캐릭터 그림"
+        ],
+        "load": 3.0,
+        "free": 2.0,
+        "cap": 5
+      },
+      {
+        "id": "leo",
+        "name": "Leo",
+        "role": "개발",
+        "rec": {
+          "화면 코드": 10,
+          "저장": 6,
+          "캐릭터 코드": 4
+        },
+        "wants": [],
+        "load": 4.5,
+        "free": 0.5,
+        "cap": 5
+      },
+      {
+        "id": "sam",
+        "name": "Sam",
+        "role": "개발",
+        "rec": {
+          "전투 코드": 12,
+          "버그": 9,
+          "캐릭터 코드": 5
+        },
+        "wants": [],
+        "load": 5.0,
+        "free": 0.0,
+        "cap": 5
+      },
+      {
+        "id": "ben",
+        "name": "Ben",
+        "role": "개발",
+        "rec": {
+          "빌드": 5,
+          "버그": 3
+        },
+        "wants": [
+          "캐릭터 코드",
+          "전투 코드"
+        ],
+        "load": 3.5,
+        "free": 1.5,
+        "cap": 5
+      },
+      {
+        "id": "zoe",
+        "name": "Zoe",
+        "role": "테스트",
+        "rec": {
+          "테스트": 12
+        },
+        "wants": [
+          "화면 코드"
+        ],
+        "load": 3.5,
+        "free": 1.5,
+        "cap": 5
+      },
+      {
+        "id": "eli",
+        "name": "Eli",
+        "role": "개발",
+        "rec": {
+          "캐릭터 코드": 8
+        },
+        "wants": [],
+        "load": 2.0,
+        "free": 3.0,
+        "cap": 5
+      },
+      {
+        "id": "noor",
+        "name": "Noor",
+        "role": "개발",
+        "rec": {
+          "빌드": 3
+        },
+        "wants": [
+          "캐릭터 코드"
+        ],
+        "load": 2.0,
+        "free": 3.0,
+        "cap": 5
+      }
+    ],
+    "tasks": {
+      "draw": {
+        "id": "draw",
+        "who": "mia",
+        "who0": null,
+        "title": "캐릭터 몸",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "캐릭터 그림",
+        "role": "그림",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 0,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "수 저녁",
+        "basis": "캐릭터 그림 6건"
+      },
+      "enemy": {
+        "id": "enemy",
+        "who": "mia",
+        "who0": null,
+        "title": "적 캐릭터 다듬기",
+        "s0": 3.0,
+        "s": 3.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "캐릭터 그림",
+        "role": "그림",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 1,
+        "spill": false,
+        "moved": false,
+        "start_label": "목",
+        "end_label": "금 저녁",
+        "basis": "캐릭터 그림 6건"
+      },
+      "bg": {
+        "id": "bg",
+        "who": "ivy",
+        "who0": null,
+        "title": "배경 그리기",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "배경",
+        "role": "그림",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 2,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "배경 8건"
+      },
+      "menu": {
+        "id": "menu",
+        "who": "leo",
+        "who0": null,
+        "title": "메뉴 화면 연결",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 1.5,
+        "plan": 1.5,
+        "base": 1.5,
+        "tag": "화면 코드",
+        "role": "개발",
+        "kind": "done",
+        "cut": false,
+        "got": false,
+        "oi": 3,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 오전",
+        "basis": "화면 코드 10건"
+      },
+      "save": {
+        "id": "save",
+        "who": "leo",
+        "who0": null,
+        "title": "저장 기능",
+        "s0": 1.5,
+        "s": 1.5,
+        "d": 1.5,
+        "plan": 1.5,
+        "base": 1.5,
+        "tag": "저장",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 4,
+        "spill": false,
+        "moved": false,
+        "start_label": "화",
+        "end_label": "수 저녁",
+        "basis": "저장 6건"
+      },
+      "code": {
+        "id": "code",
+        "who": "leo",
+        "who0": null,
+        "title": "캐릭터 붙이기",
+        "s0": 3.5,
+        "s": 4.5,
+        "d": 0.5,
+        "plan": 0.5,
+        "base": 0.5,
+        "tag": "캐릭터 코드",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 5,
+        "spill": false,
+        "moved": false,
+        "start_label": "금",
+        "end_label": "금 저녁",
+        "basis": "캐릭터 코드 4건"
+      },
+      "battle": {
+        "id": "battle",
+        "who": "sam",
+        "who0": null,
+        "title": "전투 기능",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 3.0,
+        "plan": 3.0,
+        "base": 3.0,
+        "tag": "전투 코드",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 6,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "수 저녁",
+        "basis": "전투 코드 12건"
+      },
+      "bugs": {
+        "id": "bugs",
+        "who": "sam",
+        "who0": null,
+        "title": "버그 고치기",
+        "s0": 3.0,
+        "s": 3.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "버그",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 7,
+        "spill": false,
+        "moved": false,
+        "start_label": "목",
+        "end_label": "금 저녁",
+        "basis": "버그 9건"
+      },
+      "build": {
+        "id": "build",
+        "who": "ben",
+        "who0": null,
+        "title": "빌드 정리",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "빌드",
+        "role": "개발",
+        "kind": "done",
+        "cut": false,
+        "got": false,
+        "oi": 8,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "월 저녁",
+        "basis": "빌드 5건"
+      },
+      "tools": {
+        "id": "tools",
+        "who": "ben",
+        "who0": null,
+        "title": "툴 정리",
+        "s0": 1.0,
+        "s": 1.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "빌드",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 9,
+        "spill": false,
+        "moved": false,
+        "start_label": "화",
+        "end_label": "화 저녁",
+        "basis": "빌드 5건"
+      },
+      "tidy": {
+        "id": "tidy",
+        "who": "zoe",
+        "who0": null,
+        "title": "테스트 정리",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "done",
+        "cut": false,
+        "got": false,
+        "oi": 10,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "월 저녁",
+        "basis": "테스트 12건"
+      },
+      "mtest": {
+        "id": "mtest",
+        "who": "zoe",
+        "who0": null,
+        "title": "메뉴 테스트",
+        "s0": 1.5,
+        "s": 1.5,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 11,
+        "spill": false,
+        "moved": false,
+        "start_label": "화",
+        "end_label": "수 오전",
+        "basis": "테스트 12건"
+      },
+      "btest": {
+        "id": "btest",
+        "who": "zoe",
+        "who0": null,
+        "title": "전투 테스트",
+        "s0": 3.0,
+        "s": 3.0,
+        "d": 1.5,
+        "plan": 1.5,
+        "base": 1.5,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 12,
+        "spill": false,
+        "moved": false,
+        "start_label": "목",
+        "end_label": "금 오전",
+        "basis": "테스트 12건"
+      },
+      "ctest": {
+        "id": "ctest",
+        "who": "zoe",
+        "who0": null,
+        "title": "캐릭터 테스트",
+        "s0": 4.5,
+        "s": 5.0,
+        "d": 0.5,
+        "plan": 0.5,
+        "base": 0.5,
+        "tag": "테스트",
+        "role": "테스트",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 13,
+        "spill": false,
+        "moved": true,
+        "start_label": "2주차 월",
+        "end_label": "2주차 월 오전",
+        "basis": "테스트 12건"
+      },
+      "eli_docs": {
+        "id": "eli_docs",
+        "who": "eli",
+        "who0": null,
+        "title": "API 문서 정리",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "문서",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 14,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "문서 0건"
+      },
+      "noor_tools": {
+        "id": "noor_tools",
+        "who": "noor",
+        "who0": null,
+        "title": "배포 도구 정리",
+        "s0": 0.0,
+        "s": 0.0,
+        "d": 2.0,
+        "plan": 2.0,
+        "base": 2.0,
+        "tag": "빌드",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 15,
+        "spill": false,
+        "moved": false,
+        "start_label": "월",
+        "end_label": "화 저녁",
+        "basis": "빌드 3건"
+      },
+      "weapon": {
+        "id": "weapon",
+        "who": "ivy",
+        "who0": null,
+        "title": "무기 그림",
+        "s0": 2.0,
+        "s": 2.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "캐릭터 그림",
+        "role": "그림",
+        "kind": "new",
+        "cut": false,
+        "got": false,
+        "oi": 16,
+        "spill": false,
+        "moved": false,
+        "start_label": "수",
+        "end_label": "수 저녁",
+        "basis": "캐릭터 그림 1건"
+      },
+      "move": {
+        "id": "move",
+        "who": "ben",
+        "who0": null,
+        "title": "움직임 코드",
+        "s0": 3.0,
+        "s": 3.0,
+        "d": 1.5,
+        "plan": 1.5,
+        "base": 1.0,
+        "tag": "캐릭터 코드",
+        "role": "개발",
+        "kind": "new",
+        "cut": false,
+        "got": false,
+        "oi": 17,
+        "spill": false,
+        "moved": false,
+        "start_label": "목",
+        "end_label": "금 오전",
+        "basis": "캐릭터 코드 0건"
+      },
+      "sm": {
+        "id": "sm",
+        "who": "leo",
+        "who0": null,
+        "title": "상태 머신 연결",
+        "s0": 3.0,
+        "s": 3.0,
+        "d": 1.0,
+        "plan": 1.0,
+        "base": 1.0,
+        "tag": "캐릭터 코드",
+        "role": "개발",
+        "kind": "",
+        "cut": false,
+        "got": false,
+        "oi": 18,
+        "spill": false,
+        "moved": false,
+        "start_label": "목",
+        "end_label": "목 저녁",
+        "basis": "캐릭터 코드 4건"
+      }
+    },
+    "hand": {
+      "h1": {
+        "id": "h1",
+        "from": "draw",
+        "to": "code",
+        "from_who": "mia",
+        "to_who": "leo",
+        "title": "캐릭터 몸",
+        "what": "캐릭터 그림 파일",
+        "t": 3.0,
+        "t_label": "수 저녁",
+        "pred": 3.0,
+        "pred_label": "수 저녁",
+        "state": "ok",
+        "state_label": "On track",
+        "done": false,
+        "prop": false,
+        "agreed": false,
+        "basis": "",
+        "hist": [
+          {
+            "t": "월 09:00",
+            "kind": "hive",
+            "who": null,
+            "text": "계획의 순서에서 생김 · 약속 수 저녁"
+          },
+          {
+            "t": "수 09:11",
+            "kind": "proxy",
+            "who": "mia",
+            "text": "예상 수 저녁 → 목 저녁 · At risk"
+          },
+          {
+            "t": "수 09:14",
+            "kind": "hive",
+            "who": null,
+            "text": "도움 요청 열림"
+          },
+          {
+            "t": "수 09:24",
+            "kind": "person",
+            "who": "mia",
+            "text": "Mia 확인 · 무기 그림은 Ivy가"
+          },
+          {
+            "t": "수 09:24",
+            "kind": "proxy",
+            "who": "mia",
+            "text": "다시 제때 → On track"
+          }
+        ]
+      },
+      "h2": {
+        "id": "h2",
+        "from": "code",
+        "to": "ctest",
+        "from_who": "leo",
+        "to_who": "zoe",
+        "title": "캐릭터 코드",
+        "what": "게임에 들어간 캐릭터 빌드",
+        "t": 5.0,
+        "t_label": "금 저녁",
+        "pred": 5.0,
+        "pred_label": "금 저녁",
+        "state": "agreed",
+        "state_label": "Agreed",
+        "done": false,
+        "prop": false,
+        "agreed": true,
+        "basis": "",
+        "hist": [
+          {
+            "t": "월 09:00",
+            "kind": "hive",
+            "who": null,
+            "text": "계획의 순서에서 생김 · 약속 금 오전"
+          },
+          {
+            "t": "수 09:12",
+            "kind": "proxy",
+            "who": "leo",
+            "text": "예상 금 오전 → 2주차 월 오전 · At risk"
+          },
+          {
+            "t": "수 09:25",
+            "kind": "proxy",
+            "who": "leo",
+            "text": "다시 제때 → On track"
+          },
+          {
+            "t": "목 09:11",
+            "kind": "proxy",
+            "who": "leo",
+            "text": "예상 금 오전 → 2주차 월 오전 · At risk"
+          },
+          {
+            "t": "목 09:13",
+            "kind": "hive",
+            "who": null,
+            "text": "도움 요청 열림"
+          },
+          {
+            "t": "목 09:36",
+            "kind": "person",
+            "who": "leo",
+            "text": "Leo 확인 · 움직임 코드는 Ben이"
+          },
+          {
+            "t": "목 09:36",
+            "kind": "proxy",
+            "who": "leo",
+            "text": "약속 다시 정함 · 금 저녁"
+          },
+          {
+            "t": "목 09:37",
+            "kind": "person",
+            "who": "zoe",
+            "text": "Zoe 확인 → Agreed"
+          }
+        ]
+      },
+      "h3": {
+        "id": "h3",
+        "from": "battle",
+        "to": "btest",
+        "from_who": "sam",
+        "to_who": "zoe",
+        "title": "전투 기능",
+        "what": "전투 기능 빌드",
+        "t": 3.0,
+        "t_label": "수 저녁",
+        "pred": 3.0,
+        "pred_label": "수 저녁",
+        "state": "ok",
+        "state_label": "On track",
+        "done": false,
+        "prop": false,
+        "agreed": false,
+        "basis": "",
+        "hist": [
+          {
+            "t": "월 09:00",
+            "kind": "hive",
+            "who": null,
+            "text": "계획의 순서에서 생김 · 약속 수 저녁"
+          }
+        ]
+      },
+      "h4": {
+        "id": "h4",
+        "from": "menu",
+        "to": "mtest",
+        "from_who": "leo",
+        "to_who": "zoe",
+        "title": "메뉴 화면",
+        "what": "메뉴 화면 빌드",
+        "t": 1.5,
+        "t_label": "화 오전",
+        "pred": 1.5,
+        "pred_label": "화 오전",
+        "state": "done",
+        "state_label": "Delivered",
+        "done": true,
+        "prop": false,
+        "agreed": false,
+        "basis": "",
+        "hist": [
+          {
+            "t": "월 09:00",
+            "kind": "hive",
+            "who": null,
+            "text": "계획의 순서에서 생김"
+          },
+          {
+            "t": "화 12:12",
+            "kind": "proxy",
+            "who": "zoe",
+            "text": "받음 확인 → Delivered"
+          }
+        ]
+      },
+      "h5": {
+        "id": "h5",
+        "from": "weapon",
+        "to": "code",
+        "from_who": "ivy",
+        "to_who": "leo",
+        "title": "무기 그림",
+        "what": "무기 그림 파일",
+        "t": 3.0,
+        "t_label": "수 저녁",
+        "pred": 3.0,
+        "pred_label": "수 저녁",
+        "state": "agreed",
+        "state_label": "Agreed",
+        "done": false,
+        "prop": false,
+        "agreed": true,
+        "basis": "",
+        "hist": [
+          {
+            "t": "수 09:21",
+            "kind": "proxy",
+            "who": "ivy",
+            "text": "가약속 · 수 저녁"
+          },
+          {
+            "t": "수 09:24",
+            "kind": "person",
+            "who": "ivy",
+            "text": "Ivy 확인 → Agreed"
+          }
+        ]
+      },
+      "h6": {
+        "id": "h6",
+        "from": "move",
+        "to": "code",
+        "from_who": "ben",
+        "to_who": "leo",
+        "title": "움직임 코드",
+        "what": "움직임 코드 (상태 머신)",
+        "t": 4.5,
+        "t_label": "금 오전",
+        "pred": 4.5,
+        "pred_label": "금 오전",
+        "state": "agreed",
+        "state_label": "Agreed",
+        "done": false,
+        "prop": false,
+        "agreed": true,
+        "basis": "",
+        "hist": [
+          {
+            "t": "목 09:34",
+            "kind": "proxy",
+            "who": "ben",
+            "text": "가약속 · 금 오전"
+          },
+          {
+            "t": "목 09:36",
+            "kind": "proxy",
+            "who": "ben",
+            "text": "Ben의 프록시가 카드 한도 안에서 수락 → Agreed"
+          }
+        ]
+      }
+    },
+    "recs": [
+      {
+        "id": 1,
+        "t": "월 09:00",
+        "src": "작업",
+        "who": "mia",
+        "text": "캐릭터 그리기 시작 · 3일",
+        "old": true,
+        "fresh": false
+      },
+      {
+        "id": 2,
+        "t": "화 12:10",
+        "src": "메신저",
+        "who": "leo",
+        "text": "메뉴 화면 연결 넘김",
+        "old": true,
+        "fresh": false
+      },
+      {
+        "id": 3,
+        "t": "화 18:20",
+        "src": "저장소",
+        "who": "mia",
+        "text": "무기_v2.psd 다시 올림",
+        "old": true,
+        "fresh": false
+      },
+      {
+        "id": 4,
+        "t": "수 09:10",
+        "src": "저장소",
+        "who": "mia",
+        "text": "무기_v3.psd 다시 올림 · 3번째",
+        "old": false,
+        "fresh": false
+      },
+      {
+        "id": 5,
+        "t": "수 09:12",
+        "src": "작업",
+        "who": "mia",
+        "text": "캐릭터 그리기 '진행 중' 3일째",
+        "old": false,
+        "fresh": false
+      },
+      {
+        "id": 6,
+        "t": "목 09:05",
+        "src": "저장소",
+        "who": "leo",
+        "text": "캐릭터용 상태 머신 새로 만드는 커밋",
+        "old": false,
+        "fresh": false
+      },
+      {
+        "id": 7,
+        "t": "목 09:08",
+        "src": "작업",
+        "who": "leo",
+        "text": "캐릭터 넣기 예상 2½일로 고침",
+        "old": false,
+        "fresh": true
+      }
+    ],
+    "rules": [
+      {
+        "key": "deadline",
+        "label": "제출일 11/20 고정",
+        "value": {
+          "week_end": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "weekly_cap",
+        "label": "한 사람 한 주 5일까지",
+        "value": {
+          "days": 5
+        },
+        "locked": true
+      },
+      {
+        "key": "pm_only",
+        "label": "범위 줄이기 · 미루기는 PM만",
+        "value": {
+          "actions": [
+            "cut",
+            "defer"
+          ]
+        },
+        "locked": true
+      },
+      {
+        "key": "rounds",
+        "label": "프록시끼리 3라운드까지",
+        "value": {
+          "max": 3
+        },
+        "locked": true
+      },
+      {
+        "key": "pref",
+        "label": "받을 사람이 여럿이면",
+        "value": {
+          "choice": "fast"
+        },
+        "locked": false
+      }
+    ],
+    "pref": "fast",
+    "cards": [
+      {
+        "who": "mia",
+        "auto_days": 1.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null
+      },
+      {
+        "who": "ivy",
+        "auto_days": 0.5,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null
+      },
+      {
+        "who": "leo",
+        "auto_days": 1.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null
+      },
+      {
+        "who": "sam",
+        "auto_days": 1.0,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "도움은 가능하지만 주간 5일 한도는 지킨다",
+        "wait_days": 0.0,
+        "model": null
+      },
+      {
+        "who": "ben",
+        "auto_days": 1.5,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null
+      },
+      {
+        "who": "zoe",
+        "auto_days": 0.5,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null
+      },
+      {
+        "who": "eli",
+        "auto_days": 2.0,
+        "refuse_tags": [
+          "캐릭터 코드"
+        ],
+        "gives_help": true,
+        "note": "이번 주 캐릭터 코드는 맡지 않는다",
+        "wait_days": 0.0,
+        "model": null
+      },
+      {
+        "who": "noor",
+        "auto_days": 0.5,
+        "refuse_tags": [],
+        "gives_help": true,
+        "note": "",
+        "wait_days": 0.0,
+        "model": null
+      }
+    ],
+    "max_rounds": 3,
+    "granted": [],
+    "confirms": [
+      {
+        "id": 1,
+        "who": "ivy",
+        "prompt": "무기 그림 1일 · 내 한도(½일)를 넘어요. 맡아도 될까요?",
+        "text": "무기 그림 1일 맡을게요 · 확인",
+        "hid": "h1",
+        "status": "confirmed",
+        "t": "수 09:19"
+      },
+      {
+        "id": 2,
+        "who": "mia",
+        "prompt": "무기 그림은 Ivy에게 넘겨도 될까요?",
+        "text": "무기 그림은 Ivy에게 · 확인",
+        "hid": "h1",
+        "status": "confirmed",
+        "t": "수 09:22"
+      },
+      {
+        "id": 3,
+        "who": "zoe",
+        "prompt": "캐릭터 코드를 금 저녁에 받아도 될까요? (캐릭터 테스트 제출일 뒤로 밀림)",
+        "text": "캐릭터 코드 금 저녁 받기 · 확인",
+        "hid": "h2",
+        "status": "confirmed",
+        "t": "목 09:32"
+      },
+      {
+        "id": 4,
+        "who": "leo",
+        "prompt": "움직임 코드는 Ben에게 넘겨도 될까요?",
+        "text": "움직임 코드는 Ben에게 · 확인",
+        "hid": "h2",
+        "status": "confirmed",
+        "t": "목 09:35"
+      }
+    ],
+    "pending_confirms": [],
+    "log": [
+      {
+        "id": 1,
+        "k": "proxy",
+        "from": "mia",
+        "to": null,
+        "a": "견적",
+        "f": [
+          {
+            "t": "캐릭터 그리기",
+            "tk": true
+          },
+          {
+            "t": "3일 → 4일",
+            "n": true
+          }
+        ],
+        "basis": "무기 파일 3번째 다시 올림",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:10",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 2,
+        "k": "proxy",
+        "from": "mia",
+        "to": "leo",
+        "a": "알림",
+        "f": [
+          {
+            "t": "캐릭터 그림",
+            "tk": true
+          },
+          {
+            "t": "수 저녁 → 목 저녁",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:11",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 3,
+        "k": "proxy",
+        "from": "leo",
+        "to": "zoe",
+        "a": "알림",
+        "f": [
+          {
+            "t": "캐릭터 코드",
+            "tk": true
+          },
+          {
+            "t": "금 오전 → 2주차 월 오전",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "수 09:12",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 4,
+        "k": "hive",
+        "text": "도움 요청 · 캐릭터 그림 · 수 저녁까지 · 그림",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:13",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 5,
+        "k": "proxy",
+        "from": "mia",
+        "to": null,
+        "a": "조건",
+        "f": [
+          {
+            "t": "무기 그림",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "따로 그릴 수 있음"
+          }
+        ],
+        "basis": "무기는 별도 레이어 파일",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:14",
+        "run": 1,
+        "round": 0
+      },
+      {
+        "id": 6,
+        "k": "hive",
+        "text": "1라운드 · 물어볼 대상 · Ivy의 프록시 (그림)",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:15",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 7,
+        "k": "proxy",
+        "from": "mia",
+        "to": "ivy",
+        "a": "질문",
+        "f": [
+          {
+            "t": "무기 그림",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "수 저녁까지 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:16",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 8,
+        "k": "proxy",
+        "from": "ivy",
+        "to": "mia",
+        "a": "견적",
+        "f": [
+          {
+            "t": "무기 그림",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "본인 확인 필요"
+          }
+        ],
+        "basis": "캐릭터 그림 1건 · 내 한도 ½일을 넘음",
+        "pref": "바라던 일 · 캐릭터 그림",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:17",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 9,
+        "k": "hive",
+        "text": "권한 확인 · Ivy의 카드 한도 ½일 < 1일 → 본인 확인",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:18",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 10,
+        "k": "person",
+        "text": "무기 그림 1일 맡을게요 · 확인",
+        "who": "ivy",
+        "hid": "h1",
+        "t": "수 09:19",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 11,
+        "k": "proxy",
+        "from": "ivy",
+        "to": "leo",
+        "a": "약속",
+        "f": [
+          {
+            "t": "무기 그림",
+            "tk": true
+          },
+          {
+            "t": "수 저녁",
+            "n": true
+          },
+          {
+            "t": "가약속"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h5",
+        "t": "수 09:20",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 12,
+        "k": "hive",
+        "text": "규칙 확인 · 넘침 없음 · 제출일 · 범위 그대로 · Ivy: 본인이 확인함 → 담당 확인만",
+        "who": null,
+        "hid": "h1",
+        "t": "수 09:21",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 13,
+        "k": "person",
+        "text": "무기 그림은 Ivy에게 · 확인",
+        "who": "mia",
+        "hid": "h1",
+        "t": "수 09:22",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 14,
+        "k": "proxy",
+        "from": "mia",
+        "to": "ivy",
+        "a": "넘김",
+        "f": [
+          {
+            "t": "무기 그림",
+            "tk": true
+          },
+          {
+            "t": "기준 스케치 · 색 규칙"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h5",
+        "t": "수 09:23",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 15,
+        "k": "proxy",
+        "from": "mia",
+        "to": "leo",
+        "a": "약속",
+        "f": [
+          {
+            "t": "캐릭터 몸",
+            "tk": true
+          },
+          {
+            "t": "수 저녁",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h1",
+        "t": "수 09:24",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 16,
+        "k": "proxy",
+        "from": "leo",
+        "to": "zoe",
+        "a": "약속",
+        "f": [
+          {
+            "t": "캐릭터 코드",
+            "tk": true
+          },
+          {
+            "t": "금 오전",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "수 09:25",
+        "run": 1,
+        "round": 1
+      },
+      {
+        "id": 17,
+        "k": "proxy",
+        "from": "leo",
+        "to": null,
+        "a": "견적",
+        "f": [
+          {
+            "t": "캐릭터 넣기",
+            "tk": true
+          },
+          {
+            "t": "1½일 → 2½일",
+            "n": true
+          }
+        ],
+        "basis": "상태 머신 새로 필요",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:10",
+        "run": 2,
+        "round": 0
+      },
+      {
+        "id": 18,
+        "k": "proxy",
+        "from": "leo",
+        "to": "zoe",
+        "a": "알림",
+        "f": [
+          {
+            "t": "캐릭터 코드",
+            "tk": true
+          },
+          {
+            "t": "금 오전 → 2주차 월 오전",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:11",
+        "run": 2,
+        "round": 0
+      },
+      {
+        "id": 19,
+        "k": "hive",
+        "text": "도움 요청 · 캐릭터 코드 · 금 오전까지 · 개발",
+        "who": null,
+        "hid": "h2",
+        "t": "목 09:12",
+        "run": 2,
+        "round": 0
+      },
+      {
+        "id": 20,
+        "k": "proxy",
+        "from": "leo",
+        "to": null,
+        "a": "조건",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "따로 만들 수 있음"
+          }
+        ],
+        "basis": "상태 머신은 별도 파일",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:13",
+        "run": 2,
+        "round": 0
+      },
+      {
+        "id": 21,
+        "k": "hive",
+        "text": "1라운드 · 물어볼 대상 · Eli의 프록시, Sam의 프록시, Ben의 프록시, Noor의 프록시 (개발)",
+        "who": null,
+        "hid": "h2",
+        "t": "목 09:14",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 22,
+        "k": "proxy",
+        "from": "leo",
+        "to": "eli",
+        "a": "질문",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "금 오전까지 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:15",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 23,
+        "k": "proxy",
+        "from": "eli",
+        "to": "leo",
+        "a": "견적",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "거절"
+          }
+        ],
+        "basis": "카드에 '캐릭터 코드'는 받지 않는다고 되어 있음",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:16",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 24,
+        "k": "proxy",
+        "from": "leo",
+        "to": "sam",
+        "a": "질문",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "금 오전까지 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:17",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 25,
+        "k": "proxy",
+        "from": "sam",
+        "to": "leo",
+        "a": "조건",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "버그 고치기를 2주차로 미루면 가능"
+          }
+        ],
+        "basis": "캐릭터 코드 5건 · 금까지 5/5",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:18",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 26,
+        "k": "proxy",
+        "from": "leo",
+        "to": "ben",
+        "a": "질문",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "금 오전까지 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:19",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 27,
+        "k": "proxy",
+        "from": "ben",
+        "to": "leo",
+        "a": "견적",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1½일",
+            "n": true
+          },
+          {
+            "t": "조건부"
+          }
+        ],
+        "basis": "캐릭터 코드 0건",
+        "pref": "바라던 일 · 캐릭터 코드",
+        "say": "숙련자의 30분 도움이 필요합니다.",
+        "hid": "h2",
+        "t": "목 09:20",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 28,
+        "k": "proxy",
+        "from": "leo",
+        "to": "noor",
+        "a": "질문",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1일",
+            "n": true
+          },
+          {
+            "t": "금 오전까지 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:21",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 29,
+        "k": "proxy",
+        "from": "noor",
+        "to": "leo",
+        "a": "견적",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "1½일",
+            "n": true
+          },
+          {
+            "t": "조건부"
+          }
+        ],
+        "basis": "캐릭터 코드 0건",
+        "pref": "바라던 일 · 캐릭터 코드",
+        "say": "Eli가 30분만 봐 주면 돼요.",
+        "hid": "h2",
+        "t": "목 09:22",
+        "run": 2,
+        "round": 1
+      },
+      {
+        "id": 30,
+        "k": "hive",
+        "text": "2라운드 · 조건 확인 · Ben → Eli (도움 30분), Noor → Eli (도움 30분), Leo → Zoe (늦춰 받기)",
+        "who": null,
+        "hid": "h2",
+        "t": "목 09:23",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 31,
+        "k": "proxy",
+        "from": "ben",
+        "to": "eli",
+        "a": "질문",
+        "f": [
+          {
+            "t": "도움 30분"
+          },
+          {
+            "t": "목 오후 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:24",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 32,
+        "k": "proxy",
+        "from": "eli",
+        "to": "ben",
+        "a": "약속",
+        "f": [
+          {
+            "t": "도움 30분"
+          },
+          {
+            "t": "목 오후",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "이번 주 캐릭터 코드는 맡지 않는다",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:25",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 33,
+        "k": "proxy",
+        "from": "noor",
+        "to": "eli",
+        "a": "질문",
+        "f": [
+          {
+            "t": "도움 30분"
+          },
+          {
+            "t": "목 오후 돼요?"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:26",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 34,
+        "k": "proxy",
+        "from": "eli",
+        "to": "noor",
+        "a": "약속",
+        "f": [
+          {
+            "t": "도움 30분"
+          },
+          {
+            "t": "목 오후",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "이번 주 캐릭터 코드는 맡지 않는다",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:27",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 35,
+        "k": "proxy",
+        "from": "leo",
+        "to": "zoe",
+        "a": "질문",
+        "f": [
+          {
+            "t": "캐릭터 코드",
+            "tk": true
+          },
+          {
+            "t": "금 오전 → 금 저녁",
+            "n": true
+          },
+          {
+            "t": "늦게 받아도 돼요?"
+          }
+        ],
+        "basis": "Ben이 맡으면 ½일 늦어짐",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:28",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 36,
+        "k": "proxy",
+        "from": "zoe",
+        "to": "leo",
+        "a": "견적",
+        "f": [
+          {
+            "t": "캐릭터 코드",
+            "tk": true
+          },
+          {
+            "t": "본인 확인 필요"
+          }
+        ],
+        "basis": "캐릭터 테스트가 제출일 뒤로 밀림",
+        "pref": "",
+        "say": "",
+        "hid": "h2",
+        "t": "목 09:29",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 37,
+        "k": "hive",
+        "text": "받을 사람이 둘 · 내 규칙 '빨리 끝나는 쪽' → Ben의 프록시",
+        "who": null,
+        "hid": "h2",
+        "t": "목 09:30",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 38,
+        "k": "hive",
+        "text": "받는 쪽 확인 · Ben이 맡으면 캐릭터 코드 금 오전 → 금 저녁 → Zoe 본인 확인",
+        "who": null,
+        "hid": "h2",
+        "t": "목 09:31",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 39,
+        "k": "person",
+        "text": "캐릭터 코드 금 저녁 받기 · 확인",
+        "who": "zoe",
+        "hid": "h2",
+        "t": "목 09:32",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 40,
+        "k": "proxy",
+        "from": "ben",
+        "to": "leo",
+        "a": "약속",
+        "f": [
+          {
+            "t": "움직임 코드",
+            "tk": true
+          },
+          {
+            "t": "금 오전",
+            "n": true
+          },
+          {
+            "t": "가약속"
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "",
+        "hid": "h6",
+        "t": "목 09:33",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 41,
+        "k": "hive",
+        "text": "규칙 확인 · 넘침 없음 · 제출일 · 범위 그대로 · Ben: 카드 한도 1½일 안이라 프록시가 수락 → 담당 확인만",
+        "who": null,
+        "hid": "h2",
+        "t": "목 09:34",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 42,
+        "k": "person",
+        "text": "움직임 코드는 Ben에게 · 확인",
+        "who": "leo",
+        "hid": "h2",
+        "t": "목 09:35",
+        "run": 2,
+        "round": 2
+      },
+      {
+        "id": 43,
+        "k": "proxy",
+        "from": "leo",
+        "to": "zoe",
+        "a": "약속",
+        "f": [
+          {
+            "t": "캐릭터 코드",
+            "tk": true
+          },
+          {
+            "t": "금 저녁",
+            "n": true
+          }
+        ],
+        "basis": "",
+        "pref": "",
+        "say": "반나절 늦어져요. 배우는 시간이에요.",
+        "hid": "h2",
+        "t": "목 09:36",
+        "run": 2,
+        "round": 2
+      }
+    ],
+    "asks": [],
+    "resolved": [
+      {
+        "hid": "h1",
+        "body": "Ivy가 무기 그림 1일을 맡음 · 캐릭터 몸 수 저녁",
+        "why": "규칙 안 · Ivy 본인 확인 · Mia 확인 · 1라운드 · PM 결정 없음"
+      },
+      {
+        "hid": "h2",
+        "body": "Ben이 움직임 코드 1½일을 맡음 · 캐릭터 코드 금 저녁",
+        "why": "규칙 안 · 받을 사람은 내 규칙 '빨리 끝나는 쪽' · Ben의 프록시가 카드 한도 안에서 수락 · Leo 확인 · 2라운드 · PM 결정 없음"
+      }
+    ],
+    "stats": {
+      "msgs": 29,
+      "pm_direct_asks": 0,
+      "confirms": 4,
+      "decisions": 0
+    },
+    "gate": {
+      "ok": true,
+      "violations": [],
+      "warnings": [
+        {
+          "code": "PUSHED_PAST_DEADLINE",
+          "task": "ctest",
+          "starts": 5.0,
+          "text": "캐릭터 테스트 제출일 뒤로 밀림"
+        }
+      ]
+    },
+    "waiting": [],
+    "negotiations": [
+      {
+        "id": 1,
+        "kind": "record",
+        "status": "done",
+        "step": "done",
+        "hid": "h1",
+        "task": "draw",
+        "owner": "mia",
+        "round": 1,
+        "attempt": 0,
+        "max_rounds": 3
+      },
+      {
+        "id": 2,
+        "kind": "record",
+        "status": "done",
+        "step": "done",
+        "hid": "h2",
+        "task": "code",
+        "owner": "leo",
+        "round": 2,
+        "attempt": 0,
+        "max_rounds": 3
+      }
+    ],
+    "can_undo": false
+  }
+}

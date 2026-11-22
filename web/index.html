@@ -79,6 +79,16 @@ button:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
 .btn.soft { background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--line-2); }
 .btn.honey { background: var(--honey); color: #22201a; }
 .strip { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 8px 8px 16px; }
+.workflow-progress { padding:14px 18px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.workflow-stages { display:flex; flex-wrap:wrap; gap:8px; }
+.workflow-stage { padding:7px 12px; border-radius:9px; background:var(--sunken); color:var(--muted); font-size:13px; }
+.workflow-stage.current { background:#e8efff; color:#345bc4; box-shadow:inset 0 0 0 1px #345bc4; font-weight:700; }
+.workflow-stage.visited { color:var(--ink); }
+.workflow-note { font-size:12px; color:var(--muted); }
+.pm-summary { width:100%; border-top:1px solid var(--line-2); padding-top:10px; font-size:13px; }
+.pm-summary summary { cursor:pointer; color:var(--ink); font-weight:700; }
+.pm-summary-body { max-height:440px; overflow:auto; padding:10px 4px; line-height:1.65; }
+.pm-summary-body ul { padding-left:20px; }
 .narr { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink-2); flex: 1; min-width: 220px; }
 .narr > i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); flex: none; }
 .narr.on > i { background: var(--honey); animation: blink 1s infinite; }
@@ -111,11 +121,12 @@ button:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
 
 /* 판 */
 .tlwrap { overflow-x: auto; }
-.tl { position: relative; min-width: 820px; }
+.tl { position: relative; --n: 7; min-width: calc(var(--n) * 96px + 240px); }
 .row { display: grid; grid-template-columns: 132px minmax(0, 1fr) 96px; gap: 10px; align-items: center; }
-.days { position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); text-align: center; padding-bottom: 8px; }
+.days { position: relative; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); text-align: center; padding-bottom: 8px; }
 .days .w2 { color: var(--brick); }
 .colh { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+.tl .row > :first-child { position: sticky; left: 0; z-index: 6; background: var(--surface); align-self: stretch; display: flex; align-items: center; }  /* 가로로 넘겨도 이름은 남는다 */
 .who { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .stack { position: relative; width: 38px; height: 34px; flex: none; }
 .stack .person { position: absolute; left: 0; top: 2px; }
@@ -132,12 +143,12 @@ button:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
 .lane.dim { opacity: .35; }
 .lane.drop-ok { background: var(--surface-2); }
 .lane.drop-hover { background: var(--honey-soft); box-shadow: inset 0 0 0 2px var(--honey); }
-.track { position: relative; height: 80px; background: linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / calc(100% / 7) 100%; border-radius: 8px; }
-.w2zone { position: absolute; top: 0; bottom: 0; left: calc(500% / 7); right: 0; background: repeating-linear-gradient(135deg, var(--brick-soft) 0 6px, transparent 6px 12px); opacity: .5; border-radius: 0 8px 8px 0; }
-.capline { position: absolute; top: -10px; bottom: -10px; left: calc(500% / 7 - 1px); width: 2.5px; background: var(--ink); opacity: .6; border-radius: 2px; z-index: 1; }
+.track { position: relative; height: 80px; background: linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / calc(100% / var(--n)) 100%; border-radius: 8px; }
+.w2zone { position: absolute; top: 0; bottom: 0; left: calc(500% / var(--n)); right: 0; background: repeating-linear-gradient(135deg, var(--brick-soft) 0 6px, transparent 6px 12px); opacity: .5; border-radius: 0 8px 8px 0; }
+.capline { position: absolute; top: -10px; bottom: -10px; left: calc(500% / var(--n) - 1px); width: 2.5px; background: var(--ink); opacity: .6; border-radius: 2px; z-index: 1; }
 .nowline { position: absolute; top: -18px; bottom: 0; width: 2px; background: var(--honey); z-index: 4; transition: left .6s; pointer-events: none; }
 .nowline span { position: absolute; top: 0; left: 4px; font-family: var(--mono); font-size: 10.5px; color: var(--honey-ink); white-space: nowrap; background: var(--surface); padding: 0 3px; border-radius: 4px; }
-.bar { position: absolute; top: 9px; height: 62px; left: calc(var(--s) * 100% / 7 + 2px); width: calc(var(--d) * 100% / 7 - 4px);
+.bar { position: absolute; top: 9px; height: 62px; left: calc(var(--s) * 100% / var(--n) + 2px); width: calc(var(--d) * 100% / var(--n) - 4px);
   border-radius: 11px; background: var(--surface); border: 1.5px solid var(--line-2); padding: 6px 10px; overflow: hidden; z-index: 2;
   display: flex; flex-direction: column; justify-content: center; font-size: 14px; font-weight: 600; line-height: 1.3; text-align: left; gap: 4px;
   transition: left .5s var(--ease), width .5s var(--ease), border-color .25s, background .25s, opacity .25s, transform .2s var(--ease), box-shadow .2s; }
@@ -222,6 +233,17 @@ button:focus-visible { outline: 3px solid var(--honey); outline-offset: 2px; }
 .msg.hive .line { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); }
 .msg.pm { justify-content: flex-end; }
 .msg.pm .line { background: var(--ink); color: var(--on-ink); border-radius: 12px 12px 4px 12px; padding: 5px 10px; font-size: 12.5px; }
+.msg .body { flex: 1; }
+.msg .speech { padding: 10px 12px; border: 1px solid var(--line); background: var(--surface); border-radius: 3px 14px 14px 14px; font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
+.msg.hive .speech { background: var(--surface-2); color: var(--ink-2); font-size: 12px; border-style: dashed; }
+.msg .chat-meta { display: flex; flex-wrap: wrap; gap: 7px; color: var(--muted); font-size: 10.5px; margin: 3px 0; }
+.msg .chat-action { color: var(--honey-ink); font-weight: 600; }
+.msg .chat-detail { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+.msg .chat-detail summary { cursor: pointer; font-size: 11px; color: var(--muted); padding: 4px 0; }
+.msg .chat-detail .chat-section { border-left: 2px solid var(--line); padding: 4px 9px; margin: 7px 0; overflow-wrap: anywhere; }
+.msg .chat-detail b { display: block; font-size: 11px; margin-bottom: 3px; }
+.msg .chat-detail p { margin: 4px 0; white-space: pre-wrap; }
+.msg .chat-detail pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 10px; color: var(--muted); max-height: 220px; overflow: auto; }
 
 /* Handoffs */
 .hlist { display: flex; flex-direction: column; gap: 5px; }
@@ -277,6 +299,7 @@ details.more > div { margin-top: 8px; }
 </head>
 <body>
 <div class="app" id="app"></div>
+<script src="conversation.js"></script>
 <script>
 (async function () {
   "use strict";
@@ -357,28 +380,8 @@ details.more > div { margin-top: 8px; }
   function fresh() {
     ORDER_I = 0;
     return {
-      tab: "board", side: "log", focus: null, phase: "mon", now: 2, pref: "fast", granted: [], filter: "all", seen: 3,
-      tasks: {
-        draw: T("mia", "캐릭터 그리기", 0, 3, "캐릭터 그림"), enemy: T("mia", "적 캐릭터 다듬기", 3, 2, "캐릭터 그림"),
-        bg: T("ivy", "배경 그리기", 0, 2, "배경"),
-        menu: T("leo", "메뉴 화면 연결", 0, 1.5, "화면 코드", { kind: "done" }), save: T("leo", "저장 기능", 1.5, 1.5, "저장"), code: T("leo", "캐릭터 넣기", 3, 1.5, "캐릭터 코드"),
-        battle: T("sam", "전투 기능", 0, 3, "전투 코드"), bugs: T("sam", "버그 고치기", 3, 2, "버그"),
-        build: T("ben", "빌드 정리", 0, 1, "빌드", { kind: "done" }), tools: T("ben", "툴 정리", 1, 1, "빌드"),
-        tidy: T("zoe", "테스트 정리", 0, 1, "테스트", { kind: "done" }), mtest: T("zoe", "메뉴 테스트", 1.5, 1, "테스트"), btest: T("zoe", "전투 테스트", 3, 1.5, "테스트"), ctest: T("zoe", "캐릭터 테스트", 4.5, .5, "테스트")
-      },
-      hand: {
-        h1: H("draw", "code", "캐릭터 그림", "캐릭터 그림 파일", 3, { hist: [hev("월 09:00", "hive", null, "계획의 순서에서 생김 · 약속 수 저녁")] }),
-        h2: H("code", "ctest", "캐릭터 코드", "게임에 들어간 캐릭터 빌드", 4.5, { hist: [hev("월 09:00", "hive", null, "계획의 순서에서 생김 · 약속 금 오전")] }),
-        h3: H("battle", "btest", "전투 기능", "전투 기능 빌드", 3, { hist: [hev("월 09:00", "hive", null, "계획의 순서에서 생김 · 약속 수 저녁")] }),
-        h4: H("menu", "mtest", "메뉴 화면", "메뉴 화면 빌드", 1.5, { done: true, hist: [hev("월 09:00", "hive", null, "계획의 순서에서 생김"), hev("화 12:12", "proxy", "zoe", "받음 확인 → Delivered")] })
-      },
-      recs: [
-        { t: "월 09:00", src: "작업", who: "mia", text: "캐릭터 그리기 시작 · 3일", old: true },
-        { t: "화 12:10", src: "메신저", who: "leo", text: "메뉴 화면 연결 넘김", old: true },
-        { t: "화 18:20", src: "저장소", who: "mia", text: "무기_v2.psd 다시 올림", old: true }
-      ],
-      confirms: [], log: [], asks: [], resolved: [], msgs: 0, decisions: 0, history: [],
-      narr: "시연 버튼으로 새 기록을 받아 보세요 · 막대나 화살표를 누르면 자세히"
+      tab: "board", side: "log", focus: null, phase: "", now: 0, pref: "fast", granted: [], filter: "all", seen: SV.recs.length,
+      tasks: {}, hand: {}, recs: [], confirms: [], log: [], asks: [], resolved: [], msgs: 0, decisions: 0, history: [], narr: ""   /* 내용은 서버에서 온다 (adopt) */
     };
   }
   var S = fresh();
@@ -386,9 +389,12 @@ details.more > div { margin-top: 8px; }
   function adopt(sv, logUpTo) {
     S.tasks = sv.tasks; S.hand = sv.hand; S.recs = sv.recs; S.confirms = sv.confirms; S.pending = sv.pending_confirms;
     S.log = logUpTo == null ? sv.log : sv.log.slice(0, logUpTo);
-    S.asks = sv.asks; S.resolved = sv.resolved; S.granted = sv.granted; S.pref = sv.pref; S.cards = sv.cards; S.maxRounds = sv.max_rounds;
+    S.asks = sv.asks; S.resolved = sv.resolved; S.granted = sv.granted; S.pref = sv.pref; S.cards = sv.cards; S.maxRounds = sv.max_rounds; S.nowLabel = sv.now_label; S.feedLabel = sv.feed_label;
+    S.negotiations = sv.negotiations || [];
+    S.workflowProgress = sv.workflow_progress || {}; S.demoStep = sv.demo_step || null;
+    S.capacities = sv.capacities || {}; S.fairness = sv.fairness || {};
     S.phase = sv.phase; S.now = sv.now; S.narr = sv.narr; S.msgs = sv.stats.msgs; S.decisions = sv.stats.decisions;
-    S.history = sv.can_undo ? [1] : []; S.warnings = sv.gate.warnings; S.deadline = sv.deadline_label;
+    S.history = sv.can_undo ? [1] : []; S.warnings = (sv.gate.violations || []).concat(sv.gate.warnings || []); S.deadline = sv.deadline_label;
     if (S.focus && !(S.focus.type === "hand" ? S.hand[S.focus.id] : S.tasks[S.focus.id])) S.focus = null;
   }
   adopt(SV);
@@ -455,8 +461,12 @@ details.more > div { margin-top: 8px; }
     '<button type="button" role="tab" data-tab="in"><span class="k in">입력</span>기록과 규칙<span id="b-in"></span></button>' +
     '<button type="button" role="tab" data-tab="board"><span class="k sys">시스템</span>판<span id="b-board"></span></button>' +
     '<button type="button" role="tab" data-tab="out"><span class="k out">출력</span>Handoffs<span id="b-out"></span></button></div>' +
-    '<span class="grow"></span><span class="now" id="nowtxt"></span><div class="ms">' + IC.flag + ' ' + esc(SV.deadline_label) + '</div>' +
+    '<span class="grow"></span><select id="demo" aria-label="데모 고르기" style="font:inherit;font-size:12.5px;padding:6px 8px;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);max-width:230px">' +
+      SV.demo.all.map(function (d) { var info = (SV.demo.catalog || []).filter(function (x) { return x.id === d; })[0]; return '<option value="' + d + '"' + (d === SV.demo.id ? " selected" : "") + ">" + esc(info ? info.title : d) + "</option>"; }).join("") + "</select>" +
+    '<a class="btn soft" href="/scenario.html?demo=' + encodeURIComponent(SV.demo.id) + '" target="_blank" rel="noopener">시나리오 설명</a>' +
+    '<span class="now" id="nowtxt"></span><div class="ms">' + IC.flag + ' ' + esc(SV.deadline_label) + '</div>' +
     '<button type="button" class="btn soft" id="undo">' + IC.undo + '되돌리기</button><button type="button" class="btn soft" id="reset">' + IC.reset + "처음부터</button></header>" +
+    '<section class="panel workflow-progress" id="workflow-progress" aria-live="polite"></section>' +
     '<div class="panel strip"><div class="narr" id="narr"><i></i><span></span></div><button type="button" class="btn soft" id="goask" hidden>PM 확인 보기</button><button type="button" class="btn soft" id="skip" hidden>' + IC.skip + '건너뛰기</button><button type="button" class="btn honey" id="feed"></button></div>' +
     '<div id="scr-in" class="screen"></div>' +
     '<div id="scr-board" class="screen"><section class="panel pn"><div class="ph"><h2>이번 주</h2><small>한 줄 = 한 사람 · 한 칸 = 하루 · 화살표 = Handoff · 막대나 화살표를 누르면 자세히</small></div>' +
@@ -467,7 +477,7 @@ details.more > div { margin-top: 8px; }
     '<div id="scr-out" class="screen"></div>';
 
   var tl = document.getElementById("tl");
-  tl.innerHTML = '<div class="row"><span class="colh">사람</span><div class="days" id="days">' + DAY.map(function (d) { return "<span>" + d + "</span>"; }).join("") + '<span class="w2">2주 월</span><span class="w2">2주 화</span></div><span class="colh" id="anshead">남은 여유</span></div>' +
+  tl.innerHTML = '<div class="row"><span class="colh">사람</span><div class="days" id="days"></div><span class="colh" id="anshead">남은 여유</span></div>' +
     PEOPLE.map(function (p) {
       return '<div class="row lane" id="lane-' + p.id + '" data-lane="' + p.id + '"><div class="who"><span class="stack">' + person(p.id) + proxy(p.id) + '</span><div class="who-t"><div class="who-n">' + p.name + '</div><div class="who-r">' + p.role + ' <span class="ld" id="ld-' + p.id + '"></span></div></div></div>' +
         '<div class="track" id="tr-' + p.id + '"><div class="w2zone"></div><div class="capline"></div></div><div class="ans" id="ans-' + p.id + '"></div></div>';
@@ -483,7 +493,30 @@ details.more > div { margin-top: 8px; }
     Object.keys(S.hand).forEach(function (k) { var h = S.hand[k]; if (h.from === id) r[h.to] = 1; if (h.to === id) r[h.from] = 1; });
     return r;
   }
+  /* 판의 가로 길이: 가장 늦게 끝나는 일까지. 기본은 7일(1주차 + 2주 월·화), 길어지면 칸을 늘리고 가로로 스크롤 */
+  var SPAN = 0;
+  function paintSpan() {
+    var end = 7;
+    Object.keys(S.tasks).forEach(function (id) { var t = S.tasks[id]; if (!t.cut) end = Math.max(end, Math.ceil(t.s + t.d - 1e-9)); });
+    if (end === SPAN) return;
+    SPAN = end;
+    tl.style.setProperty("--n", SPAN);
+    var h = "";
+    for (var k = 0; k < SPAN; k++) h += k < 5 ? "<span>" + DAY[k] + "</span>" : '<span class="w2">' + (Math.floor(k / 5) + 1) + "주 " + DAY[k % 5] + "</span>";
+    var dEl = document.getElementById("days"); dEl.innerHTML = h; dEl.appendChild(nowEl);
+  }
   function paintBars() {
+    paintSpan();
+    document.querySelectorAll('.leave-window').forEach(function(el){el.remove();});
+    (S.cards || []).forEach(function(card){
+      if (!card.policy || !card.policy.approved) return;
+      (card.policy.unavailable || []).forEach(function(w){
+        var tr=document.getElementById('tr-'+card.who); if(!tr)return;
+        var el=document.createElement('div');el.className='leave-window';el.textContent='휴가';
+        el.style.cssText='position:absolute;top:0;bottom:0;left:'+(w.start/SPAN*100)+'%;width:'+((w.end-w.start)/SPAN*100)+'%;background:repeating-linear-gradient(135deg,rgba(180,100,40,.12),rgba(180,100,40,.12) 7px,transparent 7px,transparent 14px);color:var(--muted);font-size:11px;padding:3px;pointer-events:none';
+        tr.prepend(el);
+      });
+    });
     var rel = HOVER ? related(HOVER) : null;
     Object.keys(bars).forEach(function (id) { if (!S.tasks[id]) { bars[id].remove(); delete bars[id]; } });
     Object.keys(S.tasks).forEach(function (id) {
@@ -501,9 +534,9 @@ details.more > div { margin-top: 8px; }
       el.innerHTML = late + '<span class="n">' + esc(t.title) + '</span><span class="m">' + num(t.d) + "일" + (t.d > t.plan ? " · +" + num(t.d - t.plan) : "") + (t.kind === "prop" ? " · 확인 대기" : "") + (t.got ? " · 받은 일" : "") + "</span>";
       el.setAttribute("aria-label", t.title + " " + num(t.d) + "일, " + P[t.who].name);
     });
-    PEOPLE.forEach(function (p) { var L = loadOf(p.id), el = document.getElementById("ld-" + p.id); el.textContent = num(L) + "/5"; el.className = "ld" + (L > 5 ? " over" : ""); });
-    nowEl.style.left = (S.now / 7 * 100) + "%";
-    document.getElementById("nowtxt").textContent = "1주차 · " + (S.now < 3 ? "수요일 오전" : "목요일 오전");
+    PEOPLE.forEach(function (p) { var L = loadOf(p.id), el = document.getElementById("ld-" + p.id); var cap = S.capacities[p.id] == null ? 5 : S.capacities[p.id]; el.textContent = num(L) + "/" + num(cap); el.title = "최근 누적 + 이번 주 배정: " + ((S.fairness.totals || {})[p.id] || L) + "일"; el.className = "ld" + (L > cap ? " over" : ""); });
+    nowEl.style.left = (S.now / SPAN * 100) + "%";
+    document.getElementById("nowtxt").textContent = S.nowLabel;
     paintAnswers();
   }
   function paintAnswers() {
@@ -515,7 +548,7 @@ details.more > div { margin-top: 8px; }
       var lane = document.getElementById("lane-" + p.id), cell = document.getElementById("ans-" + p.id);
       lane.classList.remove("dim", "drop-ok"); lane.removeAttribute("data-drop");
       if (!t) {
-        var free = 5 - loadOf(p.id);
+        var free = (S.capacities[p.id] == null ? 5 : S.capacities[p.id]) - loadOf(p.id);
         cell.innerHTML = '<span class="idle' + (free < 0 ? " over" : "") + '">' + (free >= 0 ? "여유 " + num(free) + "일" : num(-free) + "일 넘침") + "</span>";
         return;
       }
@@ -582,23 +615,60 @@ details.more > div { margin-top: 8px; }
   /* ── 오른쪽 칸 (판): 오간 말 / 자세히 ── */
   function F(t) { return { t: t }; } function N(t) { return { t: t, n: true }; } function TK(t) { return { t: t, tk: true }; }
   function msgHTML(m) {
-    if (m.k === "hive") return '<div class="msg hive">' + hiveI() + '<div class="body"><div class="hd"><b>Hive</b></div><div class="line">' + esc(m.text) + "</div></div></div>";
-    if (m.k === "person") return '<div class="msg">' + person(m.who) + '<div class="body"><div class="hd"><b>' + P[m.who].name + '</b><span style="color:var(--muted)">· 사람</span></div><div class="line">' + esc(m.text) + "</div></div></div>";
-    if (m.k === "pm") return '<div class="msg pm"><div class="line">' + IC.hand + " " + esc(m.text) + "</div></div>";
-    return '<div class="msg">' + proxy(m.from) + '<div class="body"><div class="hd"><span class="nm-proxy">' + P[m.from].name + "의 프록시</span>" + (m.to ? IC.right + proxy(m.to, true) + '<span class="nm-proxy">' + P[m.to].name + "</span>" : "") + "</div>" +
-      '<div class="line"><span class="act">' + svgI(ACTS[m.a]) + m.a + "</span>" + m.f.map(function (f) { return '<span class="fv' + (f.n ? " n" : "") + (f.tk ? " tk" : "") + '">' + esc(f.t) + "</span>"; }).join("") + "</div>" +
-      (m.basis || m.pref ? '<div class="line">' + (m.basis ? '<span class="ev">' + IC.db + esc(m.basis) + "</span>" : "") + (m.pref ? '<span class="ev">' + IC.pencil + esc(m.pref) + "</span>" : "") + "</div>" : "") +
-      (m.say ? '<div class="q">' + esc(m.say) + "</div>" : "") + "</div></div>";
+    function name(id) { return P[id] ? P[id].name : id === 'hive' ? 'Hive' : (id || '전체'); }
+    if (m.k === 'pm') return '<div class="msg pm"><div class="line">'+IC.hand+' '+esc(m.text)+'</div></div>';
+    var view=PlanBeeConversation.present(m), isHive=m.k==='hive' || m.from==='hive';
+    var messageKey=m.id || [m.t,m.from,m.a].join(':');
+    var sender=m.k==='person'?m.who:m.from;
+    var icon=isHive?hiveI():P[sender]?(m.k==='person'?person(sender):proxy(sender)):hiveI();
+    var heading=isHive?'Hive':name(sender)+(m.k==='person'?'':'의 프록시');
+    var target=m.to?' → '+name(m.to):'';
+    var metadata=[view.round?view.round+'라운드':'',view.version?'제안 '+view.version:'',m.t||''].filter(Boolean);
+    var parts=(view.plan || {}).allocations || [], changes=(view.plan || {}).schedule_changes || [];
+    var detail='';
+    if (parts.length) detail+='<div class="chat-section"><b>제안한 업무 분담</b>'+parts.map(function (a) {
+      return '<p>'+esc(name(a.who)+' · '+a.title+' · '+a.days+'일')+'</p>'+ (a.what?'<div class="muted">'+esc(a.what)+'</div>':'');
+    }).join('')+'</div>';
+    if (changes.length) detail+='<div class="chat-section"><b>함께 바꾸는 일정·협업</b>'+changes.map(function (c) {
+      return '<p>'+esc(c.task+(c.start!=null?' · 시작 '+c.start+'일':'')+(c.who?' · 담당 '+name(c.who):'')+(c.days!=null?' · 소요 '+c.days+'일':''))+'</p>'+
+        (c.support || []).map(function (h) { return '<p>'+esc(name(h.who)+' · 지원 '+h.days+'일 · '+h.what)+'</p>'; }).join('')+
+        (c.basis?'<p>'+esc(c.basis)+'</p>':'');
+    }).join('')+'</div>';
+    if (view.reason && view.reason!==view.text) detail+='<div class="chat-section"><b>전체 사유</b><p>'+esc(view.reason)+'</p></div>';
+    if (view.notes.length) detail+='<div class="chat-section"><b>판단 근거</b>'+view.notes.map(function(n){return '<p>'+esc(n)+'</p>';}).join('')+'</div>';
+    detail+='<details data-message-detail="'+esc(messageKey+'-raw')+'"><summary>기록 원문 보기</summary><pre>'+esc(view.raw)+'</pre></details>';
+    return '<div class="msg'+(isHive?' hive':'')+'">'+icon+'<div class="body"><div class="hd"><b>'+esc(heading)+'</b><span>'+esc(target)+'</span></div>'+
+      '<div class="chat-meta"><span class="chat-action">'+esc(view.action || (isHive?'일정 확인':'응답'))+'</span><span>'+esc(metadata.join(' · '))+'</span></div>'+
+      '<div class="speech">'+esc(view.text)+'</div><details class="chat-detail" data-message-detail="'+esc(messageKey)+'"><summary>제안과 판단 근거 보기'+(parts.length?' · 업무 '+parts.length+'개':'')+'</summary>'+detail+'</details></div></div>';
+  }
+  function discussionHTML() {
+    var labels={agreement:'합의 완료',max_llm_calls:'전체 모델 호출 한도 도달',max_rounds:'라운드 한도 도달',no_valid_alternative:'검토한 대안에서 미합의',model_unavailable:'모델 호출 불가',model_output_invalid:'모델 응답 재확인 필요'};
+    return (S.negotiations || []).map(function(n){
+      return (n.discussion_archive || []).concat(n.discussion?[n.discussion]:[]).map(function(d,index){
+        var status=labels[d.termination] || (d.termination?'확정 전 검증 미통과':'협상 중');
+        return '<details class="hint chat-archive" data-message-detail="archive-'+n.id+'-'+index+'"><summary>협상 #'+n.id+' · '+esc(status)+' · 제안 '+d.version+'</summary><div class="convo">'+
+          (d.history || []).map(function(e,i){
+            var meta=e.round+'라운드 · v'+e.version+' · '+(e.phase==='deadline'?'마감 복구':'공정성 협상')+' · '+(e.proposal_scope==='whole_task'?'원 Task 전체 양도·재분해':'독립 조각 분담');
+            return msgHTML({id:'archive-'+n.id+'-'+index+'-'+i,k:'proxy',from:e.requester,to:e.recipient,a:e.response,round:e.round,
+              f:[{t:meta},{t:e.reason},{t:JSON.stringify({allocations:e.proposal || [],schedule_changes:e.schedule_changes || []})}],
+              pref:Object.keys(e.agreement || {}).length?'현재 동의: '+Object.keys(e.agreement).map(function(id){return P[id]?P[id].name:id;}).join(', '):''});
+          }).join('')+'</div></details>';
+      }).join('');
+    }).join('');
   }
   function paintSide() {
     var el = document.getElementById("sidep");
+    var expanded=Array.from(el.querySelectorAll('[data-message-detail][open]')).map(function(d){return d.dataset.messageDetail;});
+    var oldConvo=document.getElementById('convo'),oldScroll=oldConvo?oldConvo.scrollTop:0;
+    var follow=!oldConvo || oldConvo.scrollHeight-oldConvo.clientHeight-oldScroll<70;
     var seg = '<div class="seg" role="group" aria-label="오른쪽 칸"><button type="button" data-side="log" aria-pressed="' + (S.side === "log") + '">오간 말 ' + S.log.length + '</button><button type="button" data-side="detail" aria-pressed="' + (S.side === "detail") + '">자세히</button></div>';
     var body;
     if (S.side === "log") {
-      body = '<div class="convo" id="convo" aria-live="polite">' + (S.log.length ? S.log.map(msgHTML).join("") : '<div class="hint">아직 오간 말이 없어요. 시연 버튼을 누르면 프록시들이 움직입니다.</div>') + "</div>";
+      body = discussionHTML() + '<div class="convo" id="convo" aria-live="polite">' + (S.log.length ? S.log.map(msgHTML).join("") : '<div class="hint">아직 오간 말이 없어요. 시연 버튼을 누르면 프록시들이 움직입니다.</div>') + "</div>";
     } else body = focusHTML();
     el.innerHTML = seg + body;
-    var c = document.getElementById("convo"); if (c) c.scrollTop = c.scrollHeight;
+    el.querySelectorAll('[data-message-detail]').forEach(function(d){if(expanded.indexOf(d.dataset.messageDetail)>=0)d.open=true;});
+    var c = document.getElementById("convo"); if (c) c.scrollTop = follow?c.scrollHeight:oldScroll;
   }
   function focusHTML() {
     var f = S.focus;
@@ -612,6 +682,7 @@ details.more > div { margin-top: 8px; }
       '<div class="flow1">' + person(t.who) + "<b>" + P[t.who].name + "</b>" + '<span style="color:var(--muted);font-size:12px">· ' + t.role + "</span></div>" +
       '<dl class="dl"><dt>기간</dt><dd><span class="tm">' + when(t.s + .0001).replace(" 저녁", "").replace(" 오전", "") + " ~ " + when(t.s + t.d) + "</span></dd>" +
       '<dt>견적</dt><dd><span class="tm">' + num(t.d) + '일</span><span class="why">' + proxy(t.who, true) + P[t.who].name + "의 프록시</span>" + '<span class="why">' + IC.db + esc(tagLine(t.who, t.tag)) + "</span></dd>" +
+      (t.context && Object.keys(t.context).length ? "<dt>업무 맥락</dt><dd>" + esc(JSON.stringify(t.context, null, 2)) + "</dd>" : "") +
       (ins.length ? "<dt>받는 것</dt><dd>" + links(ins) + "</dd>" : "") + (outs.length ? "<dt>넘기는 것</dt><dd>" + links(outs) + "</dd>" : "") + "</dl>" +
       (movable(t) ? '<div class="acts"><button type="button" class="btn primary" data-hold="' + f.id + '">' + IC.hand + "옮기기</button></div>" : "") + "</div>";
   }
@@ -630,13 +701,15 @@ details.more > div { margin-top: 8px; }
     }).join("");
     var cards = S.cards.map(function (c) {
       return '<div class="rule">' + person(c.who, true) + proxy(c.who, true) + '<span style="flex:1;min-width:0"><b>' + P[c.who].name + "</b> · " + (c.auto_days ? num(c.auto_days) + "일까지 알아서" : "항상 나에게 물음") +
-        (c.gives_help ? "" : " · 도움 안 줌") + (c.note ? '<br><span style="color:var(--muted);font-size:12px">' + esc(c.note) + "</span>" : "") + "</span>" +
+        (c.gives_help ? "" : " · 도움 안 줌") + (c.wait_days ? " · " + num(c.wait_days) + "일까지 늦게 받아도 됨" : "") + (c.model ? " · " + esc(c.model) : "") + (c.note ? '<br><span style="color:var(--muted);font-size:12px">' + esc(c.note) + "</span>" : "") + "</span>" +
         '<button type="button" class="drop soft" data-card="' + c.who + '" data-delta="-0.5" aria-label="' + P[c.who].name + ' 한도 줄이기"' + (c.auto_days <= 0 ? " disabled" : "") + ">−½</button>" +
         '<button type="button" class="drop soft" style="margin-left:0" data-card="' + c.who + '" data-delta="0.5" aria-label="' + P[c.who].name + ' 한도 늘리기"' + (c.auto_days >= 5 ? " disabled" : "") + ">+½</button></div>";
     }).join("");
     var autoSeg = '<div class="seg" role="group" aria-label="팀원 확인 방식"><button type="button" data-auto="1" aria-pressed="' + AUTO + '">시연: 자동으로 확인</button><button type="button" data-auto="0" aria-pressed="' + !AUTO + '">직접 누르기</button></div>';
     var rules = '<div class="rule">' + IC.lock + "제출일 11/20 고정</div>" + '<div class="rule">' + IC.lock + "한 사람 한 주 5일까지</div>" + '<div class="rule">' + IC.lock + "범위 줄이기 · 미루기는 PM만</div>" + '<div class="rule">' + IC.lock + "프록시끼리 " + S.maxRounds + "라운드까지 · 안 풀리면 PM에게</div>" +
-      '<div class="rule" style="flex-direction:column;align-items:stretch;gap:6px"><span style="display:flex;gap:8px;align-items:center">' + IC.pencil + '받을 사람이 여럿이면</span><div class="seg" role="group" aria-label="받을 사람 고르는 기준"><button type="button" data-pref="fast" aria-pressed="' + (S.pref === "fast") + '">빨리 끝나는 쪽</button><button type="button" data-pref="learn" aria-pressed="' + (S.pref === "learn") + '">배우고 싶은 사람</button></div></div>' +
+      '<div class="rule" style="flex-direction:column;align-items:stretch;gap:6px"><span style="display:flex;gap:8px;align-items:center">' + IC.pencil + '초기 요청 참고 기준 · 최종 배분은 당사자 합의</span><div class="seg" role="group" aria-label="받을 사람 고르는 기준"><button type="button" data-pref="fast" aria-pressed="' + (S.pref === "fast") + '">빨리 끝나는 쪽</button><button type="button" data-pref="learn" aria-pressed="' + (S.pref === "learn") + '">배우고 싶은 사람</button><button type="button" data-pref="fair" aria-pressed="' + (S.pref === "fair") + '">누적 부담 균형</button></div></div>' +
+      '<div class="rule"><label for="round-limit">최대 협상 라운드</label><input id="round-limit" type="number" min="1" max="50" value="' + S.maxRounds + '" style="width:64px;font:inherit"><button type="button" class="btn soft" data-rounds="1">적용</button></div>' +
+      (S.fairness.range != null ? '<div class="rule">최근 누적 + 이번 주 배정의 최대·최소 차이: ' + num(S.fairness.range) + "일</div>" : "") +
       S.granted.map(function (g) { return '<div class="rule granted">' + IC.key + esc(g) + "</div>"; }).join("");
     document.getElementById("scr-in").innerHTML =
       '<section class="panel pn"><div class="ph"><h2>들어온 기록</h2><small>팀 기록은 자동 · PM 결정도 여기 남음</small></div><div class="recs">' + recs + "</div></section>" +
@@ -686,15 +759,44 @@ details.more > div { margin-top: 8px; }
       "<dt>예상</dt><dd>" + pv + '<span class="why">' + proxy(a, true) + P[a].name + "의 프록시 계산</span>" + (h.basis ? '<span class="why">' + IC.db + esc(h.basis) + "</span>" : "") + "</dd>" +
       (up.length ? "<dt>앞 단계</dt><dd>" + links(up) + "</dd>" : "") + (down.length ? "<dt>늦으면</dt><dd>" + links(down) + "</dd>" : "") + "</dl>";
     if (ask) x += askHTML(ask);
-    else if (st === "risk" && !RUN) x += '<div class="acts"><button type="button" class="btn primary" data-reagree="' + id + '">' + when(pred(h)) + "로 약속 다시 정하기</button>" + (movable(A) ? '<button type="button" class="btn soft" data-hold="' + h.from + '">' + IC.hand + "주는 일 옮기기</button>" : "") + "</div>";
+    else if (st === "risk" && !RUN) x += '<div class="acts"><button type="button" class="btn primary" data-reagree="' + id + '">' + when(pred(h)) + "으로 약속 다시 정하기</button>" + (movable(A) ? '<button type="button" class="btn soft" data-hold="' + h.from + '">' + IC.hand + "주는 일 옮기기</button>" : "") + "</div>";
     if (res) x += '<div class="done-card"><b>해결됨</b><span>' + esc(res.body) + '</span><span class="k">' + esc(res.why) + "</span></div>";
     x += '<details class="more"><summary>바뀐 기록 ' + h.hist.length + '</summary><div class="hist">' + h.hist.map(function (e) { return '<div class="he"><span>' + histI(e) + '</span><span class="tm">' + esc(e.t) + "</span><span>" + esc(e.text) + "</span></div>"; }).join("") + "</div></details>";
     x += '<details class="more"><summary>오간 말 ' + msgs.length + '</summary><div class="convo" style="max-height:300px">' + (msgs.length ? msgs.map(msgHTML).join("") : '<div class="hint">아직 없음</div>') + "</div></details></div>";
     return x;
   }
+  function pmSummaryHTML(s) {
+    if (!s) return '';
+    function who(id) { return P[id] ? P[id].name : id === 'hive' ? 'Hive' : id; }
+    function list(items) { return '<ul>'+items.map(function (x) { return '<li>'+esc(x)+'</li>'; }).join('')+'</ul>'; }
+    var parts=(s.proposal || {}).allocations || [];
+    return '<details class="pm-summary"><summary>현재 상황 summary 보기</summary><div class="pm-summary-body">'+
+      '<b>'+esc(s.title)+'</b><p>담당 '+esc(s.owner || '미지정')+' · '+esc(s.phase)+' · '+s.round+'/'+s.max_rounds+'라운드 · '+esc(s.termination)+'</p>'+
+      '<b>최초 문제</b>'+list(s.trigger || [])+'<b>전달 사유</b>'+list(s.reasons || [])+
+      '<b>마지막 제안 · v'+esc((s.proposal || {}).version || '-')+'</b>'+list(parts.map(function (a) { return who(a.who)+' · '+a.title+' · '+a.days+'일 / 기준 분량 '+a.effort+'일 · '+a.what; }))+
+      list(((s.proposal || {}).schedule_changes || []).map(function (c) { return c.task+
+        (c.start != null ? ' · 시작 → '+c.start+'일' : '')+(c.who ? ' · 담당 → '+who(c.who) : '')+
+        (c.days != null ? ' · 소요 → '+c.days+'일' : '')+(c.support || []).map(function (p) { return ' · 지원 '+who(p.who)+' '+p.days+'일: '+p.what; }).join('')+(c.basis ? ' · 근거 '+c.basis : ''); }))+
+      '<b>동의 현황 · 현재 제안에 한함</b>'+list(Object.keys(s.consents || {}).map(function (id) { return who(id)+' · '+JSON.stringify(s.consents[id]); }))+
+      '<b>당사자가 공개한 조건</b>'+list(Object.keys(s.public_limits || {}).map(function (id) { return who(id)+' · 새 업무 상한 '+s.public_limits[id]+'일'; }))+
+      '<b>주요 토론·검증 이력</b>'+list((s.history || []).map(function (e) { return e.round+'라운드 v'+e.version+' · '+who(e.who)+' · '+e.response+' · '+e.reason; }))+
+      '<b>일정 영향</b>'+list((s.impacts || []).map(function (h) { return h.title+' · 약속 '+h.deadline+' / 예상 '+h.expected+(h.before ? ' / 최초 '+h.before : ''); }))+
+      '<b>남은 제약</b>'+list(((s.constraints || {}).violations || []).concat((s.constraints || {}).warnings || []).map(function (v) { return v.text; }))+
+      '<p><b>'+esc(s.disposition)+'</b></p><p>'+esc(s.next_action)+'</p>'+list((s.options || []).map(function (o) { return o.label+' · '+o.effect; }))+
+      '</div></details>';
+  }
   function askHTML(c) {
-    return '<div class="ask"><div class="ct"><span class="tag">PM 확인</span>규칙 안에서는 못 풂</div><ul>' + c.why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul>" +
-      c.grants.map(function (g, i) { return '<button type="button" class="grant" data-grant="' + i + '"><b>' + IC.key + esc(g.label) + "</b><span>" + esc(g.effect) + "</span></button>"; }).join("") + "</div>";
+    return '<div class="ask"><div class="ct"><span class="tag">PM 확인</span>협상 실패 → PM에게 전달됨 · PM 검토 대기</div><ul>' + c.why.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul>" +
+      pmSummaryHTML(c.summary) +
+      (c.run ? '<button type="button" class="btn soft" data-retry="' + c.run + '">라운드 설정 반영하고 협상 재개</button><small>한도에 도달했다면 기록과 규칙에서 먼저 늘려 주세요.</small>' : '') +
+      c.grants.map(function (g, i) { return '<button type="button" class="grant" data-grant="' + i + '"><b>' + IC.key + esc(g.label) + "</b><span>" + esc(g.effect) + "</span></button>"; }).join("") +
+      (c.grants.length ? '<div class="rej" style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-2);display:flex;flex-direction:column;gap:8px">' +
+        '<div style="font-size:12.5px;color:var(--muted)">마음에 드는 것이 없으면 거절하고 이유를 적으세요. 프록시들이 그 이유를 받아 다시 찾습니다.</div>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12.5px">' + c.grants.map(function (g, i) {
+          return '<label style="display:flex;gap:5px;align-items:center;cursor:pointer"><input type="checkbox" id="rej-' + i + '" data-rejkey="' + esc(g.key) + '" checked>' + esc(g.label.replace(/\(.*$/, "")) + "</label>"; }).join("") + "</div>" +
+        '<input type="text" id="rej-reason" placeholder="거절 이유 (예: 배포는 M4 필수라 못 미룸)" style="font:inherit;font-size:13.5px;padding:8px 10px;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink)">' +
+        '<div class="acts" style="margin:0"><button type="button" class="btn soft" data-reject="' + c.id + '">체크한 것 거절하고 다시 찾기</button></div></div>' : "") +
+      (S.hand[c.hid] && hState(S.hand[c.hid]) === "risk" ? '<div class="acts"><button type="button" class="btn soft" data-reagree="' + c.hid + '">' + (c.grants.length ? "허락 없이 " : "") + when(pred(S.hand[c.hid])) + "으로 약속 다시 정하기</button></div>" : "") + "</div>";
   }
 
   /* ── 공통 그리기 ── */
@@ -708,13 +810,31 @@ details.more > div { margin-top: 8px; }
     var openAsk = S.asks.filter(function (x) { return x.open; }).length, rk = risks(S).length;
     document.getElementById("b-out").innerHTML = openAsk ? '<span class="badge red">' + openAsk + "</span>" : (rk ? '<span class="badge">' + rk + "</span>" : "");
   }
+  var LIVE_PROGRESS = null, PLAYBACK_PROGRESS = null;
+  function progressHTML() {
+    var base = S.workflowProgress || {}, p = PLAYBACK_PROGRESS || LIVE_PROGRESS || base;
+    var current = p.current || {id:"01",key:"input",title:"입력·재견적"};
+    var demoStep = p.demo_step || S.demoStep;
+    var visited = (base.visited || []).map(function (x) { return x.key; });
+    var stages = base.stages || [{id:"01",key:"input",title:"입력·재견적"},{id:"02",key:"deadline",title:"기한 회복"},{id:"03",key:"fairness",title:"공정성 협상"}];
+    var labels = {ready:"실행 전",running:"진행 중",waiting_pm:"PM에게 전달됨 · 검토 대기",waiting_confirm:"당사자 확인 대기",done:"완료 · 마지막 단계",blocked:"제약 위반 · 중단"};
+    return '<div class="workflow-stages">' + stages.map(function (stage) {
+      return '<span class="workflow-stage ' + (current.key===stage.key ? 'current' : visited.indexOf(stage.key)>=0 ? 'visited' : '') + '" data-workflow-stage="'+stage.id+'"' + (current.key===stage.key ? ' aria-current="step"' : '') + '>'+stage.id+' '+esc(stage.title)+'</span>';
+    }).join('') + '</div><span class="workflow-note">' + esc(labels[p.status] || p.status || '실행 전') +
+      (current.key==='support' ? ' · '+esc(current.title) : '') + ' · 협상 '+(p.round || 0)+'라운드' +
+      (demoStep ? ' · 데모 시연 '+demoStep.index+'/'+demoStep.total : '') +
+      (PLAYBACK_PROGRESS ? ' · 저장된 대화 재생' : '') + '</span>' +
+      (!PLAYBACK_PROGRESS && base.pm_handoff ? '<strong class="workflow-note" role="status" style="color:var(--brick)">'+esc(base.pm_handoff.message)+'</strong>'+pmSummaryHTML(base.pm_handoff.summary) : '');
+  }
   function paintStrip() {
+    document.getElementById("workflow-progress").innerHTML = progressHTML();
     var n = document.getElementById("narr"); n.className = "narr" + (RUN ? " on" : ""); n.querySelector("span").textContent = S.narr;
     document.getElementById("skip").hidden = !RUN;
+    document.getElementById("demo").disabled = RUN;
     document.getElementById("goask").hidden = !(S.asks.some(function (x) { return x.open; }) && !(S.tab === "board" && S.side === "detail"));
     var f = document.getElementById("feed");
-    f.innerHTML = IC.play + (S.phase === "mon" ? "시연 · 수요일 기록 받기" : S.phase === "wed" ? "시연 · 목요일 기록 받기" : S.pending.length ? "팀원 확인을 기다리는 중" : S.phase === "ask" ? "PM 확인을 기다리는 중" : "시연 끝");
-    f.disabled = RUN || HOLD || !(S.phase === "mon" || S.phase === "wed");
+    f.innerHTML = IC.play + (S.feedLabel ? esc(S.feedLabel) : S.pending.length ? "팀원 확인을 기다리는 중" : S.phase === "ask" ? "PM 확인을 기다리는 중" : "시연 끝");
+    f.disabled = RUN || HOLD || !S.feedLabel;
     document.getElementById("undo").disabled = RUN || !S.history.length;
   }
   function paintAll() {
@@ -731,9 +851,17 @@ details.more > div { margin-top: 8px; }
     if (RUN) return;
     opt = opt || {};
     var sv;
-    RUN = true; paintStrip();
+    RUN = true; LIVE_PROGRESS = null; PLAYBACK_PROGRESS = null; paintStrip();
+    var polling = true, progressTimer = null;
+    function pollProgress() {
+      fetch("/workflow/progress").then(function (r) { return r.json(); }).then(function (p) {
+        if (polling && p) { LIVE_PROGRESS = p; paintStrip(); }
+      }).catch(function () {});
+    }
+    if (/advance|records|retry|confirmations|asks/.test(path)) progressTimer = setInterval(pollProgress, 600);
     try { sv = await call(method, path, body); }
-    catch (e) { RUN = false; paintAll(); return toast(e.message, true); }
+    catch (e) { polling=false; clearInterval(progressTimer); LIVE_PROGRESS=null; RUN = false; paintAll(); return toast(e.message, true); }
+    polling=false; clearInterval(progressTimer); LIVE_PROGRESS=null;
     var from = S.log.length, grown = sv.log.length > from && !opt.instant;
     HOLD = null;
     if (opt.board) { S.tab = "board"; S.side = "log"; }
@@ -745,11 +873,14 @@ details.more > div { margin-top: 8px; }
         var m = sv.log[i], who = m.k === "proxy" ? m.from : m.who;
         if (who) pulse(who, true);
         await wait(m.k === "proxy" ? 420 : 300);
+        var eventStage = ((sv.workflow_progress || {}).timeline || []).filter(function (t) { return m.id>t.message_after && m.id<=t.message_through; })[0];
+        if (eventStage) PLAYBACK_PROGRESS = {current:eventStage.stage,round:eventStage.round,status:"running"};
         S.log = sv.log.slice(0, i + 1); paintTabs(); paintStrip(); if (S.tab === "board") paintSide();
         await wait(380); if (who) pulse(who, false);
       }
       S.narr = sv.narr;
     }
+    PLAYBACK_PROGRESS=null;
     var open = S.asks.filter(function (x) { return x.open; })[0];
     if (open) { S.focus = { type: "hand", id: open.hid }; S.side = "detail"; }
     else if (opt.focus) { S.focus = opt.focus; S.side = "detail"; }
@@ -800,22 +931,39 @@ details.more > div { margin-top: 8px; }
     if (el.id === "undo") return undo();
     if (el.id === "goask") { var a = S.asks.filter(function (x) { return x.open; })[0]; if (a) { S.focus = { type: "hand", id: a.hid }; S.side = "detail"; S.tab = "board"; } return paintAll(); }
     if (el.id === "feed") { if (RUN || HOLD) return; return runFeed(); }
-    if (el.id === "reset") { if (RUN) return; PEOPLE.forEach(function (p) { pulse(p.id, false); }); toast(null); S.focus = null; return act("POST", "/reset", null, { instant: true }); }
+    if (el.id === "reset") { if (RUN) return; PEOPLE.forEach(function (p) { pulse(p.id, false); }); toast(null);
+      /* 시드를 다시 읽으면 사람 이름 · 역할도 바뀔 수 있어서, 줄 머리까지 새로 그리도록 페이지를 다시 연다 */
+      return call("POST", "/reset").then(function () { location.reload(); }).catch(function (e2) { toast(e2.message, true); }); }
     if (d.auto) { AUTO = d.auto === "1"; try { localStorage.setItem("planbee-auto", AUTO ? "1" : "0"); } catch (e2) {} return paintIn(); }
     if (d.card) {
       var cd = S.cards.filter(function (x) { return x.who === d.card; })[0];
       return call("PUT", "/people/" + d.card + "/card", { auto_days: Math.max(0, Math.min(5, cd.auto_days + (+d.delta))) })
         .then(function (sv) { adopt(sv); paintAll(); }).catch(function (e2) { toast(e2.message, true); });
     }
+    if (d.reject) {
+      var reason = (document.getElementById("rej-reason").value || "").trim();
+      var rk = Array.prototype.slice.call(document.querySelectorAll("[data-rejkey]")).filter(function (x) { return x.checked; }).map(function (x) { return x.dataset.rejkey; });
+      if (!reason) { document.getElementById("rej-reason").focus(); return toast("거절 이유를 적어 주세요", true); }
+      if (!rk.length) return toast("거절할 것을 하나 이상 체크해 주세요", true);
+      var rc = S.asks.filter(function (x) { return x.open; })[0];
+      S.side = "log";
+      return act("POST", "/asks/" + d.reject + "/reject", { reason: reason, keys: rk }, { board: true, focus: rc ? { type: "hand", id: rc.hid } : null });
+    }
     if (d.cf) return act("POST", "/confirmations/" + d.cf, { ok: true });
     if (d.rj) return act("POST", "/confirmations/" + d.rj, { ok: false });
     if (d.side) { S.side = d.side; return paintSide(); }
+    if (d.rounds) {
+      var limit = Number(document.getElementById("round-limit").value);
+      if (!Number.isInteger(limit) || limit < 1 || limit > 50) return toast("라운드는 1~50 정수로 입력하세요", true);
+      return call("PUT", "/rules/rounds", { max: limit }).then(function (result) { S.maxRounds=result.max; paintIn(); }).catch(function (err) { toast(err.message,true); });
+    }
     if (d.pref) { S.pref = d.pref; paintIn(); return call("PUT", "/rules/pref", { choice: d.pref }).catch(function (e2) { toast(e2.message, true); }); }
     if (d.filter) { S.filter = d.filter; return paintOut(); }
     if (d.focusH) { S.focus = { type: "hand", id: d.focusH }; if (S.tab === "board") S.side = "detail"; return paintAll(); }
     if (d.hold) return hold(d.hold);
     if (d.dropTo) return place(d.dropTo);
     if (d.cancel) { HOLD = null; S.narr = "그대로 둠"; return paintAll(); }
+    if (d.retry) return act("POST", "/negotiations/" + d.retry + "/retry", {auto_confirm:AUTO}, {board:true});
     if (d.reagree) return reagree(d.reagree);
     if (d.grant) return runGrant(+d.grant);
     if (d.bar) {
@@ -825,6 +973,9 @@ details.more > div { margin-top: 8px; }
     }
   });
   document.body.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest("[data-undo-toast]"); if (b) undo(); });
+  document.getElementById("demo").addEventListener("change", function (e) {
+    call("POST", "/demo/select", { demo: e.target.value }).then(function () { location.reload(); }).catch(function (err) { toast(err.message, true); });
+  });
   root.addEventListener("pointerover", function (e) {
     var b = e.target.closest && e.target.closest("[data-bar]");
     if (!b || HOLD || drag) return;
@@ -869,7 +1020,7 @@ details.more > div { margin-top: 8px; }
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && HOLD) { HOLD = null; S.narr = "내려놓음"; paintAll(); } });
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(drawArrows, 60); });
 
-  schedule(); paintAll();
+  paintAll(); /* Backend schedule includes approved leave and completion barriers. */
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawArrows);
 })();
 </script>

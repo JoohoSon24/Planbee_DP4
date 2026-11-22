@@ -1,0 +1,35 @@
+start:
+  label: 1/3 · 일정 위반 차단과 최대 라운드
+  now: 0
+  next_phase: bundle
+  narr: 합의하지 않은 변경은 적용하지 않는지 확인합니다.
+  records:
+  - who: ira
+    src: 메신저
+    text: 원장 검증의 공정한 분담을 논의합니다.
+bundle:
+  label: 2/3 · 4건 묶음 분할·맞교환
+  action: bundle
+  now: 0
+  next_phase: qa
+  narr: 원장 두 조각과 운영 맞교환을 전체 동의로 적용합니다.
+  transfers:
+  - task: ledger
+    to: june
+    amount: 1
+  - task: ledger
+    to: kai
+    amount: 1
+  - task: ops_a
+    to: olin
+  - task: ops_b
+    to: noel
+qa:
+  label: 3/3 · 두 리전 QA 일정 재검사
+  now: 1
+  next_phase: end
+  narr: 독립 회귀 기록과 전체 릴리스 기한을 검증합니다.
+  records:
+  - who: mina
+    src: 작업
+    text: 리전별 정합성 검사 입력과 경로 확인 완료

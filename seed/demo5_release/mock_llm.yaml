@@ -1,0 +1,88 @@
+reestimate:
+- match:
+    who: eun
+    contains: 반일 증가
+  answer:
+    task: qa_pack
+    days: 1.5
+    basis: 독립 실패 경로 픽스처 반일 추가
+split:
+  contract:
+    piece:
+      title: 독립 계약 검증
+      days: 2
+      tag: 계약
+      what: 정상·실패 계약 검증
+      handover: 계약 스키마와 재현 픽스처
+    keep:
+      title: 상태 전이 코어
+      days: 1
+  qa_pack:
+    piece:
+      title: 추가 실패 경로 픽스처
+      days: 0.5
+      tag: 테스트
+      what: 실패 경로 검증
+    to: downstream
+    keep:
+      title: 릴리스 회귀 코어
+      days: 1
+bid:
+  추가 실패 경로 픽스처:
+    faye:
+      days: 0.5
+discussion:
+- match:
+    who: bora
+    mode: respond
+    version: 1
+    tag: 계약
+  answer:
+    action: REJECT
+    reason: 내 설정은 계약 검증 0.75일까지만 허용합니다. 나눠 주세요.
+- match:
+    who: bora
+    mode: revise
+    version: 1
+    tag: 계약
+  answer:
+    action: COUNTER
+    reason: 나는 0.75일, 찬에게 나머지 범위를 요청합니다.
+    allocations:
+    - who: bora
+      title: 정상 경로 계약
+      days: 0.75
+      effort: 1
+      what: 정상 경로 계약 독립 검증
+    - who: chan
+      title: 실패 경로 계약
+      days: 1.25
+      effort: 1
+      what: 실패 경로 계약 독립 검증
+- match:
+    who: chan
+    mode: respond
+    version: 2
+    tag: 계약
+  answer:
+    action: REJECT
+    reason: 현재 일정과 내 설정상 0.5일까지만 약속할 수 있습니다.
+- match:
+    who: chan
+    mode: revise
+    version: 2
+    tag: 계약
+  answer:
+    action: COUNTER
+    reason: 픽스처를 재사용하면 내 범위를 0.5일에 검증합니다. 새 버전으로 재동의해 주세요.
+    allocations:
+    - who: bora
+      title: 정상 경로 계약
+      days: 0.75
+      effort: 1
+      what: 정상 경로 계약 독립 검증
+    - who: chan
+      title: 실패 경로 계약
+      days: 0.5
+      effort: 1
+      what: 실패 경로 계약 독립 검증

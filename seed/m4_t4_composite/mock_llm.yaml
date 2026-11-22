@@ -1,0 +1,9 @@
+reestimate:
+- match:
+    who: art
+    contains: Character Animatio
+  answer:
+    task: character_animation
+    days: 4
+    basis: 명시된 원 시나리오의 소요량
+split: {}

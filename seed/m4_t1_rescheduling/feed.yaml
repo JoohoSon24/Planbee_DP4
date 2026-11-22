@@ -1,0 +1,12 @@
+issue:
+  task: polish
+  label: T1 · Simple Rescheduling · 일정 이동 · 변경 요청
+  now: 4
+  next_phase: end
+  narr: Polish 작업을 하루 뒤인 11/23으로 이동하고 싶습니다. Bug Fix와 Core X 일정은 그대로 유지하고 싶습니다. Polish
+    소요량은 6h 그대로입니다.
+  records:
+  - who: dev
+    src: 시나리오 변경 요청
+    text: Polish 작업을 하루 뒤인 11/23으로 이동하고 싶습니다. Bug Fix와 Core X 일정은 그대로 유지하고 싶습니다. Polish
+      소요량은 6h 그대로입니다.

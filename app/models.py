@@ -27,6 +27,9 @@ class Card(Base):
     refuse_tags: Mapped[list] = mapped_column(JSON, default=list)     # 받지 않는 일 종류
     gives_help: Mapped[bool] = mapped_column(Boolean, default=True)   # 30분 도움 요청을 프록시가 받아도 되는가
     note: Mapped[str] = mapped_column(String, default="")             # 약속할 때 덧붙이는 조건
+    policy: Mapped[dict] = mapped_column(JSON, default=dict)  # 사람이 확인한 자연어 카드 해석
+    wait_days: Mapped[float] = mapped_column(Float, default=0.0)      # 받기로 한 것이 이만큼 늦어져도 프록시가 알아서 수락
+    model: Mapped[str | None] = mapped_column(String, nullable=True)  # 이 프록시만 다른 LLM 을 쓸 때 (Live 모드)
 
 
 class Task(Base):
@@ -42,10 +45,11 @@ class Task(Base):
     base: Mapped[float] = mapped_column(Float)  # 숙련자 기준 길이
     tag: Mapped[str] = mapped_column(String)
     role: Mapped[str] = mapped_column(String)
-    kind: Mapped[str] = mapped_column(String, default="")   # "" · done · prop · new
+    kind: Mapped[str] = mapped_column(String, default="")   # "" · done · prop · new · milestone(작업량 0의 승인 또는 명시적 완료 장벽)
     oi: Mapped[int] = mapped_column(Integer, default=0)
     cut: Mapped[bool] = mapped_column(Boolean, default=False)
     got: Mapped[bool] = mapped_column(Boolean, default=False)
+    context: Mapped[dict] = mapped_column(JSON, default=dict)  # 목적·산출물·분리 경계·의존성
     cut_options: Mapped[list] = mapped_column(JSON, default=list)  # PM이 허락하면 줄일 수 있는 범위
 
 
@@ -123,6 +127,8 @@ class Message(Base):
     hid: Mapped[str | None] = mapped_column(String, nullable=True)
     run_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
     t: Mapped[str] = mapped_column(String, default="")
+    round: Mapped[int | None] = mapped_column(Integer, nullable=True)   # 몇 라운드에 오간 말인지 (0 = 준비)
+    attempt: Mapped[int] = mapped_column(Integer, default=0)            # PM 허락 뒤 다시 협상하면 1 올라감
 
 
 class Confirmation(Base):
@@ -147,7 +153,7 @@ class Ask(Base):
     open: Mapped[bool] = mapped_column(Boolean, default=True)
     why: Mapped[list] = mapped_column(JSON, default=list)
     grants: Mapped[list] = mapped_column(JSON, default=list)
-    chosen: Mapped[str | None] = mapped_column(String, nullable=True)
+    chosen: Mapped[str | None] = mapped_column(String, nullable=True)   # 고른 허락의 key · reject · reagree
     run_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
 
@@ -163,9 +169,9 @@ class Run(Base):
     """협상 한 건의 진행 상태. 사람이나 PM을 기다리는 동안 여기 멈춰 있다가 이어서 돈다."""
     __tablename__ = "run"
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    kind: Mapped[str] = mapped_column(String)       # record · reagree · move
+    kind: Mapped[str] = mapped_column(String)       # record · reagree · move · bundle
     step: Mapped[str] = mapped_column(String)
-    status: Mapped[str] = mapped_column(String, default="running")  # running · waiting_confirm · waiting_pm · done
+    status: Mapped[str] = mapped_column(String, default="running")  # running · waiting_confirm · waiting_pm · blocked · done
     auto_confirm: Mapped[bool] = mapped_column(Boolean, default=False)
     ctx: Mapped[dict] = mapped_column(JSON, default=dict)
 
@@ -185,3 +191,11 @@ class Snapshot(Base):
 
 SNAPSHOT_TABLES = [Person, Card, Task, Handoff, HandoffEvent, Record, Rule, Grant, Message,
                    Confirmation, Ask, Resolution, Run, Meta]
+
+
+class CandidateEvaluation(Base):
+    """Frozen, blinded human ranking experiment; separate from operational PM choice."""
+    __tablename__ = 'candidate_evaluation'
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    run_id: Mapped[int] = mapped_column(Integer)
+    data: Mapped[dict] = mapped_column(JSON, default=dict)

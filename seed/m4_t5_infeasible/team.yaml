@@ -1,0 +1,330 @@
+meta:
+  title: T5 · Infeasible Conflict · 해결 불가능 충돌
+  summary: Critical Fix의 기존 작업은 완료했지만 추가 결함으로 잔여 수정 16h(2일)가 더 필요합니다. 이 잔여 작업은 11/26·27
+    각 8h에만 가능합니다. QA는 완료 후 연속 2영업일 16h가 필요합니다. 11/27 릴리스 일정을 지킬 수 있는지 확인해 주세요.
+  phase: issue
+  now: 8
+  week_start: '2026-11-16'
+  deadline_label: 11/27 릴리스
+  narr: 다음 시나리오 이슈를 눌러 원문의 변경 요청을 처리하세요.
+  source_task: critical_fix
+  source: Senario/M4 시나리오 설계
+  source_sha256: b792bc750331879c54a5ee8b941eca14588c7da92718618d4c846499ac696d4f
+  engine_support: Dev 전담·분리 금지·협업 단축 금지·수정 완료 후 QA 2일·11/27 마감을 하드 제약으로 보존합니다. 미해결
+    시 PM에게 보류 검토를 전달하며 릴리스/마일스톤을 자동 연장하지 않습니다.
+  normalization_note: 원문 이미지의 막대 위치와 시간 길이가 맞지 않는 곳은 본문 시간(h)을 우선했습니다. T1은 11/23 가용
+    8h 조건에 따라 Bug Fix를 11/24 시작으로 고정하고 Final Test는 11/26~27로 정규화했습니다. T5 초기 보드에는 새로
+    발견된 잔여 수정 16h를 표시합니다.
+people:
+- id: gd
+  name: GD
+  role: 기획
+  notes:
+    prompt_role: gd
+  rec:
+    feature_spec: 6
+    release_notes: 6
+  wants: []
+- id: art
+  name: Art
+  role: 아트
+  notes:
+    prompt_role: art
+  rec:
+    core_assets: 6
+    final_assets: 6
+    ui_integration: 6
+  wants: []
+- id: dev
+  name: Dev
+  role: 개발
+  notes:
+    prompt_role: dev
+  rec:
+    core_x: 6
+    critical_fix_done: 6
+    critical_fix: 6
+  wants: []
+- id: qa
+  name: QA
+  role: QA
+  notes:
+    prompt_role: qa
+  rec:
+    smoke: 6
+    final_qa: 6
+  wants: []
+cards:
+- who: gd
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 11/27 릴리스 목표. 공식 마일스톤 변경은 상위 승인 필요.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: art
+  auto_days: 0
+  wait_days: 0
+  gives_help: true
+  note: 추가 수정은 Dev 전담이라 이관 받을 수 없음.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: dev
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 추가 수정 16h는 11/26·27 각 8h에만 수행. 병렬 처리·타인 이관·수정 범위 축소·협업 단축 모두 불가. T5 추가 수정
+    16h는 11/26·27에만 수행. 분해·양도·범위 축소·협업 시간 단축 모두 금지.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+- who: qa
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 추가 수정 완료 후 Final QA 16h를 연속 2영업일 수행. 사전 테스트·부분 검증·시간 단축 불가.
+  policy:
+    approved: true
+    source_note: M4 시나리오 원문에 명시된 가용 시간
+    unavailable: []
+tasks:
+- id: feature_spec
+  who: gd
+  title: Feature Spec
+  s0: 0
+  d: 1.0
+  tag: feature_spec
+  kind: done
+  context:
+    description: Feature Spec 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Feature Spec 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: release_notes
+  who: gd
+  title: Release Notes
+  s0: 7
+  d: 1.0
+  tag: release_notes
+  kind: ''
+  context:
+    description: Release Notes 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Release Notes 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: core_assets
+  who: art
+  title: Core Assets
+  s0: 1
+  d: 2.0
+  tag: core_assets
+  kind: done
+  context:
+    description: Core Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core Assets 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: final_assets
+  who: art
+  title: Final Assets
+  s0: 5
+  d: 1.0
+  tag: final_assets
+  kind: done
+  context:
+    description: Final Assets 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Final Assets 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - art
+    allow_collaboration: false
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: core_x
+  who: dev
+  title: Core X
+  s0: 1
+  d: 3.0
+  tag: core_x
+  kind: done
+  context:
+    description: Core X 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Core X 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: critical_fix_done
+  who: dev
+  title: Critical Fix 완료분
+  s0: 5
+  d: 3.0
+  tag: critical_fix_done
+  kind: done
+  context:
+    description: Critical Fix 완료분 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Critical Fix 완료분 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: critical_fix
+  who: dev
+  title: Critical Fix 추가 수정
+  s0: 8
+  d: 2.0
+  tag: critical_fix
+  kind: ''
+  context:
+    description: Critical Fix 추가 수정 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Critical Fix 추가 수정 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - dev
+    allow_collaboration: false
+    earliest_start: 8
+    latest_finish: 10
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+    active_participants_only: true
+    allowed_change_tasks:
+    - critical_fix
+    review_no_options: true
+- id: smoke
+  who: qa
+  title: Smoke Test
+  s0: 4
+  d: 1.0
+  tag: smoke
+  kind: done
+  context:
+    description: Smoke Test 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Smoke Test 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: final_qa
+  who: qa
+  title: Final QA
+  s0: 8
+  d: 2.0
+  tag: final_qa
+  kind: ''
+  context:
+    description: Final QA 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Final QA 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - qa
+    allow_collaboration: false
+    earliest_start: 8
+    latest_finish: 10
+    source_scenario: m4_t5_infeasible
+    time_quantum: 0.25
+- id: milestone
+  who: gd
+  title: Release
+  s0: 10
+  d: 0.0
+  tag: milestone
+  kind: milestone
+  context:
+    description: Release 작업. 1일=8h, 주말은 제외한 영업일 기준입니다.
+    deliverable: Release 완료본
+    acceptance:
+    - 원 시나리오의 필수 산출물 유지
+    - 담당 권한과 선행 조건 준수
+    splittable_hint: false
+    allowed_assignees:
+    - gd
+    allow_collaboration: false
+    completion_barrier: true
+handoffs:
+- id: h_critical_fix_final_qa
+  from: critical_fix
+  to: final_qa
+  title: critical_fix → final_qa
+  what: critical_fix 검증 완료본
+  t: 8
+- id: h_final_qa_milestone
+  from: final_qa
+  to: milestone
+  title: final_qa → milestone
+  what: final_qa 검증 완료본
+  t: 10
+records: []
+rules:
+- key: deadline
+  label: 11/27 릴리스
+  value:
+    week_end: 10
+- key: weekly_cap
+  label: 2주 계획·1일 8h·동시 작업 금지
+  value:
+    days: 10
+- key: pm_only
+  label: 범위 축소·마일스톤 변경은 PM 권한
+  value:
+    actions:
+    - cut
+    - defer
+- key: rounds
+  label: 최대 15라운드
+  value:
+    max: 15
+- key: pref
+  label: 후보 선택 참고
+  value:
+    choice: fair
+  locked: false
