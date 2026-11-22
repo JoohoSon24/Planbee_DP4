@@ -133,7 +133,7 @@
     automatic=false;status();
   }
   window.PlanBeeApp={quote:function(type,id){if(type==='t')document.getElementById('task-select').value=id;var q=document.getElementById('quotes');q.hidden=false;q.textContent='참조: '+id;input.focus();}};
-  document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();var issue=input.value.trim();if(!issue)return;act(async function(){run=await api('/candidate-runs',{task_id:document.getElementById('task-select').value,issue:issue});input.value='';input.dispatchEvent(new Event('input'));evaluationLink=null;evaluationError='';preview=null;await refresh(false);automatic=true;}).then(loop);});
+  document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();var issue=input.value.trim();if(!issue)return;act(async function(){var taskId=document.getElementById('task-select').value,shownDemo=state&&state.demo&&state.demo.id;var latest=await api('/state');if(!latest.tasks[taskId]||(latest.demo&&latest.demo.id)!==shownDemo){await refresh(true);throw new Error('서버의 시나리오가 화면과 달라 이 업무를 찾을 수 없습니다(서버 재시작 또는 다른 사람이 시나리오 변경). 화면을 최신 상태로 고쳤으니 시나리오·업무를 확인한 뒤 다시 보내 주세요. 입력한 내용은 그대로 남아 있습니다.');}run=await api('/candidate-runs',{task_id:taskId,issue:issue});input.value='';input.dispatchEvent(new Event('input'));evaluationLink=null;evaluationError='';preview=null;await refresh(false);automatic=true;}).then(loop);});
   document.getElementById('continue-run').onclick=function(){automatic=true;loop();};
   document.getElementById('pause-run').onclick=function(){automatic=false;status();};
   document.getElementById('current-board').onclick=function(){preview=null;if(state)V.render(state,null,false);};
