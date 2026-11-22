@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: planbee
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: PLANBEE_LLM
+        value: live
+      - key: PLANBEE_BASIC_AUTH_USER
+        value: planbee
+      - key: PLANBEE_BASIC_AUTH_PASSWORD
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false

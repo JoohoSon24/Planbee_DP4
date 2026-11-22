@@ -76,7 +76,8 @@ def enumerate_plans(b,ctx,templates,settings):
     whole=Transformation(title='원 업무 전체 유지·양도',basis='원 업무의 산출물과 완료 기준 전체를 보존한다.',
         parts=[Part(key='whole',title=source.title,what=(source.context or {}).get('deliverable') or source.title,
                     effort=source.d)])
-    templates=[whole]+templates
+    # 최상위 parts 가 빈 LLM 템플릿은 원 Task 전체를 그대로 보유하는 구조로 본다.
+    templates=[whole]+[t if t.parts else t.model_copy(update={'parts':list(whole.parts)}) for t in templates]
     contract=(source.context or {}).get('required_parts',[])
     if contract and abs(sum(p['effort'] for p in contract)-source.d)<=hive.EPS:
         templates.append(Transformation(title='Task에 명시된 산출물 분담',basis='Task 원문에 명시된 분리 경계·분량·담당 권한을 그대로 보존한다.',

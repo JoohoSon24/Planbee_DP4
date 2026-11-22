@@ -29,7 +29,9 @@ class PlanAction(BaseModel):
 
 class Transformation(BaseModel):
     title: str
-    parts: list[Part] = Field(min_length=1,max_length=4)
+    # 빈 parts 는 '원 Task 전체 유지'로 정규화한다(generator.enumerate_plans). 이관·생략 템플릿에서
+    # 모델이 plan_actions[].parts=[] 지시를 최상위 parts 로 오해해 전체 응답이 탈락하는 것을 막는다.
+    parts: list[Part] = Field(default_factory=list,max_length=4)
     support: SupportDesign | None = None
     basis: str = Field(min_length=8)
     plan_actions: list[PlanAction] = Field(default_factory=list,max_length=6)

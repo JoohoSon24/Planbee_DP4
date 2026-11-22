@@ -4,6 +4,9 @@
 """
 from __future__ import annotations
 
+import base64
+import os
+import secrets
 from contextlib import asynccontextmanager
 from datetime import date
 from typing import Literal
@@ -11,7 +14,7 @@ from typing import Literal
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import PlainTextResponse, FileResponse
+from fastapi.responses import PlainTextResponse, FileResponse, Response
 from pydantic import BaseModel, ConfigDict, Field, FiniteFloat, field_validator
 from sqlalchemy import select
 
@@ -34,6 +37,31 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Plan Bee · Handoffs API", version="0.1.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+
+# 배포용 접근 제한. PLANBEE_BASIC_AUTH_PASSWORD 가 설정된 경우에만 전체 경로에 Basic Auth 를 건다.
+# 로컬 실행(변수 없음)은 기존과 동일하다. /healthz 는 호스팅의 상태 검사용으로 열어 둔다.
+_AUTH_PASSWORD = os.environ.get("PLANBEE_BASIC_AUTH_PASSWORD", "")
+_AUTH_USER = os.environ.get("PLANBEE_BASIC_AUTH_USER", "planbee")
+
+
+@app.middleware("http")
+async def basic_auth(request: Request, call_next):
+    if not _AUTH_PASSWORD or request.url.path == "/healthz":
+        return await call_next(request)
+    header = request.headers.get("authorization", "")
+    if header.lower().startswith("basic "):
+        try:
+            user, _, pw = base64.b64decode(header[6:]).decode("utf-8").partition(":")
+        except (ValueError, UnicodeDecodeError):
+            user, pw = "", ""
+        if secrets.compare_digest(user, _AUTH_USER) and secrets.compare_digest(pw, _AUTH_PASSWORD):
+            return await call_next(request)
+    return Response(status_code=401, headers={"WWW-Authenticate": 'Basic realm="Plan Bee"'})
+
+
+@app.get("/healthz", include_in_schema=False)
+def healthz():
+    return {"ok": True}
 
 
 def get_db(request: Request):

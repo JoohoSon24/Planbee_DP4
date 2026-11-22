@@ -14,20 +14,32 @@
 \definecolor{amber}{HTML}{FFF3DE}
 \hypersetup{colorlinks=true,linkcolor=ink,urlcolor=ink}
 \XeTeXlinebreaklocale "ko"
-\XeTeXlinebreakskip=0pt plus 1pt
+\XeTeXlinebreakskip=0pt
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{2em}
 \setlist{nosep,leftmargin=1.5em}
-\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Plan Bee / V2 Architecture}\fancyhead[R]{\small 2026-11-22}\fancyfoot[C]{\thepage}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Plan Bee / V2 Architecture}\fancyhead[R]{\small 2026-11-23}\fancyfoot[C]{\thepage}
 \setlength{\headheight}{15pt}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \tikzset{box/.style={draw=ink!60,rounded corners=3pt,fill=blue,align=center,text width=11.5cm,minimum height=9mm,font=\small,inner sep=5pt},arr/.style={-{Latex[length=2mm]},thick,draw=ink}}
+
+\definecolor{gray}{HTML}{F1F2F4}
+\tikzset{
+ flow/.style={draw=ink!50,rounded corners=3pt,fill=blue,text width=9.4cm,align=left,inner sep=5pt,font=\small},
+ side/.style={draw=ink!40,dashed,rounded corners=3pt,fill=gray,text width=4.7cm,align=left,inner sep=5pt,font=\footnotesize},
+ branch/.style={arr,dashed,draw=ink!70}}
+% #1 제목(단계 | 주체: 하는 일), #2/#3 첫째 줄 라벨/내용, #4/#5 둘째 줄 라벨/내용
+\newcommand{\flowstep}[5]{{\raggedright\textbf{#1}\par\vspace{1pt}{\footnotesize\textbf{#2}\enspace #3\par\textbf{#4}\enspace #5\par}}}
+\newcommand{\flowtext}[3]{{\raggedright\textbf{#1}\par\vspace{2pt}{\footnotesize\textbf{입력·판단} #2\par\textbf{결과} #3\par}}}
+\newcommand{\sidetext}[2]{{\raggedright\textbf{#1}\par\vspace{1pt}#2\par}}
+
 \begin{document}
 \begin{center}
 {\Huge\bfseries Plan Bee}\\[5mm]
 {\LARGE 전체 실행 구조와 에이전트 협업 흐름}\\[3mm]
 {\large 후보 생성 · 위임카드 기반 토론 · PM 최종 결정}\\[3mm]
-2026년 11월 22일 / 현행 V2 구현 기준
+2026년 11월 23일 / 현행 V2 구현 기준
 \end{center}
 \vspace{3mm}
 \textbf{핵심 구조.} 사람이 업무 변경 이슈를 줄글로 입력하면, 생성 AI와 알고리즘이 새로운 milestone 계획 후보를 만든다. Hive는 일정과 하드 제약을 코드로 검증한다. 각 개인의 Proxy LLM은 자신의 위임카드로 후보들을 평가하고 공개 토론한다. 추천 후보 1--3개를 받은 PM이 최종 선택하며, 필요한 본인 확인과 최신 Hive 검증이 끝나야 실제 보드에 반영된다.
@@ -49,23 +61,50 @@ Hive의 일정 검증은 결정적 코드이며 별도의 LLM 심판이 아니�
 
 \newpage
 \section{전체 실행 흐름}
+\textbf{읽는 법.} 왼쪽 열은 정상 경로이며 01부터 09까지 순서대로 진행한다. 상자 색은 처리 주체를 뜻한다. \colorbox{blue}{파랑}은 LLM 또는 탐색 알고리즘, \colorbox{green}{초록}은 결정적 코드(Hive), \colorbox{amber}{노랑}은 사람이다. 오른쪽 \colorbox{gray}{회색 점선 상자}는 조건이 충족될 때만 들어가는 예외 경로다. 09를 통과하기 전까지 모든 후보는 복제 보드 위의 미리보기이며 실제 보드는 바뀌지 않는다.
 \begin{center}
-\begin{tikzpicture}[node distance=4mm]
-\node[box] (input) {\textbf{01 사람 입력}\\역할 선택 → 자기 업무 선택 → 줄글 이슈 입력 → 보내기};
-\node[box,below=of input] (estimate) {\textbf{담당 Proxy: 소요 변경 여부 판단}\\단순 일정 이동과 실제 작업량 증가 구별 / 초기 보드·카드·프롬프트 고정};
-\node[box,below=of estimate] (generate) {\textbf{02 새로운 milestone 후보 생성}\\생성 AI의 의미 설계 + 알고리즘의 담당·분량·시작 조합 확장};
-\node[box,fill=green,below=of generate] (validate) {\textbf{Hive: 복제 보드에서 feasibility 검증}\\역할 · 가용 시간 · 용량 · 의존관계 · 마감 · 업무 범위 / 실행 결과 중복 제거};
-\node[box,below=of validate] (assess) {\textbf{03 각 개인 Proxy: 카드 기반 평가와 토론}\\개인 평가 → 추천 shortlist → 공개 질의·응답·조건 → 최종 평가};
-\node[box,below=of assess] (consent) {\textbf{영향 당사자: 후보별 정확한 버전의 의사 확인}\\ACCEPT / REJECT / NEEDS\_INPUT → 추천 후보 최대 1--3개};
-\node[box,fill=amber,below=of consent] (pm) {\textbf{PM 최종 선택 대기}\\하나여도 자동 적용하지 않음 / 비교 후 선택·전부 반려·수정 요청};
-\node[box,fill=amber,below=of pm] (human) {\textbf{필요한 당사자 본인 확인}\\각 본인 역할에서 승인·거절 / PM 선택과 개인 동의는 별개};
-\node[box,fill=green,below=of human] (commit) {\textbf{Hive 최신 재검증 → 원자적 적용}\\보드·동의·후보 hash 확인 / 실패하면 미합의 변경 미적용};
-\foreach \a/\b in {input/estimate,estimate/generate,generate/validate,validate/assess,assess/consent,consent/pm,pm/human,human/commit} \draw[arr] (\a)--(\b);
+\begin{tikzpicture}[node distance=3mm]
+\node[flow] (input) {\flowstep{01 | 사용자: 이슈 등록, run 시작}{입력}{역할, 대상 업무, 줄글 이슈 1건.}{출력}{새 run. 현재 보드·위임카드·프롬프트 버전을 snapshot으로 고정하며, 이후 단계는 모두 이 snapshot 기준.}};
+\node[flow,below=of input] (estimate) {\flowstep{02 | 대상 업무 담당자의 Proxy LLM: 이슈를 일정 변화로 변환}{입력}{담당자 본인 카드, 대상 업무 정보, 이슈 원문.}{출력}{``시작일만 밀림'' 또는 ``소요 시간 증가''와 새 소요일. Hive가 이를 반영해 마감 초과 여부를 계산하고, 초과면 기한 회복 run, 충족이면 공정성 재분담 run으로 정한다.}};
+\node[flow,below=of estimate] (generate) {\flowstep{03 | 생성 AI + 탐색 알고리즘: 수정 계획 후보 생성}{입력}{이슈, Task 설명·완료 조건·분리 가능 경계, 공개 일정. 개인 위임카드는 주지 않는다.}{출력}{후보 계획 목록(조합 최대 500개). 각 후보는 업무 분해·담당 변경·시작일 이동·지원 배정·Beta 이관을 조합한 새 보드다.}};
+\node[flow,fill=green,below=of generate] (validate) {\flowstep{04 | Hive(코드): 후보마다 제약 검사}{검사}{후보를 적용한 복제 보드의 역할 자격, 일별 용량, 가용 시간, 선후행, 마감, 변경 허용 범위.}{출력}{통과 후보 목록(중복 제거, 최대 50개). 탈락 후보는 어긴 제약을 기록한다.}};
+\node[flow,below=of validate] (discuss) {\flowstep{05 | 팀원별 Proxy LLM: 후보 평가와 공개 토론}{입력}{통과 후보, 본인 위임카드(타인 카드는 볼 수 없음), 지금까지의 공개 발언.}{출력}{초기 평가 → 토론 대상 최대 10개 선정 → 공개 토론(질문·거절·조건) → 최종 평가.}};
+\node[flow,below=of discuss] (consent) {\flowstep{06 | 변경 영향을 받는 팀원의 Proxy LLM: 후보별 동의}{입력}{후보 ID와 계획 hash로 지정한 정확한 계획, 본인 카드.}{출력}{후보마다 ACCEPT / REJECT / NEEDS\_INPUT. REJECT가 없는 후보 중 상위 1--3개를 PM 추천안으로 확정한다.}};
+\node[flow,fill=amber,below=of consent] (pm) {\flowstep{07 | PM(사람): 추천안 중 하나를 직접 선택}{입력}{추천안별 변경 후 보드, 변경 내역, 공개 사유, 동의 상태.}{출력}{하나 선택 / 전부 반려 / 수정 요청. 추천안이 1개여도 자동 선택하지 않으며, PM 선택으로 팀원의 REJECT를 뒤집을 수 없다.}};
+\node[flow,fill=amber,below=of pm] (human) {\flowstep{08 | NEEDS\_INPUT 팀원(사람): 본인 확인}{대상}{카드의 위임 범위를 넘는 변경, 또는 카드에 ``본인 확인''으로 지정된 변경을 받은 팀원만.}{출력}{모두 승인하면 09로 간다. 대상자가 없으면 이 단계를 건너뛴다.}};
+\node[flow,fill=green,below=of human] (commit) {\flowstep{09 | Hive + 저장 코드: 최종 재검증 후 보드 반영}{검사}{snapshot 이후 보드·카드 변경 여부, 동의 대상과 선택 후보의 계획 hash 일치, 저장 후 보드의 제약 통과.}{출력}{모두 통과하면 한 트랜잭션으로 반영한다(\texttt{applied}).}};
+\foreach \a/\b in {input/estimate,estimate/generate,generate/validate,validate/discuss,discuss/consent,consent/pm,pm/human,human/commit} \draw[arr] (\a)--(\b);
+\node[side,right=6mm of validate] (none) {\sidetext{통과 후보가 0개}{탈락 사유를 PM에 전달하고 종료(\texttt{search\_exhausted}). 탐색 예산 안에서 못 찾았다는 뜻이며 해가 없다는 증명은 아니다. 마감 연기·인력 추가안은 미구현.}};
+\draw[branch] (validate.east)--(none.west);
+\node[side,right=6mm of discuss] (supp) {\sidetext{기존 후보로 못 푸는 조건이 나옴}{그 조건을 넣어 후보를 1회 추가 생성 → 04 검사 → 05 재평가. 기존 통과 후보는 그대로 둔다.}};
+\draw[branch] (discuss.east)--(supp.west);
+\node[side,right=6mm of consent] (nocons) {\sidetext{REJECT 없는 후보가 0개}{PM 검토로 넘기고 종료(\texttt{no\_consented\_candidate}).}};
+\draw[branch] (consent.east)--(nocons.west);
+\node[side,right=6mm of pm] (revise) {\sidetext{PM이 선택하지 않음}{수정 요청: PM 사유를 조건으로 추가해 03부터 다시 실행. 전부 반려: 보드를 바꾸지 않고 종료.}};
+\draw[branch] (pm.east)--(revise.west);
+\node[side,right=6mm of human] (deny) {\sidetext{팀원이 본인 확인을 거절}{그 후보를 제외한다. 남은 추천안이 있으면 07에서 PM이 다시 고르고, 없으면 PM 검토로 넘긴다.}};
+\draw[branch] (human.east)--(deny.west);
+\node[side,right=6mm of commit] (stop) {\sidetext{재검증 실패}{보드·카드가 바뀌었거나 저장 결과가 제약을 어기면 전부 롤백(부분 저장 없음)하고 PM에 사유를 전달한다.}};
+\draw[branch] (commit.east)--(stop.west);
 \end{tikzpicture}
 \end{center}
-\textbf{그림 1.} 정상 경로의 호출 순서. 공개 조건에 현재 후보로 대응할 수 없으면 제한된 보충 생성과 재평가로 돌아간다. 후보가 없거나 호출·시간 한도에 도달하면 사유를 기록해 PM 검토로 넘기며 적용하지 않는다.
+{\footnotesize\textbf{그림 1.} 현행 V2 \texttt{candidate\_discussion} 경로. 01--09는 정상 경로, 오른쪽은 예외 경로다. 02·05·06은 개인 카드에 따른 LLM 판단, 04·09는 코드 검증으로, 두 판단은 서로를 대체하지 않는다.}
 
-마감이 유효하지 않으면 먼저 기한 회복 후보를 검토하고, 유효한 기준 배분을 중심으로 공정성 논의를 수행한다. 마감이 이미 안전하면 유효한 현재 배분도 유지 후보로 다룰 수 있다. 단계별 snapshot과 적용 여부를 구분해야 하며, 후보 미리보기를 실제 보드로 읽으면 안 된다.
+\newpage
+\subsection{그림 1의 판단과 산출물 읽기}
+\textbf{03의 산출물은 무엇인가?} 후보 하나는 담당자 명단이 아니라 새로운 일정 보드다. 원 Task의 범위를 어떤 산출물로 나누는지, 누가 언제 수행하는지, 어떤 조각이 어떤 입력을 기다리는지, 이후 milestone이 언제 끝나는지를 함께 담는다. 생성 AI는 의미 구조를 설계하고, 알고리즘은 담당·시간 조합을 확장한다. 이 단계에는 개인 비공개 위임카드를 전달하지 않는다.
+
+\textbf{04가 통과했다고 합의인가?} 아니다. Hive 통과는 코드에 표현된 제약을 만족한다는 뜻이다. 예를 들어 Art가 일정을 수행할 수 있어도 자신의 위임 설정 때문에 새 인수를 거절할 수 있다. 그 판단은 05·06에서 Art의 Proxy가 한다. 반대로 LLM이 수락해도 Hive가 마감을 위반한다고 판단하면 적용할 수 없다.
+
+\textbf{05·06에서 공정성은 어떻게 다루는가?} 각자의 기존 업무, 가용 시간, 맡게 될 실제 범위와 공개 조건을 근거로 후보를 비교한다. 부담 분산 수치는 참고 자료다. 현재 구현은 영향 당사자의 최종 평가에 거절이 없는 후보를 추리고, 참가자 점수 합계로 순서를 정한 뒤 후보별 동의를 별도로 받는다. 따라서 집계 규칙의 한계도 있으며, 단순 최소 분산을 공정성의 정답으로 보지 않는다.
+
+\textbf{07·08은 왜 따로 있는가?} PM의 계획 선택권과 개인의 위임 권한이 다르기 때문이다. PM은 팀 차원의 후보를 최종 선택하고, 본인 확인은 해당 개인의 자동 위임 범위를 넘는 변경을 확인한다. NEEDS\_INPUT은 본인 확인 필요를 뜻해야 하며, 다른 사람의 승인 대기를 본인의 확인 사유로 혼동하는 Live 오류는 현재 남아 있는 제한이다.
+
+\textbf{09에서 무엇을 다시 검사하는가?} 토론·사람 확인 중 보드나 카드가 바뀌지 않았는지, 선택한 후보와 동의 대상이 같은 버전인지, 실제 적용 결과도 마감과 제약을 지키는지를 검사한다. 다른 후보에 대한 옛 수락을 재사용하거나, 미합의 변경을 일부만 저장하지 않는다.
+
+\textbf{T4로 읽는 예시.} Art의 Character Animation 증가로 최종 FX가 늦어졌다고 하자. 생성 단계는 Dev의 Integration을 임시 반영과 최종 교체로 나누고, FX 입력을 최종 교체에만 연결하는 후보를 만든다. Hive는 실제 Dev 가용 시간과 후속 QA 마감을 검사한다. Art·Dev·필요 시 QA는 자기 카드로 검토한다. Retest를 생략하는 후보라면 Final QA의 동일 항목 포함과 QA 본인 확인이 필요하다. Retest 유지 후보가 가능하면 그것도 유효 대안이다. PM이 선택하고 필요한 확인·최종 검증을 마쳐야 적용된다.
+
+\textbf{모든 경로에 적용되는 종료 규칙.} 호출·시간 한도, 모델 장애, 후보 고갈, 동의 실패를 서로 다른 사유로 기록한다. 최대 토론 라운드는 최종 평가로 넘어가는 기준이며, 그 자체가 합의나 적용 성공을 뜻하지 않는다. 각 턴의 주체·수신자·후보·사유·Hive 검증과 보드 snapshot은 run 기록에서 확인할 수 있다.
 
 \newpage
 \section{시간 안에 가능한 새로운 milestone 설계}
@@ -94,26 +133,29 @@ Hive의 일정 검증은 결정적 코드이며 별도의 LLM 심판이 아니�
 현재 기본 설정은 raw 조합 500개, 유효 후보 최대 50개, shortlist 최대 10개다. 후보 부족은 수학적 불가능성의 증명이 아니다. \texttt{search\_exhausted}는 해당 구조·탐색 예산 안에서 유효 후보를 확보하지 못했다는 뜻이다.
 
 \newpage
-\section{Discussion 확대: 어떤 LLM이 무엇을 판단하는가}
+\section{Discussion 확대: 개인 판단이 합의로 이어지는 과정}
+\textbf{공통 입력.} 같은 후보 풀과 공개 Task·일정·이력. \textbf{개인 입력.} 호출 대상 본인의 카드와 역할 MD만 추가한다. 다음 발언자는 직전 발언을 포함한 갱신된 공개 대화를 받는다.
 \begin{center}
-\begin{tikzpicture}[node distance=5mm]
-\node[box] (a) {\textbf{개인 초기 평가 / Assessment}\\본인 카드 + 같은 검증 후보 → 후보별 의사·공정성·카드 적합성 점수};
-\node[box,below=of a] (b) {\textbf{코드: 토론 shortlist 구성}\\참가자별 추천 슬롯을 순회해 보장 / private 평가는 공개 대화와 분리};
-\node[box,below=of b] (c) {\textbf{개인 발언 / Speech}\\발화자 → 수신자 → 후보 ID → 질문·답변·선호·거절·공개 조건};
-\node[box,below=of c] (d) {\textbf{다음 개인 발언}\\이전 발화·거절 이유·조건을 반영 / 라운드마다 순서 회전 / 필요 시 참여자 초대};
-\node[box,fill=green,below=of d] (e) {\textbf{새 후보가 필요한 공개 조건인가?}\\조건 + requires\_new\_candidate → 제한된 보충 생성 → Hive 검증·재평가};
-\node[box,below=of e] (f) {\textbf{최종 평가 / Assessment → 당사자 Consent}\\최종 점수와 거절 여부 확인 / 정확한 계획 버전마다 새 동의};
-\foreach \a/\b in {a/b,b/c,c/d,d/e,e/f} \draw[arr] (\a)--(\b);
-\draw[arr] (d.east)--++(7mm,0)|- node[pos=.25,right,font=\small]{다음 턴} (c.east);
+\begin{tikzpicture}[node distance=6mm]
+\node[flow] (assess) {\flowtext{A | 각 개인 LLM: 초기 평가}{후보를 최대 8개씩 읽고 본인의 업무·카드로 판단.}{후보별 의사, 점수, 공정성·카드 적합성 평가.}};
+\node[flow,fill=green,below=of assess] (short) {\flowtext{B | 코드: 토론 후보 목록 구성}{개인별 상위 추천을 순회해 참가자 추천 슬롯 보장.}{shortlist를 고정하고 공개 토론 시작.}};
+\node[flow,below=of short] (speak) {\flowtext{C | 이번 발언자 LLM: 공개 발언}{본인 카드 + shortlist + 질문·거절·조건의 전체 이력.}{수신자·후보 ID·행동·메시지·조건을 포함한 Speech.}};
+\node[flow,fill=green,below=of speak] (route) {\flowtext{D | 코드: 발언 기록과 다음 호출}{후보·수신자 ID 검사. 공개 발언 저장, 새 수신자 초대.}{다음 사람에게 갱신된 이력 전달. 다음 라운드 순서 회전.}};
+\node[flow,below=of route] (rank) {\flowtext{E | 각 개인 LLM: 토론 후 최종 평가}{새 조건과 상대 사유를 반영해 shortlist를 다시 비교.}{영향 당사자 REJECT가 있는 후보는 추천에서 제외.}};
+\node[flow,below=of rank] (consent) {\flowtext{F | 영향 당사자 LLM: 후보별 Consent}{정확한 후보 ID·계획 hash로 본인의 변경 전체 확인.}{ACCEPT / REJECT / NEEDS\_INPUT과 공개 가능한 사유.}};
+\node[flow,fill=amber,below=of consent] (pm) {\flowtext{G | 코드 → PM: 최종 후보 제출}{당사자 거절이 없는 후보를 최대 3개까지 추천.}{PM 선택 대기. 개인 LLM 점수가 자동 적용을 결정하지 않음.}};
+\foreach \a/\b in {assess/short,short/speak,speak/route,route/rank,rank/consent,consent/pm} \draw[arr] (\a)--(\b);
+\node[side,right=9mm of short] (speech) {\sidetext{실제로 무엇을 말하는가?}{QUESTION 질문 / ANSWER 응답 / PREFER 선호 / REJECT 거절 / CONDITION 조건 / PASS 추가 발언 없음.}};
+\draw[branch] (speak.east)--(speech.west);
+\node[side,right=9mm of route] (loop) {\sidetext{계속 토론하거나 후보 보충}{라운드가 남으면 C로 돌아간다. 새 후보 필요 조건은 보충 생성·Hive 검증 후 재평가한다. 동일 발언은 중복 표시를 억제하나 호출 자체는 이미 발생한 상태다.}};
+\draw[branch] (route.east)--(loop.west);
+\node[side,right=9mm of consent] (change) {\sidetext{새 계획에는 새 동의}{수정 후보의 일정·범위·영향 당사자를 다시 검사한다. 옛 계획의 수락은 새 계획의 동의가 아니다. 본인 확인은 PM 선택 뒤 별도다.}};
+\draw[branch] (consent.east)--(change.west);
 \end{tikzpicture}
 \end{center}
-\textbf{그림 2.} 한 라운드는 한 번의 LLM 호출이 아니다. 초기·최종 평가는 후보를 최대 8개씩 나눠 호출하고, 공개 토론은 참여자별 발언으로 진행한다. 후보별 최종 동의 호출은 평가와 별도다.
+{\footnotesize\textbf{그림 2.} A·C·E·F는 실제 개인 LLM 판단, B·D·G는 코드 처리다. 한 라운드는 여러 발언 호출로 이루어지며, 최종 평가와 후보별 동의는 별도 호출이다. 각 호출은 run 전체 예산을 공유한다.}
 
-\textbf{정보 경계.} 개인 호출에는 자신의 카드와 역할 MD만 주입한다. 다른 사람의 카드 원문·비공개 초기 평가 사유는 공개 토론 입력과 일반 run 본문에 넣지 않는다. 업무 현황, 공개 발언, 공개된 조건은 공유할 수 있다. 프롬프트와 카드 버전을 run 시작 시 고정한다.
-
-\textbf{현재 추천 집계 방식.} 영향 당사자의 최종 평가에 REJECT가 없는 후보를 우선 남기고, 전체 참가자 점수의 평균에 해당하는 합계로 추천 순서를 정한다. 후보별 당사자 Consent에서도 거절이 없어야 최종 후보에 포함된다. 이 집계 규칙은 현재 구현의 구체 방식이며, 사람 공정성의 정답이나 자동 적용을 의미하지 않는다.
-
-\textbf{재동의.} 수정된 계획은 새로운 plan hash와 검증 대상이 된다. 이전 후보의 수락을 새 계획에 자동 이식하지 않는다. 일정·범위·영향 당사자가 바뀌면 재검증과 필요한 재동의를 거친다.
+\textbf{이 과정의 한계.} 공개 발언이 실제 질문에 답했는지, 카드 해석이 일관적인지는 ID 검사만으로 보장되지 않는다. 같은 발언 반복을 건너뛰는 것과 의미 있는 합의를 형성하는 것도 다르다. 실제 Live 대화와 본인 확인 사유를 별도로 평가해야 한다.
 
 \newpage
 \section{PM 선택, 본인 확인, 안전한 적용}
@@ -121,7 +163,7 @@ Hive의 일정 검증은 결정적 코드이며 별도의 LLM 심판이 아니�
 
 PM 선택에는 후보 ID, plan hash와 보드 snapshot을 결합한다. 권한 밖 위임 또는 명시 확인 대상은 \texttt{NEEDS\_INPUT}으로 본인 확인을 기다린다. PM 선택이 개인의 거절을 수락으로 바꾸지 않는다. 확인 대기 중 보드나 카드가 바뀌면 기존 선택을 그대로 적용하지 않고 다시 검사한다. 적용은 트랜잭션 안에서 수행하고 실제 저장 결과도 Hive로 확인한다.
 
-\begin{tabularx}{\linewidth}{@{}p{43mm}Y@{}}\toprule
+\begin{tabularx}{\linewidth}{@{}p{46mm}Y@{}}\toprule
 상태·종료 사유 & 해석\\\midrule
 \texttt{running} & 후보 생성·평가·토론·동의 진행 중\\
 \texttt{awaiting\_pm\_selection} & 정상 추천 완료, PM 최종 선택 대기\\
