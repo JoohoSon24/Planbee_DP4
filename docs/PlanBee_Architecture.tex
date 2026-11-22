@@ -44,7 +44,7 @@
 \vspace{3mm}
 \textbf{핵심 구조.} 사람이 업무 변경 이슈를 줄글로 입력하면, 생성 AI와 알고리즘이 새로운 milestone 계획 후보를 만든다. Hive는 일정과 하드 제약을 코드로 검증한다. 각 개인의 Proxy LLM은 자신의 위임카드로 후보들을 평가하고 공개 토론한다. 추천 후보 1--3개를 받은 PM이 최종 선택하며, 필요한 본인 확인과 최신 Hive 검증이 끝나야 실제 보드에 반영된다.
 
-\textbf{이 문서의 범위.} 현재 서비스의 \texttt{candidate\_discussion} 경로를 설명한다. 이전 \texttt{legacy} 협상 경로는 호환용으로 남아 있으나 본문의 주 흐름과 구분한다. 구현 설명과 실제 Live 성능 검증을 구분하며, 아직 해결되지 않은 응답 오류도 마지막 절에 기록한다. 이 문서 작성에서는 앱 코드 변경이나 Live 실행을 하지 않았다.
+\textbf{이 문서의 범위.} 현재 서비스의 \texttt{candidate\_discussion} 경로를 설명한다. 이전 \texttt{legacy} 협상 경로는 호환용으로 남아 있으나 본문의 주 흐름과 구분한다. 구현 설명과 실제 Live 성능 검증을 구분한다. T1--T5 Live 결과는 저장된 실험 기록(v006--v009)에서 옮겼고, 남은 한계는 마지막 절에 기록한다.
 
 \section{주체와 판단 권한}
 \begin{tabularx}{\linewidth}{@{}p{27mm}YY@{}}\toprule
@@ -63,7 +63,7 @@ Hive의 일정 검증은 결정적 코드이며 별도의 LLM 심판이 아니�
 \section{전체 실행 흐름}
 \textbf{읽는 법.} 왼쪽 열은 정상 경로이며 01부터 09까지 순서대로 진행한다. 상자 색은 처리 주체를 뜻한다. \colorbox{blue}{파랑}은 LLM 또는 탐색 알고리즘, \colorbox{green}{초록}은 결정적 코드(Hive), \colorbox{amber}{노랑}은 사람이다. 오른쪽 \colorbox{gray}{회색 점선 상자}는 조건이 충족될 때만 들어가는 예외 경로다. 09를 통과하기 전까지 모든 후보는 복제 보드 위의 미리보기이며 실제 보드는 바뀌지 않는다.
 \begin{center}
-\begin{tikzpicture}[node distance=3mm]
+\begin{tikzpicture}[node distance=2mm,every node/.append style={inner sep=4pt}]
 \node[flow] (input) {\flowstep{01 | 사용자: 이슈 등록, run 시작}{입력}{역할, 대상 업무, 줄글 이슈 1건.}{출력}{새 run. 현재 보드·위임카드·프롬프트 버전을 snapshot으로 고정하며, 이후 단계는 모두 이 snapshot 기준.}};
 \node[flow,below=of input] (estimate) {\flowstep{02 | 대상 업무 담당자의 Proxy LLM: 이슈를 일정 변화로 변환}{입력}{담당자 본인 카드, 대상 업무 정보, 이슈 원문.}{출력}{``시작일만 밀림'' 또는 ``소요 시간 증가''와 새 소요일. Hive가 이를 반영해 마감 초과 여부를 계산하고, 초과면 기한 회복 run, 충족이면 공정성 재분담 run으로 정한다.}};
 \node[flow,below=of estimate] (generate) {\flowstep{03 | 생성 AI + 탐색 알고리즘: 수정 계획 후보 생성}{입력}{이슈, Task 설명·완료 조건·분리 가능 경계, 공개 일정. 개인 위임카드는 주지 않는다.}{출력}{후보 계획 목록(조합 최대 500개). 각 후보는 업무 분해·담당 변경·시작일 이동·지원 배정·Beta 이관을 조합한 새 보드다.}};
@@ -191,6 +191,32 @@ API & 목적\\\midrule
 실행 기록은 \texttt{runs/v2/live/}와 \texttt{runs/v2/mock/}에 날짜·시간·고유값 파일명으로 분리한다. 초기·턴별·최종 milestone, 라운드, 발화자·수신자, 후보와 사유, Hive 검사, 동의 상태·종료 사유를 추적한다. 공개 기록과 비공개 카드·평가 저장을 구분한다. 화면의 역할 헤더는 로컬 체험용 제어이며 실제 로그인 인증 체계를 대신하지 않는다.
 
 \newpage
+\section{에이전트별 MD 프롬프트의 역할}
+\texttt{prompts/} 아래 MD는 각 LLM 호출의 지시문이다. 코드를 바꾸지 않고 에이전트의 판단 기준을 조정하는 곳이며, run 시작 시 hash로 고정되어 실행 중 수정이 섞이지 않는다.
+
+\textbf{한 번의 개인 Proxy 호출 구성.} system 메시지는 \texttt{discussion/system.md}(공통 규칙) + \texttt{discussion/actor.md}(본인 이름·위임카드) + \texttt{agents/}(역할)\texttt{.md}(본인 역할 지침)이다. user 메시지는 호출별 MD(assess, speak, rank, candidate\_consent 등)와 입력 데이터다. 다른 사람의 역할 MD와 카드는 들어가지 않으며, 생성 AI 호출에는 역할 MD와 카드가 모두 없다.
+
+\begin{tabularx}{\linewidth}{@{}p{36mm}Y@{}}\toprule
+역할 MD & 판단 기준\\\midrule
+\texttt{agents/dev.md}\newline Dev (구현) & 원래 소요량 보존 확인(단순 이동에 소요 증가 금지). Task의 분리 경계(로직 전담 / 에셋 연결) 준수. 기능 우선순위는 GD에게 공개 질문. 임시 반영과 최종 교체 구분. QA 시간 단축으로 충돌을 덮지 않음.\\
+\texttt{agents/art.md}\newline Art (에셋) & 가능한 에셋 연결은 검토. 본인 확인이 필요한 신규 인수는 NEEDS\_INPUT이며 금지(REJECT)와 구분. 지연 시 기존·새 총량, 최종 전달 시각, 중간 산출물을 구분. 카드 원문 미인용.\\
+\texttt{agents/gd.md}\newline GD (기획·범위) & 카드의 기능 우선순위와 범위 권한을 따름. 필수 Core 보호, 선택 기능 이관이 완료 기준을 유지하는지 검토. 근거만 공개하고, 자기 동의가 PM 선택을 대신하지 않음.\\
+\texttt{agents/qa.md}\newline QA (검증) & 선행 완료 전 검증이나 Final QA 단축에 동의하지 않음. 선택 중간 Retest와 필수 최종 검증 구분. 허용된 Retest 생략도 본인 확인이 필요하면 NEEDS\_INPUT. 실제 검증 시작·종료를 설명.\\
+\texttt{agents/reestimate.md}\newline 담당자 재견적(02) & 일정 이동인지 소요량 변화인지(duration\_changed) 먼저 판단. 소요가 바뀌면 새 총 견적, 근거, 이슈 원문 인용을 답함.\\\bottomrule
+\end{tabularx}
+
+\vspace{4mm}
+\begin{tabularx}{\linewidth}{@{}p{52mm}Y@{}}\toprule
+호출별 MD (그림 1 단계) & 지시 내용\\\midrule
+\texttt{candidate\_generation/system}, \texttt{transform} (03) & 카드 없이 이슈와 Task 계약으로 서로 다른 계획 구조를 최대 12개 설계. 승자를 고르지 않고 목적·완료 기준·마감 유지.\\
+\texttt{candidate\_generation/repair}, \texttt{format\_repair} (03) & 모든 후보가 Hive에서 탈락하면 사유를 근거로 구조를 1회 재설계. 형식 오류는 필드별 오류를 받아 1회 재제출.\\
+\texttt{discussion/assess}, \texttt{rank} (05) & 모든 후보에 ACCEPT / REJECT / NEEDS\_INPUT과 종합·공정성·카드 적합성 점수. rank는 토론 내용을 반영.\\
+\texttt{discussion/speak} (05) & QUESTION, ANSWER, PREFER, REJECT, CONDITION, PASS 중 하나로 공개 발언. 앞 발언에 실제로 응답.\\
+\texttt{discussion/candidate\_consent} (06) & 정확한 후보 ID·plan hash의 전체 변경에 대한 당사자 동의.\\
+\texttt{discussion/*\_repair} & 후보 ID 누락·오류나 스키마 오류를 구체적 피드백과 함께 1회 재요청.\\\bottomrule
+\end{tabularx}
+
+\newpage
 \section{사람 순위와의 별도 비교 평가}
 운영 PM 선택과 블라인드 사람 순위 평가는 분리한다. 고정된 동일 후보 집합에서 공정성과 본인 카드 적합성을 별도 축으로 비교한다. 사람과 LLM에게 제공되는 카드·공개 정보 조건을 맞추고, 사람에게 에이전트 선호를 먼저 노출하지 않는다.
 
@@ -215,10 +241,47 @@ T5 & 현재 제약 충돌 & 필수 수정 뒤 QA 시간을 확보할 후보가 �
 \end{tabularx}
 원문은 \texttt{seed/m4\_t*/source.md}, 초기 보드·Task·카드는 \texttt{team.yaml}, 이슈는 \texttt{feed.yaml}에 둔다. 원문의 시간 불일치를 정규화한 부분은 시나리오 문서에 공개한다. T4는 Retest를 유지하면서 기한을 충족하는 유효 대안도 있으므로 생략을 강제하지 않는다.
 
+\newpage
+\section{T1--T5 기대 결과와 실제 Live 실행 비교}
+같은 판정기(\texttt{scripts/check\_m4\_results.py})로 프롬프트·코드 버전별 Live 실행(gpt-4o-mini, 시나리오당 1회)을 채점했다. 사람의 PM 선택과 본인 확인은 시뮬레이션하지 않으므로, ``도달''은 적용 성공이 아니라 기대한 상태와 기대 후보에 도달했다는 뜻이다.
+
+\begin{tabularx}{\linewidth}{@{}p{20mm}p{25mm}Y@{}}\toprule
+시나리오 & 기대 상태 & 기대 후보\\\midrule
+T1 일정 이동 & PM 선택 대기 & Polish만 다음 월요일로 이동, 소요 0.75일 유지, Bug Fix 불변. 참가자 Dev 한 명.\\
+T2 재분배 & PM 선택 대기 & 로직 1일(Dev) / 에셋 연결 1일(Art) 분담, 후속 일정 유지. Art 본인 확인.\\
+T3 범위 이관 & PM 선택 대기 & Advanced Effects 4일 + 잔여 FX 0.5일 Beta 이관, Core·Final QA 유지, GD 영향 당사자.\\
+T4 복합 조정 & PM 선택 대기 & Integration 임시/최종 2단계(합 1일), 최종 교체는 FX 이후. Retest 생략안은 QA 확인.\\
+T5 해결 불가 & PM 검토 & 유효 후보 0개(\texttt{search\_exhausted}), Dev·QA 검토 의견 전달, 마감 연장 없음.\\\bottomrule
+\end{tabularx}
+
+\vspace{4mm}
+\begin{tabularx}{\linewidth}{@{}p{20mm}YYYY@{}}\toprule
+ & v006 & v007 & v008 & v009 (최신)\\\midrule
+T1 & 도달 (5회, 13초) & 도달 (6회, 16초) & 도달 (5회, 12초) & 도달 (5회, 11초)\\
+T2 & 도달 (13회, 34초) & 도달 (14회, 32초) & 도달 (13회, 29초) & 도달 (13회, 26초)\\
+T3 & 도달 (18회, 58초) & \textbf{생성 형식 오류} & \textbf{토론 참조 오류} & 도달 (17회, 44초)\\
+T4 & \textbf{평가 ID 오류} & 중단 & 도달 (21회, 57초) & 도달 (18회, 57초)\\
+T5 & 도달 (7회, 34초) & 미실행 & 도달 (5회, 22초) & 도달 (5회, 19초)\\\bottomrule
+\end{tabularx}
+
+{\footnotesize 괄호는 LLM 호출 수와 소요 시간. v007 실험은 T4 토론 중 사용자 요청으로 중단되어 T5를 실행하지 않았다. 원본: \texttt{past\_versions/agent\_prompts/}(버전)\texttt{/experiments/*\_live/}.}
+
+\subsection{차이 분석}
+\textbf{실패는 모두 LLM 응답 형식에서 발생했다.} 일정·제약 판단(Hive)은 모든 버전에서 기대와 같았고, 미도달은 모델 응답이 스키마나 참조 규칙을 어긴 지점에서 run이 종료된 경우다. 버전마다 그 지점을 하나씩 보완했다.
+\begin{itemize}
+\item v006 → v007: T4 평가가 존재하지 않는 후보 ID를 참조. 정확한 ID 목록으로 1회 재요청하도록 보완.
+\item v007 → v008: T3 생성에서 프롬프트의 ``이관은 parts=[]''를 모델이 template 최상위 parts로 오해해 응답 전체가 탈락. 빈 parts를 원 업무 전체로 정규화하고, 형식이 틀린 template 하나만 제외하도록 변경.
+\item v008 → v009: T3 생성은 통과(기대 후보 3개)했으나 공개 발언이 목록에 없는 후보·수신자를 가리켜 종료. 수신자 이름을 id로 정규화하고 후보 ID를 1회 재요청.
+\end{itemize}
+
+\textbf{기대와 일치한 부분.} T5는 매번 후보 0개로 PM 검토에 전달되었고 마감을 연장하지 않았다. T4(v009)는 기대에 맞는 후보 4개 중 Retest 유지안과 QA 확인이 필요한 생략안이 함께 나와, 생략을 정답으로 강제하지 않는 시나리오 의도와 맞았다. T1은 Dev 한 명만 참여해 호출 5회로 끝났다.
+
+\textbf{해석의 한계.} 시나리오당 1회 실행이라 성공률이 아니다. v009에서도 T2 평가 재요청, T3 template 제외가 실제로 발생했으며, 같은 버전에서도 응답에 따라 다른 지점에서 오류가 날 수 있다. PM 선택·본인 확인·실제 적용 성공은 별도로 평가해야 한다.
+
 \section{구현 근거와 현재 제한}
 주요 구현은 \texttt{app/candidates/engine.py}의 상태 머신, \texttt{generator.py}의 후보 확장·중복 제거, \texttt{plans.py}의 preview·적용, \texttt{app/hive.py}의 일정·제약 검사다. 개인 호출 어댑터는 \texttt{app/llm.py}, 역할별 MD는 \texttt{prompts/agents/}, 생성·토론 MD는 \texttt{prompts/candidate\_generation/}, \texttt{prompts/discussion/}에 있다.
 
-중단 전 v006 전체 회귀 테스트는 199개 통과했고, v007의 관련 테스트 15개가 통과했다. v007 전체 테스트는 사용자 중단 요청 시 170개 통과 상태에서 중단되어 전체 완료로 집계하지 않는다. Live에서도 구조화 응답 오류와 불필요한 본인 확인 해석이 남아 있다. v007 부분 실행은 T1·T2가 PM 대기, T3가 생성 형식 오류, T4가 토론 중 사용자 요청으로 중단되었다. 따라서 모든 Live 시나리오가 안정적으로 성공했다고 주장하지 않는다.
+v009 코드 기준 전체 회귀 테스트 201개가 통과했다(그중 V2 후보 경로 테스트 29개). Live에서는 v009로 T1--T5 모두 기대 상태에 도달했지만(10절), 시나리오당 1회 실행이며 형식 오류 복구가 실제로 발생했다. 불필요한 본인 확인 해석 같은 카드 해석 문제도 별도 평가가 필요하다. 따라서 모든 Live 시나리오가 안정적으로 성공한다고 주장하지 않는다.
 
 후보 의미의 완전성, 제한 탐색의 해 공간 커버리지, LLM의 카드 해석 일관성은 여전히 한계다. 과거 프롬프트와 실제 실험은 \texttt{past\_versions/agent\_prompts/}에 보존한다. PM 대기 도달, 사람 승인 완료, 실제 적용 성공, 사람 선호 일치도는 서로 다른 지표로 보고해야 한다.
 \end{document}
