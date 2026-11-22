@@ -1,6 +1,7 @@
 """Typed boundaries for feasibility design and private participant judgements."""
 from typing import Literal
-from pydantic import BaseModel, Field, FiniteFloat, model_validator
+from pydantic import BaseModel, Field, FiniteFloat, ValidationError, model_validator
+from pydantic.json_schema import SkipJsonSchema
 from ..llm import ScheduleChange
 
 class Part(BaseModel):
@@ -39,7 +40,22 @@ class Transformation(BaseModel):
 
 class Designs(BaseModel):
     templates: list[Transformation] = Field(default_factory=list,max_length=12)
-    reason: str
+    reason: str = ''
+    # 형식이 틀린 template 하나가 응답 전체를 무효로 만들지 않도록, 개별 template만 버리고 기록한다.
+    # (LLM 도구 schema에는 노출하지 않는다.)
+    dropped: SkipJsonSchema[list[dict]] = Field(default_factory=list)
+
+    @model_validator(mode='before')
+    @classmethod
+    def _drop_invalid_templates(cls,data):
+        if not isinstance(data,dict) or not isinstance(data.get('templates'),list):return data
+        kept,dropped=[],[]
+        for i,raw in enumerate(data['templates']):
+            try:kept.append(Transformation.model_validate(raw))
+            except ValidationError as e:
+                dropped.append(dict(index=i,title=(raw or {}).get('title') if isinstance(raw,dict) else None,
+                    fields=[dict(path='.'.join(map(str,x['loc'])),type=x['type']) for x in e.errors(include_input=False,include_context=False,include_url=False)][:6]))
+        return {**data,'templates':kept[:12],'dropped':dropped}
 
 class Opinion(BaseModel):
     candidate_id: str

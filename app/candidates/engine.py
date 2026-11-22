@@ -238,6 +238,9 @@ def generate(db,run):
     facts=dict(issue=run.ctx['issue'],original_task=dict(id=t.id,title=t.title,days=t.d,context=t.context or {}),
         board=snapshot(b),public_conditions=run.ctx.get('supplement_conditions',[]))
     result=invoke(db,run,Designs,'candidate_generation','transform',facts)
+    if result.dropped:
+        patch(run,dropped_templates=result.dropped)
+        event(db,run,'hive','TEMPLATE_DROPPED',f'형식이 맞지 않는 계획 구조 {len(result.dropped)}개는 제외하고, 나머지 {len(result.templates)}개와 Task에 명시된 기본 구조로 후보를 만듭니다.')
     cfg=Settings(**run.ctx['settings'])
     candidates,stats=enumerate_plans(b,run.ctx,result.templates,cfg)
     # One bounded structural repair, with concrete feasibility evidence.
