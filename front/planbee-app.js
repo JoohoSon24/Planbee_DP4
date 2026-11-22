@@ -58,8 +58,8 @@
     document.getElementById('demo-select').disabled=busy;
     document.getElementById('viewer-select').disabled=busy;
     document.getElementById('demo-advance').disabled=busy||!state||!state.feed_label||!!(run&&['running','awaiting_pm_selection','waiting_confirm','waiting_pm'].includes(run.status));
-    var sendBlock=busy?'처리 중입니다. 잠시 기다려 주세요.':!document.getElementById('task-select').value?'이 역할에는 이슈를 보낼 담당 업무가 없습니다. 담당 업무가 있는 역할이나 PM으로 전환하세요.':(run&&['running','awaiting_pm_selection','waiting_confirm','waiting_pm'].includes(run.status))?'진행 중인 계획 조정이 끝나야 새 이슈를 보낼 수 있습니다. 위의 다음 행동을 먼저 처리하세요.':'';
-    var sendBtn=document.querySelector('#form button');sendBtn.disabled=!!sendBlock;sendBtn.title=sendBlock;
+    var sendBlock=busy?'':!document.getElementById('task-select').value?'이 역할에는 이슈를 보낼 담당 업무가 없습니다. 담당 업무가 있는 역할이나 PM으로 전환하세요.':(run&&['running','awaiting_pm_selection','waiting_confirm','waiting_pm'].includes(run.status))?'진행 중인 계획 조정이 끝나야 새 이슈를 보낼 수 있습니다. 위의 다음 행동을 먼저 처리하세요.':'';
+    var sendBtn=document.querySelector('#form button');sendBtn.disabled=busy||!!sendBlock;sendBtn.title=sendBlock;
     var help=document.getElementById('composer-help');if(help){help.textContent=sendBlock||'Enter 줄바꿈 · Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력';help.classList.toggle('blocked',!!sendBlock);}
     document.getElementById('reset').disabled=busy;
     feed.querySelectorAll('[data-required-role]').forEach(function(b){b.disabled=busy||viewerRole!==b.dataset.requiredRole;});

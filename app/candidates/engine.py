@@ -341,6 +341,14 @@ def assess(db,run,final=False):
         event(db,run,'hive','PM_OPTIONS',f'후보 {len(recommended)}개를 추렸어요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.')
 
 
+def normalize_recipient(db,answer):
+    """수신자를 실제 팀원 id로 맞춘다. 이름·대소문자 차이는 보정하고, PM·전체 등 팀원이 아닌 대상은 공개 발언(None)으로 둔다."""
+    people=store.board(db).people
+    if answer.recipient is None or answer.recipient in people:return
+    key=str(answer.recipient).strip().lower()
+    answer.recipient=next((pid for pid,p in people.items() if key in (pid.lower(),str(p.name).lower())),None)
+
+
 def discuss(db,run):
     pids=run.ctx.get('participants') or sorted(store.board(db).people);r=run.ctx.get('round',0)+1
     patch(run,round=r,candidate_phase='fairness_discussion')
@@ -350,7 +358,17 @@ def discuss(db,run):
     for pid in pids:
         facts=participant_facts(db,run,pid,selected)
         answer=invoke(db,run,Speech,'discussion','speak',facts,pid)
-        if answer.candidate_id not in run.ctx['shortlist'] or answer.recipient not in list(store.board(db).people)+[None]:raise ModelFailure('invalid_discussion_reference')
+        normalize_recipient(db,answer)
+        if answer.candidate_id not in run.ctx['shortlist']:
+            # 평가 단계와 같이, 잘못된 후보 참조는 정확한 ID 목록과 함께 한 번만 다시 요청한다.
+            event(db,run,'hive','SPEECH_REPAIR','발언이 토론 후보 목록에 없는 후보를 가리켜, 정확한 후보 ID로 한 번만 다시 요청합니다.')
+            bad=answer.candidate_id
+            answer=invoke(db,run,Speech,'discussion','speak',{**facts,'reference_feedback':dict(expected_candidate_ids=list(run.ctx['shortlist']),received_candidate_id=bad)},pid)
+            normalize_recipient(db,answer)
+            if answer.candidate_id not in run.ctx['shortlist']:
+                patch(run,model_error=json.dumps(dict(type='invalid_discussion_reference',speaker=pid,received_candidate_ids=[bad,answer.candidate_id],
+                    expected_candidate_ids=list(run.ctx['shortlist'])),ensure_ascii=False))
+                raise ModelFailure('invalid_discussion_reference')
         if answer.recipient and answer.recipient not in pids:
             pids.append(answer.recipient);patch(run,participants=list(pids))
             event(db,run,'hive','INVITE',f'{store.board(db).people[answer.recipient].name}에게 실제 질문이 있어 토론에 초대합니다.',recipient=answer.recipient)

@@ -6,3 +6,5 @@
 PM 최종 선택 대기, 이미 명시된 본인 Confirm, 기존 후보에 포함된 Beta 이관·필수 Core 유지 조건은 새 계획이 필요한 사유가 아니다. 이 경우 requires_new_candidate=false다. ANSWER/QUESTION/PREFER/PASS에는 requires_new_candidate=true를 쓰지 않는다. 실제 현재 후보가 충족하지 못하는 작업·담당·일정·범위 변경이 있을 때만 CONDITION과 구체적인 미충족 조건을 답한다.
 
 allocations_are_deferred=true면 원 업무량을 후속 milestone에 보존한 것이다. 그 배분량을 Alpha의 my_schedule에 다시 더해서 불가능하다고 판단하지 않는다. 현재 후보의 my_schedule·deferred·hive_verification을 읽고, 원래의 변경 전/문제 보드와 구별한다.
+
+reference_feedback가 있으면 직전 발언의 candidate_id가 목록에 없었다는 뜻이다. expected_candidate_ids 중 하나를 글자 그대로 사용해 다시 답한다. recipient는 공개 참가자 id(예: dev, art) 또는 null만 쓴다.
