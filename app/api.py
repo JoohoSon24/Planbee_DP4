@@ -51,10 +51,13 @@ async def basic_auth(request: Request, call_next):
     header = request.headers.get("authorization", "")
     if header.lower().startswith("basic "):
         try:
-            user, _, pw = base64.b64decode(header[6:]).decode("utf-8").partition(":")
-        except (ValueError, UnicodeDecodeError):
-            user, pw = "", ""
-        if secrets.compare_digest(user, _AUTH_USER) and secrets.compare_digest(pw, _AUTH_PASSWORD):
+            user, _, pw = base64.b64decode(header[6:]).partition(b":")
+        except ValueError:
+            user, pw = b"", b""
+        # 바이트로 비교한다. str 비교는 한글 등 비 ASCII 입력에서 TypeError(500)를 낸다.
+        ok_user = secrets.compare_digest(user, _AUTH_USER.encode("utf-8"))
+        ok_pw = secrets.compare_digest(pw, _AUTH_PASSWORD.encode("utf-8"))
+        if ok_user and ok_pw:
             return await call_next(request)
     return Response(status_code=401, headers={"WWW-Authenticate": 'Basic realm="Plan Bee"'})
 
