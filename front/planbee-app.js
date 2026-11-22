@@ -16,10 +16,20 @@
   controls.innerHTML='<label>이슈 업무 <select id="task-select" class="task-select" aria-label="이슈 업무"></select></label><button id="continue-run" class="btn sm">계속 진행</button><button id="pause-run" class="btn sm">다음 단계에서 일시정지</button><button id="current-board" class="btn sm">현재 보드</button>';
   stage.after(controls);
   var support=document.createElement('div');support.className='scenario-note';support.id='scenario-support';controls.after(support);
+  var DEFAULT_PLACEHOLDER='무엇이 바뀌었나요?\n예: Advanced Effects가 16h에서 32h로 늘어납니다.\n지켜야 할 마감과 필요한 도움을 함께 적어 주세요.';
   input.placeholder='무엇이 바뀌었나요?\n예: Advanced Effects가 16h에서 32h로 늘어납니다.\n지켜야 할 마감과 필요한 도움을 함께 적어 주세요.';
   input.setAttribute('aria-describedby','composer-help');
-  var help=document.createElement('div');help.id='composer-help';help.className='composer-help';help.textContent='Enter 줄바꿈 · Ctrl / ⌘ + Enter 보내기';document.getElementById('form').after(help);
+  var help=document.createElement('div');help.id='composer-help';help.className='composer-help';help.textContent='Enter 줄바꿈 · Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력';document.getElementById('form').after(help);
   input.addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();document.getElementById('form').requestSubmit();}});
+  // 입력창이 비어 있을 때 Tab: placeholder로 보이는 시나리오의 첫 이슈 예시를 그대로 채운다.
+  input.addEventListener('keydown',function(e){
+    var example=state&&state.demo&&state.demo.issue_example;
+    if(e.key!=='Tab'||e.shiftKey||e.isComposing||input.value.trim()||!example)return;
+    e.preventDefault();
+    var select=document.getElementById('task-select'),source=state.demo.source_task;
+    if(source&&Array.from(select.options).some(function(o){return o.value===source;}))select.value=source;
+    input.value=example;input.dispatchEvent(new Event('input'));input.setSelectionRange(example.length,example.length);status();
+  });
   input.addEventListener('input',function(){input.style.height='auto';input.style.height=Math.min(240,Math.max(112,input.scrollHeight))+'px';});
   document.querySelector('.sprint').textContent='서버 연결 중';
   document.querySelector('.badge').textContent='API';
@@ -50,7 +60,7 @@
     document.getElementById('demo-advance').disabled=busy||!state||!state.feed_label||!!(run&&['running','awaiting_pm_selection','waiting_confirm','waiting_pm'].includes(run.status));
     var sendBlock=busy?'처리 중입니다. 잠시 기다려 주세요.':!document.getElementById('task-select').value?'이 역할에는 이슈를 보낼 담당 업무가 없습니다. 담당 업무가 있는 역할이나 PM으로 전환하세요.':(run&&['running','awaiting_pm_selection','waiting_confirm','waiting_pm'].includes(run.status))?'진행 중인 계획 조정이 끝나야 새 이슈를 보낼 수 있습니다. 위의 다음 행동을 먼저 처리하세요.':'';
     var sendBtn=document.querySelector('#form button');sendBtn.disabled=!!sendBlock;sendBtn.title=sendBlock;
-    var help=document.getElementById('composer-help');if(help){help.textContent=sendBlock||'Enter 줄바꿈 · Ctrl / ⌘ + Enter 보내기';help.classList.toggle('blocked',!!sendBlock);}
+    var help=document.getElementById('composer-help');if(help){help.textContent=sendBlock||'Enter 줄바꿈 · Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력';help.classList.toggle('blocked',!!sendBlock);}
     document.getElementById('reset').disabled=busy;
     feed.querySelectorAll('[data-required-role]').forEach(function(b){b.disabled=busy||viewerRole!==b.dataset.requiredRole;});
   }
@@ -72,6 +82,7 @@
     if(Array.from(select.options).some(function(o){return o.value===old;}))select.value=old;
     if(run&&Array.from(select.options).some(function(o){return o.value===run.task;}))select.value=run.task;
     if(!run&&state.demo.source_task&&Array.from(select.options).some(function(o){return o.value===state.demo.source_task;}))select.value=state.demo.source_task;
+    input.placeholder=state.demo.issue_example?state.demo.issue_example+'\n\n(Tab 키로 이 예시 입력)':DEFAULT_PLACEHOLDER;
     support.innerHTML='<details><summary>이 시나리오에서 확인할 내용</summary><p>'+E(state.demo.engine_support||'')+'</p></details>';support.hidden=!state.demo.engine_support;
     V.render(state,preview&&preview.board,!!preview);paint();status();syncHeight();
   }
