@@ -11,7 +11,7 @@ import time
 
 from pydantic import BaseModel, Field
 from sqlalchemy import select
-from .models import Assessment, Consent, ConstraintReview, Designs, Opinion, Part, Speech, Transformation
+from .models import Assessment, Consent, ConstraintReview, Designs, Opinion, Part, Speech, Transformation, TaskSelection
 from . import plans
 from .generator import enumerate_plans, snapshot, view, canonical, execution_key
 from .. import hive, store, runlogs, prompts
@@ -148,6 +148,14 @@ def review_no_options(db,run,b):
 
 def mock_reply(db,run,schema,facts,pid):
     """Explicit offline fixtures only. Live errors never take this branch."""
+    if schema is TaskSelection:
+        text=facts['issue'].split('\n\n참조:')[0].split('\n\nReferences:')[0].casefold()
+        matches=[t for t in facts['tasks'] if t['title'].casefold() in text or t['id'].casefold() in text]
+        if len(matches)==1:return TaskSelection(task_id=matches[0]['id'],reason='Mock: 이슈에 명시된 업무 이름을 찾았습니다.')
+        if matches:
+            matches.sort(key=lambda t:min([text.find(v) for v in (t['title'].casefold(),t['id'].casefold()) if v in text]))
+            return TaskSelection(task_id=matches[0]['id'],reason='Mock: 이슈에 먼저 언급된 업무를 선택했습니다.')
+        return TaskSelection(reason='Mock에서 명시된 업무 이름을 찾지 못했습니다.',clarification='어떤 업무에서 무엇이 바뀌었는지 한 문장으로 알려 주세요.')
     if schema is Designs:
         t=store.board(db).tasks[run.ctx['task']]
         script=(getattr(get_llm(),'script',{}) or {}).get('split',{}).get(t.id)
@@ -190,15 +198,15 @@ def fail(db,run,reason):
     event(db,run,'hive','END',f'협상을 마쳤어요. {reason} · 미합의 변경은 적용하지 않고 PM에게 상황을 전달합니다.')
 
 
-def start(db,task_id,issue,settings=None,phase_after=None):
+def start(db,task_id,issue,settings=None,phase_after=None,reporter=None):
     b=store.board(db);hive.schedule(b)
     t=b.tasks.get(task_id)
-    if not t or t.cut or t.kind in ('done','milestone','prop') or t.d<=0:raise ValueError('실행 가능한 Task를 선택하세요')
+    if task_id and (not t or t.cut or t.kind in ('done','milestone','prop') or t.d<=0):raise ValueError('실행 가능한 Task를 선택하세요')
     cfg=settings or Settings(max_calls=int(os.environ.get('PLANBEE_MAX_CANDIDATE_CALLS','120')))
     snap=snapshot(b);files=prompts.snapshot()
     gate=hive.gate(b)
     run=Run(kind='candidate',step='candidate_input',status='running',auto_confirm=False,ctx=dict(
-        task=t.id,who=t.who,issue=issue,records=[issue],phase='fairness' if gate['ok'] else 'deadline',
+        task=t.id if t else None,who=t.who if t else None,reporter=reporter,issue=issue,records=[issue],phase='fairness' if gate['ok'] else 'deadline',
         rebalance_reason='fairness' if gate['ok'] else 'deadline',round=0,settings=cfg.model_dump(),
         phase_after=phase_after,board_snapshot=snap,snapshot_hash=sha256(json.dumps(snap,sort_keys=True,default=str).encode()).hexdigest(),
         initial_board=view(b),private_cards=cards(db),prompt_snapshot=files,
@@ -211,6 +219,19 @@ def start(db,task_id,issue,settings=None,phase_after=None):
     event(db,run,'hive','ISSUE','이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.')
     # The issue owner's estimate changes the problem, never an allocation consent.
     try:
+        if t is None:
+            eligible=[x for x in b.tasks.values() if not x.cut and x.kind not in ('done','milestone','prop') and x.d>0]
+            facts=dict(issue=issue,reporter=reporter,tasks=[dict(id=x.id,title=x.title,owner=x.who,role=b.people[x.who].role,days=x.d,context=x.context or {}) for x in eligible])
+            selection=invoke(db,run,TaskSelection,'input','resolve_task',facts)
+            if selection.task_id is None:
+                run.status='done';run.step='done'
+                patch(run,termination='issue_needs_clarification',clarification=selection.clarification or '어떤 업무에 어떤 변경이 있는지 더 구체적으로 알려 주세요.')
+                event(db,run,'hive','CLARIFY',run.ctx['clarification'])
+                runlogs.finish_turn(db,run,input_turn);return run
+            if selection.task_id not in {x.id for x in eligible}:raise ModelFailure('invalid_issue_task_reference')
+            task_id=selection.task_id;t=b.tasks[task_id]
+            patch(run,task=task_id,who=t.who,task_resolution=dict(task_id=task_id,reason=selection.reason))
+            event(db,run,'hive','TASK_IDENTIFIED',f'이슈를 읽고 {b.people[t.who].name}의 {t.title} 업무로 연결했어요. {selection.reason}')
         adapter=get_llm()
         with prompts.frozen(files),bound(run.ctx['llm_budget']):
             if not isinstance(adapter,LiveLLM):consume()
@@ -224,6 +245,8 @@ def start(db,task_id,issue,settings=None,phase_after=None):
                 phase='fairness' if hive.gate(b)['ok'] else 'deadline',
                 rebalance_reason='fairness' if hive.gate(b)['ok'] else 'deadline')
             event(db,run,t.who,'ESTIMATE',f'이슈를 읽고 이 업무를 {t.d:g}일로 다시 견적했어요.')
+    except TimeLimit:
+        fail(db,run,'max_wall_time');runlogs.finish_turn(db,run,input_turn);return run
     except CallBudgetExceeded:
         fail(db,run,'max_llm_calls');runlogs.finish_turn(db,run,input_turn);return run
     except ModelFailure as exc:
@@ -504,7 +527,7 @@ def commit(db,run):
 
 def response(run):
     # Explicit allowlist: neither private cards nor prompt content nor private ballots leak.
-    keys=('task','issue','phase','round','pool_revision','pool_hash','generation','generation_reason','shortlist',
+    keys=('task','reporter','task_resolution','clarification','issue','phase','round','pool_revision','pool_hash','generation','generation_reason','shortlist',
         'final_candidates','public_history','llm_budget','termination','pm_selection','pm_handoff',
         'participants','supplement_error','prompt_hashes','snapshot_hash','initial_board','final_board','transcript_file','llm_mode','assessment_progress')
     return dict(id=run.id,kind=run.kind,status=run.status,step=run.step,

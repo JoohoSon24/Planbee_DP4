@@ -4,7 +4,7 @@
   function t(ko,en){return document.documentElement.getAttribute('data-lang')==='en'?en:ko;}
   var POLL_MS=3000, top=document.querySelector('.top');if(!top)return;
   var wrap=document.createElement('div');wrap.className='llm-usage';
-  wrap.innerHTML='<button type="button" class="btn sm llm-usage-chip" aria-expanded="false" aria-controls="llm-usage-panel">'+t('토큰 —','Tokens —')+'</button>'+
+  wrap.innerHTML='<button type="button" class="btn sm llm-usage-chip" aria-expanded="false" aria-controls="llm-usage-panel">'+t('사용량','Usage')+'</button>'+
     '<div class="llm-usage-panel" id="llm-usage-panel" role="dialog" aria-label="'+t('LLM 토큰 사용량','LLM token usage')+'" hidden></div>';
   top.appendChild(wrap);
   var chip=wrap.querySelector('.llm-usage-chip'), panel=wrap.querySelector('.llm-usage-panel'), last=null, timer=null;
@@ -28,11 +28,8 @@
   function render(s){
     last=s;var u=s.total, c=s.credit;
     chip.classList.remove('warn','crit');
-    if(s.mode!=='live'){chip.textContent=t('Mock · 토큰 사용 없음','Mock · no token use');}
-    else{
-      chip.textContent=t('토큰 ','Tokens ')+k(u.total_tokens)+t(' · 호출 ',' · calls ')+u.calls+' · '+usd(u.cost)+(c?' · '+credit(c):'');
-      var lv=level(c);if(lv)chip.classList.add(lv);
-    }
+    chip.textContent=t('사용량','Usage');chip.title=t('LLM 토큰·비용·잔여 크레딧 자세히 보기','View LLM tokens, cost and credit details');
+    var lv=level(c);if(s.mode==='live'&&lv)chip.classList.add(lv);
     if(panel.hidden)return;
     var head='<div class="llm-usage-h"><strong>'+t('LLM 사용량','LLM usage')+'</strong><span class="muted">'+E(s.mode==='live'?(s.model||'live'):'mock')+' · '+t(E(new Date(s.since).toLocaleTimeString())+'부터','since '+E(new Date(s.since).toLocaleTimeString()))+'</span></div>';
     var sum='<div class="llm-usage-sum"><div><b>'+k(u.total_tokens)+'</b><span>'+t('전체 토큰','Total tokens')+'</span></div><div><b>'+k(u.prompt_tokens)+'</b><span>'+t('입력','Input')+'</span></div><div><b>'+k(u.completion_tokens)+'</b><span>'+t('출력','Output')+'</span></div><div><b>'+usd(u.cost)+'</b><span>'+t('이번 실행 비용','Cost this run')+'</span></div></div>';
@@ -49,8 +46,8 @@
     document.getElementById('llm-usage-reset').onclick=async function(){await fetch('/llm/usage/reset',{method:'POST'});poll();};
   }
   async function poll(){
-    try{var res=await fetch('/llm/usage');if(res.ok)render(await res.json());else chip.textContent=t('토큰 조회 실패 (','Token lookup failed (')+res.status+')';}
-    catch(err){chip.textContent=t('토큰 조회 실패','Token lookup failed');}
+    try{var res=await fetch('/llm/usage');if(res.ok)render(await res.json());else chip.title=t('사용량 조회 실패: ','Usage lookup failed: ')+res.status;}
+    catch(err){chip.title=t('사용량 조회 실패','Usage lookup failed');}
   }
   function schedule(){clearInterval(timer);if(document.visibilityState==='visible'){poll();timer=setInterval(poll,POLL_MS);}}
   chip.onclick=function(){panel.hidden=!panel.hidden;chip.setAttribute('aria-expanded',String(!panel.hidden));if(!panel.hidden&&last)render(last);};

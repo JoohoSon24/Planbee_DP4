@@ -95,3 +95,9 @@ class CandidateSettings(BaseModel):
     max_calls: int = Field(default=80,ge=1,le=500)
     max_seconds: int = Field(default=300,ge=1,le=1800)
     seed: int = 17
+
+
+class TaskSelection(BaseModel):
+    task_id: str | None = None
+    reason: str
+    clarification: str | None = None

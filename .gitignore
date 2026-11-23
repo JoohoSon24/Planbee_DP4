@@ -6,6 +6,9 @@ planbee.db
 .venv/
 .DS_Store
 planbee_*.db
+*.db-journal
+*.db-wal
+*.db-shm
 
 # Generated conversation transcripts
 runs/

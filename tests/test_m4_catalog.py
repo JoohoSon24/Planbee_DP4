@@ -266,3 +266,54 @@ def test_assessment_bad_ids_get_one_bounded_feedback_retry(app_env,always_invali
         assert r['termination']=='model_output_invalid'
     else:assert r['status']=='awaiting_pm_selection'
     assert r.get('termination')!='applied'
+
+
+def test_issue_without_task_can_be_reported_by_non_owner(app_env):
+    c,_=app_env
+    r=c.post('/candidate-runs',headers={'X-Planbee-Role':'person:gd'},json={'issue':'Polish 6시간은 유지하고 다음 월요일로 옮겨 주세요.'})
+    assert r.status_code==200,r.text
+    run=r.json()
+    assert run['task']=='polish' and run['reporter']=='person:gd'
+    assert run['task_resolution']['task_id']=='polish'
+    assert run['llm_budget']['used']>=3
+    assert any(e['response']=='TASK_IDENTIFIED' for e in run['public_history'])
+    assert c.post('/candidate-runs',headers={'X-Planbee-Role':'person:outsider'},json={'issue':'Polish 이동'}).status_code==403
+
+
+def test_unknown_issue_asks_for_clarification_without_applying(app_env):
+    c,_=app_env;before=c.get('/board').json()
+    r=c.post('/candidate-runs',json={'issue':'뭔가 이상한데 해결해 주세요.'}).json()
+    assert r['status']=='done' and r['termination']=='issue_needs_clarification'
+    assert r['clarification'] and r['task'] is None
+    assert r['llm_budget']['used']==1
+    assert c.get('/board').json()==before
+
+
+def test_automatic_task_selection_shares_run_call_budget(app_env):
+    c,_=app_env
+    r=c.post('/candidate-runs',json={'issue':'Polish 이동','settings':{'max_calls':1}}).json()
+    assert r['task']=='polish'
+    assert r['termination']=='max_llm_calls' and r['llm_budget']['used']==1
+    assert not r['candidates']
+
+
+@pytest.mark.parametrize('task_id',['polish','not_a_real_task',None])
+def test_live_task_router_uses_public_tasks_and_validates_reference(app_env,task_id):
+    from app.candidates.models import TaskSelection
+    from app.negotiation_budget import consume
+    c,_=app_env
+    class Router(LiveContract):
+        def _ask(self,schema,instruction,facts,model=None):
+            if schema is TaskSelection:
+                consume();self.seen.append((schema.__name__,deepcopy(facts)))
+                assert 'my_delegation' not in facts and 'private_cards' not in facts
+                assert all(t['id']!='core_x' for t in facts['tasks']) # completed work excluded
+                assert '공개 팀 이슈' in instruction
+                return TaskSelection(task_id=task_id,reason='공개 업무와 이슈를 읽었습니다.',clarification='어떤 업무인가요?' if task_id is None else None)
+            return super()._ask(schema,instruction,facts,model)
+    adapter=Router();llm.set_llm(adapter)
+    r=c.post('/candidate-runs',json={'issue':'다음 월요일로 이동하고 싶어요.'}).json()
+    assert r['llm_budget']['used']==len(adapter.seen)
+    if task_id=='polish':assert r['task']=='polish' and r['status']=='running'
+    elif task_id is None:assert r['termination']=='issue_needs_clarification'
+    else:assert r['termination']=='model_output_invalid' and not r['candidates']

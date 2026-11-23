@@ -8,7 +8,7 @@ from ..models import Run, CandidateEvaluation, Confirmation
 from .. import store, workflow, viewer
 
 class StartIn(BaseModel):
-    task_id: str
+    task_id: str | None = None
     issue: str = Field(min_length=1,max_length=8000)
     settings: engine.Settings | None = None
 
@@ -50,11 +50,16 @@ def install(app,get_db,busy):
 
     @router.post('/candidate-runs')
     def start(body:StartIn,request:Request,db=Depends(get_db)):
-        task=store.board(db).tasks.get(body.task_id)
-        if not task:raise HTTPException(404,'없는 Task')
-        viewer.owner(request,task.who)
+        board=store.board(db);reporter=viewer.role(request)
+        if reporter and reporter!='pm' and reporter[7:] not in board.people:raise HTTPException(403,'없는 사용자 역할')
+        if body.task_id:
+            task=board.tasks.get(body.task_id)
+            if not task:raise HTTPException(404,'없는 Task')
+            viewer.owner(request,task.who)
+        # Reporting a public team issue is distinct from consenting to a change.
+        # The inferred owner and all affected people still decide by their own cards.
         busy(db);store.snap(db)
-        return engine.response(attempt(lambda:engine.start(db,body.task_id,body.issue,body.settings)))
+        return engine.response(attempt(lambda:engine.start(db,body.task_id,body.issue,body.settings,reporter=reporter)))
 
     @router.get('/candidate-runs')
     def runs(db=Depends(get_db)):

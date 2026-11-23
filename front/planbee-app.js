@@ -12,6 +12,7 @@
   function scenarioTitle(x){return lang()==='en'&&window.PlanBeeTitleEn?window.PlanBeeTitleEn(x):x;}
   // Server-made Hive/system messages arrive in Korean with a stable action code: translate by code.
   var HIVE_EN={
+    TASK_IDENTIFIED:function(){return 'Read the issue and identified the relevant task. See the agenda for its owner and title.';},
     ISSUE:function(){return 'Issue received. Designing new milestone plans that fit the deadline first.';},
     ESTIMATE:function(m){var d=(m.reason.match(/([0-9.]+)일/)||[])[1];return 'Read the issue and re-estimated this task to '+(d||'?')+' days.';},
     CANDIDATES:function(m){var n=(m.reason.match(/(\d+)개/)||[])[1];return 'Prepared '+(n||'')+' new plans that passed Hive schedule checks.';},
@@ -35,16 +36,15 @@
   var stage=document.createElement('div');stage.className='backend-stage';stage.setAttribute('role','status');stage.id='backend-stage';
   document.querySelector('.chan .pane-h').after(stage);
   var controls=document.createElement('div');controls.className='backend-controls';
-  controls.innerHTML='<label><span data-t="issueTask"></span> <select id="task-select" class="task-select"></select></label><button id="continue-run" class="btn sm" data-t="continue"></button><button id="pause-run" class="btn sm" data-t="pause"></button><button id="current-board" class="btn sm" data-t="currentBoard"></button><button id="next-day" class="btn sm" data-t="nextDay"></button>';
+  controls.innerHTML='<button id="continue-run" class="btn sm" data-t="continue"></button><button id="pause-run" class="btn sm" data-t="pause"></button><button id="current-board" class="btn sm" data-t="currentBoard"></button><button id="next-day" class="btn sm" data-t="nextDay"></button>';
   stage.after(controls);
-  var UI={scenario:['시나리오','Scenario'],myRole:['내 역할','My role'],issueTask:['이슈 업무','Issue task'],continue:['계속 진행','Continue'],pause:['일시정지','Pause'],currentBoard:['현재 보드','Current board'],nextDay:['다음 날로 ▶','Next day ▶']};
-  function defaultPlaceholder(){return t('무엇이 바뀌었나요? 이슈 업무를 고르고 자유롭게 적어 주세요.','What changed? Pick the issue task and describe it freely.');}
+  var UI={scenario:['시나리오','Scenario'],myRole:['내 역할','My role'],continue:['계속 진행','Continue'],pause:['일시정지','Pause'],currentBoard:['현재 보드','Current board'],nextDay:['다음 날로 ▶','Next day ▶']};
+  function defaultPlaceholder(){return t('무엇이 바뀌었나요? 업무를 고르지 않고 자유롭게 적어 주세요.','What changed? Describe it freely; the team will identify the task.');}
   function helpText(){return t('Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력','Ctrl / ⌘ + Enter: send · Tab in an empty box: insert example');}
   function chrome(){
     document.querySelectorAll('[data-t]').forEach(function(n){var v=UI[n.dataset.t];if(v)n.textContent=t(v[0],v[1]);});
     document.getElementById('demo-select').setAttribute('aria-label',t('시나리오','Scenario'));
     document.getElementById('viewer-select').setAttribute('aria-label',t('현재 사용자 역할','Current user role'));
-    document.getElementById('task-select').setAttribute('aria-label',t('이슈 업무','Issue task'));
     document.querySelector('.chan .pane-h h2').textContent=t('# 팀 협의','# Team negotiation');
     var sugg=document.getElementById('sugg');if(sugg)sugg.innerHTML='';
     input.setAttribute('aria-label',t('업무 변경 이슈','Task change issue'));
@@ -65,8 +65,6 @@
     var example=state&&state.demo&&state.demo.issue_example;
     if(e.key!=='Tab'||e.shiftKey||e.isComposing||input.value.trim()||!example)return;
     e.preventDefault();
-    var select=document.getElementById('task-select'),source=state.demo.source_task;
-    if(source&&Array.from(select.options).some(function(o){return o.value===source;}))select.value=source;
     input.value=example;input.dispatchEvent(new Event('input'));input.setSelectionRange(example.length,example.length);status();
   });
   input.addEventListener('input',function(){input.style.height='auto';input.style.height=Math.min(240,Math.max(112,input.scrollHeight))+'px';});
@@ -107,7 +105,7 @@
     var names={candidate_generate:t('후보 생성·검증','Generating and verifying plans'),candidate_assess:t('각자 카드로 평가','Members assess by card'),candidate_discuss:t('공개 토론','Open discussion'),candidate_rank:t('최종 평가·당사자 동의','Final assessment and consent'),candidate_pm:t('PM 결정','PM decision'),candidate_confirm:t('본인 확인','Personal confirmation'),candidate_failed:t('PM 검토','PM review'),done:t('완료','Done')};
     var budget=run&&run.llm_budget,active=!!(run&&ACTIVE.includes(run.status));
     var line=!booted?t('서버에 연결하는 중…','Connecting to the server…'):active?(names[run.step]||run.step)+(run.round?' · '+t('라운드 '+run.round,'round '+run.round):'')+(run.assessment_progress&&/assess|rank/.test(run.step)?' · '+run.assessment_progress.completed+'/'+run.assessment_progress.total:''):t('새 이슈를 기다리는 중','Waiting for a new issue');
-    var next=!booted?'':!active?t('이슈 업무를 고르고 무엇이 바뀌었는지 보내세요.','Pick an issue task and send what changed.'):run.status==='awaiting_pm_selection'?t('추천 계획을 비교하고 PM이 결정하세요.','Compare the recommended plans; the PM decides.'):run.status==='waiting_pm'?t('PM이 상황을 확인하고 다음 조치를 정하세요.','The PM reviews the situation and decides the next step.'):run.status==='waiting_confirm'?t('본인 확인 대기 중입니다.','Waiting for personal confirmation.'):automatic?t('팀이 협의하고 있습니다…','The team is negotiating…'):t('일시정지 상태입니다. 계속 진행을 누르세요.','Paused. Press Continue.');
+    var next=!booted?'':!active?t('무엇이 바뀌었는지 보내세요. LLM이 관련 업무를 찾습니다.','Send what changed. The LLM will identify the relevant task.'):run.status==='awaiting_pm_selection'?t('추천 계획을 비교하고 PM이 결정하세요.','Compare the recommended plans; the PM decides.'):run.status==='waiting_pm'?t('PM이 상황을 확인하고 다음 조치를 정하세요.','The PM reviews the situation and decides the next step.'):run.status==='waiting_confirm'?t('본인 확인 대기 중입니다.','Waiting for personal confirmation.'):automatic?t('팀이 협의하고 있습니다…','The team is negotiating…'):t('일시정지 상태입니다. 계속 진행을 누르세요.','Paused. Press Continue.');
     stage.innerHTML='<strong>'+E(line)+'</strong>'+(busy?'<span class="stage-busy"> · '+E(t('처리 중','working'))+'</span>':'')+'<span class="stage-meta">'+E(runtime.llm_mode||'')+(budget&&active?' · '+E(t('호출 ','calls '))+budget.used+'/'+budget.max:'')+'</span>'+(next?'<div class="next-action">'+E(next)+(run&&['awaiting_pm_selection','waiting_pm'].includes(run.status)?' <button type="button" class="btn sm" id="jump-decision">'+E(t('바로 보기 ↓','Jump to it ↓'))+'</button>':'')+'</div>':'');
     var jump=document.getElementById('jump-decision');if(jump)jump.onclick=function(){var target=feed.querySelector('.decision-anchor');if(target)target.scrollIntoView({behavior:'smooth',block:'start'});};
     stage.setAttribute('aria-busy',busy?'true':'false');
@@ -116,7 +114,7 @@
     document.getElementById('demo-select').disabled=busy||!booted;
     document.getElementById('viewer-select').disabled=busy||!booted;
     document.getElementById('next-day').disabled=busy||!booted||active||!state||state.now>=state.week_end;
-    var sendBlock=busy||!booted?'':!document.getElementById('task-select').value?t('이 역할에는 이슈를 보낼 담당 업무가 없습니다. 담당 업무가 있는 역할이나 PM으로 전환하세요.','This role has no task to raise an issue on. Switch to a role that owns a task, or to PM.'):active?t('진행 중인 협의가 끝나야 새 이슈를 보낼 수 있습니다.','Finish the current negotiation before sending a new issue.'):'';
+    var sendBlock=busy||!booted?'':active?t('진행 중인 협의가 끝나야 새 이슈를 보낼 수 있습니다.','Finish the current negotiation before sending a new issue.'):'';
     var sendBtn=document.querySelector('#form button');sendBtn.disabled=busy||!booted||!!sendBlock;sendBtn.title=sendBlock;
     help.textContent=sendBlock||helpText();help.classList.toggle('blocked',!!sendBlock);
     document.getElementById('reset').disabled=busy||!booted;
@@ -129,6 +127,7 @@
     var my=++refreshSeq;
     var s=await api('/state'),r=loadRun?(await api('/candidate-runs'))[0]||null:run;
     if(my!==refreshSeq)return;   // a newer refresh already drew
+    if(state&&state.demo&&s.demo&&state.demo.id!==s.demo.id)refs=[];
     state=s;if(loadRun)run=r;booted=true;draw();
   }
   function draw(){
@@ -139,11 +138,6 @@
     document.querySelector('.sprint').textContent=scenarioTitle(state.demo.title)+' · '+(lang()==='en'?'day '+fmt(state.now):state.now_label);
     document.querySelector('.badge').textContent=(runtime.llm_mode||'').toUpperCase();
     var demo=document.getElementById('demo-select');demo.innerHTML=state.demo.catalog.map(function(d){return '<option value="'+E(d.id)+'"'+(d.id===state.demo.id?' selected':'')+'>'+E(scenarioTitle(d.title))+'</option>';}).join('');
-    var select=document.getElementById('task-select'),old=select.value;
-    select.innerHTML=Object.values(state.tasks).filter(function(x){return !x.cut&&!['done','milestone','prop'].includes(x.kind)&&(viewerRole==='pm'||viewerRole==='person:'+x.who);}).map(function(x){return '<option value="'+E(x.id)+'">'+E(label(x.who)+' · '+x.title)+'</option>';}).join('');
-    if(Array.from(select.options).some(function(o){return o.value===old;}))select.value=old;
-    if(run&&ACTIVE.includes(run.status)&&Array.from(select.options).some(function(o){return o.value===run.task;}))select.value=run.task;
-    else if(!old&&state.demo.source_task&&Array.from(select.options).some(function(o){return o.value===state.demo.source_task;}))select.value=state.demo.source_task;
     var src=state.tasks[state.demo.source_task];
     input.placeholder=state.demo.issue_example&&src&&src.kind!=='done'?state.demo.issue_example+t('\n\n(빈 입력창에서 Tab: 이 예시 입력 · 다른 내용도 자유롭게)','\n\n(Tab in an empty box inserts this example · any other text works too)'):defaultPlaceholder();
     paintRefs();
@@ -151,7 +145,7 @@
   }
 
   /* ---------- references (quotes) ---------- */
-  // A task reference sets the issue task. Person / Handoff references are sent with the issue as context.
+  // References are optional shared context, never a forced issue-task selection.
   function refLabel(r){
     if(r.type==='t'){var x=state&&state.tasks[r.id];return t('업무 ','Task ')+(x?x.title:r.id);}
     if(r.type==='p')return t('사람 ','Person ')+label(r.id);
@@ -160,16 +154,16 @@
   function paintRefs(){
     var q=document.getElementById('quotes');if(!q)return;
     q.hidden=!refs.length;
-    q.innerHTML=refs.map(function(r,i){return '<span class="ref-chip" title="'+E(r.type==='t'?t('이 업무가 이슈 대상 업무로 선택됩니다.','This task becomes the issue task.'):t('보낼 때 이슈 문장에 근거로 함께 전달됩니다.','Sent with the issue as context.'))+'">'+E(refLabel(r))+'<button type="button" class="ref-x" data-ref="'+i+'" aria-label="'+E(t('참조 빼기','Remove reference'))+'">×</button></span>';}).join('');
+    q.innerHTML=(refs.length?'<button type="button" class="btn sm" data-clear-refs>'+E(t('참조 모두 비우기','Clear references'))+'</button>':'')+refs.map(function(r,i){return '<span class="ref-chip" title="'+E(t('보낼 때 이슈의 참고 정보로 함께 전달됩니다.','Sent as optional context with the issue.'))+'">'+E(refLabel(r))+'<button type="button" class="ref-x" data-ref="'+i+'" aria-label="'+E(t('참조 빼기','Remove reference'))+'">×</button></span>';}).join('');
   }
-  document.getElementById('quotes').addEventListener('click',function(e){var b=e.target.closest('[data-ref]');if(!b)return;refs.splice(Number(b.dataset.ref),1);paintRefs();});
+  document.getElementById('quotes').addEventListener('click',function(e){if(e.target.closest('[data-clear-refs]')){refs=[];paintRefs();return;}var b=e.target.closest('[data-ref]');if(!b)return;refs.splice(Number(b.dataset.ref),1);paintRefs();});
   window.PlanBeeApp={quote:function(type,id){
-    if(type==='t'){var sel=document.getElementById('task-select');if(Array.from(sel.options).some(function(o){return o.value===id;}))sel.value=id;else{error(new Error(t('이 역할로는 이 업무에 이슈를 보낼 수 없습니다.','This role cannot raise an issue on that task.')));return;}refs=refs.filter(function(r){return r.type!=='t';});}
+    if(!state||!((type==='t'&&state.tasks[id])||(type==='p'&&state.people.some(function(p){return p.id===id;}))||(type==='h'&&state.hand[id])))return;
     if(!refs.some(function(r){return r.type===type&&r.id===id;}))refs.push({type:type,id:id});
     paintRefs();status();input.focus();
   }};
   function issueWithRefs(text){
-    var extra=refs.filter(function(r){return r.type!=='t';}).map(refLabel);
+    var extra=refs.map(function(r){return refLabel(r)+' ['+r.id+']';});
     return extra.length?text+'\n\n'+t('참조: ','References: ')+extra.join(', '):text;
   }
 
@@ -192,7 +186,7 @@
   function feedHTML(){
     var task=state.tasks[run.task]||{};
     var html='<div class="agenda"><div class="agenda-h"><span class="av hive" aria-hidden="true"></span><b>'+E(t('Hive · 안건','Hive · Agenda'))+'</b><span class="rt t-flat">'+E(run.phase==='deadline'?t('기한 회복','Deadline recovery'):t('공정성 재분담','Fairness rebalance'))+'</span></div>'+
-      '<p class="agenda-task">'+E(task.title||run.task)+' <small>'+E(t('담당 ','owner ')+label(task.who))+'</small></p><p class="agenda-issue">'+E(run.issue)+'</p>'+
+      '<p class="agenda-task">'+E(task.title||run.task||t('업무 확인 필요','Task needs clarification'))+' <small>'+E(t('담당 ','owner ')+label(task.who))+'</small></p><p class="agenda-issue">'+E(run.issue)+'</p>'+
       '<p class="agenda-who">'+E(t('참석: ','Participants: '))+E(participants())+' · '+E(t('결정: PM','Decision: PM'))+'</p></div>';
     var cur=null,noise=0,assessed=[],ranked=[],afterRank=false;
     function sys(text){return '<div class="sys-line">'+E(text)+'</div>';}
@@ -236,7 +230,7 @@
   function paint(){
     var open=new Set(Array.from(feed.querySelectorAll('details[open][data-open]')).map(function(n){return n.dataset.open;}));var atEnd=feed.scrollHeight-feed.scrollTop-feed.clientHeight<90,scroll=feed.scrollTop;
     if(!booted){feed.innerHTML='<div class="backend-empty">'+E(t('서버에 연결하는 중입니다… 처음 접속이면 서버가 깨어나는 데 1분 정도 걸릴 수 있어요.','Connecting… On a first visit the server may take about a minute to wake up.'))+'</div>';return;}
-    if(!run){feed.innerHTML='<div class="backend-empty">'+E(t('이슈 업무를 고르고 무엇이 바뀌었는지 자유롭게 적어 보내세요. Hive가 안건을 열고, 관련 팀원의 Proxy들이 각자의 위임카드로 협의한 뒤 PM에게 계획 1~3개를 올립니다.','Pick an issue task and describe what changed. Hive opens an agenda, the related members\' proxies negotiate with their own delegation cards, and 1–3 plans go to the PM.'))+'</div>';return;}
+    if(!run){feed.innerHTML='<div class="backend-empty">'+E(t('무엇이 바뀌었는지 자유롭게 적어 보내세요. LLM이 관련 업무를 찾습니다. Hive가 안건을 열고, 관련 팀원의 Proxy들이 각자의 위임카드로 협의한 뒤 PM에게 계획 1~3개를 올립니다.','Describe what changed; the LLM identifies the relevant task. Hive opens an agenda, the related members\' proxies negotiate with their own delegation cards, and 1–3 plans go to the PM.'))+'</div>';return;}
     var html=feedHTML(),finals=run.final_candidates||[];
     if(run.status==='awaiting_pm_selection'){
       html+='<div class="backend-empty decision-anchor"><strong>'+E(t('PM 결정','PM decision'))+'</strong> · '+E(t('선택하기 전에는 보드에 적용되지 않아요.','Nothing is applied until you choose.'))+'</div>';
@@ -252,7 +246,8 @@
       html+='</article>';
     });
     if(run.status==='waiting_pm')html+='<article class="candidate-card decision-anchor"><h3>'+E(t('합의된 계획이 없어 PM에게 넘어왔어요','No agreed plan · handed to the PM'))+'</h3><p class="candidate-meta">'+E(t('종료 사유: ','Reason: ')+((run.pm_handoff&&run.pm_handoff.summary&&run.pm_handoff.summary.termination)||run.termination||''))+' · '+E(t('미합의 변경은 적용하지 않아요.','Unagreed changes are not applied.'))+'</p>'+(viewerRole==='pm'?'<button class="btn sm" data-required-role="pm" data-close-run>'+E(t('확인 · 현재 배분 유지','Acknowledge · keep current allocation'))+'</button>':'<button class="btn sm" data-switch-role="pm">'+E(t('PM으로 전환','Switch to PM'))+'</button>')+'</article>';
-    if(run.status==='done')html+='<div class="backend-empty">'+E(run.termination==='applied'?t('선택한 계획을 최종 검증 후 보드에 적용했어요.','The chosen plan passed final checks and was applied.'):t('현재 배분을 유지했어요.','The current allocation was kept.'))+' '+E(t('다음 이슈를 보내거나 다음 날로 넘어가세요.','Send the next issue or move to the next day.'))+'</div>';
+    if(run.clarification)html+='<div class="backend-error" role="status">'+E(run.clarification)+'</div>';
+    if(run.status==='done'&&!run.clarification)html+='<div class="backend-empty">'+E(run.termination==='applied'?t('선택한 계획을 최종 검증 후 보드에 적용했어요.','The chosen plan passed final checks and was applied.'):t('현재 배분을 유지했어요.','The current allocation was kept.'))+' '+E(t('다음 이슈를 보내거나 다음 날로 넘어가세요.','Send the next issue or move to the next day.'))+'</div>';
     feed.innerHTML=html;
     feed.querySelectorAll('details[data-open]').forEach(function(d){d.open=open.has(d.dataset.open);});
     feed.scrollTop=atEnd?feed.scrollHeight:scroll;
@@ -276,22 +271,23 @@
   // When a negotiation round finishes, time moves on: advance one working day (until the milestone deadline).
   var dayDoneFor=null;
   async function afterRound(){
-    if(!run||run.status!=='done'||dayDoneFor===run.id||!state||state.now>=state.week_end)return;
+    if(!run||run.status!=='done'||run.termination==='issue_needs_clarification'||dayDoneFor===run.id||!state||state.now>=state.week_end)return;
     dayDoneFor=run.id;
     try{var r=await api('/day/next',{});await refresh(false);V.toast(t('하루가 지났어요 · 완료: ','A day passed · finished: ')+(r.finished.join(', ')||t('없음','none')));}catch(err){error(err);}
   }
 
   /* ---------- events ---------- */
   document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();var issue=input.value.trim();if(!issue)return;act(async function(){
-    var taskId=document.getElementById('task-select').value,shownDemo=state&&state.demo&&state.demo.id;var latest=await api('/state');
-    if(!latest.tasks[taskId]||(latest.demo&&latest.demo.id)!==shownDemo){await refresh(true);throw new Error(t('서버의 시나리오가 화면과 달라 이 업무를 찾을 수 없습니다. 화면을 최신 상태로 고쳤으니 업무를 확인한 뒤 다시 보내 주세요. 입력한 내용은 그대로 남아 있습니다.','The server scenario differs from this screen, so the task was not found. The screen is now up to date; check the task and send again. Your text is kept.'));}
-    run=await api('/candidate-runs',{task_id:taskId,issue:issueWithRefs(issue)});dayDoneFor=null;input.value='';input.dispatchEvent(new Event('input'));refs=[];preview=null;await refresh(false);automatic=true;}).then(loop);});
+    var shownDemo=state&&state.demo&&state.demo.id;var latest=await api('/state');
+    if((latest.demo&&latest.demo.id)!==shownDemo){refs=[];await refresh(true);throw new Error(t('시나리오가 변경되어 화면을 새로 고쳤습니다. 내용을 확인한 뒤 다시 보내 주세요.','The scenario changed. The screen was refreshed; review your issue and send again.'));}
+    run=await api('/candidate-runs',{issue:issueWithRefs(issue)});dayDoneFor=null;
+    if(run.termination!=='issue_needs_clarification'){input.value='';input.dispatchEvent(new Event('input'));refs=[];}
+    preview=null;await refresh(false);automatic=run.status==='running';}).then(loop);});
   document.getElementById('continue-run').onclick=function(){automatic=true;loop();};
   document.getElementById('pause-run').onclick=function(){automatic=false;status();};
   document.getElementById('current-board').onclick=function(){preview=null;if(state)V.render(state,null,false);};
   document.getElementById('next-day').onclick=function(){act(async function(){var r=await api('/day/next',{});await refresh(false);V.toast(t('하루가 지났어요 · 완료: ','A day passed · finished: ')+(r.finished.join(', ')||t('없음','none')));});};
   document.getElementById('demo-select').onchange=function(e){automatic=false;act(async function(){await api('/demo/select',{demo:e.target.value});run=null;preview=null;refs=[];await refresh(true);});};
-  document.getElementById('task-select').onchange=status;
   function syncHeight(){document.querySelector('.app').style.height=window.innerWidth>900?'calc(100dvh - '+Math.ceil(top.getBoundingClientRect().height)+'px)':'auto';}
   window.addEventListener('resize',syncHeight);
   async function switchRole(role){viewerRole=role;try{localStorage.setItem('pb-viewer-role',role);}catch(err){}await refresh(false);}
@@ -308,7 +304,10 @@
     }).then(function(){return automatic?loop():afterRound();});
   });
   document.querySelector('.langs').addEventListener('click',function(e){var b=e.target.closest('[data-lang]');if(b){setLanguage(b.dataset.lang);try{localStorage.setItem('pb-lang',b.dataset.lang);}catch(err){}}});
-  document.getElementById('themes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(b){V.theme(b.dataset.mode);try{localStorage.setItem('pb-theme',b.dataset.mode);}catch(err){}}});
+  function setTheme(mode){mode=mode==='light'?'light':'dark';V.theme(mode);document.querySelectorAll('#themes [data-mode]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.mode===mode));});try{localStorage.setItem('pb-theme',mode);}catch(err){}}
+  var savedTheme;try{savedTheme=localStorage.getItem('pb-theme');}catch(err){}
+  setTheme(savedTheme||document.documentElement.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  document.getElementById('themes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(b)setTheme(b.dataset.mode);});
 
   /* ---------- boot: keep retrying until the server answers ---------- */
   status();paint();
