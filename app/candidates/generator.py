@@ -157,7 +157,14 @@ def enumerate_plans(b,ctx,templates,settings):
                 for pid in sorted(b.people):
                     if pid!=t.who and b.people[pid].role==t.role:
                         yield allocations,base_changes+[dict(task=t.id,who=pid)],'compose',template
-                for start in (b.now, t.s0-.25, t.s0+.25, t.s0+.5):
+                # Search the entire remaining horizon, not just +/- half a day.
+                # Try grid boundaries deterministically; Hive handles release, availability and deadlines.
+                quantum=float((t.context or {}).get('time_quantum',.25))
+                quantum=max(.25,quantum)
+                starts=[b.now,t.s0-.25,t.s0+.25,t.s0+.5]
+                starts.extend(round(b.now+i*.5,8) for i in range(int((b.week_end-b.now)/.5)+1))
+                starts.extend(round(b.now+i*quantum,8) for i in range(int((b.week_end-b.now)/quantum)+1))
+                for start in dict.fromkeys(starts):
                     if start>=b.now and start<b.week_end and abs(start-t.s0)>hive.EPS:
                         yield allocations,base_changes+[dict(task=t.id,start=start)],'move',template
         # Give every owner combination a turn before exploring many side moves
@@ -207,5 +214,7 @@ def enumerate_plans(b,ctx,templates,settings):
             if len(selected)>=settings.candidate_limit:break
             selected.append(buckets[key].pop())
             if not buckets[key]:del buckets[key]
-    stats.update(feasible=len(found),retained=len(selected),truncated=bool(iterators or buckets))
+    stats.update(feasible=len(found),retained=len(selected),truncated=bool(iterators or buckets),
+        search_complete=not bool(iterators),search_stop='raw_limit' if iterators else 'enumerated',
+        raw_limit=settings.raw_limit,retention_limit=settings.candidate_limit)
     return selected,stats

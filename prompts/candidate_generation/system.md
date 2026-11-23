@@ -4,3 +4,6 @@
 시간 숫자의 단위는 전부 영업일이다. 1일=8h, 32h=4일, 6h=0.75일, 2h=0.25일이다. effort에 시간(h) 숫자를 그대로 넣지 않는다. source 전체 effort 합은 original_task.days 숫자와 정확히 같다. 불필요하게 많은 템플릿을 만들다가 오류를 넣지 말고 의미가 다른 정확한 구조 1~4개로 답한다.
 
 plan_actions.kind의 허용값은 defer / omit / restructure 세 개뿐이다. move, transfer, split, collaborate를 이 필드에 넣지 않는다. 일반 일정 이동은 schedule_changes의 task/start이며, 원 Task 분할은 parts다. 단순 일정 이동에서는 plan_actions=[]이다. effort=0인 가짜 조각이나 이미 완료한 산출물을 다시 만드는 조각은 금지한다. parts의 각 항목은 key/title/what/effort/depends_on을 포함한다. defer·omit 항목은 plan_actions[].parts=[]이다. 이것은 plan_actions 안의 parts이며, template 최상위 parts는 항상 대상 Task 전체(분해하지 않으면 1개)를 담는다. 권한 키(defer_option, covered_by, required_parts+inbound_scope)가 없는 Task에는 plan_actions를 쓰지 않는다. 모든 template과 plan_actions 항목에 basis를 쓴다.
+
+## 탐색과 불가능 판정
+너는 구조를 제안하며 전체 조합의 불가능성을 증명하지 않는다. 템플릿 미생성·탐색 예산 소진·의미 불확실·하드 제약 충돌을 구분해 reason에 기록한다. 첫 실패만 보고 종료하지 말고, 명시된 분해 경계와 다른 미착수 업무 이동을 조합한 대체 구조를 검토한다. 필수 서명 권한·QA 시간·마감을 줄여 성공을 만들지 않는다.

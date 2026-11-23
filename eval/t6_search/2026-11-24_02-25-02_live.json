@@ -1,0 +1,58 @@
+[
+  {
+    "iteration": 1,
+    "mode": "live",
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "rounds": 3,
+    "budget": {
+      "used": 40,
+      "max": 240
+    },
+    "generation": {
+      "attempted": 112,
+      "rejected": 78,
+      "duplicates": 23,
+      "reasons": {
+        "데드라인 위반: h_Q2_G3, h_G3_milestone": 43,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 2,
+        "선후 의존 일정이 수렴하지 않음": 24,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 9
+      },
+      "templates": 4,
+      "unauthorized_actions_removed": 0,
+      "feasible": 11,
+      "retained": 11,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 2000,
+      "retention_limit": 60
+    },
+    "final_candidates": [
+      "c_c6bc122b356c5109",
+      "c_d31c1b869a999fc0"
+    ],
+    "deterministic_search": {
+      "attempted": 56,
+      "rejected": 45,
+      "duplicates": 5,
+      "reasons": {
+        "데드라인 위반: h_Q2_G3, h_G3_milestone": 31,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 2,
+        "선후 의존 일정이 수렴하지 않음": 6,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6
+      },
+      "templates": 2,
+      "unauthorized_actions_removed": 0,
+      "feasible": 6,
+      "retained": 6,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 2000,
+      "retention_limit": 60
+    },
+    "transcript": "live/2026-11-24_02-20-34_193602_e5f12486.md"
+  }
+]

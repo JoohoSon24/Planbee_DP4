@@ -1,4 +1,4 @@
-"""The public app uses only the five imported M4 scenarios; Live has no mock fallback."""
+"""The public app preserves imported M4 scenarios; Live has no mock fallback."""
 from copy import deepcopy
 import pytest
 from fastapi.testclient import TestClient
@@ -19,13 +19,13 @@ def app_env(monkeypatch):
     store.use_demo(old);eng.dispose()
 
 
-def test_only_five_published_scenarios_and_source_assets(app_env):
+def test_published_scenarios_and_source_assets(app_env):
     c,_=app_env
-    assert c.get('/demos').json()['all']==IDS
-    assert [d['id'] for d in c.get('/demos').json()['catalog']]==IDS
+    assert c.get('/demos').json()['all']==IDS+['m4_t6_game_demo']
+    assert [d['id'] for d in c.get('/demos').json()['catalog']]==IDS+['m4_t6_game_demo']
     for sid in IDS:
         r=c.post('/demo/select',json={'demo':sid});assert r.status_code==200,r.text
-        state=r.json();assert state['demo']['all']==IDS and len(state['people'])==4
+        state=r.json();assert state['demo']['all']==IDS+['m4_t6_game_demo'] and len(state['people'])==4
         assert state['demo']['engine_support'] and state['demo']['source_task'] in state['tasks']
         initial=c.get(f'/demos/{sid}/scenario-data').json()
         assert initial['meta']['source_sha256'] and initial['meta']['normalization_note']

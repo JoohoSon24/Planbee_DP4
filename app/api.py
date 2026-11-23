@@ -525,6 +525,27 @@ class DayIn(BaseModel):
     days: float = Field(default=1, gt=0, le=5)
 
 
+def day_tasks(b):
+    return {tid:{key:getattr(t,key) for key in ('who','s0','s','d','kind','cut','context')} for tid,t in b.tasks.items()}
+
+
+@app.post('/day/previous', summary='시연의 직전 날짜 이동을 복원 (이후 보드 변경 시 차단)')
+def post_day_previous(db=Depends(get_db)):
+    busy(db)
+    history=list(store.meta(db,'day_history',[]))
+    if not history:raise HTTPException(409,'돌아갈 이전 날짜가 없습니다.')
+    step=history[-1];b=store.board(db);hive.schedule(b)
+    if day_tasks(b)!=step['after'] or store.meta(db,'now')!=step['next']:
+        raise HTTPException(409,'날짜 이동 후 보드가 변경되어 이전 날짜로 복원할 수 없습니다.')
+    for tid,values in step['before'].items():
+        t=b.tasks[tid]
+        t.s0=values['s0'];t.kind=values['kind'];t.s=values['s']
+    store.set_meta(db,'now',step['now'])
+    store.set_meta(db,'day_history',history[:-1])
+    store.hive_say(db,'시연 시간을 이전 날짜로 되돌렸습니다. 협상 기록은 보존합니다.')
+    return {'now':step['now']}
+
+
 @app.post("/day/next", summary="하루(기본) 진행: 이미 끝난 일은 완료 처리, 진행 중인 run이 있으면 거절")
 def post_day_next(body: DayIn | None = None, db=Depends(get_db)):
     busy(db)
@@ -532,6 +553,7 @@ def post_day_next(body: DayIn | None = None, db=Depends(get_db)):
     now = float(store.meta(db, "now", 2)); end = float(b.week_end)
     if now >= end - hive.EPS:
         raise HTTPException(409, "이미 마일스톤 마감일입니다. 시나리오를 다시 시작하세요.")
+    before = day_tasks(b)
     new = min(end, now + (body.days if body else 1))
     finished = []
     for t in b.tasks.values():
@@ -539,6 +561,9 @@ def post_day_next(body: DayIn | None = None, db=Depends(get_db)):
             continue
         if t.s + t.d <= new + hive.EPS:
             t.s0, t.kind = t.s, "done"; finished.append(t.title)
+    history = list(store.meta(db,"day_history",[]))
+    history.append(dict(now=now,before=before,after=day_tasks(b),next=new))
+    store.set_meta(db,"day_history",history)
     store.set_meta(db, "now", new)
     store.hive_say(db, f"하루가 지났어요. 완료 처리: {', '.join(finished) if finished else '없음'}")
     return {"now": new, "finished": finished}

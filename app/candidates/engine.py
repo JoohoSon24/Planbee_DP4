@@ -20,12 +20,12 @@ from ..models import Run, Task, Confirmation
 from ..negotiation_budget import bound, consume, CallBudgetExceeded
 
 class Settings(BaseModel):
-    raw_limit: int = Field(default=500,ge=1,le=2000)
-    candidate_limit: int = Field(default=50,ge=1,le=100)
-    shortlist_limit: int = Field(default=10,ge=1,le=12)
-    max_rounds: int = Field(default=2,ge=1,le=15)
-    max_calls: int = Field(default=120,ge=1,le=400)
-    max_seconds: int = Field(default=600,ge=1,le=1800)
+    raw_limit: int = Field(default=2000,ge=1,le=10000)
+    candidate_limit: int = Field(default=60,ge=1,le=100)
+    shortlist_limit: int = Field(default=12,ge=1,le=12)
+    max_rounds: int = Field(default=6,ge=1,le=15)
+    max_calls: int = Field(default=240,ge=1,le=600)
+    max_seconds: int = Field(default=1200,ge=1,le=3600)
     seed: int = 17
     demo_auto_consent: bool = False
 
@@ -151,10 +151,10 @@ def mock_reply(db,run,schema,facts,pid):
     """Explicit offline fixtures only. Live errors never take this branch."""
     if schema is TaskSelection:
         text=facts['issue'].split('\n\n참조:')[0].split('\n\nReferences:')[0].casefold()
-        matches=[t for t in facts['tasks'] if t['title'].casefold() in text or t['id'].casefold() in text]
+        matches=[t for t in facts['tasks'] if t['title'].casefold() in text or t['id'].casefold() in text or t['id'].replace('_',' ').casefold() in text]
         if len(matches)==1:return TaskSelection(task_id=matches[0]['id'],reason='Mock: 이슈에 명시된 업무 이름을 찾았습니다.')
         if matches:
-            matches.sort(key=lambda t:min([text.find(v) for v in (t['title'].casefold(),t['id'].casefold()) if v in text]))
+            matches.sort(key=lambda t:min([text.find(v) for v in (t['title'].casefold(),t['id'].casefold(),t['id'].replace('_',' ').casefold()) if v in text]))
             return TaskSelection(task_id=matches[0]['id'],reason='Mock: 이슈에 먼저 언급된 업무를 선택했습니다.')
         return TaskSelection(reason='Mock에서 명시된 업무 이름을 찾지 못했습니다.',clarification='어떤 업무에서 무엇이 바뀌었는지 한 문장으로 알려 주세요.')
     if schema is Designs:
@@ -203,7 +203,7 @@ def start(db,task_id,issue,settings=None,phase_after=None,reporter=None):
     b=store.board(db);hive.schedule(b)
     t=b.tasks.get(task_id)
     if task_id and (not t or t.cut or t.kind in ('done','milestone','prop') or t.d<=0):raise ValueError('실행 가능한 Task를 선택하세요')
-    cfg=settings or Settings(max_calls=int(os.environ.get('PLANBEE_MAX_CANDIDATE_CALLS','120')),demo_auto_consent=store.DEMO=='m4_t4_composite' and os.environ.get('PLANBEE_DEMO_AUTO_CONSENT')=='1')
+    cfg=settings or Settings(max_calls=int(os.environ.get('PLANBEE_MAX_CANDIDATE_CALLS','240')),demo_auto_consent=store.DEMO=='m4_t4_composite' and os.environ.get('PLANBEE_DEMO_AUTO_CONSENT')=='1')
     if cfg.demo_auto_consent and store.DEMO!='m4_t4_composite':raise ValueError('개인 동의 자동 수락은 T4 데모에서만 사용할 수 있습니다.')
     snap=snapshot(b);files=prompts.snapshot()
     gate=hive.gate(b)
@@ -289,9 +289,10 @@ def generate(db,run):
         pool_hash=sha256(json.dumps([c['plan_hash'] for c in candidates]).encode()).hexdigest())
     if not candidates:
         if (t.context or {}).get('review_no_options'):review_no_options(db,run,b)
-        return fail(db,run,'search_exhausted')
+        return fail(db,run,'search_budget_exhausted' if stats.get('search_stop')=='raw_limit' else 'search_exhausted')
     if (t.context or {}).get('active_participants_only'):
-        patch(run,participants=sorted({pid for c in candidates for pid in c['affected']}))
+        invited=set((t.context or {}).get('discussion_participants',[])) & set(b.people)
+        patch(run,participants=sorted({pid for c in candidates for pid in c['affected']}|invited))
     event(db,run,'hive','CANDIDATES',f"일정 검증을 통과한 새 milestone 계획 {len(candidates)}개를 준비했어요. 이제 각자 카드로 비교합니다.")
     run.step='candidate_assess'
 
@@ -367,8 +368,20 @@ def assess(db,run,final=False):
         # Unanimous non-rejection is required; scores order recommendations, not final application.
         eligible=[c for c in chosen if all(next(o for o in opinions[p] if o['candidate_id']==c['id'])['action']!='REJECT' for p in c['affected'])]
         eligible.sort(key=lambda c:(-sum(scores[c['id']])/len(scores[c['id']]),c['id']))
-        recommended=[]
+        # Reserve one eligible alternative per recipient family before near-identical
+        # timing variants. This is a comparison shortlist, never an automatic winner.
+        source_owner=store.board(db).tasks[run.ctx['task']].who
+        families={}
         for c in eligible:
+            family=tuple(sorted({a['who'] for a in c['allocations']}-{source_owner}))
+            families.setdefault(family,[]).append(c)
+        diverse=[]
+        while families:
+            for family in list(families):
+                diverse.append(families[family].pop(0))
+                if not families[family]:del families[family]
+        recommended=[]
+        for c in diverse:
             consents={}
             for pid in c['affected']:
                 answer=invoke(db,run,Consent,'discussion','candidate_consent',participant_facts(db,run,pid,[c]),pid)
@@ -406,6 +419,7 @@ def discuss(db,run):
     pids=run.ctx.get('participants') or sorted(store.board(db).people);r=run.ctx.get('round',0)+1
     patch(run,round=r,candidate_phase='fairness_discussion')
     selected=[c for c in run.ctx['candidates'] if c['id'] in run.ctx['shortlist']]
+    meaningful=0
     new_conditions=[];messages=set((e['requester'],e['response'],e['reason']) for e in run.ctx['public_history'])
     pids=pids[(r-1)%len(pids):]+pids[:(r-1)%len(pids)]
     for pid in pids:
@@ -430,13 +444,18 @@ def discuss(db,run):
         if key in messages:
             event(db,run,'hive','REPEAT_SKIPPED',f'{store.board(db).people[pid].name}의 동일 발언 반복을 건너뜁니다.')
             continue
+        if answer.action!='PASS':meaningful+=1
         event(db,run,pid,answer.action,spoken,answer.candidate_id,answer.recipient)
         if answer.action=='CONDITION' and answer.condition and answer.requires_new_candidate:new_conditions.append(dict(who=pid,condition=answer.condition))
     if new_conditions and not run.ctx.get('supplemented'):
         patch(run,supplemented=True,supplement_conditions=new_conditions,pool_revision=run.ctx['pool_revision']+1)
         run.step='candidate_generate'
         event(db,run,'hive','SUPPLEMENT','새 공개 조건이 나왔어요. 기존 후보를 보존하며 한 번만 대안을 보충합니다.')
-    else:run.step='candidate_rank' if r>=run.ctx['settings']['max_rounds'] else 'candidate_discuss'
+    else:
+        stable=run.ctx.get('stable_discussion_rounds',0)+1 if not meaningful else 0
+        patch(run,stable_discussion_rounds=stable)
+        if stable>=2:event(db,run,'hive','DISCUSSION_STABLE','새 쟁점이나 응답이 없는 두 라운드를 확인해 최종 평가로 이동합니다.')
+        run.step='candidate_rank' if r>=run.ctx['settings']['max_rounds'] or stable>=2 else 'candidate_discuss'
 
 
 def advance(db,run):
@@ -503,7 +522,7 @@ def select_pm(db,run,action,candidate_id=None,plan_hash=None,reason=''):
         # Service setting: each member's proxy settles its own NEEDS_INPUT by card; only the PM acts by hand.
         # A card-level REJECT already removed the plan before it reached the PM, so this never overrides a refusal.
         for pid,answer in c['consents'].items():
-            if answer['action']=='NEEDS_INPUT':
+            if answer['action']=='NEEDS_INPUT' and not ((b.tasks[run.ctx['task']].context or {}).get('preserve_personal_confirmation') and pid in c.get('required_confirmations',[])):
                 event(db,run,pid,'AUTO_CONFIRM','위임카드에 금지가 없어 본인 확인을 자동 승인했어요. (확인 요청 사유: '+(answer.get('reason') or '자동 위임 범위 밖')+')',candidate_id)
                 answer['action']='ACCEPT';answer['auto_confirmed']=True
         patch(run,candidates=run.ctx['candidates'])

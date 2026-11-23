@@ -1,0 +1,537 @@
+meta:
+  title: T6 · Game Demo · 5인 게임 데모 협상
+  summary: '5명·12개 Task, 11/27 17:00 데모. 기본: Zoe 목요일 오후 부재와 Q2 분담.'
+  phase: issue
+  now: 1.5
+  week_start: '2026-11-23'
+  deadline_label: 11/27 17:00 데모
+  source_task: Q2
+  source: 제공된 M4 시연용 시나리오 export
+  source_sha256: 14cd2c15349d50ea1904e08c51830ec7cf17b17b1db64fb0dd661fdc8c021e72
+  engine_support: 5명·12개 원 업무와 데모 milestone을 연결합니다. 기본 예시는 Zoe 목요일 오후 부재를 반영한 Q2 스모크/최종
+    회귀 분담입니다. 스모크 0.5일과 Zoe 최종 회귀 0.5일, 전체 1일 QA와 빌드 선행조건을 코드로 보존합니다. Ben 또는 Sam에게
+    P0 스모크를 넘기면 본인 확인을 요청합니다. T4의 알고리즘 자동 동의는 T6에 적용하지 않습니다. 현재 V2는 PM 최종 선택을 요구하므로
+    원문의 H04 PM 0회 경로와 다릅니다. 신규 상점 Task 생성·교체와 작성자 진행률 동기화 전용 경로는 아직 구현되지 않았으며 원문 기대
+    사례로 구분합니다. Sam 대안은 S3 전체 1일을 금요일로 옮겨 목요일 오후 스모크 슬롯을 확보하며 QA 예외와 일정 변경을 묶어 Sam
+    본인 확인을 요구합니다.
+  normalization_note: 시간축은 2026-11-23 월요일=0, 화요일 13:00=1.5, 금요일 17:00=5입니다. Task d는
+    기준 시각 이후 남은 시간이며 진행률은 원문의 작성자 추정값을 별도 보존합니다. 공통 초기 보드에 기본 H04의 Zoe 목요일 오후 부재를
+    가용 시간 제약으로 반영했으므로 기존 Q2 배정은 기한 위험 상태입니다. 원문 G3의 금요일 오후 0.5일은 13:00~17:00이지만 16:00
+    유효 빌드 조건과 충돌합니다. 현재 실행은 공통 데모 마감 17:00을 적용하고 16:00 조건은 미확정 원문 조건으로 보존하며, 이를 충족했다고
+    주장하지 않습니다. 숙련도는 원문 문자열로 보존하고 과거 실적 건수를 만들어 넣지 않습니다.
+  narr: 제가 목요일 오후 Q2 통합 QA 스모크를 진행할 수 없습니다. 금요일 오전 최종 회귀와 서명은 제가 담당하겠습니다. Ben·Leo와
+    스모크 분담과 데모 빌드 일정을 조정해 주세요.
+people:
+- id: mia
+  name: Mia
+  role: 그림
+  rec: {}
+  wants:
+  - 이펙트 완성
+  notes:
+    prompt_role: t6_mia
+    source_skills:
+      아트: 능숙
+      UI: 가능
+- id: leo
+  name: Leo
+  role: 개발
+  rec: {}
+  wants: []
+  notes:
+    prompt_role: t6_leo
+    source_skills:
+      게임플레이: 능숙
+- id: sam
+  name: Sam
+  role: 서버
+  rec: {}
+  wants: []
+  notes:
+    prompt_role: t6_sam
+    source_skills:
+      서버: 능숙
+      UI: 가능
+      테스트: 가능
+- id: ben
+  name: Ben
+  role: 레벨
+  rec: {}
+  wants:
+  - 레벨 완성
+  notes:
+    prompt_role: t6_ben
+    source_skills:
+      UI: 능숙
+      레벨: 능숙
+      테스트: 가능
+- id: zoe
+  name: Zoe
+  role: 테스트
+  rec: {}
+  wants:
+  - QA 품질 유지
+  notes:
+    prompt_role: t6_zoe
+    source_skills:
+      테스트: 능숙
+      UI: 가능
+cards:
+- who: mia
+  auto_days: 0.5
+  wait_days: 0
+  gives_help: true
+  note: 아트·UI를 받으며 서버·QA·게임플레이는 받지 않습니다. 신규 인수 0.5일까지 프록시 수락. P0 기한 변경은 본인 확인. 이펙트
+    완성을 희망합니다.
+  policy:
+    approved: true
+    source_note: T6 원문 및 기본 H04 보고
+    unavailable: []
+- who: leo
+  auto_days: 0.5
+  wait_days: 0
+  gives_help: true
+  note: 보스 AI·게임플레이 연결·데모 빌드를 받으며 아트·서버·UI·독립 QA는 받지 않습니다. 0.5일까지 프록시 수락. 러프 기반 임시
+    연결은 Leo 본인 확인. G3는 Zoe의 최종 회귀·서명 후 수행합니다.
+  policy:
+    approved: true
+    source_note: T6 원문 및 기본 H04 보고
+    unavailable: []
+- who: sam
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 서버·저장 작업만 1일까지 프록시 수락합니다. 아트·게임플레이는 받지 않습니다. UI·테스트 수행 역량은 있으나 테스트는 받는 일 밖이며
+    QA 대행에는 Sam 본인 동의가 필요합니다.
+  policy:
+    approved: true
+    source_note: T6 원문 및 기본 H04 보고
+    unavailable: []
+- who: ben
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: UI·레벨·스모크 QA를 받으며 서버·아트·보스 게임플레이는 받지 않습니다. 1일까지 프록시 수락하지만 P0 소유권 변경에는 Ben
+    본인 확인이 필요합니다. Q2 스모크 0.5일을 목요일 오후에 수행할 수 있습니다. 레벨 완성을 희망합니다.
+  policy:
+    approved: true
+    source_note: T6 원문 및 기본 H04 보고
+    unavailable: []
+- who: zoe
+  auto_days: 0.5
+  wait_days: 0
+  gives_help: true
+  note: 테스트만 받으며 서버·아트·게임플레이 구현은 받지 않습니다. 0.5일까지 프록시 수락합니다. Q2 총 1일 QA는 줄일 수 없습니다.
+    금요일 오전 최종 회귀 0.5일과 서명은 Zoe 전담이며 직접 확인합니다. 기본 H04에서 목요일 오후에는 부재입니다.
+  policy:
+    approved: true
+    source_note: T6 원문 및 기본 H04 보고
+    unavailable:
+    - start: 3.5
+      end: 4
+tasks:
+- id: A1
+  who: mia
+  title: A1 · 보스 그림
+  s0: 1.5
+  d: 1
+  tag: A1
+  context:
+    description: 보스 그림; 원문 Task ID A1
+    deliverable: 보스 그림 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - mia
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.33
+    progress_basis: 원문 작성자의 전체 33% 진행 주장
+    parts_description: 러프 0.5일 + 최종 0.5일
+- id: A2
+  who: mia
+  title: A2 · 이펙트 다듬기
+  s0: 3
+  d: 1
+  tag: A2
+  context:
+    description: 이펙트 다듬기; 원문 Task ID A2
+    deliverable: 이펙트 다듬기 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P1
+    time_quantum: 0.25
+    allowed_assignees:
+    - mia
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    optional: true
+    defer_option:
+      milestone: Next sprint
+      authorizers:
+      - mia
+- id: G1
+  who: leo
+  title: G1 · 보스 AI
+  s0: 1.5
+  d: 0.5
+  tag: G1
+  context:
+    description: 보스 AI; 원문 Task ID G1
+    deliverable: 보스 AI 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - leo
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.5
+- id: G2
+  who: leo
+  title: G2 · 보스전 연결
+  s0: 2.5
+  d: 1
+  tag: G2
+  context:
+    description: 보스전 연결; 원문 Task ID G2
+    deliverable: 보스전 연결 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - leo
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    parts_description: Leo 본인 승인 시 임시 연결 0.5 + 최종 반영 0.5. 현재 기본 H04에서는 전체 유지
+- id: G3
+  who: leo
+  title: G3 · 데모 빌드
+  s0: 4.5
+  d: 0.5
+  tag: G3
+  context:
+    description: 데모 빌드; 원문 Task ID G3
+    deliverable: 데모 빌드 완료본
+    acceptance:
+    - 유효한 P0 빌드
+    - Q2 최종 회귀·서명 완료 후 착수
+    - 현재 실행 마감 17:00, 원문 16:00 충돌은 별도 명시
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - leo
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    fixed_start: 4.5
+    source_build_cutoff: 16:00 (원문 미확정 충돌 조건)
+- id: S1
+  who: sam
+  title: S1 · 저장 기능
+  s0: 1.5
+  d: 0.5
+  tag: S1
+  context:
+    description: 저장 기능; 원문 Task ID S1
+    deliverable: 저장 기능 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - sam
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.5
+- id: S2
+  who: sam
+  title: S2 · 서버 배포
+  s0: 2
+  d: 1
+  tag: S2
+  context:
+    description: 서버 배포; 원문 Task ID S2
+    deliverable: 서버 배포 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - sam
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    parts_description: 동일 Sam의 0.5+0.5 중단·재개는 원문의 시연 가정; 현재 기본 경로는 연속 1일
+- id: S3
+  who: sam
+  title: S3 · 랭킹
+  s0: 3
+  d: 1
+  tag: S3
+  context:
+    description: 랭킹; 원문 Task ID S3
+    deliverable: 랭킹 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P1
+    time_quantum: 0.25
+    allowed_assignees:
+    - sam
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    optional: true
+    feature_flag: 'OFF'
+    defer_option:
+      milestone: Next sprint
+      authorizers:
+      - sam
+- id: B1
+  who: ben
+  title: B1 · 스테이지3 배치
+  s0: 1.5
+  d: 1
+  tag: B1
+  context:
+    description: 스테이지3 배치; 원문 Task ID B1
+    deliverable: 스테이지3 배치 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - ben
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    external_prerequisite: 월요일 완료된 스테이지3 배경
+- id: B2
+  who: ben
+  title: B2 · 메뉴 화면
+  s0: 2.5
+  d: 1
+  tag: B2
+  context:
+    description: 메뉴 화면; 원문 Task ID B2
+    deliverable: 메뉴 화면 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P1
+    time_quantum: 0.25
+    allowed_assignees:
+    - ben
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    optional: true
+    defer_option:
+      milestone: Next sprint
+      authorizers:
+      - ben
+- id: Q1
+  who: zoe
+  title: Q1 · 스테이지1·2 테스트
+  s0: 1.5
+  d: 0.5
+  tag: Q1
+  context:
+    description: 스테이지1·2 테스트; 원문 Task ID Q1
+    deliverable: 스테이지1·2 테스트 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - zoe
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.5
+    external_prerequisite: 기존 스테이지1·2 구현 완료
+- id: Q2
+  who: zoe
+  title: Q2 · 통합 QA
+  s0: 3.5
+  d: 1
+  tag: Q2
+  context:
+    description: 통합 QA; 원문 Task ID Q2
+    deliverable: 통합 QA 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - zoe
+    allow_collaboration: false
+    splittable_hint: true
+    active_participants_only: true
+    latest_finish: 4.5
+    minimum_days: 1
+    allowed_change_tasks:
+    - Q2
+    - S3
+    discussion_participants:
+    - leo
+    transfer_requires_confirm:
+    - ben
+    - sam
+    preserve_personal_confirmation: true
+    required_parts:
+    - key: smoke
+      title: Q2 스모크
+      what: '목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인'
+      effort: 0.5
+      depends_on: []
+      assignees:
+      - zoe
+      - ben
+      - sam
+    - key: regression
+      title: Q2 최종 회귀·Zoe 서명
+      what: 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명
+      effort: 0.5
+      depends_on:
+      - smoke
+      assignees:
+      - zoe
+- id: milestone
+  who: leo
+  title: Demo · 11/27 17:00
+  s0: 5
+  d: 0
+  kind: milestone
+  tag: milestone
+  context:
+    completion_barrier: true
+handoffs:
+- id: h_A1_A2
+  from: A1
+  to: A2
+  title: A1 → A2
+  what: A1 원문 산출물
+  t: 3
+- id: h_A1_G2
+  from: A1
+  to: G2
+  title: A1 → G2
+  what: A1 원문 산출물
+  t: 2.5
+- id: h_G1_G2
+  from: G1
+  to: G2
+  title: G1 → G2
+  what: G1 원문 산출물
+  t: 2.5
+- id: h_S1_S2
+  from: S1
+  to: S2
+  title: S1 → S2
+  what: S1 원문 산출물
+  t: 2
+- id: h_S2_S3
+  from: S2
+  to: S3
+  title: S2 → S3
+  what: S2 원문 산출물
+  t: 3
+- id: h_B1_B2
+  from: B1
+  to: B2
+  title: B1 → B2
+  what: B1 원문 산출물
+  t: 2.5
+- id: h_G2_Q2
+  from: G2
+  to: Q2
+  title: G2 → Q2
+  what: G2 원문 산출물
+  t: 3.5
+- id: h_S2_Q2
+  from: S2
+  to: Q2
+  title: S2 → Q2
+  what: S2 원문 산출물
+  t: 3.5
+- id: h_B1_Q2
+  from: B1
+  to: Q2
+  title: B1 → Q2
+  what: B1 원문 산출물
+  t: 3.5
+- id: h_Q1_Q2
+  from: Q1
+  to: Q2
+  title: Q1 → Q2
+  what: Q1 원문 산출물
+  t: 3.5
+- id: h_G2_G3
+  from: G2
+  to: G3
+  title: G2 → G3
+  what: G2 원문 산출물
+  t: 4.5
+- id: h_S2_G3
+  from: S2
+  to: G3
+  title: S2 → G3
+  what: S2 원문 산출물
+  t: 4.5
+- id: h_B1_G3
+  from: B1
+  to: G3
+  title: B1 → G3
+  what: B1 원문 산출물
+  t: 4.5
+- id: h_Q2_G3
+  from: Q2
+  to: G3
+  title: Q2 → G3
+  what: Q2 원문 산출물
+  t: 4.5
+- id: h_G3_milestone
+  from: G3
+  to: milestone
+  title: G3 → milestone
+  what: G3 원문 산출물
+  t: 5
+records: []
+rules:
+- key: deadline
+  label: 11/27 17:00 데모
+  value:
+    week_end: 5
+- key: weekly_cap
+  label: 1일 8시간·개인 주간 용량 5일
+  value:
+    days: 5
+- key: rounds
+  label: 토론 한도
+  value:
+    max: 15
+- key: pref
+  label: 공정성 참고
+  value:
+    choice: fair
+  locked: false

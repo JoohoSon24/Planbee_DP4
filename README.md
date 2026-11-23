@@ -10,13 +10,16 @@ T4 화면 데모는 개인 동의를 알고리즘으로 자동 수락하고 PM�
 # .env에 OPENROUTER_API_KEY를 설정한 후 실제 LLM으로 실행
 .venv/bin/python start.py --llm live --demo m4_t1_rescheduling
 
+# 새 T6 게임 데모를 실제 LLM으로 실행
+.venv/bin/python start.py --llm live --demo m4_t6_game_demo
+
 # API 비용 없이 같은 앱의 흐름을 확인할 때
 .venv/bin/python start.py --llm mock --demo m4_t1_rescheduling
 ```
 
 브라우저: **http://127.0.0.1:8000**. 프론트엔드는 [`front/Plan Bee Front.html`](<front/Plan Bee Front.html>)이며 서버 API에 연결됩니다. HTML 파일을 직접 열지 말고 위 명령으로 접속하세요. 서버 코드가 바뀌었으므로 기존 서버는 종료한 뒤 다시 시작해야 합니다.
 
-현재 실행 목록에는 **Senario의 M4 시나리오 5개만** 표시합니다: T1 일정 이동, T2 재분배, T3 범위 축소, T4 복합 협상, T5 해결 불가능 충돌. `seed/catalog.yaml`이 공개 목록과 기본 시나리오를 정의합니다. 각 시나리오의 `seed/m4_t*/team.yaml`(초기 보드·카드), `feed.yaml`(변경 이슈), `source.md`·`board.png`(원문·이미지)를 보존했습니다. `mock_llm.yaml`은 오프라인 테스트용이며 `--llm live`에서는 사용하지 않습니다. 외부 Desktop 폴더에 의존하지 않고 실행할 수 있습니다. 기존 seed는 회귀 테스트/legacy 용도로 보존합니다.
+현재 실행 목록에는 **T1–T6 시나리오 6개**를 표시합니다: T1 일정 이동, T2 재분배, T3 범위 축소, T4 복합 협상, T5 해결 불가능 충돌, T6 5인 게임 데모 협상. `seed/catalog.yaml`이 공개 목록과 기본 시나리오를 정의합니다. 각 시나리오의 `seed/m4_t*/team.yaml`(초기 보드·카드), `feed.yaml`(변경 이슈), `source.md`·`board.png`(원문·이미지)를 보존했습니다. `mock_llm.yaml`은 오프라인 테스트용이며 `--llm live`에서는 사용하지 않습니다. 외부 Desktop 폴더에 의존하지 않고 실행할 수 있습니다. 기존 seed는 회귀 테스트/legacy 용도로 보존합니다.
 
 T3의 Beta 이관·동반 잔여 작업 이관, T4의 단계별 분해·입력 의존성 재연결·선택 검증 생략을 후보 연산자로 추가했습니다. 명시된 Task 계약·검증 범위·동의 조건을 코드로 확인하며 Live 결과는 실험 기록과 구분해 보고합니다. 또한 공통 V2 정책상 T1·T4도 적용에는 PM 선택이 필요합니다. 원문과 실행의 차이 및 시간 정규화는 시나리오 설명에 표시합니다.
 
@@ -24,7 +27,7 @@ T3의 Beta 이관·동반 잔여 작업 이관, T4의 단계별 분해·입력 �
 
 새 앱은 기본적으로 `planbee_v2_playground.db`를 사용해 이전 앱의 DB와 분리합니다(`PLANBEE_DB`를 지정하면 해당 설정 우선). 새 실행 기록은 **`runs/v2/live/` 또는 `runs/v2/mock/`**에 날짜·시간 파일명으로 저장합니다. 기존 `runs/live`, `runs/mock` 기록은 이동·삭제·덮어쓰기하지 않습니다. 테스트는 임시 폴더를 사용합니다. `PLANBEE_RUNS_DIR`을 직접 지정하면 그 경로가 우선합니다. 기존에 시작한 run을 새 서버에서 이어 실행하는 대신 새 run으로 시작하세요.
 
-후보 탐색 기본값: 원시 조합 최대 500개, 검증 후보 최대 50개, 토론 후보 최대 10개, discussion 2라운드. 새 경로는 견적·생성·평가·토론·동의와 전송 재시도를 포함한 run 공유 호출 한도 **120회**, 처리 시간 한도 600초를 사용합니다. 생성 규모와 한도는 `POST /candidate-runs`의 `settings`로 조절할 수 있습니다. 환경변수 `PLANBEE_MAX_CANDIDATE_CALLS`로 기본 호출 한도를 바꿀 수 있습니다. 후보 50개는 목표 상한이며 충족할 수 없으면 실제 유효 후보 수와 탐색 종료 사유를 표시합니다. LLM은 생성/응답에 따라 비용이 발생합니다.
+후보 탐색 기본값: 원시 조합 최대 2,000개, 검증 후보 최대 60개, 토론 후보 최대 12개, discussion 최대 6라운드. 새 경로는 견적·생성·평가·토론·동의와 전송 재시도를 포함한 run 공유 호출 한도 **240회**, 처리 시간 한도 1,200초를 사용합니다. 생성 규모와 한도는 `POST /candidate-runs`의 `settings`로 조절할 수 있습니다. 환경변수 `PLANBEE_MAX_CANDIDATE_CALLS`로 기본 호출 한도를 바꿀 수 있습니다. 후보 60개는 목표 상한이며 충족할 수 없으면 실제 유효 후보 수와 탐색 종료 사유를 표시합니다. LLM은 생성/응답에 따라 비용이 발생합니다.
 
 모델 설정: `.env`의 `PLANBEE_MODEL`은 개인 프록시 모델, `PLANBEE_GENERATOR_MODEL`은 생성 전용 모델입니다(생략하면 기본 모델 사용). 새 프롬프트는 [`prompts/README.md`](prompts/README.md)에 모았고, run 시작 시 내용과 hash를 고정합니다. MD 변경은 새 run에 반영됩니다.
 

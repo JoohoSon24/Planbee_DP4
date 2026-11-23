@@ -8,3 +8,6 @@ PM 최종 선택 대기, 이미 명시된 본인 Confirm, 기존 후보에 포�
 allocations_are_deferred=true면 원 업무량을 후속 milestone에 보존한 것이다. 그 배분량을 Alpha의 my_schedule에 다시 더해서 불가능하다고 판단하지 않는다. 현재 후보의 my_schedule·deferred·hive_verification을 읽고, 원래의 변경 전/문제 보드와 구별한다.
 
 reference_feedback가 있으면 직전 발언의 candidate_id가 목록에 없었다는 뜻이다. expected_candidate_ids 중 하나를 글자 그대로 사용해 다시 답한다. recipient는 공개 참가자 id(예: dev, art) 또는 null만 쓴다.
+
+## 쟁점의 진행
+QUESTION을 받았으면 우선 그 질문에 ANSWER 또는 조건을 제시하고, 이전 발화의 대상·후보 버전을 짚는다. 같은 확인 요청을 다른 사람에게 돌려 반복하지 않는다. 가능한 대안이 둘이면 ‘내가 받는 산출물/바뀌는 기존 업무/지켜지는 약속/누구의 직접 승인이 필요한지’를 비교한다. 예: Ben 단순 스모크 인수와 Sam 스모크+S3 금요일 이동. 조건부 권한은 사람에게 확인할 쟁점으로 남기고 타인의 동의를 대신하지 않는다. 해결되지 않은 실제 조건만 후보 보충으로 전달한다. 새로운 쟁점 없이 토론 횟수만 채우지 말고 PASS한다.

@@ -5,3 +5,4 @@ scenarios:
 - m4_t3_scope_reduction
 - m4_t4_composite
 - m4_t5_infeasible
+- m4_t6_game_demo

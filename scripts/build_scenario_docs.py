@@ -3,6 +3,7 @@ Run with: PLANBEE_LLM=mock .venv/bin/python scripts/build_scenario_docs.py
 """
 from pathlib import Path
 import sys
+import re
 import yaml
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -282,7 +283,10 @@ def build():
                 source=store.SEED/demo/'source.md'
                 prefix=(source.read_text(encoding='utf-8') if source.exists() else None) or INTRO.get(demo) or PRESERVED_INTROS.get(demo) or '# '+entry['title']+'\n\n'
                 if source.exists():
+                    prefix=re.sub(r'!\[[^\]]*\]\([^\n]+\)',f'[원본 일정 보드](/demos/{demo}/board)',prefix)
                     prefix+='\n\n### 실행 엔진 지원 범위\n\n'+raw['meta']['engine_support']+'\n\n'+raw['meta']['normalization_note']+'\n\n'
+                cases=store.SEED/demo/'cases.md'
+                if cases.exists():prefix+='\n\n## 추가 시연 사례 원문 및 기대 판정\n\n'+cases.read_text(encoding='utf-8')+'\n\n위 표는 원문의 기대 동작입니다. 현재 구현은 실행 엔진 지원 범위를 따르며, 표의 모든 자연어 변경을 자동 반영한다는 뜻은 아닙니다.\n'
                 # Historic receipt counts are stale once the negotiation protocol changes.
                 if '## 기본 실행 결과' in prefix:
                     prefix=prefix.split('## 기본 실행 결과')[0]+'최신 실행은 README의 Mock 시작 명령과 아래 초기 보드를 기준으로 재현합니다.\n\n'
@@ -332,7 +336,7 @@ def build():
             eng.dispose()
     finally:store.use_demo(old)
     documents += [manual_marker,appendix]
-    target.write_text('\n'.join(documents),encoding='utf-8')
+    target.write_text('\n'.join(line.rstrip() for line in documents),encoding='utf-8')
 
 
 if __name__=='__main__':build()

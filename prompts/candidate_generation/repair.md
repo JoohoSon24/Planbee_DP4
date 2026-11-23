@@ -7,3 +7,5 @@ Hive가 반려한 원인(validation_feedback.reasons)과 원 Task의 범위를 �
 - 요청한 일정 이동 미반영: schedule_changes에 original_task.id와 board의 현재 시작(s)에 이동량을 더한 start를 넣는다.
 
 모든 template과 plan_actions 항목에 basis(8자 이상)를 쓴다. 복구가 정말 불가능하면 빈 templates와 구체 이유를 답한다.
+
+수신자의 슬롯 충돌이면 해당 수신자의 허용된 미착수 업무를 다른 날로 이동하는 결합안을 먼저 확인한다. QA 서명 담당 부재나 필수 QA 뒤 빌드 시간이 없는 경우에는 서명 대행·QA 생략·겹쳐 실행을 만들어내지 않는다. 지금 탐색에서 못 찾은 것과 하드 제약으로 차단된 것을 명확히 구분한다.

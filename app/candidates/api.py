@@ -144,8 +144,9 @@ def install(app,get_db,busy):
     def close(rid:int,request:Request,db=Depends(get_db)):
         viewer.pm(request)
         run=find(db,rid)
+        if run.status=='done' and run.ctx.get('pm_acknowledged'):return engine.response(run)
         if run.status!='waiting_pm':raise HTTPException(409,'실패 요약을 확인하는 상태가 아님')
-        run.status='done';engine.patch(run,termination=run.ctx.get('termination') or 'pm_closed')
+        run.status='done';engine.patch(run,termination=run.ctx.get('termination') or 'pm_closed',pm_acknowledged=True)
         engine.event(db,run,'pm','CLOSE','현재 상황을 확인했습니다. 미합의 변경은 적용하지 않습니다.')
         if run.ctx.get('phase_after'):store.set_meta(db,'phase',run.ctx['phase_after'])
         return engine.response(run)

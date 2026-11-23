@@ -126,7 +126,10 @@ def build(source):
         section=re.sub(r'!\[image[^\]]*\]\([^\n]+\)',f'[원본 일정 보드](/demos/{sid}/board)',section)
         (root/'source.md').write_text(section,encoding='utf-8')
         shutil.copyfile(image_dir/('image.png' if i==0 else f'image {i}.png'),root/'board.png')
-    (ROOT/'seed/catalog.yaml').write_text(yaml.safe_dump(dict(default=IDS[0],scenarios=IDS),sort_keys=False),encoding='utf-8')
+    catalog_path=ROOT/'seed/catalog.yaml'
+    existing=yaml.safe_load(catalog_path.read_text()) if catalog_path.exists() else {}
+    extras=[sid for sid in existing.get('scenarios',[]) if sid not in IDS]
+    catalog_path.write_text(yaml.safe_dump(dict(default=IDS[0],scenarios=IDS+extras),sort_keys=False),encoding='utf-8')
 
 
 if __name__=='__main__':

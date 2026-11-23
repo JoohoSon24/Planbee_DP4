@@ -59,14 +59,14 @@
   /* ---------- chrome ---------- */
   var tools=document.createElement('div');tools.className='backend-tools';
   tools.innerHTML='<label><span data-t="scenario"></span> <select id="demo-select"></select></label><label class="viewer-select-label"><span data-t="myRole"></span> <select id="viewer-select"></select></label>';
-  top.appendChild(tools);
+  top.after(tools);
   var stage=document.createElement('div');stage.className='backend-stage';stage.setAttribute('role','status');stage.id='backend-stage';
   document.querySelector('.chan .pane-h').after(stage);
   var translationBox=document.createElement('div');translationBox.id='translation-status';translationBox.className='translation-status';translationBox.setAttribute('role','status');translationBox.hidden=true;stage.after(translationBox);
   var controls=document.createElement('div');controls.className='backend-controls';
-  controls.innerHTML='<button id="continue-run" class="btn sm" data-t="continue"></button><button id="pause-run" class="btn sm" data-t="pause"></button><button id="current-board" class="btn sm" data-t="currentBoard"></button><button id="next-day" class="btn sm" data-t="nextDay"></button>';
+  controls.innerHTML='<button id="continue-run" class="btn sm" data-t="continue"></button><button id="pause-run" class="btn sm" data-t="pause"></button><button id="current-board" class="btn sm" data-t="currentBoard"></button><button id="previous-day" class="btn sm" data-t="previousDay"></button><button id="next-day" class="btn sm" data-t="nextDay"></button>';
   stage.after(controls);
-  var UI={scenario:['시나리오','Scenario'],myRole:['내 역할','My role'],continue:['계속 진행','Continue'],pause:['일시정지','Pause'],currentBoard:['현재 보드','Current board'],nextDay:['다음 날로 ▶','Next day ▶']};
+  var UI={scenario:['시나리오','Scenario'],myRole:['내 역할','My role'],continue:['계속 진행','Continue'],pause:['일시정지','Pause'],currentBoard:['실제 보드로 돌아가기','Back to actual board'],previousDay:['◀ 이전 날','◀ Previous day'],nextDay:['다음 날로 ▶','Next day ▶']};
   function defaultPlaceholder(){return t('무엇이 바뀌었나요? 업무를 고르지 않고 자유롭게 적어 주세요.','What changed? Describe it freely; the team will identify the task.');}
   function helpText(){return t('Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력','Ctrl / ⌘ + Enter: send · Tab in an empty box: insert example');}
   function chrome(){
@@ -78,6 +78,8 @@
     input.setAttribute('aria-label',t('업무 변경 이슈','Task change issue'));
   }
   input.setAttribute('aria-describedby','composer-help');
+  function resizeInput(){input.style.height='auto';input.style.height=input.value?Math.min(240,Math.max(72,input.scrollHeight))+'px':'72px';}
+  function setDraft(value){var replacement=input.cloneNode(false);replacement.value=value;input.replaceWith(replacement);input=replacement;resizeInput();}
   var help=document.createElement('div');help.id='composer-help';help.className='composer-help';document.getElementById('form').after(help);
   function setLanguage(code){
     code=code==='en'?'en':'ko';V.language(code);
@@ -87,19 +89,20 @@
   }
   chrome();input.placeholder=defaultPlaceholder();help.textContent=helpText();
   try{var savedLang=localStorage.getItem('pb-lang');if(savedLang==='en'||savedLang==='ko')setLanguage(savedLang);}catch(err){}
-  input.addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();document.getElementById('form').requestSubmit();}});
-  // Tab in an empty box inserts the scenario's first issue as an example (any other text works too).
-  input.addEventListener('keydown',function(e){
+  document.getElementById('form').addEventListener('keydown',function(e){
+    if(e.target!==input)return;
+    if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();this.requestSubmit();return;}
     var example=state&&state.demo&&state.demo.issue_example;
-    if(e.key!=='Tab'||e.shiftKey||e.isComposing||input.value.trim()||!example)return;
-    e.preventDefault();
-    input.value=example;input.dispatchEvent(new Event('input'));input.setSelectionRange(example.length,example.length);status();
+    if(e.key==='Tab'&&!e.shiftKey&&!e.isComposing&&!input.value.trim()&&example){
+      e.preventDefault();setDraft(example);input.focus();input.setSelectionRange(example.length,example.length);status();
+    }
   });
-  input.addEventListener('input',function(){input.style.height='auto';input.style.height=Math.min(240,Math.max(112,input.scrollHeight))+'px';});
+  document.getElementById('form').addEventListener('input',function(e){if(e.target===input)resizeInput();});
   document.querySelector('.sprint').textContent=t('서버 연결 중','Connecting to server');
   var tip=document.getElementById('tip');if(tip)tip.hidden=true;
   function label(pid){var p=state&&state.people.find(function(p){return p.id===pid;});return p?p.name:pid==='hive'?'Hive':pid==='pm'?'PM':pid||t('팀','Team');}
   function fmt(n){return Number(Number(n).toFixed(2));}
+  function terminationLabel(value){var labels={search_budget_exhausted:['후보 탐색 한도 도달 · 불가능 판정 아님','Search budget reached · infeasibility not proven'],search_exhausted:['현재 허용 구조·시간 탐색에서 검증 후보 없음','No validated plan in the explored structures and slots'],no_consented_candidate:['검증 후보는 있으나 당사자 합의안 없음','Validated plans exist, but none has participant agreement']};var x=labels[value];return x?t(x[0],x[1]):value;}
 
   /* ---------- robust API ---------- */
   function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
@@ -142,6 +145,8 @@
     document.getElementById('pause-run').disabled=!automatic;
     document.getElementById('demo-select').disabled=busy||!booted;
     document.getElementById('viewer-select').disabled=!booted;
+    document.getElementById('current-board').disabled=!preview;
+    document.getElementById('previous-day').disabled=busy||!booted||active||!state||!state.can_previous_day;
     document.getElementById('next-day').disabled=busy||!booted||active||!state||state.now>=state.week_end;
     var sendBlock=busy||!booted?'':active?t('진행 중인 협의가 끝나야 새 이슈를 보낼 수 있습니다.','Finish the current negotiation before sending a new issue.'):'';
     var sendBtn=document.querySelector('#form button');sendBtn.disabled=busy||!booted||!!sendBlock;sendBtn.title=sendBlock;
@@ -157,6 +162,7 @@
     var s=await api('/state'),r=loadRun?(await api('/candidate-runs'))[0]||null:run;
     if(my!==refreshSeq)return;   // a newer refresh already drew
     if(state&&state.demo&&s.demo&&state.demo.id!==s.demo.id)refs=[];
+    if(state&&state.demo&&s.demo&&state.demo.id!==s.demo.id){setDraft('');refs=[];preview=null;}
     state=s;if(loadRun)run=r;booted=true;draw();
   }
   function draw(){
@@ -168,7 +174,7 @@
     document.querySelector('.badge').textContent=(runtime.llm_mode||'').toUpperCase();
     var demo=document.getElementById('demo-select');demo.innerHTML=state.demo.catalog.map(function(d){return '<option value="'+E(d.id)+'"'+(d.id===state.demo.id?' selected':'')+'>'+E(scenarioTitle(d.title))+'</option>';}).join('');
     var src=state.tasks[state.demo.source_task];
-    input.placeholder=state.demo.issue_example&&src&&src.kind!=='done'?state.demo.issue_example+t('\n\n(빈 입력창에서 Tab: 이 예시 입력 · 다른 내용도 자유롭게)','\n\n(Tab in an empty box inserts this example · any other text works too)'):defaultPlaceholder();
+    var example=state.demo.issue_example;input.placeholder=example?(example.length>110?example.slice(0,110)+'…':example):defaultPlaceholder();
     paintRefs();
     V.render(state,preview&&preview.board,!!preview);paint();status();syncHeight();
   }
@@ -275,7 +281,7 @@
       else html+='<button class="btn sm" data-switch-role="person:'+E(c.who)+'">'+E(t(label(c.who)+'로 전환','Switch to '+label(c.who)))+'</button>';
       html+='</article>';
     });
-    if(run.status==='waiting_pm')html+='<article class="candidate-card decision-anchor"><h3>'+E(t('합의된 계획이 없어 PM에게 넘어왔어요','No agreed plan · handed to the PM'))+'</h3><p class="candidate-meta">'+E(t('종료 사유: ','Reason: ')+((run.pm_handoff&&run.pm_handoff.summary&&run.pm_handoff.summary.termination)||run.termination||''))+' · '+E(t('미합의 변경은 적용하지 않아요.','Unagreed changes are not applied.'))+'</p>'+(viewerRole==='pm'?'<button class="btn sm" data-required-role="pm" data-close-run>'+E(t('확인 · 현재 배분 유지','Acknowledge · keep current allocation'))+'</button>':'<button class="btn sm" data-switch-role="pm">'+E(t('PM으로 전환','Switch to PM'))+'</button>')+'</article>';
+    if(run.status==='waiting_pm')html+='<article class="candidate-card decision-anchor"><h3>'+E(t('합의된 계획이 없어 PM에게 넘어왔어요','No agreed plan · handed to the PM'))+'</h3><p class="candidate-meta">'+E(t('종료 사유: ','Reason: ')+terminationLabel((run.pm_handoff&&run.pm_handoff.summary&&run.pm_handoff.summary.termination)||run.termination||''))+' · '+E(t('미합의 변경은 적용하지 않아요.','Unagreed changes are not applied.'))+'</p>'+(viewerRole==='pm'?'<button class="btn sm" data-required-role="pm" data-close-run>'+E(t('확인 · 현재 배분 유지','Acknowledge · keep current allocation'))+'</button>':'<button class="btn sm" data-switch-role="pm">'+E(t('PM으로 전환','Switch to PM'))+'</button>')+'</article>';
     if(run.clarification)html+='<div class="backend-error" role="status">'+E(conversationText(run.clarification))+'</div>';
     if(run.status==='done'&&!run.clarification)html+='<div class="backend-empty">'+E(run.termination==='applied'?t('선택한 계획을 최종 검증 후 보드에 적용했어요.','The chosen plan passed final checks and was applied.'):t('현재 배분을 유지했어요.','The current allocation was kept.'))+' '+E(t('다음 이슈를 보내거나 다음 날로 넘어가세요.','Send the next issue or move to the next day.'))+'</div>';
     feed.innerHTML=html;
@@ -312,21 +318,22 @@
     var shownDemo=state&&state.demo&&state.demo.id;var latest=await api('/state');
     if((latest.demo&&latest.demo.id)!==shownDemo){refs=[];await refresh(true);throw new Error(t('시나리오가 변경되어 화면을 새로 고쳤습니다. 내용을 확인한 뒤 다시 보내 주세요.','The scenario changed. The screen was refreshed; review your issue and send again.'));}
     run=await api('/candidate-runs',{issue:issueWithRefs(issue),settings:{demo_auto_consent:state.demo.id==='m4_t4_composite'}});dayDoneFor=null;
-    if(run.termination!=='issue_needs_clarification'){input.value='';input.dispatchEvent(new Event('input'));refs=[];}
+    if(run.termination!=='issue_needs_clarification'){setDraft('');refs=[];}
     preview=null;await refresh(false);automatic=run.status==='running';}).then(loop);});
   document.getElementById('continue-run').onclick=function(){automatic=true;loop();};
   document.getElementById('pause-run').onclick=function(){automatic=false;status();};
-  document.getElementById('current-board').onclick=function(){preview=null;if(state)V.render(state,null,false);};
+  document.getElementById('current-board').onclick=function(){preview=null;if(state)V.render(state,null,false);status();};
   document.getElementById('next-day').onclick=function(){act(async function(){var r=await api('/day/next',{});await refresh(false);V.toast(t('하루가 지났어요 · 완료: ','A day passed · finished: ')+(r.finished.join(', ')||t('없음','none')));});};
-  document.getElementById('demo-select').onchange=function(e){automatic=false;act(async function(){await api('/demo/select',{demo:e.target.value});run=null;preview=null;refs=[];await refresh(true);});};
-  function syncHeight(){document.querySelector('.app').style.height=window.innerWidth>900?'calc(100dvh - '+Math.ceil(top.getBoundingClientRect().height)+'px)':'auto';}
+  document.getElementById('previous-day').onclick=function(){act(async function(){await api('/day/previous',{});preview=null;await refresh(false);V.toast(t('이전 날로 돌아왔어요','Returned to the previous day'));});};
+  document.getElementById('demo-select').onchange=function(e){automatic=false;act(async function(){var chosen=e.target.value;++refreshSeq;await api('/demo/select',{demo:chosen});run=null;preview=null;refs=[];setDraft('');await refresh(true);});};
+  function syncHeight(){document.querySelector('.app').style.height=window.innerWidth>900?'calc(100dvh - '+Math.ceil(top.getBoundingClientRect().height+tools.getBoundingClientRect().height)+'px)':'auto';}
   window.addEventListener('resize',syncHeight);
-  function switchRole(role){viewerRole=role;try{localStorage.setItem('pb-viewer-role',role);}catch(err){}if(state)draw();}
+  function switchRole(role){viewerRole=role;refs=[];setDraft('');try{localStorage.setItem('pb-viewer-role',role);}catch(err){}if(state)draw();}
   document.getElementById('viewer-select').onchange=function(e){switchRole(e.target.value);};
-  document.getElementById('reset').onclick=function(){if(!window.confirm(t('현재 시나리오를 처음 상태로 되돌릴까요?','Reset the current scenario to its initial state?')))return;automatic=false;act(async function(){await api('/reset',{});run=null;preview=null;refs=[];await refresh(true);});};
+  document.getElementById('reset').onclick=function(){if(!window.confirm(t('현재 시나리오를 처음 상태로 되돌릴까요?','Reset the current scenario to its initial state?')))return;automatic=false;act(async function(){await api('/reset',{});run=null;preview=null;refs=[];setDraft('');await refresh(true);});};
   feed.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||busy||!run)return;
     if(b.dataset.switchRole){act(function(){return switchRole(b.dataset.switchRole);});return;}
-    if(b.dataset.preview){preview=run.candidates.find(function(c){return c.id===b.dataset.preview;});if(preview)V.render(state,preview.board,true);return;}
+    if(b.dataset.preview){preview=run.candidates.find(function(c){return c.id===b.dataset.preview;});if(preview)V.render(state,preview.board,true);status();return;}
     act(async function(){
       if(b.dataset.select){var c=run.candidates.find(function(c){return c.id===b.dataset.select;});run=await api('/runs/'+run.id+'/pm-selection',{action:'select',candidate_id:c.id,plan_hash:c.plan_hash});preview=null;await refresh(false);}
       else if(b.dataset.pmAction){var reason=window.prompt(t('반려/수정 요청 이유를 적어 주세요','Give a reason for rejecting / requesting revision'));if(!reason)return;run=await api('/runs/'+run.id+'/pm-selection',{action:b.dataset.pmAction,reason:reason});await refresh(false);if(run.status==='running')automatic=true;}

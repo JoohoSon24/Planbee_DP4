@@ -118,7 +118,8 @@ def preview(b,ctx,allocations,changes=None,plan_actions=None):
             if abs(result.tasks[source.id].s-(source.context or {})['requested_start'])>hive.EPS:
                 raise ValueError('요청한 일정 이동이 후보에 반영되지 않음')
             if set(affected)-{source.who}:raise ValueError('단독 일정 이동은 다른 당사자 변경을 포함할 수 없음')
-        return result,affected,[],False
+        required=set((source.context or {}).get('transfer_requires_confirm',[])) & {a['who'] for a in allocations if a['who']!=source.who}
+        return result,affected,sorted(required),False
     staged=plan_adjustments.stage(b,ctx,changes)
     st=task_partition.preview(staged,ctx,allocations)
     authorizers,confirm,pm_scope=actions(st,plan_actions)

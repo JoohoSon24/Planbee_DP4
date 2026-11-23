@@ -20,3 +20,7 @@
 과거 원본과 가설·실험 결과는 저장소 루트의 `past_versions/agent_prompts/`에 보존합니다. 런타임 프롬프트 폴더 안에 과거 파일을 넣지 않아 run snapshot에 옛 버전이 섞이지 않습니다. 버전별 manifest에 프롬프트·코드·시드 hash를 저장하고, 실제 Live와 Mock 결과를 구분합니다.
 
 업무 식별도 run 공유 호출·시간 예산을 사용합니다. `POST /candidate-runs`에서 `task_id`를 생략하면 실행하며, 기존 명시적 Task API도 유지합니다. 잘못된 ID와 완료 업무는 코드로 차단합니다.
+
+T6의 개인 역할 지침은 `agents/t6_mia.md`, `t6_leo.md`, `t6_sam.md`, `t6_ben.md`, `t6_zoe.md`입니다. 각 seed의 `people[].notes.prompt_role`로 연결하며, 해당 본인 카드와 공개 업무 정보만 함께 전달합니다. 원본 시나리오와 적용 범위는 `seed/m4_t6_game_demo/source.md` 및 `docs/DEMOS.md`에서 확인합니다.
+
+2026-11-24 탐색 개선: 생성 프롬프트는 수신자의 다른 미착수 업무 이동까지 결합하고, 토론 프롬프트는 공개 질문에 대한 응답·예외 확인·수정된 일정 비교를 구체화합니다. 변경 전 MD는 `past_versions/2026-11-24_search_expansion/`에 보존하며 실행은 현재 역할별 경로만 읽습니다. 과거 버전은 편집 이력이며 현재 지침으로 합쳐 주입하지 않습니다.

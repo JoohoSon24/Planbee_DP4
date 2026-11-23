@@ -24,7 +24,7 @@ def frozen(values):
 
 
 def load_prompt(group, name):
-    if any(not x or any(c not in 'abcdefghijklmnopqrstuvwxyz_' for c in x) for x in (group,name)):
+    if any(not x or any(c not in 'abcdefghijklmnopqrstuvwxyz_0123456789' for c in x) for x in (group,name)):
         raise ValueError('Invalid prompt name')
     key = f'{group}/{name}.md'
     values = _snapshot.get()
