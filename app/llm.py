@@ -312,9 +312,13 @@ class LiveLLM(MockLLM):
                 "tools": [{"type": "function", "function": {"name": "answer", "description": instruction,
                                                             "parameters": model_cls.model_json_schema()}}],
                 "tool_choice": {"type": "function", "function": {"name": "answer"}},
+                "usage": {"include": True},
             })
             r.raise_for_status()
-            msg = r.json()["choices"][0]["message"]
+            data = r.json()
+            from . import usage
+            usage.record(use, data.get("usage"), model_cls.__name__)
+            msg = data["choices"][0]["message"]
             calls = msg.get("tool_calls") or []
             raw = calls[0]["function"]["arguments"] if calls else msg.get("content") or ""
             return model_cls(**(json.loads(raw) if isinstance(raw, str) else raw))

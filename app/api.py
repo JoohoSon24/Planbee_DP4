@@ -502,6 +502,25 @@ def get_workflow_progress():
     return progress.read(store.DEMO)
 
 
+@app.get("/llm/usage", summary="Live LLM 토큰 사용량(이 서버 실행 동안)과 OpenRouter 키의 남은 크레딧")
+def get_llm_usage():
+    from . import usage
+    from .llm import runtime_mode, get_llm
+    mode = runtime_mode()
+    try:
+        model = getattr(get_llm(), "model", None) if mode == "live" else None
+    except RuntimeError:      # live 인데 키가 없음: 크레딧 조회도 None 으로 보인다
+        model = None
+    return usage.snapshot(mode, model)
+
+
+@app.post("/llm/usage/reset", summary="토큰 사용량 집계를 0부터 다시 셈 (크레딧은 그대로)")
+def reset_llm_usage():
+    from . import usage
+    usage.reset()
+    return {"ok": True}
+
+
 @app.get("/demos", summary="고를 수 있는 데모와 지금 데모")
 def get_demos():
     return {"current": store.DEMO, "all": store.service_demos(), "catalog": store.demo_catalog()}
