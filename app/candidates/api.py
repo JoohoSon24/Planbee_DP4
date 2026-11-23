@@ -12,6 +12,10 @@ class StartIn(BaseModel):
     issue: str = Field(min_length=1,max_length=8000)
     settings: engine.Settings | None = None
 
+class TranslationIn(BaseModel):
+    keys: list[str] = Field(min_length=1,max_length=12)
+
+
 class PMIn(BaseModel):
     action: Literal['select','reject','revise']
     candidate_id: str | None = None
@@ -72,6 +76,11 @@ def install(app,get_db,busy):
     def advance(rid:int,db=Depends(get_db)):
         run=find(db,rid)
         return engine.response(attempt(lambda:engine.advance(db,run)))
+
+    @router.post('/runs/{rid}/translations')
+    def translate_run(rid:int,body:TranslationIn,db=Depends(get_db)):
+        from .. import translations
+        return attempt(lambda:translations.translate(find(db,rid),body.keys))
 
     @router.get('/runs/{rid}/candidate-pools')
     def pools(rid:int,db=Depends(get_db)):

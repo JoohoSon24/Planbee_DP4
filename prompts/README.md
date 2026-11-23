@@ -8,6 +8,7 @@
 | `discussion/speak.md` | 순서대로 질문·응답·공개 조건 | 본인 카드 + 공개 대화 |
 | `discussion/rank.md` | 토론 후 최종 개인 선호 | 본인 카드 + 공개 대화 |
 | `discussion/candidate_consent.md` | 후보별 영향 당사자 의사 | 본인 카드 + 정확한 후보 hash |
+| `translation/english.md` | 공개 대화의 표시용 영어 번역 | 공개 이슈·발언만. 비공개 카드·평가 없음 |
 | `evaluation/` | 사람 평가 안내 | 평가 역할의 본인 카드 + 같은 공개 정보 |
 
 새 후보 경로는 `app/candidates/engine.py`가 사용합니다. run 시작 시 모든 원본의 내용/hash를 고정해 도중 편집이 같은 실험에 섞이지 않게 합니다. 기존 `partition.md`, `revision.md`, `consent.md` 등은 legacy 경로에서 계속 사용합니다. JSON schema·시간 검증·동의·PM 권한·CE 계산은 Python이 수행합니다. Markdown 본문 전체가 실제 지시이며 편집자 설명은 README에 적으세요.

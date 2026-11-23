@@ -28,7 +28,33 @@
   };
   var TITLE_EN={'원 업무 전체 유지·양도':'Keep or transfer the whole task','Task에 명시된 산출물 분담':'Split as stated in the task','선택 범위의 후속 milestone 이관':'Defer optional scope to a later milestone','중간 산출물과 최종 반영의 단계별 재설계':'Staged redesign: interim and final delivery','현재 milestone 계획 유지':'Keep the current milestone plan'};
   function planTitle(x){return lang()==='en'&&TITLE_EN[x]?TITLE_EN[x]:x;}
-  function hiveText(m){return lang()==='en'&&HIVE_EN[m.response]?HIVE_EN[m.response](m):m.reason;}
+  function hiveText(m){return conversationText(m.reason);}
+
+  var englishCache=new Map(),translationFailures=new Set(),translating=false;
+  function conversationText(text){text=String(text||'');if(lang()!=='en'||!/[가-힣]/.test(text))return text;return englishCache.get(text)||(translationFailures.has(text)?'Translation unavailable.':'Translating…');}
+  function translationItems(){
+    if(!run)return [];
+    var items=[{id:'issue',text:run.issue}];
+    if(run.clarification)items.push({id:'clarification',text:run.clarification});
+    (run.public_history||[]).forEach(function(m,i){if(!['ISSUE','ASSESS','RANK','PASS'].includes(m.response)&&!NOISE.includes(m.response))items.push({id:'history:'+i,text:m.reason});});
+    return items.filter(function(x){return x.text&&/[가-힣]/.test(x.text);});
+  }
+  function translationStatus(){
+    var box=document.getElementById('translation-status');if(!box)return;
+    var hasFailures=translationItems().some(function(x){return translationFailures.has(x.text);});
+    box.hidden=lang()!=='en'||!run||(!translating&&!hasFailures);
+    box.textContent=translating?'Translating conversation…':'Some messages could not be translated. ';
+    if(!translating&&hasFailures){var retry=document.createElement('button');retry.type='button';retry.className='btn sm';retry.textContent='Retry translation';retry.onclick=function(){translationFailures.clear();paint();};box.append(retry);}
+  }
+  async function translateConversation(){
+    translationStatus();if(lang()!=='en'||!run||translating)return;
+    var seen=new Set(),count=0,batch=translationItems().filter(function(x){if(englishCache.has(x.text)||translationFailures.has(x.text)||seen.has(x.text))return false;seen.add(x.text);return true;}).filter(function(x){if(count+x.text.length>12000)return false;count+=x.text.length;return true;}).slice(0,12);
+    if(!batch.length)return;
+    var rid=run.id;translating=true;translationStatus();
+    try{var response=await api('/runs/'+rid+'/translations',{keys:batch.map(function(x){return x.id;})});response.items.forEach(function(x){englishCache.set(x.source,x.text);});}
+    catch(err){batch.forEach(function(x){translationFailures.add(x.text);});}
+    finally{translating=false;if(lang()==='en')paint();translationStatus();if(lang()==='en')translateConversation();}
+  }
 
   /* ---------- chrome ---------- */
   var tools=document.createElement('div');tools.className='backend-tools';
@@ -36,6 +62,7 @@
   top.appendChild(tools);
   var stage=document.createElement('div');stage.className='backend-stage';stage.setAttribute('role','status');stage.id='backend-stage';
   document.querySelector('.chan .pane-h').after(stage);
+  var translationBox=document.createElement('div');translationBox.id='translation-status';translationBox.className='translation-status';translationBox.setAttribute('role','status');translationBox.hidden=true;stage.after(translationBox);
   var controls=document.createElement('div');controls.className='backend-controls';
   controls.innerHTML='<button id="continue-run" class="btn sm" data-t="continue"></button><button id="pause-run" class="btn sm" data-t="pause"></button><button id="current-board" class="btn sm" data-t="currentBoard"></button><button id="next-day" class="btn sm" data-t="nextDay"></button>';
   stage.after(controls);
@@ -188,7 +215,7 @@
   function feedHTML(){
     var task=state.tasks[run.task]||{};
     var html='<div class="agenda"><div class="agenda-h"><span class="av hive" aria-hidden="true"></span><b>'+E(t('Hive · 안건','Hive · Agenda'))+'</b><span class="rt t-flat">'+E(run.phase==='deadline'?t('기한 회복','Deadline recovery'):t('공정성 재분담','Fairness rebalance'))+'</span></div>'+
-      '<p class="agenda-task">'+E(task.title||run.task||t('업무 확인 필요','Task needs clarification'))+' <small>'+E(t('담당 ','owner ')+label(task.who))+'</small></p><p class="agenda-issue">'+E(run.issue)+'</p>'+
+      '<p class="agenda-task">'+E(task.title||run.task||t('업무 확인 필요','Task needs clarification'))+' <small>'+E(t('담당 ','owner ')+label(task.who))+'</small></p><p class="agenda-issue">'+E(conversationText(run.issue))+'</p>'+
       '<p class="agenda-who">'+E(t('참석: ','Participants: '))+E(participants())+' · '+E(t('결정: PM','Decision: PM'))+'</p></div>';
     var cur=null,noise=0,assessed=[],ranked=[],afterRank=false;
     function sys(text){return '<div class="sys-line">'+E(text)+'</div>';}
@@ -211,11 +238,11 @@
       if(a==='ASSESS'){assessed.push(label(who));return;}
       if(a==='RANK'){ranked.push(label(who));return;}
       if(who==='hive'){html+='<div class="msg in hive-line"><div class="av hive"></div><div><p>'+E(hiveText(m))+(m.candidate_id?' '+candChip(m.candidate_id):'')+'</p></div></div>';return;}
-      if(key==='consent'||a==='AUTO_CONFIRM'){html+='<div class="consent-row"><b>'+E(label(who))+'</b>'+candChip(m.candidate_id)+badge(CONSENT[a])+'<span class="basis">'+E(t('근거: ','Basis: ')+(m.reason||'-'))+'</span></div>';return;}
+      if(key==='consent'||a==='AUTO_CONFIRM'){html+='<div class="consent-row"><b>'+E(label(who))+'</b>'+candChip(m.candidate_id)+badge(CONSENT[a])+'<span class="basis">'+E(t('근거: ','Basis: ')+conversationText(m.reason||'-'))+'</span></div>';return;}
       if(a==='PASS'){html+=sys(label(who)+' · '+t('추가 의견 없음','no further comment'));return;}
       var sp=SPEECH[a],pm=who==='pm';
       var tag=sp?badge(sp):a==='ESTIMATE'?badge(['견적 변경','Re-estimate','t-cond']):a==='CONSTRAINT_REVIEW'?badge(['제약 검토','Constraint review','t-cond']):pm?badge([{SELECT:'선택',REJECT:'모두 반려',REVISE:'수정 요청',CLOSE:'확인'}[a]||a,{SELECT:'Chose',REJECT:'Rejected all',REVISE:'Revision',CLOSE:'Acknowledged'}[a]||a,'t-flat']):'';
-      var text=a==='ESTIMATE'&&lang()==='en'?HIVE_EN.ESTIMATE(m):m.reason;
+      var text=conversationText(m.reason);
       html+='<div class="msg in"><div class="av '+(pm?'pm':'proxy')+'">'+E(label(who).slice(0,1))+'</div><div><div class="meta"><b>'+E(label(who))+(pm?'':' · Proxy')+'</b>'+tag+(m.recipient?'<small>→ '+E(label(m.recipient))+'</small>':'')+candChip(m.candidate_id)+'</div><p>'+E(text)+'</p></div></div>';
     });
     flush();
@@ -230,6 +257,7 @@
     return html+'</article>';
   }
   function paint(){
+    translationStatus();
     var open=new Set(Array.from(feed.querySelectorAll('details[open][data-open]')).map(function(n){return n.dataset.open;}));var atEnd=feed.scrollHeight-feed.scrollTop-feed.clientHeight<90,scroll=feed.scrollTop;
     if(!booted){feed.innerHTML='<div class="backend-empty">'+E(t('서버에 연결하는 중입니다… 처음 접속이면 서버가 깨어나는 데 1분 정도 걸릴 수 있어요.','Connecting… On a first visit the server may take about a minute to wake up.'))+'</div>';return;}
     if(!run){feed.innerHTML='<div class="backend-empty">'+E(t('무엇이 바뀌었는지 자유롭게 적어 보내세요. LLM이 관련 업무를 찾습니다. Hive가 안건을 열고, 관련 팀원의 Proxy들이 각자의 위임카드로 협의한 뒤 PM에게 계획 1~3개를 올립니다.','Describe what changed; the LLM identifies the relevant task. Hive opens an agenda, the related members\' proxies negotiate with their own delegation cards, and 1–3 plans go to the PM.'))+'</div>';return;}
@@ -248,11 +276,12 @@
       html+='</article>';
     });
     if(run.status==='waiting_pm')html+='<article class="candidate-card decision-anchor"><h3>'+E(t('합의된 계획이 없어 PM에게 넘어왔어요','No agreed plan · handed to the PM'))+'</h3><p class="candidate-meta">'+E(t('종료 사유: ','Reason: ')+((run.pm_handoff&&run.pm_handoff.summary&&run.pm_handoff.summary.termination)||run.termination||''))+' · '+E(t('미합의 변경은 적용하지 않아요.','Unagreed changes are not applied.'))+'</p>'+(viewerRole==='pm'?'<button class="btn sm" data-required-role="pm" data-close-run>'+E(t('확인 · 현재 배분 유지','Acknowledge · keep current allocation'))+'</button>':'<button class="btn sm" data-switch-role="pm">'+E(t('PM으로 전환','Switch to PM'))+'</button>')+'</article>';
-    if(run.clarification)html+='<div class="backend-error" role="status">'+E(run.clarification)+'</div>';
+    if(run.clarification)html+='<div class="backend-error" role="status">'+E(conversationText(run.clarification))+'</div>';
     if(run.status==='done'&&!run.clarification)html+='<div class="backend-empty">'+E(run.termination==='applied'?t('선택한 계획을 최종 검증 후 보드에 적용했어요.','The chosen plan passed final checks and was applied.'):t('현재 배분을 유지했어요.','The current allocation was kept.'))+' '+E(t('다음 이슈를 보내거나 다음 날로 넘어가세요.','Send the next issue or move to the next day.'))+'</div>';
     feed.innerHTML=html;
     feed.querySelectorAll('details[data-open]').forEach(function(d){d.open=open.has(d.dataset.open);});
     feed.scrollTop=atEnd?feed.scrollHeight:scroll;
+    translateConversation();
   }
 
   /* ---------- run loop ---------- */

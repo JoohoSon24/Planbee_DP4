@@ -358,3 +358,47 @@ def test_demo_automatic_consent_not_allowed_for_other_scenarios(app_env):
     c,_=app_env
     response=c.post('/candidate-runs',json=dict(task_id='polish',issue='Polish 이동',settings=dict(demo_auto_consent=True)))
     assert response.status_code==409
+
+
+@pytest.mark.parametrize('invalid_reply',[False,True])
+def test_public_english_translation_cache_and_original_preservation(app_env,monkeypatch,invalid_reply):
+    from collections import OrderedDict
+    from app import translations
+    from app.negotiation_budget import consume
+    from app.models import Run
+    c,f=app_env
+    r=c.post('/candidate-runs',json=dict(task_id='polish',issue='Polish 6시간은 그대로 두고 다음 월요일로 이동해 주세요.')).json()
+    class Translator(llm.LiveLLM):
+        def __init__(self):self.requests=[]
+        def _ask(self,schema,instruction,facts,model=None):
+            consume();self.requests.append(deepcopy(facts))
+            assert schema is translations.TranslationBatch
+            assert 'Translate each supplied public message' in instruction
+            assert set(facts)=={'target_language','messages'}
+            return translations.TranslationBatch(translations=[translations.Translation(id='unknown' if invalid_reply else x['id'],text='Keep the workload unchanged and move the task to next Monday.') for x in facts['messages']])
+    adapter=Translator();monkeypatch.setattr(translations,'get_llm',lambda:adapter)
+    monkeypatch.setattr(translations,'_cache',OrderedDict());monkeypatch.setattr(translations,'_attempts',OrderedDict())
+    with f() as db:before=deepcopy(db.get(Run,r['id']).ctx)
+    response=c.post(f"/runs/{r['id']}/translations",json={'keys':['issue']})
+    if invalid_reply:assert response.status_code==409
+    else:
+        assert response.status_code==200,response.text
+        item=response.json()['items'][0]
+        assert item['source']==r['issue'] and item['text'].startswith('Keep the workload')
+        assert c.post(f"/runs/{r['id']}/translations",json={'keys':['issue']}).json()==response.json()
+        assert len(adapter.requests)==1
+    with f() as db:assert db.get(Run,r['id']).ctx==before
+    assert c.post(f"/runs/{r['id']}/translations",json={'keys':['private_cards']}).status_code==409
+    assert c.post(f"/runs/{r['id']}/translations",json={'keys':['issue','issue']}).status_code==409
+    assert c.post(f"/runs/{r['id']}/translations",json={'keys':['issue']*13}).status_code==422
+    assert len(adapter.requests)==1
+
+
+def test_display_translation_does_not_call_live_in_mock_mode(app_env,monkeypatch):
+    from collections import OrderedDict
+    from app import translations
+    c,_=app_env
+    monkeypatch.setattr(translations,'_cache',OrderedDict())
+    r=c.post('/candidate-runs',json=dict(task_id='polish',issue='Polish 일정을 옮겨 주세요.')).json()
+    result=c.post(f"/runs/{r['id']}/translations",json={'keys':['issue']})
+    assert result.status_code==409 and 'Mock does not make paid' in result.json()['detail']

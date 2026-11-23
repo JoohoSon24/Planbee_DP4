@@ -298,7 +298,7 @@ class LiveLLM(MockLLM):
         self.last_error = None
         use = model or self.model
         self.used = getattr(self, "used", []) + [use]
-        system=load_prompt('candidate_generation','system') if model_cls.__name__=='Designs' else read_prompt("system")
+        system=load_prompt('candidate_generation','system') if model_cls.__name__=='Designs' else load_prompt('translation','english') if model_cls.__name__=='TranslationBatch' else read_prompt("system")
         actor=facts.get('self')
         if isinstance(actor,dict) and actor.get('id'):
             system+='\n'+read_prompt('actor', name=str(actor['name']), id=str(actor['id']),
@@ -306,7 +306,7 @@ class LiveLLM(MockLLM):
         if facts.get('agent_instructions'):system+='\n'+facts['agent_instructions']
         try:
             r = self._post_live(self.URL, headers={"Authorization": f"Bearer {self.key}", "X-Title": "Plan Bee"}, json={
-                "model": use, "max_tokens": 8000 if model_cls.__name__ in ('Assessment','Designs') else 1200 if model_cls.__name__ in ('Speech','Consent') else 3000 if model_cls in (DiscussionReply,RevisionProposal,PartitionDraft) else 1800 if model_cls is Split else 1200 if model_cls is CardPolicy else 600, "temperature": 0,
+                "model": use, "max_tokens": 8000 if model_cls.__name__ in ('Assessment','Designs') else 5000 if model_cls.__name__=='TranslationBatch' else 1200 if model_cls.__name__ in ('Speech','Consent') else 3000 if model_cls in (DiscussionReply,RevisionProposal,PartitionDraft) else 1800 if model_cls is Split else 1200 if model_cls is CardPolicy else 600, "temperature": 0,
                 "messages": [{"role": "system", "content": system},
                              {"role": "user", "content": instruction + "\n\n" + json.dumps(facts, ensure_ascii=False)}],
                 "tools": [{"type": "function", "function": {"name": "answer", "description": instruction,
