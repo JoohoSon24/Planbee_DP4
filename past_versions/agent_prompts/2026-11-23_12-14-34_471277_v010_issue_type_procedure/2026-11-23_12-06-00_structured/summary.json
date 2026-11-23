@@ -1,0 +1,540 @@
+[
+  {
+    "condition": "algorithm",
+    "scenario": "m4_t1_rescheduling",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 0,
+    "duration_seconds": 0.05,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_6a717852f847f2fc",
+        "title": "원 업무 전체 유지·양도",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 1.38671875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_6a717852f847f2fc"
+      ],
+      "matching_pm_options": [
+        "c_6a717852f847f2fc"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "mock/2026-11-23_12-06-01_018785_fbc790be.md"
+  },
+  {
+    "condition": "algorithm",
+    "scenario": "m4_t2_reallocation",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 0,
+    "duration_seconds": 0.06,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_bf03188dc6204179",
+        "title": "Task에 명시된 산출물 분담",
+        "needs_confirmation": [
+          "art"
+        ],
+        "refused_tag": [],
+        "variance": 1.25
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_bf03188dc6204179"
+      ],
+      "matching_pm_options": [
+        "c_bf03188dc6204179"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "mock/2026-11-23_12-06-01_070692_1831d65b.md"
+  },
+  {
+    "condition": "algorithm",
+    "scenario": "m4_t3_scope_reduction",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 0,
+    "duration_seconds": 0.06,
+    "pool": 3,
+    "chosen": [
+      {
+        "id": "c_0b7b3017711d1388",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_f12d0fb5842bd99d",
+        "c_b58ef8141ed82545",
+        "c_0b7b3017711d1388"
+      ],
+      "matching_pm_options": [
+        "c_0b7b3017711d1388"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "mock/2026-11-23_12-06-01_134617_279d75f6.md"
+  },
+  {
+    "condition": "algorithm",
+    "scenario": "m4_t4_composite",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 0,
+    "duration_seconds": 0.08,
+    "pool": 4,
+    "chosen": [
+      {
+        "id": "c_7ef60fbfeb380a95",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.921875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_ebed733af7e6dbf9",
+        "c_fbe26d9f69b980f5",
+        "c_7ef60fbfeb380a95",
+        "c_7cb9a871786ed313"
+      ],
+      "matching_pm_options": [
+        "c_7ef60fbfeb380a95"
+      ],
+      "qa_confirm_compromise_candidates": [
+        "c_fbe26d9f69b980f5",
+        "c_7cb9a871786ed313"
+      ],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "mock/2026-11-23_12-06-01_203155_5b70e735.md"
+  },
+  {
+    "condition": "algorithm",
+    "scenario": "m4_t5_infeasible",
+    "issue_hints_removed": false,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_calls": 0,
+    "duration_seconds": 0.05,
+    "pool": 0,
+    "chosen": [],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "mock/2026-11-23_12-06-01_278771_d53a67a0.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t1_rescheduling",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 2,
+    "duration_seconds": 7.75,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_6a717852f847f2fc",
+        "title": "Polish 작업 유지",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 1.38671875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_6a717852f847f2fc"
+      ],
+      "matching_pm_options": [
+        "c_6a717852f847f2fc"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-06-01_329819_ae2b3885.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t2_reallocation",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 2,
+    "duration_seconds": 9.03,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_bf03188dc6204179",
+        "title": "UI Integration 재분배",
+        "needs_confirmation": [
+          "art"
+        ],
+        "refused_tag": [],
+        "variance": 1.25
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_bf03188dc6204179"
+      ],
+      "matching_pm_options": [
+        "c_bf03188dc6204179"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-06-09_093445_421c4226.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t3_scope_reduction",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 2,
+    "duration_seconds": 7.89,
+    "pool": 3,
+    "chosen": [
+      {
+        "id": "c_0b7b3017711d1388",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      },
+      {
+        "id": "c_b58ef8141ed82545",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      },
+      {
+        "id": "c_f12d0fb5842bd99d",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_f12d0fb5842bd99d",
+        "c_b58ef8141ed82545",
+        "c_0b7b3017711d1388"
+      ],
+      "matching_pm_options": [
+        "c_0b7b3017711d1388",
+        "c_b58ef8141ed82545",
+        "c_f12d0fb5842bd99d"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-06-18_129329_e359f98d.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t4_composite",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 2,
+    "duration_seconds": 11.86,
+    "pool": 4,
+    "chosen": [
+      {
+        "id": "c_7ef60fbfeb380a95",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.921875
+      },
+      {
+        "id": "c_ebed733af7e6dbf9",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.921875
+      },
+      {
+        "id": "c_7cb9a871786ed313",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [
+          "qa"
+        ],
+        "refused_tag": [],
+        "variance": 1.296875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_ebed733af7e6dbf9",
+        "c_fbe26d9f69b980f5",
+        "c_7ef60fbfeb380a95",
+        "c_7cb9a871786ed313"
+      ],
+      "matching_pm_options": [
+        "c_7cb9a871786ed313",
+        "c_7ef60fbfeb380a95",
+        "c_ebed733af7e6dbf9"
+      ],
+      "qa_confirm_compromise_candidates": [
+        "c_fbe26d9f69b980f5",
+        "c_7cb9a871786ed313"
+      ],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-06-26_027000_b2cf30e2.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t5_infeasible",
+    "issue_hints_removed": false,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_calls": 3,
+    "duration_seconds": 15.8,
+    "pool": 0,
+    "chosen": [],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-06-37_887535_3311cbc1.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t1_rescheduling",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 5,
+    "duration_seconds": 13.86,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_6a717852f847f2fc",
+        "title": "Polish 작업 유지",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 1.38671875
+      }
+    ],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_6a717852f847f2fc"
+      ],
+      "matching_pm_options": [
+        "c_6a717852f847f2fc"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-06-53_696183_3ea0368f.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t2_reallocation",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 15,
+    "duration_seconds": 45.69,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_bf03188dc6204179",
+        "title": "UI Integration 재분배",
+        "needs_confirmation": [
+          "art"
+        ],
+        "refused_tag": [],
+        "variance": 1.25
+      }
+    ],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_bf03188dc6204179"
+      ],
+      "matching_pm_options": [
+        "c_bf03188dc6204179"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-07-07_559782_7e791e4e.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t3_scope_reduction",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 17,
+    "duration_seconds": 58.4,
+    "pool": 3,
+    "chosen": [
+      {
+        "id": "c_f12d0fb5842bd99d",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      }
+    ],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_f12d0fb5842bd99d",
+        "c_b58ef8141ed82545",
+        "c_0b7b3017711d1388"
+      ],
+      "matching_pm_options": [
+        "c_f12d0fb5842bd99d"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-07-53_254112_ac86c50d.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t4_composite",
+    "issue_hints_removed": false,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 16,
+    "duration_seconds": 81.79,
+    "pool": 4,
+    "chosen": [
+      {
+        "id": "c_ebed733af7e6dbf9",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.921875
+      }
+    ],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_ebed733af7e6dbf9",
+        "c_fbe26d9f69b980f5",
+        "c_7ef60fbfeb380a95",
+        "c_7cb9a871786ed313"
+      ],
+      "matching_pm_options": [
+        "c_ebed733af7e6dbf9"
+      ],
+      "qa_confirm_compromise_candidates": [
+        "c_fbe26d9f69b980f5",
+        "c_7cb9a871786ed313"
+      ],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-08-51_659524_1aca6eee.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t5_infeasible",
+    "issue_hints_removed": false,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_calls": 5,
+    "duration_seconds": 27.56,
+    "pool": 0,
+    "chosen": [],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_12-10-13_448531_ca3734a6.md"
+  }
+]

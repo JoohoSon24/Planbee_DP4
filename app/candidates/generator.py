@@ -70,6 +70,16 @@ def execution_key(st,allocations,plan_actions=None):
     return digest(dict(scope=canonical(allocations,[],scope_actions),tasks=tasks,links=links))
 
 
+def authorized(b,source_id,action):
+    """Only operators whose explicit Task contract exists can be proposed (see plans.apply_actions)."""
+    t=b.tasks.get(action.task);ctx=(t.context or {}) if t else {}
+    if not t:return False
+    if action.kind=='defer':return bool(ctx.get('defer_option'))
+    if action.kind=='omit':return bool(ctx.get('optional') and ctx.get('covered_by'))
+    if action.kind=='restructure':return action.task!=source_id and bool(ctx.get('required_parts') and ctx.get('inbound_scope'))
+    return False
+
+
 def enumerate_plans(b,ctx,templates,settings):
     """No private cards or fairness ordering. Every yielded plan passed full Hive."""
     source=b.tasks[ctx['task']]
@@ -77,7 +87,15 @@ def enumerate_plans(b,ctx,templates,settings):
         parts=[Part(key='whole',title=source.title,what=(source.context or {}).get('deliverable') or source.title,
                     effort=source.d)])
     # 최상위 parts 가 빈 LLM 템플릿은 원 Task 전체를 그대로 보유하는 구조로 본다.
-    templates=[whole]+[t if t.parts else t.model_copy(update={'parts':list(whole.parts)}) for t in templates]
+    templates=[t if t.parts else t.model_copy(update={'parts':list(whole.parts)}) for t in templates]
+    # 권한 계약이 없는 plan_actions(예: 분해를 restructure로 표현)는 그 항목만 떼어 내고 나머지 구조를 살린다.
+    # 권한 우회가 아니다: 남은 구조도 Hive 전체 검증을 그대로 받는다.
+    removed=0;cleaned=[]
+    for t in templates:
+        keep=[a for a in t.plan_actions if authorized(b,source.id,a)]
+        removed+=len(t.plan_actions)-len(keep)
+        cleaned.append(t if len(keep)==len(t.plan_actions) else t.model_copy(update={'plan_actions':keep}))
+    templates=[whole]+cleaned
     contract=(source.context or {}).get('required_parts',[])
     if contract and abs(sum(p['effort'] for p in contract)-source.d)<=hive.EPS:
         templates.append(Transformation(title='Task에 명시된 산출물 분담',basis='Task 원문에 명시된 분리 경계·분량·담당 권한을 그대로 보존한다.',
@@ -153,7 +171,7 @@ def enumerate_plans(b,ctx,templates,settings):
                 remaining.append(iterator)
             active=remaining
     iterators=[iter(variants(t)) for t in templates]
-    found=[];seen=set();executions=set();stats=dict(attempted=0,rejected=0,duplicates=0,reasons={},templates=len(templates))
+    found=[];seen=set();executions=set();stats=dict(attempted=0,rejected=0,duplicates=0,reasons={},templates=len(templates),unauthorized_actions_removed=removed)
     while iterators and stats['attempted']<settings.raw_limit:
         next_iterators=[]
         for it in iterators:
