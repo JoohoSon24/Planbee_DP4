@@ -1,4 +1,5 @@
 """Additive API; candidate PM authority is separate from legacy exception grants."""
+import os
 from typing import Literal
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
@@ -9,11 +10,16 @@ from .. import store, workflow, viewer
 
 class StartIn(BaseModel):
     task_id: str | None = None
+    timeline_event_id: str | None = None
     issue: str = Field(min_length=1,max_length=8000)
     settings: engine.Settings | None = None
 
 class TranslationIn(BaseModel):
     keys: list[str] = Field(min_length=1,max_length=12)
+
+
+class DisplayTranslationIn(BaseModel):
+    texts: list[str] = Field(min_length=1,max_length=24)
 
 
 class PMIn(BaseModel):
@@ -35,11 +41,16 @@ class LabelIn(BaseModel):
 
 def install(app,get_db,busy):
     router=APIRouter()
+    @router.post('/display-translations')
+    def display_translations(body:DisplayTranslationIn):
+        from ..translations import translate_display
+        return attempt(lambda:translate_display(body.texts))
+
     @router.get('/runtime')
     def runtime():
         from ..llm import runtime_mode,get_llm
         adapter=get_llm()
-        return dict(llm_mode=runtime_mode(),model=getattr(adapter,'model',None),negotiation_mode='candidate_discussion')
+        return dict(t6_force_agree_enabled=os.environ.get('PLANBEE_T6_FORCE_AGREE','1')=='1',demo_force_agree=store.DEMO=='m4_t6_game_demo' and os.environ.get('PLANBEE_T6_FORCE_AGREE','1')=='1',auto_confirm=os.environ.get('PLANBEE_AUTO_CONFIRM')=='1',llm_mode=runtime_mode(),model=getattr(adapter,'model',None),negotiation_mode='candidate_discussion')
     def find(db,rid):
         run=db.get(Run,rid)
         if not run or run.kind!='candidate':raise HTTPException(404,'후보 run을 찾을 수 없음')
@@ -63,7 +74,14 @@ def install(app,get_db,busy):
         # Reporting a public team issue is distinct from consenting to a change.
         # The inferred owner and all affected people still decide by their own cards.
         busy(db);store.snap(db)
-        return engine.response(attempt(lambda:engine.start(db,body.task_id,body.issue,body.settings,reporter=reporter)))
+        if body.timeline_event_id:
+            from ..timeline import apply_report
+            event=attempt(lambda:apply_report(db,body.timeline_event_id,body.issue))
+            task_id=event['task']
+        else:task_id=body.task_id
+        run=attempt(lambda:engine.start(db,task_id,body.issue,body.settings,reporter=reporter))
+        if body.timeline_event_id:engine.patch(run,timeline_event=body.timeline_event_id)
+        return engine.response(run)
 
     @router.get('/candidate-runs')
     def runs(db=Depends(get_db)):

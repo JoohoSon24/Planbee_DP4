@@ -303,25 +303,38 @@ def demo_auto_consent(run):
     return bool(enabled) and store.DEMO=='m4_t4_composite'
 
 
+def force_demo_agree(run):
+    return store.DEMO=='m4_t6_game_demo' and os.environ.get('PLANBEE_T6_FORCE_AGREE','1')=='1'
+
+
 def recommend_demo(db,run):
     import random
     allc=deepcopy(run.ctx['candidates'])
     chosen=[c for c in allc if c['id'] in run.ctx.get('shortlist',[])]
     random.Random(run.ctx['settings']['seed']).shuffle(chosen)
+    if force_demo_agree(run):
+        chosen=chosen or allc
+        source=store.board(db).tasks[run.ctx['task']].who
+        first=[];rest=[];seen=set()
+        for candidate in chosen:
+            family=tuple(sorted({a['who'] for a in candidate['allocations']}-{source}))
+            (rest if family in seen else first).append(candidate);seen.add(family)
+        chosen=first+rest
+    demo='T6' if force_demo_agree(run) else 'T4'
     recommended=[]
     for c in chosen[:3]:
-        c['consents']={pid:dict(action='ACCEPT',reason='T4 데모용 알고리즘 자동 수락. 실제 개인 동의 판단이 아닙니다.',auto_confirmed=True,source='demo_algorithm') for pid in c['affected']}
+        c['consents']={pid:dict(action='ACCEPT',reason=demo+' 데모용 무조건 동의. 카드 기반 실제 개인 합의가 아닙니다.',auto_confirmed=True,source='demo_algorithm') for pid in c['affected']}
         for pid in c['affected']:event(db,run,pid,'AUTO_CONFIRM',c['consents'][pid]['reason'],c['id'])
         recommended.append(c['id'])
     if not recommended:return fail(db,run,'no_consented_candidate')
     patch(run,final_candidates=recommended,candidates=allc,termination=None,demo_auto_consent=True)
     run.status='awaiting_pm_selection';run.step='candidate_pm'
-    event(db,run,'hive','DEMO_AUTO_CONSENT','T4 데모에서는 검증 후보 중 알고리즘이 최대 3개를 추리고 개인 동의를 자동 수락합니다. 카드 기반 합의 결과가 아니며 PM 최종 선택과 Hive 검증은 유지합니다.')
+    event(db,run,'hive','DEMO_AUTO_CONSENT',demo+' 데모에서는 검증 후보 중 알고리즘이 최대 3개를 추리고 개인 동의를 무조건 수락합니다. 카드 기반 합의 결과가 아니며 PM 최종 선택과 Hive 검증은 유지합니다.')
     event(db,run,'hive','PM_OPTIONS',f'후보 {len(recommended)}개를 추렸어요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.')
 
 
 def assess(db,run,final=False):
-    if final and demo_auto_consent(run):return recommend_demo(db,run)
+    if final and (demo_auto_consent(run) or force_demo_agree(run)):return recommend_demo(db,run)
     b=store.board(db);pids=run.ctx.get('participants') or sorted(b.people)
     allc=run.ctx['candidates'];chosen=[c for c in allc if c['id'] in run.ctx.get('shortlist',[])] if final else allc
     cursor_key='final_cursor' if final else 'initial_cursor'
@@ -335,7 +348,9 @@ def assess(db,run,final=False):
         mine=[]
         for offset in range(0,len(chosen),8):
             batch=chosen[offset:offset+8];facts=participant_facts(db,run,pid,batch)
-            result=invoke(db,run,Assessment,'discussion','rank' if final else 'assess',facts,pid)
+            if force_demo_agree(run):
+                result=Assessment(opinions=[Opinion(candidate_id=c['id'],action='ACCEPT',score=50,fairness_score=50,card_fit_score=50,reason='T6 시연 모드: 일정 검증 후보에 무조건 동의합니다.') for c in batch],message='시연용 무조건 동의')
+            else:result=invoke(db,run,Assessment,'discussion','rank' if final else 'assess',facts,pid)
             expected={c['id'] for c in batch};actual=[o.candidate_id for o in result.opinions]
             if len(actual)!=len(expected) or set(actual)!=expected:
                 feedback=dict(expected_ids=sorted(expected),received_ids=actual,
@@ -347,7 +362,7 @@ def assess(db,run,final=False):
             mine.extend(o.model_dump() for o in result.opinions)
         opinions[pid]=mine
         # A public summary contains no other agent's private material.
-        event(db,run,pid,'RANK' if final else 'ASSESS','토론 조건을 반영해서 제 최종 선호를 정리했어요.' if final else '제 위임 범위와 일정으로 후보들을 비교했어요.')
+        event(db,run,pid,'RANK' if final else 'ASSESS','T6 시연 모드로 검증 후보에 무조건 동의했어요.' if force_demo_agree(run) else '토론 조건을 반영해서 제 최종 선호를 정리했어요.' if final else '제 위임 범위와 일정으로 후보들을 비교했어요.')
     patch(run,**{result_key:opinions,cursor_key:cursor+1},
         assessment_progress=dict(completed=cursor+1,total=len(pids),stage='final' if final else 'initial'))
     if cursor+1<len(pids):return
@@ -459,6 +474,10 @@ def discuss(db,run):
 
 
 def advance(db,run):
+    if run.status=='waiting_pm' and run.ctx.get('termination')=='no_consented_candidate' and force_demo_agree(run) and run.ctx.get('candidates'):
+        run.status='running';run.step='candidate_rank'
+        patch(run,termination=None,pm_handoff=None)
+        event(db,run,'hive','DEMO_AGREE_RECOVERY','T6 무조건 동의 시연 모드로 기존 검증 후보를 다시 제출합니다. PM 선택 전에는 적용하지 않습니다.')
     if run.status!='running':return run
     # The wall-time budget counts processing time only: a paused or closed page must not expire the run.
     step_started=time.time()
@@ -521,11 +540,12 @@ def select_pm(db,run,action,candidate_id=None,plan_hash=None,reason=''):
     if os.environ.get('PLANBEE_AUTO_CONFIRM')=='1':
         # Service setting: each member's proxy settles its own NEEDS_INPUT by card; only the PM acts by hand.
         # A card-level REJECT already removed the plan before it reached the PM, so this never overrides a refusal.
+        c=deepcopy(c)
         for pid,answer in c['consents'].items():
-            if answer['action']=='NEEDS_INPUT' and not ((b.tasks[run.ctx['task']].context or {}).get('preserve_personal_confirmation') and pid in c.get('required_confirmations',[])):
-                event(db,run,pid,'AUTO_CONFIRM','위임카드에 금지가 없어 본인 확인을 자동 승인했어요. (확인 요청 사유: '+(answer.get('reason') or '자동 위임 범위 밖')+')',candidate_id)
+            if answer['action']=='NEEDS_INPUT':
+                event(db,run,pid,'AUTO_CONFIRM','자동 확인 설정에 따라 소유권 변경을 포함한 본인 확인을 자동 승인했어요. (확인 요청 사유: '+(answer.get('reason') or '자동 위임 범위 밖')+')',candidate_id)
                 answer['action']='ACCEPT';answer['auto_confirmed']=True
-        patch(run,candidates=run.ctx['candidates'])
+        patch(run,candidates=[c if item['id']==c['id'] else item for item in run.ctx['candidates']])
     for pid,answer in c['consents'].items():
         if answer['action']=='NEEDS_INPUT':
             confirmation=Confirmation(who=pid,prompt='PM이 선택한 새 milestone 계획에 동의하나요?',

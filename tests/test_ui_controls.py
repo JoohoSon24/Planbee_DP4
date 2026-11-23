@@ -47,3 +47,42 @@ def test_t5_pm_acknowledgement_is_idempotent(app_env):
         assert response.status_code==200,response.text
         assert response.json()['status']=='done'
     assert c.get('/board').json()==before
+
+
+def test_full_display_translation_is_cached_and_requires_english(app_env,monkeypatch):
+    from app import translations,llm
+    from collections import OrderedDict
+    c,_=app_env
+    class Translator(llm.LiveLLM):
+        def __init__(self):self.calls=0
+        def _ask(self,schema,instruction,facts,model=None):
+            self.calls+=1
+            assert set(facts)=={'target_language','messages'}
+            return translations.TranslationBatch(translations=[translations.Translation(id=x['id'],text='English interface text') for x in facts['messages']])
+    adapter=Translator()
+    monkeypatch.setattr(translations,'get_llm',lambda:adapter)
+    monkeypatch.setattr(translations,'_cache',OrderedDict())
+    monkeypatch.setattr(translations,'_attempts',OrderedDict())
+    before=c.get('/board').json()
+    body={'texts':['업무 상세','본인 확인 필요']}
+    first=c.post('/display-translations',json=body)
+    assert first.status_code==200,first.text
+    assert all(x['text']=='English interface text' for x in first.json()['items'])
+    assert c.post('/display-translations',json=body).json()==first.json()
+    assert adapter.calls==1 and c.get('/board').json()==before
+    assert c.post('/display-translations',json={'texts':['x']*25}).status_code==422
+    assert c.post('/display-translations',json={'texts':['x','x']}).status_code==409
+
+
+def test_full_display_translation_rejects_korean_output(app_env,monkeypatch):
+    from app import translations,llm
+    from collections import OrderedDict
+    c,_=app_env
+    class Translator(llm.LiveLLM):
+        def __init__(self):pass
+        def _ask(self,schema,instruction,facts,model=None):
+            return translations.TranslationBatch(translations=[translations.Translation(id=x['id'],text='아직 한국어') for x in facts['messages']])
+    monkeypatch.setattr(translations,'get_llm',lambda:Translator())
+    monkeypatch.setattr(translations,'_cache',OrderedDict())
+    monkeypatch.setattr(translations,'_attempts',OrderedDict())
+    assert c.post('/display-translations',json={'texts':['새 한국어 문구']}).status_code==409

@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   var V=window.PlanBeeView, E=V.esc, state=null, run=null, runtime={}, busy=false, automatic=false, preview=null, refs=[], booted=false;
+  var datedDraft=null;
   var viewerRole='pm';try{viewerRole=localStorage.getItem('pb-viewer-role')||'pm';}catch(err){}
   var feed=document.getElementById('feed'), input=document.getElementById('change-input'), top=document.querySelector('.top');
 
@@ -66,6 +67,8 @@
   var controls=document.createElement('div');controls.className='backend-controls';
   controls.innerHTML='<button id="continue-run" class="btn sm" data-t="continue"></button><button id="pause-run" class="btn sm" data-t="pause"></button><button id="current-board" class="btn sm" data-t="currentBoard"></button><button id="previous-day" class="btn sm" data-t="previousDay"></button><button id="next-day" class="btn sm" data-t="nextDay"></button>';
   stage.after(controls);
+  var daily=document.createElement('details');daily.className='daily-issues';daily.id='daily-issues';daily.hidden=true;controls.after(daily);
+  daily.addEventListener('click',function(e){var b=e.target.closest('[data-daily-issue]');if(!b||busy)return;var event=state.demo.timeline.events.find(function(x){return x.id===b.dataset.dailyIssue;});if(!event||!event.available)return;if(lang()==='en'&&window.PlanBeeEnglish){window.PlanBeeEnglish.resolve([event.text]).then(function(values){setDraft(values[0]);datedDraft={text:values[0],source:event.text};input.focus();resizeInput();}).catch(function(){error(new Error('Example translation unavailable.'));});}else{setDraft(event.text);input.focus();resizeInput();}});
   var UI={scenario:['시나리오','Scenario'],myRole:['내 역할','My role'],continue:['계속 진행','Continue'],pause:['일시정지','Pause'],currentBoard:['실제 보드로 돌아가기','Back to actual board'],previousDay:['◀ 이전 날','◀ Previous day'],nextDay:['다음 날로 ▶','Next day ▶']};
   function defaultPlaceholder(){return t('무엇이 바뀌었나요? 업무를 고르지 않고 자유롭게 적어 주세요.','What changed? Describe it freely; the team will identify the task.');}
   function helpText(){return t('Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력','Ctrl / ⌘ + Enter: send · Tab in an empty box: insert example');}
@@ -79,7 +82,7 @@
   }
   input.setAttribute('aria-describedby','composer-help');
   function resizeInput(){input.style.height='auto';input.style.height=input.value?Math.min(240,Math.max(72,input.scrollHeight))+'px':'72px';}
-  function setDraft(value){var replacement=input.cloneNode(false);replacement.value=value;input.replaceWith(replacement);input=replacement;resizeInput();}
+  function setDraft(value){datedDraft=null;var replacement=input.cloneNode(false);replacement.value=value;input.replaceWith(replacement);input=replacement;resizeInput();}
   var help=document.createElement('div');help.id='composer-help';help.className='composer-help';document.getElementById('form').after(help);
   function setLanguage(code){
     code=code==='en'?'en':'ko';V.language(code);
@@ -94,7 +97,9 @@
     if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();this.requestSubmit();return;}
     var example=state&&state.demo&&state.demo.issue_example;
     if(e.key==='Tab'&&!e.shiftKey&&!e.isComposing&&!input.value.trim()&&example){
-      e.preventDefault();setDraft(example);input.focus();input.setSelectionRange(example.length,example.length);status();
+      e.preventDefault();
+      if(lang()==='en'&&window.PlanBeeEnglish){var role=viewerRole,demo=state.demo.id;window.PlanBeeEnglish.resolve([example]).then(function(values){if(lang()!=='en'||viewerRole!==role||state.demo.id!==demo||input.value)return;setDraft(values[0]);datedDraft={text:values[0],source:example};input.focus();input.setSelectionRange(input.value.length,input.value.length);status();}).catch(function(){error(new Error('Example translation unavailable. Please enter your issue in English.'));});}
+      else{setDraft(example);input.focus();input.setSelectionRange(example.length,example.length);status();}
     }
   });
   document.getElementById('form').addEventListener('input',function(e){if(e.target===input)resizeInput();});
@@ -140,9 +145,12 @@
     stage.innerHTML='<strong>'+E(line)+'</strong>'+(busy?'<span class="stage-busy"> · '+E(t('처리 중','working'))+'</span>':'')+'<span class="stage-meta">'+E(runtime.llm_mode||'')+(budget&&active?' · '+E(t('호출 ','calls '))+budget.used+'/'+budget.max:'')+'</span>'+(next?'<div class="next-action">'+E(next)+(run&&['awaiting_pm_selection','waiting_pm'].includes(run.status)?' <button type="button" class="btn sm" id="jump-decision">'+E(t('바로 보기 ↓','Jump to it ↓'))+'</button>':'')+'</div>':'');
     var jump=document.getElementById('jump-decision');if(jump)jump.onclick=function(){var target=feed.querySelector('.decision-anchor');if(target)target.scrollIntoView({behavior:'smooth',block:'start'});};
     if(state&&state.demo.id==='m4_t4_composite')stage.innerHTML+='<div class="stage-meta">'+E(t('T4 데모 · 개인 동의 자동 수락 · PM만 최종 선택','T4 demo · algorithmic member consent · PM decides'))+'</div>';
+    if(state&&state.demo.id==='m4_t6_game_demo'&&(runtime.auto_confirm||runtime.demo_force_agree))stage.innerHTML+='<div class="stage-meta">'+E(t('T6 시연 · 모든 역할 무조건 동의 · PM 최종 선택 필요','T6 demo · every role unconditionally agrees · PM makes the final choice'))+'</div>';
     stage.setAttribute('aria-busy',busy?'true':'false');
-    document.getElementById('continue-run').disabled=busy||!run||run.status!=='running'||automatic;
+    var demoRecovery=run&&runtime.demo_force_agree&&run.status==='waiting_pm'&&run.termination==='no_consented_candidate'&&run.candidates.length;
+    document.getElementById('continue-run').disabled=busy||!run||(run.status!=='running'&&!demoRecovery)||automatic;
     document.getElementById('pause-run').disabled=!automatic;
+    daily.querySelectorAll('[data-daily-issue]').forEach(function(button){var event=state&&state.demo.timeline&&state.demo.timeline.events.find(function(x){return x.id===button.dataset.dailyIssue;});button.disabled=busy||!event||!event.available;});
     document.getElementById('demo-select').disabled=busy||!booted;
     document.getElementById('viewer-select').disabled=!booted;
     document.getElementById('current-board').disabled=!preview;
@@ -163,6 +171,7 @@
     if(my!==refreshSeq)return;   // a newer refresh already drew
     if(state&&state.demo&&s.demo&&state.demo.id!==s.demo.id)refs=[];
     if(state&&state.demo&&s.demo&&state.demo.id!==s.demo.id){setDraft('');refs=[];preview=null;}
+    runtime.demo_force_agree=s.demo.id==='m4_t6_game_demo'&&runtime.t6_force_agree_enabled;
     state=s;if(loadRun)run=r;booted=true;draw();
   }
   function draw(){
@@ -173,10 +182,17 @@
     document.querySelector('.sprint').textContent=scenarioTitle(state.demo.title)+' · '+(lang()==='en'?'day '+fmt(state.now):state.now_label);
     document.querySelector('.badge').textContent=(runtime.llm_mode||'').toUpperCase();
     var demo=document.getElementById('demo-select');demo.innerHTML=state.demo.catalog.map(function(d){return '<option value="'+E(d.id)+'"'+(d.id===state.demo.id?' selected':'')+'>'+E(scenarioTitle(d.title))+'</option>';}).join('');
+    paintDailyIssues();
     var src=state.tasks[state.demo.source_task];
     var example=state.demo.issue_example;input.placeholder=example?(example.length>110?example.slice(0,110)+'…':example):defaultPlaceholder();
     paintRefs();
     V.render(state,preview&&preview.board,!!preview);paint();status();syncHeight();
+  }
+
+  function paintDailyIssues(){
+    var timeline=state.demo.timeline;daily.hidden=!timeline;if(!timeline)return;
+    var available=timeline.events.filter(function(e){return e.available;}),history=timeline.runs||[];
+    daily.innerHTML='<summary>'+E(t('오늘 입력 가능한 이슈 '+available.length+'개 · 누적 협상 '+history.length+'회','Issues available today: '+available.length+' · negotiations: '+history.length))+'</summary><div class="daily-content">'+timeline.events.map(function(e){return '<div class="daily-row"><button type="button" class="btn sm" data-daily-issue="'+E(e.id)+'"'+(!e.available||busy?' disabled':'')+'>'+E(e.title)+'</button><small>'+E(e.available?t('예시만 입력 · 보내기를 눌러 실행','Insert example only · press Send to start'):e.reason)+'</small></div>';}).join('')+(history.length?'<details><summary>'+E(t('이전 협상 기록','Previous negotiations'))+'</summary>'+history.map(function(r){return '<p class="daily-history">#'+r.id+' · D'+r.day+' · '+E(r.status)+'<br>'+E(r.issue)+'</p>';}).join('')+'</details>':'')+'</div>';
   }
 
   /* ---------- references (quotes) ---------- */
@@ -226,11 +242,11 @@
     var cur=null,noise=0,assessed=[],ranked=[],afterRank=false;
     function sys(text){return '<div class="sys-line">'+E(text)+'</div>';}
     function flush(){
-      if(assessed.length){html+=sys(t(assessed.join(', ')+' — 각자 위임카드와 일정으로 후보를 평가했어요.',assessed.join(', ')+' — assessed the plans with their own cards and schedules.'));assessed=[];}
+      if(assessed.length){html+=sys(runtime.demo_force_agree?t(assessed.join(', ')+' — T6 시연 모드로 모든 검증 후보에 동의했어요.',assessed.join(', ')+' — unconditionally accepted verified plans in T6 demo mode.'):t(assessed.join(', ')+' — 각자 위임카드와 일정으로 후보를 평가했어요.',assessed.join(', ')+' — assessed the plans with their own cards and schedules.'));assessed=[];}
       if(ranked.length){html+=sys(t(ranked.join(', ')+' — 토론 내용을 반영해 최종 평가했어요.',ranked.join(', ')+' — updated their assessment with the discussion.'));ranked=[];}
       if(noise){html+=sys(t('응답 형식 보정 '+noise+'회 (자동)',noise+' automatic format repair(s)'));noise=0;}
     }
-    function open(key,extra){if(cur===key+(extra||''))return;flush();cur=key+(extra||'');html+='<div class="stage-div"><span>'+E(t(STAGES[key][0],STAGES[key][1]))+(extra?E(' · '+t('라운드 '+extra,'round '+extra)):'')+'</span></div>';}
+    function open(key,extra){if(cur===key+(extra||''))return;flush();cur=key+(extra||'');html+='<div class="stage-div"><span>'+E(key==='assess'&&runtime.demo_force_agree?t('3 · 시연용 무조건 동의','3 · Unconditional demo agreement'):t(STAGES[key][0],STAGES[key][1]))+(extra?E(' · '+t('라운드 '+extra,'round '+extra)):'')+'</span></div>';}
     (run.public_history||[]).forEach(function(m){
       var a=m.response,who=m.requester;
       if(a==='RANK')afterRank=true;
@@ -244,7 +260,7 @@
       if(a==='ASSESS'){assessed.push(label(who));return;}
       if(a==='RANK'){ranked.push(label(who));return;}
       if(who==='hive'){html+='<div class="msg in hive-line"><div class="av hive"></div><div><p>'+E(hiveText(m))+(m.candidate_id?' '+candChip(m.candidate_id):'')+'</p></div></div>';return;}
-      if(key==='consent'||a==='AUTO_CONFIRM'){html+='<div class="consent-row"><b>'+E(label(who))+'</b>'+candChip(m.candidate_id)+badge(CONSENT[a])+'<span class="basis">'+E(t('근거: ','Basis: ')+conversationText(m.reason||'-'))+'</span></div>';return;}
+      if(key==='consent'||a==='AUTO_CONFIRM'){html+='<div class="consent-row"><b>'+E(label(who))+'</b>'+candChip(m.candidate_id)+badge(a==='NEEDS_INPUT'&&runtime.auto_confirm?['PM 선택 후 자동 승인','Auto-approve after PM choice','t-cond']:CONSENT[a])+'<span class="basis">'+E(t('근거: ','Basis: ')+conversationText(m.reason||'-'))+'</span></div>';return;}
       if(a==='PASS'){html+=sys(label(who)+' · '+t('추가 의견 없음','no further comment'));return;}
       var sp=SPEECH[a],pm=who==='pm';
       var tag=sp?badge(sp):a==='ESTIMATE'?badge(['견적 변경','Re-estimate','t-cond']):a==='CONSTRAINT_REVIEW'?badge(['제약 검토','Constraint review','t-cond']):pm?badge([{SELECT:'선택',REJECT:'모두 반려',REVISE:'수정 요청',CLOSE:'확인'}[a]||a,{SELECT:'Chose',REJECT:'Rejected all',REVISE:'Revision',CLOSE:'Acknowledged'}[a]||a,'t-flat']):'';
@@ -256,7 +272,7 @@
   }
   function candidateCard(c,isFinal){
     var number=candNo(c.id);
-    var html='<article class="candidate-card candidate-compact" data-card="'+E(c.id)+'"><div class="candidate-row"><div><h3>'+E(t('후보 ','Plan '))+number+' · '+E(planTitle(c.title))+'</h3><span class="candidate-meta">'+Object.keys(c.consents||{}).map(function(pid){var a=c.consents[pid];return E(label(pid))+' '+E({ACCEPT:a.auto_confirmed?t('자동 승인','auto-approved'):t('동의','accept'),REJECT:t('거절','reject'),NEEDS_INPUT:t('확인 필요','to confirm')}[a.action]||a.action);}).join(' · ')+'</span></div><div class="candidate-actions"><button class="btn sm" data-preview="'+E(c.id)+'">'+E(t('보드에서 보기','Show on board'))+'</button>';
+    var html='<article class="candidate-card candidate-compact" data-card="'+E(c.id)+'"><div class="candidate-row"><div><h3>'+E(t('후보 ','Plan '))+number+' · '+E(planTitle(c.title))+'</h3><span class="candidate-meta">'+Object.keys(c.consents||{}).map(function(pid){var a=c.consents[pid];return E(label(pid))+' '+E({ACCEPT:a.auto_confirmed?t('자동 승인','auto-approved'):t('동의','accept'),REJECT:t('거절','reject'),NEEDS_INPUT:runtime.auto_confirm?t('PM 선택 후 자동 승인','auto-approve after PM choice'):t('확인 필요','to confirm')}[a.action]||a.action);}).join(' · ')+'</span></div><div class="candidate-actions"><button class="btn sm" data-preview="'+E(c.id)+'">'+E(t('보드에서 보기','Show on board'))+'</button>';
     if(isFinal&&run.status==='awaiting_pm_selection')html+=viewerRole==='pm'?'<button class="btn go sm" data-required-role="pm" data-select="'+E(c.id)+'">'+E(t('이 안으로 결정','Choose this plan'))+'</button>':'<button class="btn sm" data-switch-role="pm">'+E(t('PM으로 전환해 결정','Switch to PM to decide'))+'</button>';
     html+='</div></div>';
     if((c.plan_actions||[]).length)html+='<p class="candidate-meta">'+c.plan_actions.map(function(a){return E((state.tasks[a.task]||{}).title||a.task)+' · '+E(a.kind==='defer'?t(a.milestone+'로 이관','deferred to '+a.milestone):a.kind==='omit'?t('선택 검증 생략','optional check skipped'):t('임시 / 최종 단계로 분해','split into interim / final'));}).join(' · ')+'</p>';
@@ -305,26 +321,24 @@
     }finally{looping=false;automatic=false;}
     await afterRound();status();
   }
-  // When a negotiation round finishes, time moves on: advance one working day (until the milestone deadline).
-  var dayDoneFor=null;
-  async function afterRound(){
-    if(!run||run.status!=='done'||run.termination==='issue_needs_clarification'||dayDoneFor===run.id||!state||state.now>=state.week_end)return;
-    dayDoneFor=run.id;
-    try{var r=await api('/day/next',{});await refresh(false);V.toast(t('하루가 지났어요 · 완료: ','A day passed · finished: ')+(r.finished.join(', ')||t('없음','none')));}catch(err){error(err);}
-  }
+  // Completing a run keeps the demonstration clock unchanged.
+  // Time moves only through the explicit Next / Previous day controls.
+  async function afterRound(){return;}
 
   /* ---------- events ---------- */
   document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();var issue=input.value.trim();if(!issue)return;act(async function(){
     var shownDemo=state&&state.demo&&state.demo.id;var latest=await api('/state');
     if((latest.demo&&latest.demo.id)!==shownDemo){refs=[];await refresh(true);throw new Error(t('시나리오가 변경되어 화면을 새로 고쳤습니다. 내용을 확인한 뒤 다시 보내 주세요.','The scenario changed. The screen was refreshed; review your issue and send again.'));}
-    run=await api('/candidate-runs',{issue:issueWithRefs(issue),settings:{demo_auto_consent:state.demo.id==='m4_t4_composite'}});dayDoneFor=null;
+    var original=datedDraft&&datedDraft.text===issue?datedDraft.source:issue;
+    var dated=state.demo.timeline&&state.demo.timeline.events.find(function(e){return e.available&&e.text===original;});
+    run=await api('/candidate-runs',{timeline_event_id:dated?dated.id:null,issue:issueWithRefs(dated?dated.text:issue),settings:{demo_auto_consent:state.demo.id==='m4_t4_composite'}});
     if(run.termination!=='issue_needs_clarification'){setDraft('');refs=[];}
     preview=null;await refresh(false);automatic=run.status==='running';}).then(loop);});
-  document.getElementById('continue-run').onclick=function(){automatic=true;loop();};
+  document.getElementById('continue-run').onclick=function(){if(run&&run.status==='waiting_pm'&&runtime.demo_force_agree){act(async function(){run=await api('/runs/'+run.id+'/advance',{});await refresh(false);});return;}automatic=true;loop();};
   document.getElementById('pause-run').onclick=function(){automatic=false;status();};
   document.getElementById('current-board').onclick=function(){preview=null;if(state)V.render(state,null,false);status();};
-  document.getElementById('next-day').onclick=function(){act(async function(){var r=await api('/day/next',{});await refresh(false);V.toast(t('하루가 지났어요 · 완료: ','A day passed · finished: ')+(r.finished.join(', ')||t('없음','none')));});};
-  document.getElementById('previous-day').onclick=function(){act(async function(){await api('/day/previous',{});preview=null;await refresh(false);V.toast(t('이전 날로 돌아왔어요','Returned to the previous day'));});};
+  document.getElementById('next-day').onclick=function(){act(async function(){var r=await api('/day/next',{});setDraft('');refs=[];preview=null;await refresh(false);V.toast(t('하루가 지났어요 · 완료: ','A day passed · finished: ')+(r.finished.join(', ')||t('없음','none')));});};
+  document.getElementById('previous-day').onclick=function(){act(async function(){await api('/day/previous',{});setDraft('');refs=[];preview=null;await refresh(false);V.toast(t('이전 날로 돌아왔어요','Returned to the previous day'));});};
   document.getElementById('demo-select').onchange=function(e){automatic=false;act(async function(){var chosen=e.target.value;++refreshSeq;await api('/demo/select',{demo:chosen});run=null;preview=null;refs=[];setDraft('');await refresh(true);});};
   function syncHeight(){document.querySelector('.app').style.height=window.innerWidth>900?'calc(100dvh - '+Math.ceil(top.getBoundingClientRect().height+tools.getBoundingClientRect().height)+'px)':'auto';}
   window.addEventListener('resize',syncHeight);

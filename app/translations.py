@@ -1,6 +1,8 @@
 """Display-only translation of public run text; never alters negotiations or cards."""
 from collections import OrderedDict
 from threading import Lock
+from types import SimpleNamespace
+import re
 from pydantic import BaseModel, Field
 from . import prompts
 from .llm import LiveLLM, get_llm
@@ -25,7 +27,7 @@ def public_texts(run):
     return items
 
 
-def translate(run,keys):
+def translate(run,keys,*,limit=32):
     sources=public_texts(run)
     if len(keys)!=len(set(keys)) or any(k not in sources for k in keys):raise ValueError('Unknown or duplicate public message reference')
     if sum(len(sources[k]) for k in keys)>12000:raise ValueError('Translation batch exceeds 12000 characters')
@@ -40,7 +42,7 @@ def translate(run,keys):
                 adapter=LiveLLM(client=original.client)
                 adapter.key=original.key;adapter.model=original.model
             count=_attempts.get(run.id,0)
-            if count>=32:raise ValueError('Display translation call limit reached for this run')
+            if count>=limit:raise ValueError('Display translation call limit reached for this run')
             _attempts[run.id]=count+1;_attempts.move_to_end(run.id)
             while len(_attempts)>128:_attempts.popitem(last=False)
             try:
@@ -51,7 +53,19 @@ def translate(run,keys):
             if answer is None:raise ValueError('Translation model unavailable; retry from the English view.')
             ids=[x.id for x in answer.translations]
             if len(ids)!=len(missing) or set(ids)!=set(missing):raise ValueError('Translation returned invalid message references')
+            if any(re.search('[가-힣]',item.text) for item in answer.translations):raise ValueError('Translation must contain English only')
             for item in answer.translations:
                 _cache[sources[item.id]]=item.text;_cache.move_to_end(sources[item.id])
             while len(_cache)>2000:_cache.popitem(last=False)
         return dict(language='en',items=[dict(id=k,source=sources[k],text=_cache[sources[k]]) for k in keys])
+
+
+
+def translate_display(texts):
+    if len(set(texts))!=len(texts):raise ValueError('Duplicate display text')
+    if sum(map(len,texts))>12000:raise ValueError('Translation batch exceeds 12000 characters')
+    # Display text is submitted by the local viewer, never read from other cards.
+    # It is not stored in runs or negotiation state.
+    run=SimpleNamespace(id='display',ctx={'issue':'','public_history':[{'reason':x} for x in texts]})
+    result=translate(run,[f'history:{i}' for i in range(len(texts))],limit=128)
+    return {'items':[{'source':x['source'],'text':x['text']} for x in result['items']]}

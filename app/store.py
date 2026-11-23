@@ -431,15 +431,18 @@ def state_json(db: Session) -> dict:
     confirms = list(db.scalars(select(Confirmation).order_by(Confirmation.id)))
     msgs = list(db.scalars(select(Message).order_by(Message.id)))
     runs = list(db.scalars(select(Run).where(Run.status != "done")))
+    from .timeline import describe
+    timeline=describe(db,b)
+    available=[e for e in (timeline or {}).get("events",[]) if e["available"]]
     return {
         "fairness": hive.fairness(b),
         "capacities": {pid: hive.capacity(b,pid) for pid in b.people},
         "phase": meta(db, "phase"), "now": b.now, "narr": meta(db, "narr"),
-        "now_label": f"{int(b.now)//5+1}주차 · {hive.DAY[int(b.now)%5]}요일 오전",
+        "now_label": f"{int(b.now)//5+1}주차 · {hive.DAY[int(b.now)%5]}요일 {'오후' if b.now%1>=.5 else '오전'}",
         "week_end": b.week_end,
         "can_previous_day": bool(meta(db,"day_history",[])),
         "demo": {"id": meta(db,"demo",DEMO), "title": meta(db, "title", DEMO), "all": service_demos(), "catalog": demo_catalog(), "engine_support": meta(db,"engine_support",""), "source_task": meta(db,"source_task",None), "normalization_note": meta(db,"normalization_note",""),
-                 "issue_example": '\n'.join(r['text'] for r in (load_yaml('feed.yaml').get('issue') or {}).get('records',[]))},
+                 "timeline": timeline, "issue_example": (available[0]["text"] if available else "") if timeline else '\n'.join(r['text'] for r in (load_yaml('feed.yaml').get('issue') or {}).get('records',[]))},
         "workflow_progress": workflow_progress(db),
         "demo_step": meta(db,"demo_step",None),
         "feed_label": ((load_yaml("feed.yaml").get(meta(db, "phase")) or {}).get("label")

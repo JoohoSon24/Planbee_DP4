@@ -94,11 +94,13 @@ def actions(st,raw_actions):
 
 def participants(b,st,ctx,allocations,extra=()):
     involved={b.tasks[ctx['task']].who,*(a['who'] for a in allocations),*extra}
+    partition_parents={(t.context or {}).get('partition_of') for t in b.tasks.values() if (t.context or {}).get('partition_of')}
     for tid,old in b.tasks.items():
         new=st.tasks[tid]
         # For imported commitment-based scenarios, restoring a downstream task's
         # promised start is not a new condition requiring that person's consent.
-        expected=old.s0 if (b.tasks[ctx['task']].context or {}).get('active_participants_only') else old.s
+        committed_part=(old.context or {}).get('partition_of') or tid in partition_parents
+        expected=old.s0 if (b.tasks[ctx['task']].context or {}).get('active_participants_only') and not committed_part else old.s
         if (old.who,expected,old.d,old.cut,old.kind)!=(new.who,new.s,new.d,new.cut,new.kind):
             involved.update([old.who,new.who])
     for tid,t in st.tasks.items():
@@ -107,6 +109,8 @@ def participants(b,st,ctx,allocations,extra=()):
 
 
 def preview(b,ctx,allocations,changes=None,plan_actions=None):
+    if (b.tasks[ctx['task']].context or {}).get('requested_start_only') and any(a.get('task')==ctx['task'] and a.get('kind') in ('defer','omit') for a in plan_actions or []):
+        raise ValueError('이 이슈는 요청 시각으로의 이동이며 업무 이관·생략을 허용하지 않습니다.')
     allowed=(b.tasks[ctx['task']].context or {}).get('allowed_change_tasks')
     if allowed is not None and any(c['task'] not in allowed for c in (changes or [])+(plan_actions or [])):
         raise ValueError('이 이슈에서 변경할 수 없는 무관한 업무')

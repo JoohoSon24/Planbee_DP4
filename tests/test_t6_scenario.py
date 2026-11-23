@@ -6,10 +6,10 @@ from app import store
 SID='m4_t6_game_demo'
 
 
-@pytest.mark.parametrize('approve',[True,False])
-def test_t6_assets_and_full_qa_split_wait_for_ben(app_env,monkeypatch,approve):
+@pytest.mark.parametrize('automatic,approve',[(True,True),(False,True),(False,False)])
+def test_t6_assets_and_full_qa_split_confirmation(app_env,monkeypatch,automatic,approve):
     c,_=app_env
-    monkeypatch.setenv('PLANBEE_AUTO_CONFIRM','1')
+    monkeypatch.setenv('PLANBEE_AUTO_CONFIRM','1' if automatic else '0')
     response=c.post('/demo/select',json={'demo':SID})
     assert response.status_code==200,response.text
     assert len(response.json()['people'])==5
@@ -36,6 +36,16 @@ def test_t6_assets_and_full_qa_split_wait_for_ben(app_env,monkeypatch,approve):
     assert 'ben' in selected['required_confirmations']
     response=c.post(f"/runs/{r['id']}/pm-selection",json={'action':'select','candidate_id':selected['id'],'plan_hash':selected['plan_hash']})
     assert response.status_code==200,response.text
+    if automatic:
+        result=response.json()
+        assert result['status']=='done' and result['termination']=='applied'
+        assert not c.get('/state').json()['pending_confirms']
+        chosen=next(x for x in result['candidates'] if x['id']==selected['id'])
+        assert chosen['consents']['ben']['action']=='ACCEPT'
+        assert chosen['consents']['ben']['auto_confirmed']
+        assert any(e['requester']=='ben' and e['response']=='AUTO_CONFIRM' for e in result['public_history'])
+        assert c.get('/state').json()['gate']['ok']
+        return
     assert response.json()['status']=='waiting_confirm'
     pending=c.get('/state').json()['pending_confirms']
     assert any(x['who']=='ben' for x in pending)
@@ -148,3 +158,49 @@ def test_t6_small_search_budget_is_not_reported_as_impossible(app_env):
     assert r['termination']=='search_budget_exhausted'
     assert r['generation']['search_stop']=='raw_limit'
     assert not r['generation']['search_complete']
+
+
+def test_t6_force_agree_never_uses_role_rejection_as_veto(app_env,monkeypatch):
+    from app import llm
+    from app.candidates.models import Speech
+    from tests.test_m4_catalog import LiveContract
+    c,_=app_env;c.post('/demo/select',json={'demo':SID})
+    monkeypatch.setenv('PLANBEE_T6_FORCE_AGREE','1')
+    class AlwaysOpposes(LiveContract):
+        def _ask(self,schema,instruction,facts,model=None):
+            if schema.__name__ in ('Assessment','Consent'):
+                raise AssertionError('Unconditional demo must not ask the model for card consent')
+            if schema is Speech:return Speech(candidate_id=facts['candidates'][0]['id'],action='DISAGREE',message='이 역할은 이 제안에 반대합니다.')
+            return super()._ask(schema,instruction,facts,model)
+    # PREFER with a negative message exercises opposition without an invalid schema action.
+    class OpposingSpeech(AlwaysOpposes):
+        def _ask(self,schema,instruction,facts,model=None):
+            if schema is Speech:return Speech(candidate_id=facts['candidates'][0]['id'],action='CONDITION',message='이 역할은 반대합니다. 새 제안 없이 기존 후보를 비교합니다.')
+            return super()._ask(schema,instruction,facts,model)
+    llm.set_llm(OpposingSpeech())
+    issue=store.load_yaml('feed.yaml')['issue']['records'][0]['text']
+    r=c.post('/candidate-runs',json={'task_id':'Q2','issue':issue}).json()
+    for _ in range(80):
+        if r['status']!='running':break
+        r=c.post(f"/runs/{r['id']}/advance",json={}).json()
+    assert r['status']=='awaiting_pm_selection',r
+    assert 1<=len(r['final_candidates'])<=3
+    for candidate in r['candidates']:
+        if candidate['id'] in r['final_candidates']:
+            assert all(a['action']=='ACCEPT' and a['source']=='demo_algorithm' for a in candidate['consents'].values())
+    assert c.get('/runtime').json()['demo_force_agree']
+
+
+def test_t6_existing_no_agreement_can_recover_without_applying(app_env,monkeypatch):
+    from app.models import Run
+    from app.candidates import engine
+    c,f=app_env;c.post('/demo/select',json={'demo':SID})
+    monkeypatch.setenv('PLANBEE_T6_FORCE_AGREE','1')
+    r=c.post('/candidate-runs',json={'task_id':'Q2','issue':'Q2 스모크 담당 조정'}).json()
+    before=c.get('/board').json()
+    with f() as db:
+        run=db.get(Run,r['id']);run.status='waiting_pm';run.step='candidate_failed'
+        engine.patch(run,termination='no_consented_candidate',shortlist=[x['id'] for x in run.ctx['candidates']]);db.commit()
+    r=c.post(f"/runs/{r['id']}/advance",json={}).json()
+    assert r['status']=='awaiting_pm_selection' and r['final_candidates']
+    assert c.get('/board').json()==before

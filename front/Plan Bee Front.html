@@ -802,15 +802,31 @@ function drawOverlay(){
       var my=(y1+y2)/2;d='M'+x1+' '+y1+' C'+x1+' '+my+','+x2+' '+my+','+x2+' '+y2;by=(down?tlane.top:tlane.bottom)-lr.top;
     }
     paths+='<g data-h="'+hd.id+'" class="'+(late?"late":hd.cls)+'"><circle cx="'+x1+'" cy="'+y1+'" r="3.5"/><path marker-end="url(#ah)" d="'+d+'"/></g>';
-    badges+='<button class="hb '+(late?"late":hd.cls)+(sel&&sel.t==="h"&&sel.id===hd.id?" hl":"")+'" type="button" draggable="true" data-h="'+hd.id+'" style="left:'+(x2+5)+'px;top:'+by+'px" title="'+esc("Handoff · "+T(hd.what))+'">'+lvHTML(hd.lv)+'<span class="hw">'+whenText(hd.at)+'</span></button>';
+    var hint=T(K("인계: ","Transfer: "))+T(hd.what)+" · "+taskOf(hd.from).who+" → "+taskOf(hd.to).who+" · "+whenText(hd.at);
+    badges+='<button class="hb hb-compact '+(late?"late":hd.cls)+(sel&&sel.t==="h"&&sel.id===hd.id?" hl":"")+'" type="button" draggable="true" data-h="'+hd.id+'" style="left:'+(x2+5)+'px;top:'+by+'px" title="'+esc(hint)+'" aria-label="'+esc(hint)+'"><span class="handoff-arrow" aria-hidden="true">↗</span><span class="hw">D'+Number(hd.at.toFixed(2))+'</span></button>';
   });
   var bwrap=document.getElementById("badges");bwrap.innerHTML=badges;
-  /* keep chips inside the board and off each other: clamp to the right edge, then push left within the same edge line */
-  var bs=[].slice.call(bwrap.children),maxR=lr.width-4,groups={};
-  bs.forEach(function(n){var w=n.offsetWidth,l=parseFloat(n.style.left);if(l+w>maxR)n.style.left=(maxR-w)+"px";var k=Math.round(parseFloat(n.style.top));(groups[k]=groups[k]||[]).push(n);});
+  /* Compact edge markers stay within the task area. Overflow wraps to another
+     row instead of pushing a long chain across person labels. */
+  var bs=[].slice.call(bwrap.children),maxR=lr.width-6,minL=tr.left-lr.left+4,groups={};
+  bs.forEach(function(n){var k=Math.round(parseFloat(n.style.top));(groups[k]=groups[k]||[]).push(n);});
   Object.keys(groups).forEach(function(k){
-    var g=groups[k].sort(function(a,b){return parseFloat(a.style.left)-parseFloat(b.style.left);});
-    for(var i=g.length-2;i>=0;i--){var al=parseFloat(g[i].style.left),bl=parseFloat(g[i+1].style.left);if(al+g[i].offsetWidth+4>bl)g[i].style.left=(bl-g[i].offsetWidth-4)+"px";}
+    var rows=[],base=Number(k),direction=base<45?1:-1;
+    if(groups[k].length>5)groups[k].forEach(function(n){n.classList.add('hb-dense');});
+    groups[k].sort(function(a,b){return parseFloat(a.style.left)-parseFloat(b.style.left);}).forEach(function(n){
+      var w=n.offsetWidth,desired=Math.max(minL,Math.min(parseFloat(n.style.left),maxR-w)),level=0;
+      while(true){
+        var used=rows[level]||[],positions=[desired,minL,maxR-w];
+        used.forEach(function(r){positions.push(r[1]+5,r[0]-w-5);});
+        positions=positions.filter(function(x){return x>=minL&&x+w<=maxR&&used.every(function(r){return x+w+5<=r[0]||x>=r[1]+5;});});
+        if(positions.length){
+          positions.sort(function(a,b){return Math.abs(a-desired)-Math.abs(b-desired);});
+          var left=positions[0];n.style.left=left+'px';n.style.top=(base+direction*level*23)+'px';
+          (rows[level]=used).push([left,left+w]);break;
+        }
+        level++;
+      }
+    });
   });
   ov.querySelectorAll("g").forEach(function(n){n.remove();});
   var g=document.createElementNS("http://www.w3.org/2000/svg","g");g.innerHTML=paths;
@@ -1026,8 +1042,8 @@ pct=function(x){return x.dur?Math.max(0,Math.min(100,Math.round((NOW-x.start)/x.
 })();
 </script>
 <link rel="stylesheet" href="/front/planbee-app.css">
-<script src="/front/planbee-app.js?v=20261124-search"></script>
+<script src="/front/planbee-app.js?v=20261124-handoffs"></script>
 <script src="/front/llm-usage.js"></script>
 <script src="/front/panel-layout.js"></script>
-</body>
+<script src="/front/english-display.js?v=20261124-en"></script></body>
 </html>
