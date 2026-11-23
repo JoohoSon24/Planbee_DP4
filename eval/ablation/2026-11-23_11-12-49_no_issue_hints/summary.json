@@ -1,0 +1,326 @@
+[
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t1_rescheduling",
+    "issue_hints_removed": true,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 2,
+    "duration_seconds": 17.9,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_9f0c711d60151d86",
+        "title": "현재 milestone 계획 유지",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 1.38671875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-12-49_406310_418440ac.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t2_reallocation",
+    "issue_hints_removed": true,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_calls": 3,
+    "duration_seconds": 18.59,
+    "pool": 0,
+    "chosen": [],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-13-07_317416_4edce4df.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t3_scope_reduction",
+    "issue_hints_removed": true,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 2,
+    "duration_seconds": 8.87,
+    "pool": 3,
+    "chosen": [
+      {
+        "id": "c_0b7b3017711d1388",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      },
+      {
+        "id": "c_b58ef8141ed82545",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      },
+      {
+        "id": "c_f12d0fb5842bd99d",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_f12d0fb5842bd99d",
+        "c_b58ef8141ed82545",
+        "c_0b7b3017711d1388"
+      ],
+      "matching_pm_options": [
+        "c_0b7b3017711d1388",
+        "c_b58ef8141ed82545",
+        "c_f12d0fb5842bd99d"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-13-25_913784_a55ee72b.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t4_composite",
+    "issue_hints_removed": true,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 2,
+    "duration_seconds": 12.12,
+    "pool": 4,
+    "chosen": [
+      {
+        "id": "c_7ef60fbfeb380a95",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.921875
+      },
+      {
+        "id": "c_ebed733af7e6dbf9",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.921875
+      },
+      {
+        "id": "c_7cb9a871786ed313",
+        "title": "중간 산출물과 최종 반영의 단계별 재설계",
+        "needs_confirmation": [
+          "qa"
+        ],
+        "refused_tag": [],
+        "variance": 1.296875
+      }
+    ],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_ebed733af7e6dbf9",
+        "c_fbe26d9f69b980f5",
+        "c_7ef60fbfeb380a95",
+        "c_7cb9a871786ed313"
+      ],
+      "matching_pm_options": [
+        "c_7cb9a871786ed313",
+        "c_7ef60fbfeb380a95",
+        "c_ebed733af7e6dbf9"
+      ],
+      "qa_confirm_compromise_candidates": [
+        "c_fbe26d9f69b980f5",
+        "c_7cb9a871786ed313"
+      ],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-13-34_791488_5f453f54.md"
+  },
+  {
+    "condition": "no_discussion",
+    "scenario": "m4_t5_infeasible",
+    "issue_hints_removed": true,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_calls": 3,
+    "duration_seconds": 22.83,
+    "pool": 0,
+    "chosen": [],
+    "consent_collected": false,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-13-46_901225_b401f61f.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t1_rescheduling",
+    "issue_hints_removed": true,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 5,
+    "duration_seconds": 13.13,
+    "pool": 1,
+    "chosen": [
+      {
+        "id": "c_9f0c711d60151d86",
+        "title": "현재 milestone 계획 유지",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 1.38671875
+      }
+    ],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-14-09_734357_ce7e5896.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t2_reallocation",
+    "issue_hints_removed": true,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_calls": 3,
+    "duration_seconds": 19.34,
+    "pool": 0,
+    "chosen": [],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-14-22_867311_02a0970e.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t3_scope_reduction",
+    "issue_hints_removed": true,
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "llm_calls": 17,
+    "duration_seconds": 51.22,
+    "pool": 3,
+    "chosen": [
+      {
+        "id": "c_f12d0fb5842bd99d",
+        "title": "선택 범위의 후속 milestone 이관",
+        "needs_confirmation": [],
+        "refused_tag": [],
+        "variance": 0.796875
+      }
+    ],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [
+        "c_f12d0fb5842bd99d",
+        "c_b58ef8141ed82545",
+        "c_0b7b3017711d1388"
+      ],
+      "matching_pm_options": [
+        "c_f12d0fb5842bd99d"
+      ],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-14-42_215314_7f219376.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t4_composite",
+    "issue_hints_removed": true,
+    "status": "waiting_pm",
+    "termination": "no_consented_candidate",
+    "llm_calls": 14,
+    "duration_seconds": 54.72,
+    "pool": 4,
+    "chosen": [],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": false,
+      "matching_candidates": [
+        "c_ebed733af7e6dbf9",
+        "c_fbe26d9f69b980f5",
+        "c_7ef60fbfeb380a95",
+        "c_7cb9a871786ed313"
+      ],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [
+        "c_fbe26d9f69b980f5",
+        "c_7cb9a871786ed313"
+      ],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-15-33_437532_75322986.md"
+  },
+  {
+    "condition": "full",
+    "scenario": "m4_t5_infeasible",
+    "issue_hints_removed": true,
+    "status": "waiting_pm",
+    "termination": "search_exhausted",
+    "llm_calls": 5,
+    "duration_seconds": 25.84,
+    "pool": 0,
+    "chosen": [],
+    "consent_collected": true,
+    "model_error": null,
+    "checks": {
+      "expected_outcome_ready": true,
+      "matching_candidates": [],
+      "matching_pm_options": [],
+      "qa_confirm_compromise_candidates": [],
+      "applied": false,
+      "note": "실제 사람 승인·선택은 별도. 유효 대안/PM 대기와 실제 적용 성공은 구분한다."
+    },
+    "transcript_file": "live/2026-11-23_11-16-28_158740_051e8370.md"
+  }
+]
