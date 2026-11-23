@@ -986,19 +986,26 @@ function guard(){
 
 /* Persistent backend adapter; the scripted issue scenes are removed. */
 function addQuote(type,id){if(window.PlanBeeApp)window.PlanBeeApp.quote(type,id);}
+// Server data (roles, time labels, scenario titles) arrives in Korean; give the EN view English equivalents.
+var ROLE_EN={'기획':'Design','아트':'Art','개발':'Dev','그림':'Art','화면':'Frontend','에이전트':'Agent','테스트':'Test','백엔드':'Backend','QA':'QA'};
+function roleEn(r){return ROLE_EN[r]||r;}
+function dayLabelEn(now){var k=Math.floor(now||0),days=['Mon','Tue','Wed','Thu','Fri'];return 'Week '+(Math.floor(k/5)+1)+' · '+days[k%5]+' morning';}
+function titleEn(x){x=String(x||'');var parts=x.split(' · ').filter(function(s){return !/[\uAC00-\uD7A3]/.test(s);});return parts.length?parts.join(' · '):x;}
+function labelEn(x){x=String(x||'');return x.replace(/(\d+)주차/g,'Week $1').replace(/월요일|월(?=\s|$)/g,'Mon').replace(/화요일|화(?=\s|$)/g,'Tue').replace(/수요일|수(?=\s|$)/g,'Wed').replace(/목요일|목(?=\s|$)/g,'Thu').replace(/금요일|금(?=\s|$)/g,'Fri').replace(/오전/g,'morning').replace(/저녁/g,'evening').replace(/마감/g,'deadline');}
+window.PlanBeeTitleEn=titleEn;window.PlanBeeRoleEn=roleEn;
 window.PlanBeeView={
   esc:esc, toast:toast,
   render:function(state,board,preview){
     NOW=state.now;window.PlanBeeViewerRole=state.viewer_role||'pm';
-    NOWK=K(state.now_label,state.now_label);
+    NOWK=K(state.now_label,dayLabelEn(state.now));
     var source=board?board.tasks:Object.values(state.tasks).filter(function(x){return !x.cut;}).map(function(x){return {id:x.id,who:x.who,title:x.title,start:x.s,days:x.d,kind:x.kind,context:x.context};});
-    PEOPLE=state.people.map(function(p){var card=(state.cards||[]).find(function(c){return c.who===p.id;})||{};return {id:p.id,name:p.name,role:K(esc(p.role),esc(p.role)),cap:state.capacities[p.id]===undefined?p.cap:state.capacities[p.id],skill:[[p.role,'b']],profile:[['limit',K(esc('자동 수락 권한 '+card.auto_days+'일'),esc('Auto authority '+card.auto_days+' days'))],['refuses',K(esc((card.refuse_tags||[]).join(', ')||'명시 태그 없음'),esc((card.refuse_tags||[]).join(', ')||'No tags'))],['takes',K(esc(card.note||'추가 메모 없음'),esc(card.note||'No notes'))]],week:[]};});
+    PEOPLE=state.people.map(function(p){var card=(state.cards||[]).find(function(c){return c.who===p.id;})||{};return {id:p.id,name:p.name,role:K(esc(p.role),esc(roleEn(p.role))),cap:state.capacities[p.id]===undefined?p.cap:state.capacities[p.id],skill:[[p.role,'b']],profile:[['limit',K(esc('자동 수락 권한 '+card.auto_days+'일'),esc('Auto authority '+card.auto_days+' days'))],['refuses',K(esc((card.refuse_tags||[]).join(', ')||'명시 태그 없음'),esc((card.refuse_tags||[]).join(', ')||'No tags'))],['takes',K(esc(card.note||'추가 메모 없음'),esc(card.note||'No notes'))]],week:[]};});
     PEOPLE.forEach(function(p){if(state.viewer_role!=='person:'+p.id)p.profile=[['role',K('공개 역할: '+p.role.ko,'Public role: '+p.role.en)],['private',K('본인 역할로 전환하면 위임카드를 볼 수 있습니다.','Switch to this person to view their delegation card.')]];});
     KIND={};TASKDEF={};
     PEOPLE.forEach(function(p){KIND[p.role.ko]=p.role;});
     source.forEach(function(x){var owner=person(x.who);TASKDEF[x.id]={kind:owner.role.ko,pieces:(x.context||{}).split_boundary?[K(esc(x.context.split_boundary),esc(x.context.split_boundary))]:null,fixed:K(esc((x.context||{}).description||''),esc((x.context||{}).description||''))};});
     DAYS=Array.from({length:20},function(_,i){return K(['월','화','수','목','금'][i%5]+(i>=5?' +'+Math.floor(i/5)+'주':''),['Mon','Tue','Wed','Thu','Fri'][i%5]);});
-    var hands=board?(board.handoffs||[]).filter(function(h){return source.some(function(t){return t.id===h.source;})&&source.some(function(t){return t.id===h.target;});}).map(function(h){return H(h.id,h.source,h.target,K(esc(h.title),esc(h.title)),3,3,h.expected,h.expected>h.due?'late':'',K('기한 '+h.due+'일','Due '+h.due));}):Object.values(state.hand).filter(function(h){return source.some(function(t){return t.id===h.from;})&&source.some(function(t){return t.id===h.to;});}).map(function(h){return H(h.id,h.from,h.to,K(esc(h.title),esc(h.title)),3,3,h.pred,h.pred>h.t?'late':'',K(esc(h.basis||''),esc(h.basis||'')));});
+    var hands=board?(board.handoffs||[]).filter(function(h){return source.some(function(t){return t.id===h.source;})&&source.some(function(t){return t.id===h.target;});}).map(function(h){return H(h.id,h.source,h.target,K(esc(h.title),esc(h.title)),3,3,h.expected,h.expected>h.due?'late':'',K('기한 '+h.due+'일','Due day '+h.due));}):Object.values(state.hand).filter(function(h){return source.some(function(t){return t.id===h.from;})&&source.some(function(t){return t.id===h.to;});}).map(function(h){return H(h.id,h.from,h.to,K(esc(h.title),esc(h.title)),3,3,h.pred,h.pred>h.t?'late':'',K(esc(h.basis||''),esc(h.basis||'')));});
     var cols=Math.max(5,Math.ceil(Math.max.apply(null,source.map(function(x){return x.start+x.days;}))));
     var current={};Object.values(state.tasks).forEach(function(x){current[x.id]=x;});
     var milestoneCounts={};
@@ -1007,14 +1014,14 @@ window.PlanBeeView={
     var beforeTasks=Object.values(state.tasks).filter(function(x){return !x.cut;}).map(function(x){return t(x.id,x.who,K(x.title,x.title),x.s,x.d);});
     basePlan=function(){return {tasks:beforeTasks};};
     var gate=board?board.gate:state.gate;
-    setPlan({cols:Math.min(20,Math.max(cols,state.week_end||5)),demo:state.week_end||5,later:(board?(board.deferred||[]):Object.values(state.tasks).filter(function(x){return x.cut&&(x.context||{}).deferred_to;}).map(function(x){return {title:x.title,to:x.context.deferred_to};})).map(function(x){return K(x.title+' → '+x.to,x.title+' → '+x.to);}),goal:{title:K(esc(state.demo.title)+(preview?' · 후보 미리보기':''),esc(state.demo.title)),p0:[],p1:[],p2:[]},tasks:tasks,hand:hands,status:{cls:preview?'need':gate.ok?'ok':'warn',text:K(preview?'후보 미리보기 · 미적용':gate.ok?'Hive 제약 충족':'마감 회복 필요',preview?'Preview · not applied':gate.ok?'Hive verified':'Recovery needed'),detail:K(esc(state.deadline_label||''),esc(state.deadline_label||''))}});
+    setPlan({cols:Math.min(20,Math.max(cols,state.week_end||5)),demo:state.week_end||5,later:(board?(board.deferred||[]):Object.values(state.tasks).filter(function(x){return x.cut&&(x.context||{}).deferred_to;}).map(function(x){return {title:x.title,to:x.context.deferred_to};})).map(function(x){return K(x.title+' → '+x.to,x.title+' → '+x.to);}),goal:{title:K(esc(state.demo.title)+(preview?' · 후보 미리보기':''),esc(titleEn(state.demo.title))+(preview?' · candidate preview':'')),p0:[],p1:[],p2:[]},tasks:tasks,hand:hands,status:{cls:preview?'need':gate.ok?'ok':'warn',text:K(preview?'후보 미리보기 · 미적용':gate.ok?'Hive 제약 충족':'마감 회복 필요',preview?'Preview · not applied':gate.ok?'Hive verified':'Recovery needed'),detail:K(esc(state.deadline_label||''),esc(labelEn(state.deadline_label||'')))}});
   },
   language:function(lang){LANG=lang;document.documentElement.lang=lang;document.documentElement.setAttribute('data-lang',lang);renderBoard();},
   theme:function(mode){document.documentElement.setAttribute('data-theme',mode);}
 };
 lvHTML=function(){return '<span class="chip">Handoff</span>';};
-whenText=function(at){return Number(at.toFixed(2))+'일';};
-durText=function(d){return Number(d.toFixed(2))+'일';};
+whenText=function(at){return T(K(Number(at.toFixed(2))+'일','day '+Number(at.toFixed(2))));};
+durText=function(d){return T(K(Number(d.toFixed(2))+'일',Number(d.toFixed(2))+' d'));};
 pct=function(x){return x.dur?Math.max(0,Math.min(100,Math.round((NOW-x.start)/x.dur*100))):100;};
 })();
 </script>
