@@ -27,6 +27,7 @@ class Settings(BaseModel):
     max_calls: int = Field(default=120,ge=1,le=400)
     max_seconds: int = Field(default=600,ge=1,le=1800)
     seed: int = 17
+    demo_auto_consent: bool = False
 
 class ModelFailure(RuntimeError):pass
 class TimeLimit(RuntimeError):pass
@@ -202,7 +203,8 @@ def start(db,task_id,issue,settings=None,phase_after=None,reporter=None):
     b=store.board(db);hive.schedule(b)
     t=b.tasks.get(task_id)
     if task_id and (not t or t.cut or t.kind in ('done','milestone','prop') or t.d<=0):raise ValueError('실행 가능한 Task를 선택하세요')
-    cfg=settings or Settings(max_calls=int(os.environ.get('PLANBEE_MAX_CANDIDATE_CALLS','120')))
+    cfg=settings or Settings(max_calls=int(os.environ.get('PLANBEE_MAX_CANDIDATE_CALLS','120')),demo_auto_consent=store.DEMO=='m4_t4_composite' and os.environ.get('PLANBEE_DEMO_AUTO_CONSENT')=='1')
+    if cfg.demo_auto_consent and store.DEMO!='m4_t4_composite':raise ValueError('개인 동의 자동 수락은 T4 데모에서만 사용할 수 있습니다.')
     snap=snapshot(b);files=prompts.snapshot()
     gate=hive.gate(b)
     run=Run(kind='candidate',step='candidate_input',status='running',auto_confirm=False,ctx=dict(
@@ -294,7 +296,31 @@ def generate(db,run):
     run.step='candidate_assess'
 
 
+def demo_auto_consent(run):
+    # This is explicitly a T4 demonstration, not a record of card-based agreement.
+    enabled=run.ctx['settings'].get('demo_auto_consent',os.environ.get('PLANBEE_DEMO_AUTO_CONSENT')=='1')
+    return bool(enabled) and store.DEMO=='m4_t4_composite'
+
+
+def recommend_demo(db,run):
+    import random
+    allc=deepcopy(run.ctx['candidates'])
+    chosen=[c for c in allc if c['id'] in run.ctx.get('shortlist',[])]
+    random.Random(run.ctx['settings']['seed']).shuffle(chosen)
+    recommended=[]
+    for c in chosen[:3]:
+        c['consents']={pid:dict(action='ACCEPT',reason='T4 데모용 알고리즘 자동 수락. 실제 개인 동의 판단이 아닙니다.',auto_confirmed=True,source='demo_algorithm') for pid in c['affected']}
+        for pid in c['affected']:event(db,run,pid,'AUTO_CONFIRM',c['consents'][pid]['reason'],c['id'])
+        recommended.append(c['id'])
+    if not recommended:return fail(db,run,'no_consented_candidate')
+    patch(run,final_candidates=recommended,candidates=allc,termination=None,demo_auto_consent=True)
+    run.status='awaiting_pm_selection';run.step='candidate_pm'
+    event(db,run,'hive','DEMO_AUTO_CONSENT','T4 데모에서는 검증 후보 중 알고리즘이 최대 3개를 추리고 개인 동의를 자동 수락합니다. 카드 기반 합의 결과가 아니며 PM 최종 선택과 Hive 검증은 유지합니다.')
+    event(db,run,'hive','PM_OPTIONS',f'후보 {len(recommended)}개를 추렸어요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.')
+
+
 def assess(db,run,final=False):
+    if final and demo_auto_consent(run):return recommend_demo(db,run)
     b=store.board(db);pids=run.ctx.get('participants') or sorted(b.people)
     allc=run.ctx['candidates'];chosen=[c for c in allc if c['id'] in run.ctx.get('shortlist',[])] if final else allc
     cursor_key='final_cursor' if final else 'initial_cursor'
@@ -373,6 +399,10 @@ def normalize_recipient(db,answer):
 
 
 def discuss(db,run):
+    if demo_auto_consent(run) and run.ctx.get('round',0)>=1:
+        run.step='candidate_rank'
+        event(db,run,'hive','DEMO_AUTO_CONSENT','T4 데모의 공개 토론 1라운드를 마쳐 알고리즘 자동 동의·PM 후보 제출로 이동합니다.')
+        return
     pids=run.ctx.get('participants') or sorted(store.board(db).people);r=run.ctx.get('round',0)+1
     patch(run,round=r,candidate_phase='fairness_discussion')
     selected=[c for c in run.ctx['candidates'] if c['id'] in run.ctx['shortlist']]
@@ -527,7 +557,7 @@ def commit(db,run):
 
 def response(run):
     # Explicit allowlist: neither private cards nor prompt content nor private ballots leak.
-    keys=('task','reporter','task_resolution','clarification','issue','phase','round','pool_revision','pool_hash','generation','generation_reason','shortlist',
+    keys=('demo_auto_consent','task','reporter','task_resolution','clarification','issue','phase','round','pool_revision','pool_hash','generation','generation_reason','shortlist',
         'final_candidates','public_history','llm_budget','termination','pm_selection','pm_handoff',
         'participants','supplement_error','prompt_hashes','snapshot_hash','initial_board','final_board','transcript_file','llm_mode','assessment_progress')
     return dict(id=run.id,kind=run.kind,status=run.status,step=run.step,

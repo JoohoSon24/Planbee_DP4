@@ -317,3 +317,44 @@ def test_live_task_router_uses_public_tasks_and_validates_reference(app_env,task
     if task_id=='polish':assert r['task']=='polish' and r['status']=='running'
     elif task_id is None:assert r['termination']=='issue_needs_clarification'
     else:assert r['termination']=='model_output_invalid' and not r['candidates']
+
+
+def test_t4_demo_uses_algorithm_consent_but_still_waits_for_pm(app_env,monkeypatch):
+    from app.models import Confirmation
+    from sqlalchemy import select
+    c,f=app_env;c.post('/demo/select',json={'demo':'m4_t4_composite'})
+    class DemoLive(LiveContract):
+        def _ask(self,schema,instruction,facts,model=None):
+            assert schema is not Consent,'Demo must not call a consent LLM'
+            if schema is Assessment and 'evaluation_history' in facts:raise AssertionError('No final LLM votes in demo')
+            return super()._ask(schema,instruction,facts,model)
+    adapter=DemoLive();llm.set_llm(adapter)
+    before=c.get('/board').json()
+    r=c.post('/candidate-runs',json=dict(task_id='character_animation',issue='Character Animation 32h',settings=dict(demo_auto_consent=True,raw_limit=200,candidate_limit=8,shortlist_limit=8,max_rounds=2))).json()
+    before=c.get('/board').json() # re-estimate is recorded; allocations are still unapplied
+    for _ in range(40):
+        if r['status']!='running':break
+        r=c.post(f"/runs/{r['id']}/advance",json={}).json()
+    assert r['status']=='awaiting_pm_selection' and r['demo_auto_consent']
+    assert r['round']==1 and 1<=len(r['final_candidates'])<=3
+    assert c.get('/board').json()==before
+    for candidate in r['candidates']:
+        if candidate['id'] in r['final_candidates']:
+            assert all(a['action']=='ACCEPT' and a['source']=='demo_algorithm' for a in candidate['consents'].values())
+    assert sum(schema=='Speech' for schema,_ in adapter.seen)==3
+    assert sum(schema=='Assessment' for schema,_ in adapter.seen)==3 # initial only; no final LLM ballots
+    assert not any(schema=='Consent' for schema,_ in adapter.seen)
+    chosen=next(x for x in r['candidates'] if x['id'] in r['final_candidates'] and 'qa' in x.get('required_confirmations',[]))
+    monkeypatch.setenv('PLANBEE_AUTO_CONFIRM','0')
+    payload=dict(action='select',candidate_id=chosen['id'],plan_hash=chosen['plan_hash'])
+    assert c.post(f"/runs/{r['id']}/pm-selection",json=payload,headers={'X-Planbee-Role':'person:dev'}).status_code==403
+    applied=c.post(f"/runs/{r['id']}/pm-selection",json=payload,headers={'X-Planbee-Role':'pm'}).json()
+    assert applied['termination']=='applied'
+    assert c.get('/state').json()['gate']['ok']
+    with f() as db:assert not list(db.scalars(select(Confirmation).where(Confirmation.run_id==r['id'])))
+
+
+def test_demo_automatic_consent_not_allowed_for_other_scenarios(app_env):
+    c,_=app_env
+    response=c.post('/candidate-runs',json=dict(task_id='polish',issue='Polish 이동',settings=dict(demo_auto_consent=True)))
+    assert response.status_code==409

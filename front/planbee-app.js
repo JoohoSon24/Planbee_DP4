@@ -12,6 +12,7 @@
   function scenarioTitle(x){return lang()==='en'&&window.PlanBeeTitleEn?window.PlanBeeTitleEn(x):x;}
   // Server-made Hive/system messages arrive in Korean with a stable action code: translate by code.
   var HIVE_EN={
+    DEMO_AUTO_CONSENT:function(){return 'T4 demo: the algorithm auto-accepts member consent after one discussion round. Only the PM chooses the plan; Hive constraints still apply.';},
     TASK_IDENTIFIED:function(){return 'Read the issue and identified the relevant task. See the agenda for its owner and title.';},
     ISSUE:function(){return 'Issue received. Designing new milestone plans that fit the deadline first.';},
     ESTIMATE:function(m){var d=(m.reason.match(/([0-9.]+)일/)||[])[1];return 'Read the issue and re-estimated this task to '+(d||'?')+' days.';},
@@ -108,11 +109,12 @@
     var next=!booted?'':!active?t('무엇이 바뀌었는지 보내세요. LLM이 관련 업무를 찾습니다.','Send what changed. The LLM will identify the relevant task.'):run.status==='awaiting_pm_selection'?t('추천 계획을 비교하고 PM이 결정하세요.','Compare the recommended plans; the PM decides.'):run.status==='waiting_pm'?t('PM이 상황을 확인하고 다음 조치를 정하세요.','The PM reviews the situation and decides the next step.'):run.status==='waiting_confirm'?t('본인 확인 대기 중입니다.','Waiting for personal confirmation.'):automatic?t('팀이 협의하고 있습니다…','The team is negotiating…'):t('일시정지 상태입니다. 계속 진행을 누르세요.','Paused. Press Continue.');
     stage.innerHTML='<strong>'+E(line)+'</strong>'+(busy?'<span class="stage-busy"> · '+E(t('처리 중','working'))+'</span>':'')+'<span class="stage-meta">'+E(runtime.llm_mode||'')+(budget&&active?' · '+E(t('호출 ','calls '))+budget.used+'/'+budget.max:'')+'</span>'+(next?'<div class="next-action">'+E(next)+(run&&['awaiting_pm_selection','waiting_pm'].includes(run.status)?' <button type="button" class="btn sm" id="jump-decision">'+E(t('바로 보기 ↓','Jump to it ↓'))+'</button>':'')+'</div>':'');
     var jump=document.getElementById('jump-decision');if(jump)jump.onclick=function(){var target=feed.querySelector('.decision-anchor');if(target)target.scrollIntoView({behavior:'smooth',block:'start'});};
+    if(state&&state.demo.id==='m4_t4_composite')stage.innerHTML+='<div class="stage-meta">'+E(t('T4 데모 · 개인 동의 자동 수락 · PM만 최종 선택','T4 demo · algorithmic member consent · PM decides'))+'</div>';
     stage.setAttribute('aria-busy',busy?'true':'false');
     document.getElementById('continue-run').disabled=busy||!run||run.status!=='running'||automatic;
     document.getElementById('pause-run').disabled=!automatic;
     document.getElementById('demo-select').disabled=busy||!booted;
-    document.getElementById('viewer-select').disabled=busy||!booted;
+    document.getElementById('viewer-select').disabled=!booted;
     document.getElementById('next-day').disabled=busy||!booted||active||!state||state.now>=state.week_end;
     var sendBlock=busy||!booted?'':active?t('진행 중인 협의가 끝나야 새 이슈를 보낼 수 있습니다.','Finish the current negotiation before sending a new issue.'):'';
     var sendBtn=document.querySelector('#form button');sendBtn.disabled=busy||!booted||!!sendBlock;sendBtn.title=sendBlock;
@@ -280,7 +282,7 @@
   document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();var issue=input.value.trim();if(!issue)return;act(async function(){
     var shownDemo=state&&state.demo&&state.demo.id;var latest=await api('/state');
     if((latest.demo&&latest.demo.id)!==shownDemo){refs=[];await refresh(true);throw new Error(t('시나리오가 변경되어 화면을 새로 고쳤습니다. 내용을 확인한 뒤 다시 보내 주세요.','The scenario changed. The screen was refreshed; review your issue and send again.'));}
-    run=await api('/candidate-runs',{issue:issueWithRefs(issue)});dayDoneFor=null;
+    run=await api('/candidate-runs',{issue:issueWithRefs(issue),settings:{demo_auto_consent:state.demo.id==='m4_t4_composite'}});dayDoneFor=null;
     if(run.termination!=='issue_needs_clarification'){input.value='';input.dispatchEvent(new Event('input'));refs=[];}
     preview=null;await refresh(false);automatic=run.status==='running';}).then(loop);});
   document.getElementById('continue-run').onclick=function(){automatic=true;loop();};
@@ -290,8 +292,8 @@
   document.getElementById('demo-select').onchange=function(e){automatic=false;act(async function(){await api('/demo/select',{demo:e.target.value});run=null;preview=null;refs=[];await refresh(true);});};
   function syncHeight(){document.querySelector('.app').style.height=window.innerWidth>900?'calc(100dvh - '+Math.ceil(top.getBoundingClientRect().height)+'px)':'auto';}
   window.addEventListener('resize',syncHeight);
-  async function switchRole(role){viewerRole=role;try{localStorage.setItem('pb-viewer-role',role);}catch(err){}await refresh(false);}
-  document.getElementById('viewer-select').onchange=function(e){act(function(){return switchRole(e.target.value);});};
+  function switchRole(role){viewerRole=role;try{localStorage.setItem('pb-viewer-role',role);}catch(err){}if(state)draw();}
+  document.getElementById('viewer-select').onchange=function(e){switchRole(e.target.value);};
   document.getElementById('reset').onclick=function(){if(!window.confirm(t('현재 시나리오를 처음 상태로 되돌릴까요?','Reset the current scenario to its initial state?')))return;automatic=false;act(async function(){await api('/reset',{});run=null;preview=null;refs=[];await refresh(true);});};
   feed.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||busy||!run)return;
     if(b.dataset.switchRole){act(function(){return switchRole(b.dataset.switchRole);});return;}
