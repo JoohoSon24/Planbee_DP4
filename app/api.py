@@ -521,6 +521,29 @@ def reset_llm_usage():
     return {"ok": True}
 
 
+class DayIn(BaseModel):
+    days: float = Field(default=1, gt=0, le=5)
+
+
+@app.post("/day/next", summary="하루(기본) 진행: 이미 끝난 일은 완료 처리, 진행 중인 run이 있으면 거절")
+def post_day_next(body: DayIn | None = None, db=Depends(get_db)):
+    busy(db)
+    b = store.board(db); hive.schedule(b)
+    now = float(store.meta(db, "now", 2)); end = float(b.week_end)
+    if now >= end - hive.EPS:
+        raise HTTPException(409, "이미 마일스톤 마감일입니다. 시나리오를 다시 시작하세요.")
+    new = min(end, now + (body.days if body else 1))
+    finished = []
+    for t in b.tasks.values():
+        if t.cut or t.kind in ("done", "milestone", "prop"):
+            continue
+        if t.s + t.d <= new + hive.EPS:
+            t.s0, t.kind = t.s, "done"; finished.append(t.title)
+    store.set_meta(db, "now", new)
+    store.hive_say(db, f"하루가 지났어요. 완료 처리: {', '.join(finished) if finished else '없음'}")
+    return {"now": new, "finished": finished}
+
+
 @app.get("/demos", summary="고를 수 있는 데모와 지금 데모")
 def get_demos():
     return {"current": store.DEMO, "all": store.service_demos(), "catalog": store.demo_catalog()}

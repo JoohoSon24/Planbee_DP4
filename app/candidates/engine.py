@@ -388,6 +388,9 @@ def discuss(db,run):
 
 def advance(db,run):
     if run.status!='running':return run
+    # The wall-time budget counts processing time only: a paused or closed page must not expire the run.
+    step_started=time.time()
+    patch(run,expires_at=step_started+run.ctx['settings']['max_seconds']-run.ctx.get('active_seconds',0))
     try:
         check_time(run)
         b=store.board(db);hive.schedule(b)
@@ -410,6 +413,7 @@ def advance(db,run):
             event(db,run,'hive','SUPPLEMENT_FAILED','추가 후보 생성은 모델 응답 오류로 실패했어요. 기존 검증 후보를 보존하고 새 공개 조건으로 다시 평가합니다. 수락을 자동 재사용하지 않습니다.')
         else:model_failure(db,run,exc)
         if 'turn' in locals():runlogs.finish_turn(db,run,turn)
+    patch(run,active_seconds=run.ctx.get('active_seconds',0)+time.time()-step_started)
     return run
 
 
@@ -427,7 +431,7 @@ def select_pm(db,run,action,candidate_id=None,plan_hash=None,reason=''):
         else:
             revised_candidates=[{k:v for k,v in c.items() if k!='consents'} for c in run.ctx['candidates']]
             patch(run,supplement_conditions=[dict(who='pm',condition=reason)],pool_revision=run.ctx['pool_revision']+1,
-                final_candidates=[],candidates=revised_candidates,expires_at=time.time()+run.ctx['settings']['max_seconds'])
+                final_candidates=[],candidates=revised_candidates,active_seconds=0,expires_at=time.time()+run.ctx['settings']['max_seconds'])
             # Shared call budget is retained; PM does not implicitly buy extra calls.
             run.status='running';run.step='candidate_generate'
         checkpoint(db,run);return run
@@ -442,6 +446,14 @@ def select_pm(db,run,action,candidate_id=None,plan_hash=None,reason=''):
         snapshot_hash=run.ctx['snapshot_hash'],reason=reason,selected_at=datetime.now(timezone.utc).isoformat()))
     event(db,run,'pm','SELECT',f"{c['title']} 계획을 선택합니다. {reason}",candidate_id)
     waiting=[]
+    if os.environ.get('PLANBEE_AUTO_CONFIRM')=='1':
+        # Service setting: each member's proxy settles its own NEEDS_INPUT by card; only the PM acts by hand.
+        # A card-level REJECT already removed the plan before it reached the PM, so this never overrides a refusal.
+        for pid,answer in c['consents'].items():
+            if answer['action']=='NEEDS_INPUT':
+                event(db,run,pid,'AUTO_CONFIRM','위임카드에 금지가 없어 본인 확인을 자동 승인했어요. (확인 요청 사유: '+(answer.get('reason') or '자동 위임 범위 밖')+')',candidate_id)
+                answer['action']='ACCEPT';answer['auto_confirmed']=True
+        patch(run,candidates=run.ctx['candidates'])
     for pid,answer in c['consents'].items():
         if answer['action']=='NEEDS_INPUT':
             confirmation=Confirmation(who=pid,prompt='PM이 선택한 새 milestone 계획에 동의하나요?',

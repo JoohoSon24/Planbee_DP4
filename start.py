@@ -36,6 +36,8 @@ def main() -> None:
     # the app so a .env value cannot silently turn the reproducible demo into Live.
     os.environ["PLANBEE_LLM"] = args.llm or os.environ.get("PLANBEE_LLM", "mock")
     os.environ['PLANBEE_NEGOTIATION_MODE'] = args.negotiation_mode
+    # Members' confirmations are settled by their proxies; only the PM decides by hand (set 0 to require clicks).
+    os.environ.setdefault('PLANBEE_AUTO_CONFIRM', '1')
     os.environ.setdefault('PLANBEE_RUNS_DIR', str(ROOT / 'runs' / 'v2'))
 
     # Imports are delayed so a missing dependency can show a useful setup command.
