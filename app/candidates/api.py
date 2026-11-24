@@ -13,6 +13,7 @@ class StartIn(BaseModel):
     timeline_event_id: str | None = None
     issue: str = Field(min_length=1,max_length=8000)
     settings: engine.Settings | None = None
+    language: str = Field(default='ko',pattern='^(ko|en)$')
 
 class TranslationIn(BaseModel):
     keys: list[str] = Field(min_length=1,max_length=12)
@@ -27,6 +28,10 @@ class PMIn(BaseModel):
     candidate_id: str | None = None
     plan_hash: str | None = None
     reason: str = Field(default='',max_length=4000)
+
+class RuleIn(BaseModel):
+    rule_id: str = Field(min_length=1,max_length=40)
+    reason: str = Field(default='',max_length=2000)
 
 class EvalIn(BaseModel):
     rubric: Literal['fairness','card_fit']
@@ -73,14 +78,44 @@ def install(app,get_db,busy):
             viewer.owner(request,task.who)
         # Reporting a public team issue is distinct from consenting to a change.
         # The inferred owner and all affected people still decide by their own cards.
-        busy(db);store.snap(db)
+        busy(db);store.snap(db);before=store.latest_snapshot_id(db)
         if body.timeline_event_id:
             from ..timeline import apply_report
             event=attempt(lambda:apply_report(db,body.timeline_event_id,body.issue))
             task_id=event['task']
         else:task_id=body.task_id
-        run=attempt(lambda:engine.start(db,task_id,body.issue,body.settings,reporter=reporter))
+        run=attempt(lambda:engine.start(db,task_id,body.issue,body.settings,reporter=reporter,language=body.language))
         if body.timeline_event_id:engine.patch(run,timeline_event=body.timeline_event_id)
+        engine.patch(run,pre_report_snapshot=before)
+        return engine.response(run)
+
+    @router.post('/runs/{rid}/revert-report')
+    def revert_report(rid:int,request:Request,db=Depends(get_db)):
+        """Live demo safety: put the board back to just before this report, whatever happened after it.
+        Only the latest report can be reverted, and not while the model is still working on it."""
+        viewer.pm(request)
+        run=find(db,rid)
+        latest=db.scalars(select(Run).where(Run.kind=='candidate').order_by(Run.id.desc())).first()
+        if latest is None or latest.id!=run.id:raise HTTPException(409,'가장 최근 보고만 되돌릴 수 있어요.')
+        if run.status=='running':raise HTTPException(409,'아직 처리 중이에요. 멈춘 뒤 되돌려 주세요.')
+        if run.ctx.get('termination')=='reverted':return engine.response(run)
+        sid=run.ctx.get('pre_report_snapshot')
+        if not sid or not store.restore_board(db,sid):raise HTTPException(409,'되돌릴 저장 지점이 없어요.')
+        run=find(db,rid);run.status='done';run.step='done'
+        engine.patch(run,termination='reverted',pm_acknowledged=True)
+        engine.event(db,run,'pm','REVERT','이 보고 전의 보드로 되돌렸어요. 이 스레드의 계획은 적용되지 않아요.',
+                     reason_en='Reverted the board to before this report. No plan from this thread is applied.')
+        return engine.response(run)
+
+    @router.post('/runs/{rid}/stop')
+    def stop(rid:int,request:Request,db=Depends(get_db)):
+        """Stop a run between model calls (the call in flight finishes first). Nothing is applied."""
+        viewer.pm(request)
+        run=find(db,rid)
+        if run.status in ('running','awaiting_pm_selection','waiting_pm','waiting_confirm'):
+            run.status='done';run.step='done'
+            engine.patch(run,termination='pm_stopped',pm_acknowledged=True)
+            engine.event(db,run,'pm','STOP','PM이 진행을 멈췄어요. 적용된 계획은 없어요.',reason_en='The PM stopped this run. No plan was applied.')
         return engine.response(run)
 
     @router.get('/candidate-runs')
@@ -135,6 +170,14 @@ def install(app,get_db,busy):
             prior=run.ctx.get('pm_selection')
             if prior and prior['candidate_id']!=body.candidate_id:raise HTTPException(409,'다른 후보의 본인 확인이 진행 중')
         return engine.response(run)
+
+    @router.post('/runs/{rid}/rules')
+    def grant_rule(rid:int,body:RuleIn,request:Request,db=Depends(get_db)):
+        # PM grants one relaxation Hive listed; planning restarts with that rule changed.
+        viewer.pm(request)
+        run=find(db,rid);store.snap(db)
+        attempt(lambda:engine.grant_rule(db,run,body.rule_id,body.reason))
+        return engine.response(attempt(lambda:engine.advance(db,run)))
 
     @router.post('/runs/{rid}/evaluations')
     def new_eval(rid:int,body:EvalIn,db=Depends(get_db)):

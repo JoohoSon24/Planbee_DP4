@@ -97,15 +97,26 @@ def enumerate_plans(b,ctx,templates,settings):
         cleaned.append(t if len(keep)==len(t.plan_actions) else t.model_copy(update={'plan_actions':keep}))
     templates=[whole]+cleaned
     contract=(source.context or {}).get('required_parts',[])
+    contract_template=None
     if contract and abs(sum(p['effort'] for p in contract)-source.d)<=hive.EPS:
-        templates.append(Transformation(title='Task에 명시된 산출물 분담',basis='Task 원문에 명시된 분리 경계·분량·담당 권한을 그대로 보존한다.',
-            parts=[Part(**{k:v for k,v in p.items() if k!='assignees'}) for p in contract]))
+        contract_template=Transformation(title='Task에 명시된 산출물 분담',basis='Task 원문에 명시된 분리 경계·분량·담당 권한을 그대로 보존한다.',
+            parts=[Part(**{k:v for k,v in p.items() if k!='assignees'}) for p in contract])
+        templates.append(contract_template)
     # Explicit author-provided transformation contracts are additional structures,
     # not a preselected winner. LLM proposals and these structures share validation.
     option=(source.context or {}).get('defer_option')
     if option:
         templates.append(Transformation(**{**whole.model_dump(),'title':'선택 범위의 후속 milestone 이관',
             'plan_actions':[dict(kind='defer',task=source.id,milestone=option['milestone'],basis='Task에 명시된 선택 범위와 동반 산출물을 후속 milestone으로 보존하여 이관한다.')] }))
+    # Optional (P1) tasks this issue may touch can leave the milestone as a declared contract
+    # option. Paired with each base structure so a deferral is a real alternative, not noise.
+    deferrable=[b.tasks[x] for x in (source.context or {}).get('allowed_change_tasks',[])
+                if x!=source.id and x in b.tasks and (b.tasks[x].context or {}).get('defer_option') and (b.tasks[x].context or {}).get('optional')]
+    def defer_action(x):
+        return dict(kind='defer',task=x.id,milestone=x.context['defer_option']['milestone'],basis='Task에 명시된 선택 업무를 후속 milestone으로 보존하여 이관한다.')
+    for base_template in [whole]+([contract_template] if contract_template else []):
+        for x in deferrable:
+            templates.append(Transformation(**{**base_template.model_dump(),'title':base_template.title+' + '+x.title+' 이관','plan_actions':[defer_action(x)]}))
     reachable={source.id}
     for _ in b.tasks:
         reachable.update(h.to_task for h in b.hands.values() if h.from_task in reachable)
@@ -114,12 +125,17 @@ def enumerate_plans(b,ctx,templates,settings):
         if task.id==source.id or task.id not in reachable or not scope.get('inbound_scope') or not required:continue
         action=PlanAction(kind='restructure',task=task.id,basis='명시된 중간 산출물 범위를 보존하고 선행 산출물은 필요한 최종 조각에만 연결한다.',
             parts=[ScheduledPart(**{k:v for k,v in part.items() if k!='assignees'}) for part in required])
-        variants_actions=[[action]]
+        variants_actions=[[action]]+[[action,PlanAction(**defer_action(x))] for x in deferrable]
         for check in b.tasks.values():
             if check.id in reachable and (check.context or {}).get('covered_by'):
                 variants_actions.append([action,PlanAction(kind='omit',task=check.id,basis='동일 검증 항목이 최종 검증에 포함되는 선택 중간 검증만 본인 확인을 조건으로 생략한다.')])
-        for acts in variants_actions:
-            templates.append(Transformation(**{**whole.model_dump(),'title':'중간 산출물과 최종 반영의 단계별 재설계','plan_actions':[a.model_dump() for a in acts]}))
+        # The downstream restructure may pair with the source's own contract pieces
+        # (e.g. A1 rough/final + G2 temporary/final). Both contracts are explicit.
+        for base_template in [whole]+([contract_template] if contract_template else []):
+            for acts in variants_actions:
+                templates.append(Transformation(**{**base_template.model_dump(),
+                    'title':'중간 산출물과 최종 반영의 단계별 재설계' if base_template is whole else '산출물 분담과 후속 단계별 재설계',
+                    'plan_actions':[a.model_dump() for a in acts]}))
     randomizer=random.Random(settings.seed)
     # Round-robin across semantic templates and operation families avoids first-template bias.
     def variants(template):
@@ -154,6 +170,8 @@ def enumerate_plans(b,ctx,templates,settings):
             for t in sorted(b.tasks.values(),key=lambda t:t.id):
                 if t.id not in (source.context or {}).get('allowed_change_tasks',b.tasks):continue
                 if t.id==source.id or t.cut or t.kind in ('done','milestone','prop') or t.s<b.now-hive.EPS:continue
+                # A task this template already restructures is not also moved as a side change.
+                if t.id in {a.task for a in template.plan_actions}:continue
                 for pid in sorted(b.people):
                     if pid!=t.who and b.people[pid].role==t.role:
                         yield allocations,base_changes+[dict(task=t.id,who=pid)],'compose',template

@@ -65,6 +65,12 @@ def actions(st,raw_actions):
             mapping={p.key:'__stage_'+t.id+'_'+p.key for p in action.parts}
             incoming=[h for h in st.hands.values() if h.to_task==t.id]
             routes=ctx.get('inbound_scope',{})
+            def route(h):
+                # A route is a list of part keys, or {parts, due}: the contract may name a
+                # later promise for one inbound deliverable (never earlier than the original).
+                r=routes[h.from_task]
+                if isinstance(r,dict):return list(r.get('parts',[])),max(h.t,float(r.get('due',h.t)))
+                return list(r),h.t
             for h in incoming:
                 if h.from_task not in routes:raise ValueError('선행 산출물의 분해 범위 매핑 누락')
                 del st.hands[h.id]
@@ -85,7 +91,8 @@ def actions(st,raw_actions):
                     if dep not in mapping:raise ValueError('단계별 의존 범위가 없음')
                     _link(st,mapping[dep],x.id,'단계 선후관계',st.week_end,action.basis)
                 for h in incoming:
-                    if part.key in routes[h.from_task]:_link(st,h.from_task,x.id,h.what,h.t,action.basis)
+                    keys,due=route(h)
+                    if part.key in keys:_link(st,h.from_task,x.id,h.what,due,action.basis)
                 _link(st,x.id,t.id,part.what,st.week_end,action.basis)
             # Keep the existing consumer edges and original Task ID as completion barrier.
             t.d=t.plan=t.base=0;t.kind='milestone';t.context={**ctx,'completion_barrier':True}
@@ -128,6 +135,11 @@ def preview(b,ctx,allocations,changes=None,plan_actions=None):
     st=task_partition.preview(staged,ctx,allocations)
     authorizers,confirm,pm_scope=actions(st,plan_actions)
     hive.schedule(st);plan_adjustments.check_support(st)
+    # The issue task's contract may allow named handoff promises to move, up to a stated time,
+    # when a plan needs it (e.g. G2 may receive A1's final art by Thu AM). Never earlier, never past it.
+    for hid,due in ((b.tasks[ctx['task']].context or {}).get('repromise') or {}).items():
+        h=st.hands.get(hid)
+        if h and h.t+hive.EPS<hive.pred(st,h)<=float(due)+hive.EPS:h.t=hive.pred(st,h)
     if not hive.gate(st)['ok']:
         gate=hive.gate(st)
         raise ValueError('변경 계획 전체 제약 위반: '+'; '.join(v['text'] for v in gate['violations']+gate['warnings']))

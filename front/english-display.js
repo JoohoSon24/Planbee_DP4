@@ -53,7 +53,9 @@
   }
   function schedule(){if(scheduled)return;scheduled=true;queueMicrotask(function(){scheduled=false;scan();});}
   var notice=document.createElement('div');notice.className='english-status';notice.hidden=true;notice.style.cssText='position:fixed;bottom:12px;left:12px;z-index:9999;background:#243044;color:white;padding:8px 12px;border-radius:8px;font:12px system-ui';notice.append('Some text could not be translated. ');var retry=document.createElement('button');retry.type='button';retry.textContent='Retry English';retry.onclick=function(){failed.clear();scan();};notice.append(retry);document.body.append(notice);
-  window.PlanBeeEnglish={resolve:resolve,retry:function(){failed.clear();scan();}};
+  // Fixed seed English (seed/<demo>/en.yaml): exact pairs, no model call, no flicker.
+  function seed(map){Object.keys(map||{}).forEach(function(k){cache.set(k,map[k]);failed.delete(k);});schedule();}
+  window.PlanBeeEnglish={resolve:resolve,seed:seed,retry:function(){failed.clear();scan();}};
   var language=document.documentElement.getAttribute('data-lang');
   if(!language){try{language=localStorage.getItem('pb-lang');}catch(e){}document.documentElement.setAttribute('data-lang',language==='en'?'en':'ko');}
   new MutationObserver(schedule).observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['data-lang','title','placeholder','aria-label','hidden']});

@@ -1,0 +1,11 @@
+issue:
+  task: B2
+  label: ④ 자유 입력 · 실제 LLM
+  now: 1.5
+  next_phase: end
+  narr: Ben이 B2 메뉴 화면을 수요일 오후에는 시작할 수 없대요. 목요일 오후부터 할 수 있대요.
+  records:
+  - who: pm
+    about: ben
+    src: PM이 팀원 보고를 전달
+    text: Ben이 B2 메뉴 화면을 수요일 오후에는 시작할 수 없대요. 목요일 오후부터 할 수 있대요.

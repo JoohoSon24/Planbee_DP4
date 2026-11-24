@@ -1,0 +1,709 @@
+meta:
+  phase: issue
+  now: 1.5
+  week_start: '2026-11-23'
+  deadline_label: 11/27 17:00 데모
+  consent_mode: discussion
+  llm_mode: live
+  source: M4 시연용 시나리오 export (장여경, 2026-11-23) · 게임팀 공통 보드
+  team: game
+  normalization_note: 시간축은 2026-11-23 월요일=0, 화요일 13:00=1.5, 금요일 17:00=5입니다. Task d는 기준 시각 이후 남은 시간이며 진행률은 원문의 작성자 추정값을 별도
+    보존합니다. 공통 초기 보드에 기본 H04의 Zoe 목요일 오후 부재를 가용 시간 제약으로 반영했으므로 기존 Q2 배정은 기한 위험 상태입니다. 원문 G3의 금요일 오후 0.5일은 13:00~17:00이지만 16:00
+    유효 빌드 조건과 충돌합니다. 현재 실행은 공통 데모 마감 17:00을 적용하고 16:00 조건은 미확정 원문 조건으로 보존하며, 이를 충족했다고 주장하지 않습니다. 숙련도는 원문 문자열로 보존하고 과거 실적 건수를
+    만들어 넣지 않습니다.
+  title: ④ 자유 입력 · 실제 LLM
+  source_task: null
+  narr: Ben이 B2 메뉴 화면을 수요일 오후에는 시작할 수 없대요. 목요일 오후부터 할 수 있대요.
+  free_input: true
+  summary: 같은 팀·같은 보드에서 PM이 아무 변경이나 적어 보냅니다. LLM이 보고를 보드 변경으로 읽어 반영한 뒤 협상합니다.
+  engine_support: 보고 문장 → (LLM) 보드 변경 1건 → 코드 검사 후 반영 → 영향 분석 → 계획 생성 → 프록시 토론 → PM 선택. 서버를 --llm live로 켜야 합니다.
+  templates:
+  - tag: 부재
+    text: '[사람] 님이 [요일 오전/오후]에 [업무] 작업을 못 한대요. [요일 오전/오후]부터 할 수 있대요.'
+  - tag: 작업량
+    text: '[업무] 작업이 [반나절/하루] 더 걸린대요.'
+  - tag: 휴가
+    text: '[사람] 님이 [요일] 하루 쉬어요.'
+  - tag: 질문
+    text: '[업무] 작업은 언제 끝나요?'
+people:
+- id: mia
+  name: Mia
+  role: 그림
+  rec: {}
+  wants:
+  - 이펙트 A2를 이번 데모에 직접 완성
+  notes:
+    prompt_role: game_mia
+    source_skills:
+      아트: 능숙
+      UI: 가능
+    profile:
+      takes:
+      - 아트
+      - UI
+      refuses:
+      - 서버
+      - QA
+      - 게임플레이
+      limit: 하루 8시간 · 0.5일까지 프록시가 받음
+      wish: 이펙트 A2를 이번 데모에 직접 완성
+      avoid: A2를 다음 스프린트로 미루는 것
+      designed:
+      - avoid
+- id: leo
+  name: Leo
+  role: 개발
+  rec: {}
+  wants:
+  - 금요일 오후 빌드 직전에는 새 변경을 받지 않기
+  notes:
+    prompt_role: game_leo
+    source_skills:
+      게임플레이: 능숙
+    profile:
+      takes:
+      - 보스 AI
+      - 게임플레이 연결
+      - 데모 빌드
+      refuses:
+      - 아트
+      - 서버
+      - UI
+      - 독립 QA
+      limit: 0.5일까지 프록시가 받음
+      wish: 금요일 오후 빌드 직전에는 새 변경을 받지 않기
+      condition: G2를 임시 아트로 연결할 때는 최종 아트가 목요일 오전 시작 전에 도착해야 함
+      designed:
+      - wish
+- id: sam
+  name: Sam
+  role: 서버
+  rec: {}
+  wants:
+  - 랭킹 S3를 이번 데모 스테이징에서 보여주기
+  notes:
+    prompt_role: game_sam
+    source_skills:
+      서버: 능숙
+      UI: 가능
+      테스트: 가능
+    profile:
+      takes:
+      - 서버
+      - 저장
+      refuses:
+      - 아트
+      - 게임플레이
+      limit: 1일까지 프록시가 받음 · 테스트는 받는 일 밖(예외로만)
+      wish: 랭킹 S3를 이번 데모 스테이징에서 보여주기
+      avoid: 랭킹을 다음 스프린트로 미루는 것
+      designed:
+      - wish
+      - avoid
+- id: ben
+  name: Ben
+  role: 레벨
+  rec: {}
+  wants:
+  - 스테이지3와 메뉴 화면을 직접 완성
+  notes:
+    prompt_role: game_ben
+    source_skills:
+      UI: 능숙
+      레벨: 능숙
+      테스트: 가능
+    profile:
+      takes:
+      - UI
+      - 레벨
+      - 스모크 QA
+      refuses:
+      - 서버
+      - 아트
+      - 보스 게임플레이
+      limit: 1일까지 프록시가 받음
+      wish: 스테이지3와 메뉴 화면을 직접 완성
+      avoid: 목요일 오후 메뉴 다듬기 시간이 없어지는 것
+      designed:
+      - avoid
+- id: zoe
+  name: Zoe
+  role: 테스트
+  rec: {}
+  wants:
+  - 최종 회귀 전에 스모크 결과를 직접 검토
+  notes:
+    prompt_role: game_zoe
+    source_skills:
+      테스트: 능숙
+      UI: 가능
+    profile:
+      takes:
+      - 테스트
+      refuses:
+      - 서버
+      - 아트
+      - 게임플레이 구현
+      limit: 0.5일까지 프록시가 받음 · Q2 1일 QA는 줄일 수 없음
+      wish: 최종 회귀 전에 스모크 결과를 직접 검토
+      condition: 최종 회귀·서명은 본인이 맡음
+      avoid: Q2에서 보스전을 스모크 없이 최종 회귀에서 처음 확인하는 것
+      designed:
+      - wish
+      - avoid
+cards:
+- who: mia
+  auto_days: 0.5
+  wait_days: 0
+  gives_help: true
+  note: 아트·UI를 받습니다. 서버·QA·게임플레이는 받지 않습니다. 이펙트 A2 완성을 이번 데모에서 원합니다.
+  policy:
+    approved: true
+    source_note: 게임팀 공통 보드
+    unavailable: []
+- who: leo
+  auto_days: 0.5
+  wait_days: 0
+  gives_help: true
+  note: 보스 AI·게임플레이 연결·데모 빌드를 받습니다. 아트·서버·UI·독립 QA는 받지 않습니다. 임시 아트 연결은 최종 아트가 목요일 오전 시작 전에 올 때만 가능합니다.
+  policy:
+    approved: true
+    source_note: 게임팀 공통 보드
+    unavailable: []
+- who: sam
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: 서버·저장을 받습니다. 아트·게임플레이는 받지 않습니다. 테스트 역량은 있지만 받는 일 밖이라 예외로만 맡습니다. 랭킹 S3를 이번 데모에서 보여주고 싶습니다.
+  policy:
+    approved: true
+    source_note: 게임팀 공통 보드
+    unavailable: []
+- who: ben
+  auto_days: 1
+  wait_days: 0
+  gives_help: true
+  note: UI·레벨·스모크 QA를 받습니다. 서버·아트·보스 게임플레이는 받지 않습니다. 목요일 오후는 메뉴 다듬기에 쓰고 싶습니다.
+  policy:
+    approved: true
+    source_note: 게임팀 공통 보드
+    unavailable: []
+- who: zoe
+  auto_days: 0.5
+  wait_days: 0
+  gives_help: true
+  note: 테스트를 받습니다. 서버·아트·게임플레이 구현은 받지 않습니다. Q2 1일 QA는 줄일 수 없고 최종 회귀·서명은 제가 맡습니다.
+  policy:
+    approved: true
+    source_note: 게임팀 공통 보드
+    unavailable: []
+tasks:
+- id: ST12
+  who: ben
+  title: 스테이지1·2 구현
+  s0: 0.0
+  d: 1.0
+  tag: ST12
+  kind: done
+  context:
+    description: 스테이지1·2 구현
+    done_basis: 원문 Q1 선행조건 "기존 1·2 스테이지 구현 완료" · 담당·요일은 설계값
+    priority: P0
+- id: BG3
+  who: mia
+  title: 스테이지3 배경
+  s0: 0.0
+  d: 1.0
+  tag: BG3
+  kind: done
+  context:
+    description: 스테이지3 배경
+    done_basis: 원문 B1 선행조건 "월요일 스테이지3 배경 완료" · 담당·요일은 설계값
+    priority: P0
+- id: Q1_am
+  who: zoe
+  title: Q1 · 스테이지1·2 테스트 (오전 진행분)
+  s0: 1.0
+  d: 0.5
+  tag: Q1_am
+  kind: done
+  context:
+    description: Q1 · 스테이지1·2 테스트 (오전 진행분)
+    done_basis: 원문 진행률 50%
+    priority: P0
+- id: S1_am
+  who: sam
+  title: S1 · 저장 기능 (오전 진행분)
+  s0: 1.0
+  d: 0.5
+  tag: S1_am
+  kind: done
+  context:
+    description: S1 · 저장 기능 (오전 진행분)
+    done_basis: 원문 진행률 50%
+    priority: P0
+- id: G1_am
+  who: leo
+  title: G1 · 보스 AI (오전 진행분)
+  s0: 1.0
+  d: 0.5
+  tag: G1_am
+  kind: done
+  context:
+    description: G1 · 보스 AI (오전 진행분)
+    done_basis: 원문 진행률 50%
+    priority: P0
+- id: A1_am
+  who: mia
+  title: A1 · 보스 그림 (오전 진행분)
+  s0: 1.0
+  d: 0.5
+  tag: A1_am
+  kind: done
+  context:
+    description: A1 · 보스 그림 (오전 진행분)
+    done_basis: '원문 진행률 33%: 전체 1.5일 중 0.5일'
+    priority: P0
+- id: A1
+  who: mia
+  title: A1 · 보스 그림
+  s0: 1.5
+  d: 1
+  tag: A1
+  context:
+    description: 보스 그림; 원문 Task ID A1
+    deliverable: 보스 그림 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - mia
+    allow_collaboration: false
+    splittable_hint: true
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.33
+    progress_basis: 원문 작성자의 전체 33% 진행 주장
+    parts_description: 러프 0.5일 + 최종 0.5일
+    required_parts:
+    - key: rough
+      title: A1 러프
+      what: 보스 러프 그림 0.5일
+      effort: 0.5
+      depends_on: []
+      assignees:
+      - mia
+    - key: final
+      title: A1 최종
+      what: 보스 최종 그림 0.5일
+      effort: 0.5
+      depends_on:
+      - rough
+      assignees:
+      - mia
+- id: A2
+  who: mia
+  title: A2 · 이펙트 다듬기
+  s0: 3
+  d: 1
+  tag: A2
+  context:
+    description: 이펙트 다듬기; 원문 Task ID A2
+    deliverable: 이펙트 다듬기 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P1
+    time_quantum: 0.25
+    allowed_assignees:
+    - mia
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    optional: true
+    defer_option:
+      milestone: Next sprint
+      authorizers:
+      - mia
+- id: G1
+  who: leo
+  title: G1 · 보스 AI
+  s0: 1.5
+  d: 0.5
+  tag: G1
+  context:
+    description: 보스 AI; 원문 Task ID G1
+    deliverable: 보스 AI 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - leo
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.5
+- id: G2
+  who: leo
+  title: G2 · 보스전 연결
+  s0: 2.5
+  d: 1
+  tag: G2
+  context:
+    description: 보스전 연결; 원문 Task ID G2
+    deliverable: 보스전 연결 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - leo
+    allow_collaboration: false
+    splittable_hint: true
+    active_participants_only: true
+    latest_finish: 5
+    parts_description: 임시 연결 0.5 + 최종 반영 0.5. 최종 아트는 목 오전 시작 전 도착
+    required_parts:
+    - key: temp
+      title: G2 임시 연결
+      what: G1 보스 AI와 A1 러프로 보스전 흐름 임시 연결 0.5일
+      effort: 0.5
+      depends_on: []
+      assignees:
+      - leo
+    - key: final
+      title: G2 최종 반영
+      what: A1 최종 그림 반영과 보스전 작동 확인 0.5일
+      effort: 0.5
+      depends_on:
+      - temp
+      assignees:
+      - leo
+    inbound_scope:
+      G1:
+      - temp
+      A1:
+        parts:
+        - final
+        due: 3.0
+- id: G3
+  who: leo
+  title: G3 · 데모 빌드
+  s0: 4.5
+  d: 0.5
+  tag: G3
+  context:
+    description: 데모 빌드; 원문 Task ID G3
+    deliverable: 데모 빌드 완료본
+    acceptance:
+    - 유효한 P0 빌드
+    - Q2 최종 회귀·서명 완료 후 착수
+    - 현재 실행 마감 17:00, 원문 16:00 충돌은 별도 명시
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - leo
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    fixed_start: 4.5
+    source_build_cutoff: 16:00 (원문 미확정 충돌 조건)
+- id: S1
+  who: sam
+  title: S1 · 저장 기능
+  s0: 1.5
+  d: 0.5
+  tag: S1
+  context:
+    description: 저장 기능; 원문 Task ID S1
+    deliverable: 저장 기능 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - sam
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.5
+- id: S2
+  who: sam
+  title: S2 · 서버 배포
+  s0: 2
+  d: 1
+  tag: S2
+  context:
+    description: 서버 배포; 원문 Task ID S2
+    deliverable: 서버 배포 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - sam
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    parts_description: 동일 Sam의 0.5+0.5 중단·재개는 원문의 시연 가정; 현재 기본 경로는 연속 1일
+- id: S3
+  who: sam
+  title: S3 · 랭킹
+  s0: 3
+  d: 1
+  tag: S3
+  context:
+    description: 랭킹; 원문 Task ID S3
+    deliverable: 랭킹 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P1
+    time_quantum: 0.25
+    allowed_assignees:
+    - sam
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    optional: true
+    feature_flag: 'OFF'
+    defer_option:
+      milestone: Next sprint
+      authorizers:
+      - sam
+- id: B1
+  who: ben
+  title: B1 · 스테이지3 배치
+  s0: 1.5
+  d: 1
+  tag: B1
+  context:
+    description: 스테이지3 배치; 원문 Task ID B1
+    deliverable: 스테이지3 배치 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - ben
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    external_prerequisite: 월요일 완료된 스테이지3 배경
+- id: B2
+  who: ben
+  title: B2 · 메뉴 화면
+  s0: 2.5
+  d: 1
+  tag: B2
+  context:
+    description: 메뉴 화면; 원문 Task ID B2
+    deliverable: 메뉴 화면 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P1
+    time_quantum: 0.25
+    allowed_assignees:
+    - ben
+    - mia
+    - sam
+    - zoe
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    optional: true
+    defer_option:
+      milestone: Next sprint
+      authorizers:
+      - ben
+    allowed_change_tasks:
+    - B2
+    - A2
+    - S3
+- id: Q1
+  who: zoe
+  title: Q1 · 스테이지1·2 테스트
+  s0: 1.5
+  d: 0.5
+  tag: Q1
+  context:
+    description: 스테이지1·2 테스트; 원문 Task ID Q1
+    deliverable: 스테이지1·2 테스트 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - zoe
+    allow_collaboration: false
+    splittable_hint: false
+    active_participants_only: true
+    latest_finish: 5
+    progress_claim: 0.5
+    external_prerequisite: 기존 스테이지1·2 구현 완료
+- id: Q2
+  who: zoe
+  title: Q2 · 통합 QA
+  s0: 3.5
+  d: 1
+  tag: Q2
+  context:
+    description: 통합 QA; 원문 Task ID Q2
+    deliverable: 통합 QA 완료본
+    acceptance:
+    - 원문 필수 산출물과 선행조건 유지
+    priority: P0
+    time_quantum: 0.25
+    allowed_assignees:
+    - zoe
+    allow_collaboration: false
+    splittable_hint: true
+    active_participants_only: true
+    latest_finish: 4.5
+    minimum_days: 1
+    required_parts:
+    - key: smoke
+      title: Q2 스모크
+      what: '목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인'
+      effort: 0.5
+      depends_on: []
+      assignees:
+      - zoe
+      - ben
+      - sam
+    - key: regression
+      title: Q2 최종 회귀·Zoe 서명
+      what: 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명
+      effort: 0.5
+      depends_on:
+      - smoke
+      assignees:
+      - zoe
+- id: milestone
+  who: leo
+  title: Demo · 11/27 17:00
+  s0: 5
+  d: 0
+  kind: milestone
+  tag: milestone
+  context:
+    completion_barrier: true
+handoffs:
+- id: h_A1_A2
+  from: A1
+  to: A2
+  title: A1 → A2
+  what: A1 원문 산출물
+  t: 3
+- id: h_A1_G2
+  from: A1
+  to: G2
+  title: A1 → G2
+  what: A1 원문 산출물
+  t: 2.5
+- id: h_G1_G2
+  from: G1
+  to: G2
+  title: G1 → G2
+  what: G1 원문 산출물
+  t: 2.5
+- id: h_S1_S2
+  from: S1
+  to: S2
+  title: S1 → S2
+  what: S1 원문 산출물
+  t: 2
+- id: h_S2_S3
+  from: S2
+  to: S3
+  title: S2 → S3
+  what: S2 원문 산출물
+  t: 3
+- id: h_B1_B2
+  from: B1
+  to: B2
+  title: B1 → B2
+  what: B1 원문 산출물
+  t: 2.5
+- id: h_G2_Q2
+  from: G2
+  to: Q2
+  title: G2 → Q2
+  what: G2 원문 산출물
+  t: 3.5
+- id: h_S2_Q2
+  from: S2
+  to: Q2
+  title: S2 → Q2
+  what: S2 원문 산출물
+  t: 3.5
+- id: h_B1_Q2
+  from: B1
+  to: Q2
+  title: B1 → Q2
+  what: B1 원문 산출물
+  t: 3.5
+- id: h_Q1_Q2
+  from: Q1
+  to: Q2
+  title: Q1 → Q2
+  what: Q1 원문 산출물
+  t: 3.5
+- id: h_G2_G3
+  from: G2
+  to: G3
+  title: G2 → G3
+  what: G2 원문 산출물
+  t: 4.5
+- id: h_S2_G3
+  from: S2
+  to: G3
+  title: S2 → G3
+  what: S2 원문 산출물
+  t: 4.5
+- id: h_B1_G3
+  from: B1
+  to: G3
+  title: B1 → G3
+  what: B1 원문 산출물
+  t: 4.5
+- id: h_Q2_G3
+  from: Q2
+  to: G3
+  title: Q2 → G3
+  what: Q2 원문 산출물
+  t: 4.5
+- id: h_G3_milestone
+  from: G3
+  to: milestone
+  title: G3 → milestone
+  what: G3 원문 산출물
+  t: 5
+records: []
+rules:
+- key: deadline
+  label: 11/27 17:00 데모
+  value:
+    week_end: 5
+- key: weekly_cap
+  label: 1일 8시간·개인 주간 용량 5일
+  value:
+    days: 5
+- key: rounds
+  label: 토론 한도
+  value:
+    max: 15
+- key: pref
+  label: 공정성 참고
+  value:
+    choice: fair
+  locked: false

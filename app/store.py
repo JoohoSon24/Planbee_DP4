@@ -85,6 +85,17 @@ def load_yaml(name: str) -> dict:
 
 
 # ── 시드 ──────────────────────────────────────────────────────────────
+def seed_hash() -> str:
+    """Fingerprint of the current scenario's seed files; a changed seed reloads the board at start."""
+    import hashlib
+    h = hashlib.sha1()
+    for name in ("team.yaml", "feed.yaml"):
+        f = SEED / DEMO / name
+        if f.exists():
+            h.update(f.read_bytes())
+    return h.hexdigest()
+
+
 def reset(db: Session) -> None:
     from . import progress
     progress.clear()
@@ -121,6 +132,7 @@ def reset(db: Session) -> None:
         db.add(Meta(key=k, value={"v": v}))
     db.add(Meta(key="decisions", value={"v": 0}))
     db.add(Meta(key="demo", value={"v": DEMO}))
+    db.add(Meta(key="seed_hash", value={"v": seed_hash()}))
     db.flush()
     b = board(db)
     hive.schedule(b)
@@ -289,6 +301,35 @@ def undo(db: Session) -> bool:
     return True
 
 
+def latest_snapshot_id(db: Session):
+    return db.scalar(select(func.max(Snapshot.id)))
+
+
+def restore_board(db: Session, snapshot_id: int) -> bool:
+    """Put the board back to a saved snapshot but keep every run (the conversation stays readable).
+    Later snapshots are dropped so undo cannot jump past this point."""
+    from .models import Run
+    snap_row = db.get(Snapshot, snapshot_id)
+    if not snap_row:
+        return False
+    data = snap_row.data
+    keep = {Run}
+    tables = [m for m in SNAPSHOT_TABLES if m not in keep]
+    current_demo = meta(db, 'demo')
+    db.execute(delete(Snapshot).where(Snapshot.id >= snapshot_id))
+    for m in reversed(tables):
+        db.execute(delete(m))
+    db.flush()
+    db.expunge_all()   # the deleted rows' objects would clash with the restored ones (same keys)
+    for m in tables:
+        for row in data.get(m.__tablename__, []):
+            db.add(m(**row))
+        db.flush()
+    if current_demo is not None:
+        set_meta(db, 'demo', current_demo)
+    return True
+
+
 def can_undo(db: Session) -> bool:
     return (db.scalar(select(func.count()).select_from(Snapshot)) or 0) > 0
 
@@ -409,6 +450,17 @@ def workflow_progress(db):
             (run.status=='done' and (run.ctx.get('discussion') or {}).get('termination') not in (None,'agreement'))) else None))
 
 
+def display_glossary() -> dict:
+    """Fixed Korean→English pairs for seed text (seed/<demo>/en.yaml). Display only."""
+    path = SEED / DEMO / "en.yaml"
+    return yaml.safe_load(path.read_text(encoding="utf-8")) or {} if path.exists() else {}
+
+
+def display_profiles() -> dict:
+    path = SEED / DEMO / "profiles.yaml"
+    return yaml.safe_load(path.read_text(encoding="utf-8")) or {} if path.exists() else {}
+
+
 def state_json(db: Session) -> dict:
     """프로토타입의 S 와 같은 모양. 세 화면이 이것 하나로 다시 그려진다."""
     b = board(db)
@@ -426,6 +478,7 @@ def state_json(db: Session) -> dict:
             "basis": hive.tag_line(b.people[t.who], t.tag),
         }
     people = [{"id": p.id, "name": p.name, "role": p.role, "rec": p.rec, "wants": p.wants,
+               "skills": (getattr(p, "notes", None) or {}).get("source_skills", {}),
                "load": hive.load_of(b, p.id), "free": b.cap - hive.load_of(b, p.id), "cap": b.cap}
               for p in b.people.values()]
     confirms = list(db.scalars(select(Confirmation).order_by(Confirmation.id)))
@@ -442,7 +495,7 @@ def state_json(db: Session) -> dict:
         "week_end": b.week_end,
         "can_previous_day": bool(meta(db,"day_history",[])),
         "demo": {"id": meta(db,"demo",DEMO), "title": meta(db, "title", DEMO), "all": service_demos(), "catalog": demo_catalog(), "engine_support": meta(db,"engine_support",""), "source_task": meta(db,"source_task",None), "normalization_note": meta(db,"normalization_note",""),
-                 "timeline": timeline, "issue_example": (available[0]["text"] if available else "") if timeline else '\n'.join(r['text'] for r in (load_yaml('feed.yaml').get('issue') or {}).get('records',[]))},
+                 "timeline": timeline, "llm_mode": meta(db, "llm_mode", None), "free_input": bool(meta(db, "free_input", False)), "templates": meta(db, "templates", None), "issue_reporter": ((load_yaml('feed.yaml').get('issue') or {}).get('records') or [{}])[0].get('who'), "issue_example": (available[0]["text"] if available else "") if timeline else '\n'.join(r['text'] for r in (load_yaml('feed.yaml').get('issue') or {}).get('records',[]))},
         "workflow_progress": workflow_progress(db),
         "demo_step": meta(db,"demo_step",None),
         "feed_label": ((load_yaml("feed.yaml").get(meta(db, "phase")) or {}).get("label")
@@ -468,6 +521,8 @@ def state_json(db: Session) -> dict:
                   "confirms": sum(1 for c in confirms if c.status == "confirmed"),
                   "decisions": meta(db, "decisions", 0)},
         "gate": hive.gate(b),
+        # Display-only person / task / Handoff profiles (seed/<demo>/profiles.yaml). Never sent to an LLM.
+        "profiles": display_profiles(), "glossary_en": display_glossary(),
         "waiting": [{"run": r.id, "kind": r.kind, "status": r.status} for r in runs],
         "negotiations": [negotiation_json(db, r, detail=False) for r in db.scalars(select(Run).where(Run.kind == "record").order_by(Run.id))],
         "can_undo": can_undo(db),

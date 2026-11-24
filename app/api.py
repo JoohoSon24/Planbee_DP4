@@ -29,7 +29,8 @@ SessionLocal = store.make_session_factory(engine)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     with SessionLocal() as db:
-        if store.is_empty(db) or store.meta(db, "demo") != store.DEMO:
+        # A rebuilt seed (new templates, tasks, rules) must not be hidden behind an old saved board.
+        if store.is_empty(db) or store.meta(db, "demo") != store.DEMO or store.meta(db, "seed_hash") != store.seed_hash():
             store.reset(db)
             db.commit()
     yield
@@ -138,6 +139,7 @@ class RejectIn(BaseModel):
 
 class DemoIn(BaseModel):
     demo: str
+    force: bool = False   # end a negotiation in progress and switch anyway
 
 
 class PrefIn(BaseModel):
@@ -604,6 +606,12 @@ def demo_source_board(demo: str):
 
 @app.post("/demo/select", summary="다른 데모로 바꾸고 그 데모의 데이터로 다시 채움")
 def post_demo_select(body: DemoIn, db=Depends(get_db)):
+    # Switching resets the board. A negotiation in progress is never dropped silently:
+    # the screen must ask the PM first and then send force=true.
+    active = db.scalars(select(Run).where(Run.status.in_(["running", "waiting_confirm", "waiting_pm", "awaiting_pm_selection"]))).first()
+    if active and not body.force and body.demo != store.DEMO:
+        raise HTTPException(409, dict(code="negotiation_in_progress", run=active.id, status=active.status,
+                                      message="진행 중인 협상이 있어요. 시나리오를 바꾸면 적용되지 않은 계획은 사라집니다."))
     try:
         store.use_demo(body.demo)
     except ValueError as e:

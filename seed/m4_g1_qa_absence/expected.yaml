@@ -1,0 +1,26 @@
+impact:
+  broken_any:
+  - h_Q2_G3
+  owner: zoe
+  involved_any:
+  - leo
+  not_involved:
+  - mia
+candidates:
+  families_any:
+  - - ben
+  - - sam
+  keep_parts:
+    Q2:
+      regression: zoe
+participants:
+  exclude:
+  - mia
+  include:
+  - zoe
+  - leo
+behaviour:
+  non_prefer_acts_min: 1
+pm:
+  options_min: 2
+  options_max: 3

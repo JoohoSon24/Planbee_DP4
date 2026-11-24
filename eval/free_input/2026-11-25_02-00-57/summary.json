@@ -1,0 +1,1772 @@
+{
+ "summary": {
+  "cases": 18,
+  "repeat": 3,
+  "all_ok": 45,
+  "runs": 54,
+  "field_accuracy": {
+   "kind": "51/54",
+   "task": "30/30",
+   "person": "18/18",
+   "window": "18/18",
+   "workload": "6/12",
+   "answer": "12/12"
+  },
+  "kind_confusion": {
+   "change->change": 30,
+   "change->clarify": 3,
+   "clarify->clarify": 3,
+   "other->other": 6,
+   "question->question": 12
+  },
+  "stable_across_repeats": {
+   "c1_absence": true,
+   "c2_workload": true,
+   "c3_sick_day": true,
+   "c4_first_person": true,
+   "c5_handoff": true,
+   "r1_task_ref": true,
+   "r2_person_ref": true,
+   "r3_handoff_ref": true,
+   "t1_tpl_absence": true,
+   "t2_tpl_workload": true,
+   "t3_tpl_dayoff": true,
+   "t4_tpl_question": true,
+   "q1_who": true,
+   "q2_free_slot": true,
+   "q3_ref_question": true,
+   "o1_greeting": true,
+   "o2_unrelated": true,
+   "u1_vague": true
+  },
+  "seconds_median": 10.1,
+  "errors": 0
+ },
+ "rows": [
+  {
+   "case": "c1_absence",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c1_absence",
+   "seconds": 9.3,
+   "error": null,
+   "kind": "change",
+   "task": "B2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "B2",
+    "person": "ben",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오후"
+    },
+    "extra_days": null,
+    "summary": "Ben이 수요일 오후에는 B2 메뉴 화면을 시작할 수 없고, 목요일 오후부터 가능하다.",
+    "clarification": null,
+    "applied": {
+     "task": "B2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3.5,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c1_absence",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c1_absence",
+   "seconds": 11.6,
+   "error": null,
+   "kind": "change",
+   "task": "B2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "B2",
+    "person": "ben",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오후"
+    },
+    "extra_days": null,
+    "summary": "Ben이 수요일 오후에는 B2 메뉴 화면을 시작할 수 없고, 목요일 오후부터 가능하다.",
+    "clarification": null,
+    "applied": {
+     "task": "B2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3.5,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c1_absence",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c1_absence",
+   "seconds": 9.2,
+   "error": null,
+   "kind": "change",
+   "task": "B2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "B2",
+    "person": "ben",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오후"
+    },
+    "extra_days": null,
+    "summary": "Ben이 수요일 오후에는 B2 메뉴 화면을 시작할 수 없고, 목요일 오후부터 가능하다.",
+    "clarification": null,
+    "applied": {
+     "task": "B2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3.5,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c2_workload",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": true
+   },
+   "ok": true,
+   "id": "c2_workload",
+   "seconds": 13.3,
+   "error": null,
+   "kind": "change",
+   "task": "S3",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S3",
+    "person": null,
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 0.5,
+    "summary": "S3 랭킹 화면이 반나절 더 걸린다.",
+    "clarification": null,
+    "applied": {
+     "task": "S3",
+     "windows": [],
+     "new_days": 1.5
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c2_workload",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": true
+   },
+   "ok": true,
+   "id": "c2_workload",
+   "seconds": 11.4,
+   "error": null,
+   "kind": "change",
+   "task": "S3",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S3",
+    "person": null,
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 0.5,
+    "summary": "S3 · 랭킹 작업이 반나절 더 걸린다.",
+    "clarification": null,
+    "applied": {
+     "task": "S3",
+     "windows": [],
+     "new_days": 1.5
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c2_workload",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": true
+   },
+   "ok": true,
+   "id": "c2_workload",
+   "seconds": 10.8,
+   "error": null,
+   "kind": "change",
+   "task": "S3",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S3",
+    "person": null,
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 0.5,
+    "summary": "S3 랭킹 화면이 반나절 더 걸린다.",
+    "clarification": null,
+    "applied": {
+     "task": "S3",
+     "windows": [],
+     "new_days": 1.5
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c3_sick_day",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c3_sick_day",
+   "seconds": 10.1,
+   "error": null,
+   "kind": "change",
+   "task": "A2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "A2",
+    "person": "mia",
+    "unavailable_slots": [
+     {
+      "day": "목",
+      "part": "종일"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Mia가 목요일 하루 병가로 인해 A2 업무를 수행할 수 없습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "A2",
+     "windows": [
+      {
+       "start": 3,
+       "end": 4,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c3_sick_day",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c3_sick_day",
+   "seconds": 11.4,
+   "error": null,
+   "kind": "change",
+   "task": "A2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "A2",
+    "person": "mia",
+    "unavailable_slots": [
+     {
+      "day": "목",
+      "part": "종일"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Mia가 목요일 하루 병가로 인해 A2 업무를 수행할 수 없습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "A2",
+     "windows": [
+      {
+       "start": 3,
+       "end": 4,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c3_sick_day",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c3_sick_day",
+   "seconds": 10.0,
+   "error": null,
+   "kind": "change",
+   "task": "A2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "A2",
+    "person": "mia",
+    "unavailable_slots": [
+     {
+      "day": "목",
+      "part": "종일"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Mia가 목요일 하루 병가입니다.",
+    "clarification": null,
+    "applied": {
+     "task": "A2",
+     "windows": [
+      {
+       "start": 3,
+       "end": 4,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 3
+  },
+  {
+   "case": "c4_first_person",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c4_first_person",
+   "seconds": 17.0,
+   "error": null,
+   "kind": "change",
+   "task": "Q2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "Q2",
+    "person": "zoe",
+    "unavailable_slots": [
+     {
+      "day": "금",
+      "part": "오전"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Zoe가 금요일 오전에 회의가 생겨서 Q2 통합 QA를 못 봅니다.",
+    "clarification": null,
+    "applied": {
+     "task": "Q2",
+     "windows": [
+      {
+       "start": 4,
+       "end": 4.5,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "c4_first_person",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c4_first_person",
+   "seconds": 17.0,
+   "error": null,
+   "kind": "change",
+   "task": "Q2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "Q2",
+    "person": "zoe",
+    "unavailable_slots": [
+     {
+      "day": "금",
+      "part": "오전"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Zoe가 금요일 오전에 회의가 생겨서 Q2 통합 QA를 못 봅니다.",
+    "clarification": null,
+    "applied": {
+     "task": "Q2",
+     "windows": [
+      {
+       "start": 4,
+       "end": 4.5,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "c4_first_person",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "c4_first_person",
+   "seconds": 17.6,
+   "error": null,
+   "kind": "change",
+   "task": "Q2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "Q2",
+    "person": "zoe",
+    "unavailable_slots": [
+     {
+      "day": "금",
+      "part": "오전"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Zoe가 금요일 오전에 회의가 생겨서 Q2 통합 QA를 못 봅니다.",
+    "clarification": null,
+    "applied": {
+     "task": "Q2",
+     "windows": [
+      {
+       "start": 4,
+       "end": 4.5,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "c5_handoff",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": true
+   },
+   "ok": true,
+   "id": "c5_handoff",
+   "seconds": 22.9,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 1.0,
+    "summary": "G2 보스전 연결이 하루 더 걸려서 QA로 넘어가는 게 늦어질 것 같습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [],
+     "new_days": 2.0
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "c5_handoff",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": true
+   },
+   "ok": true,
+   "id": "c5_handoff",
+   "seconds": 25.4,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 1.0,
+    "summary": "G2 보스전 연결이 하루 더 걸려서 QA로 넘어가는 게 늦어질 것 같습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [],
+     "new_days": 2.0
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "c5_handoff",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": true
+   },
+   "ok": true,
+   "id": "c5_handoff",
+   "seconds": 26.2,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 1.0,
+    "summary": "G2 보스전 연결이 하루 더 걸려서 QA로 넘어가는 게 늦어질 것 같습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [],
+     "new_days": 2.0
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r1_task_ref",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "r1_task_ref",
+   "seconds": 19.7,
+   "error": null,
+   "kind": "change",
+   "task": "S2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S2",
+    "person": "sam",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "Sam이 수요일 오후에 S2 · 서버 배포를 못 하고 목요일 오전부터 가능하다.",
+    "clarification": null,
+    "applied": {
+     "task": "S2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r1_task_ref",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "r1_task_ref",
+   "seconds": 18.1,
+   "error": null,
+   "kind": "change",
+   "task": "S2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S2",
+    "person": "sam",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "Sam이 수요일 오후에 S2 · 서버 배포를 못 하고 목요일 오전부터 가능하다.",
+    "clarification": null,
+    "applied": {
+     "task": "S2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r1_task_ref",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "r1_task_ref",
+   "seconds": 18.8,
+   "error": null,
+   "kind": "change",
+   "task": "S2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S2",
+    "person": "sam",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "Sam이 수요일 오후에 S2 · 서버 배포를 못 하고 목요일 오전부터 가능하다.",
+    "clarification": null,
+    "applied": {
+     "task": "S2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r2_person_ref",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "r2_person_ref",
+   "seconds": 28.7,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Leo는 수요일 오후에 외부 일정이 있어 G2 업무를 수행할 수 없습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r2_person_ref",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "r2_person_ref",
+   "seconds": 23.3,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Leo는 수요일 오후에 외부 일정이 있어 G2 업무를 수행할 수 없습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r2_person_ref",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "r2_person_ref",
+   "seconds": 22.0,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": null,
+    "extra_days": null,
+    "summary": "Leo는 수요일 오후에 외부 일정이 있어 G2 업무를 수행할 수 없습니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r3_handoff_ref",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": false
+   },
+   "ok": false,
+   "id": "r3_handoff_ref",
+   "seconds": 19.0,
+   "error": null,
+   "kind": "change",
+   "task": "A1",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "G2 · 보스전 연결이 하루 늦어집니다.",
+    "clarification": null,
+    "applied": {
+     "task": "A1",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r3_handoff_ref",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": false
+   },
+   "ok": false,
+   "id": "r3_handoff_ref",
+   "seconds": 20.0,
+   "error": null,
+   "kind": "change",
+   "task": "A1",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "G2 · 보스전 연결 인계가 하루 늦어집니다.",
+    "clarification": null,
+    "applied": {
+     "task": "A1",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "r3_handoff_ref",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": false
+   },
+   "ok": false,
+   "id": "r3_handoff_ref",
+   "seconds": 18.5,
+   "error": null,
+   "kind": "change",
+   "task": "A1",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "G2 · 보스전 연결 인계가 하루 늦어집니다.",
+    "clarification": null,
+    "applied": {
+     "task": "A1",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "t1_tpl_absence",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "t1_tpl_absence",
+   "seconds": 13.0,
+   "error": null,
+   "kind": "change",
+   "task": "S2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S2",
+    "person": "sam",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "Sam 님이 수요일 오후에 S2 · 서버 배포 작업을 못 합니다.",
+    "clarification": null,
+    "applied": {
+     "task": "S2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "t1_tpl_absence",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "t1_tpl_absence",
+   "seconds": 13.5,
+   "error": null,
+   "kind": "change",
+   "task": "S2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S2",
+    "person": "sam",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "Sam 님이 수요일 오후에 S2 · 서버 배포 작업을 못 합니다.",
+    "clarification": null,
+    "applied": {
+     "task": "S2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "t1_tpl_absence",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "person": true,
+    "window": true
+   },
+   "ok": true,
+   "id": "t1_tpl_absence",
+   "seconds": 13.2,
+   "error": null,
+   "kind": "change",
+   "task": "S2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "S2",
+    "person": "sam",
+    "unavailable_slots": [
+     {
+      "day": "수",
+      "part": "오후"
+     }
+    ],
+    "available_again": {
+     "day": "목",
+     "part": "오전"
+    },
+    "extra_days": null,
+    "summary": "Sam 님이 수요일 오후에 S2 · 서버 배포 작업을 못 합니다.",
+    "clarification": null,
+    "applied": {
+     "task": "S2",
+     "windows": [
+      {
+       "start": 2.5,
+       "end": 3,
+       "reason": "보고된 부재"
+      }
+     ],
+     "new_days": null
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "t2_tpl_workload",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": false
+   },
+   "ok": false,
+   "id": "t2_tpl_workload",
+   "seconds": 21.0,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 1.0,
+    "summary": "G2 · 보스전 연결 작업이 반나절 더 걸립니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [],
+     "new_days": 2.0
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "t2_tpl_workload",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": false
+   },
+   "ok": false,
+   "id": "t2_tpl_workload",
+   "seconds": 22.6,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 1.0,
+    "summary": "G2 · 보스전 연결 작업이 반나절 더 걸립니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [],
+     "new_days": 2.0
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "t2_tpl_workload",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": true,
+    "task": true,
+    "workload": false
+   },
+   "ok": false,
+   "id": "t2_tpl_workload",
+   "seconds": 29.8,
+   "error": null,
+   "kind": "change",
+   "task": "G2",
+   "change": {
+    "kind": "change",
+    "answer": null,
+    "task_id": "G2",
+    "person": "leo",
+    "unavailable_slots": [],
+    "available_again": null,
+    "extra_days": 1.0,
+    "summary": "G2 · 보스전 연결 작업이 반나절 더 걸립니다.",
+    "clarification": null,
+    "applied": {
+     "task": "G2",
+     "windows": [],
+     "new_days": 2.0
+    }
+   },
+   "answer": "",
+   "calls": 4
+  },
+  {
+   "case": "t3_tpl_dayoff",
+   "repeat": 1,
+   "expected_kind": "change",
+   "score": {
+    "kind": false
+   },
+   "ok": false,
+   "id": "t3_tpl_dayoff",
+   "seconds": 1.8,
+   "error": null,
+   "kind": "clarify",
+   "task": null,
+   "change": {},
+   "answer": "어떤 업무가 언제 어떻게 바뀌었는지 한 문장으로 알려 주세요.",
+   "calls": 1
+  },
+  {
+   "case": "t3_tpl_dayoff",
+   "repeat": 2,
+   "expected_kind": "change",
+   "score": {
+    "kind": false
+   },
+   "ok": false,
+   "id": "t3_tpl_dayoff",
+   "seconds": 1.7,
+   "error": null,
+   "kind": "clarify",
+   "task": null,
+   "change": {},
+   "answer": "어떤 업무가 언제 어떻게 바뀌었는지 한 문장으로 알려 주세요.",
+   "calls": 1
+  },
+  {
+   "case": "t3_tpl_dayoff",
+   "repeat": 3,
+   "expected_kind": "change",
+   "score": {
+    "kind": false
+   },
+   "ok": false,
+   "id": "t3_tpl_dayoff",
+   "seconds": 1.8,
+   "error": null,
+   "kind": "clarify",
+   "task": null,
+   "change": {},
+   "answer": "어떤 업무가 언제 어떻게 바뀌었는지 한 문장으로 알려 주세요.",
+   "calls": 1
+  },
+  {
+   "case": "t4_tpl_question",
+   "repeat": 1,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "t4_tpl_question",
+   "seconds": 2.2,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "업무 A2 · 이펙트 다듬기는 목요일 오전부터 오후까지 진행됩니다. 현재로서는 목요일 오후에 완료될 것으로 예상됩니다.",
+   "calls": 1
+  },
+  {
+   "case": "t4_tpl_question",
+   "repeat": 2,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "t4_tpl_question",
+   "seconds": 2.0,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "업무 A2 · 이펙트 다듬기는 목요일 오전부터 오후까지 진행됩니다. 현재로서는 목요일 오후에 완료될 것으로 예상됩니다.",
+   "calls": 1
+  },
+  {
+   "case": "t4_tpl_question",
+   "repeat": 3,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "t4_tpl_question",
+   "seconds": 1.7,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "업무 A2 · 이펙트 다듬기는 목요일 오전부터 오후까지 진행됩니다. 현재로서는 목요일 오후에 완료될 것으로 예상됩니다.",
+   "calls": 1
+  },
+  {
+   "case": "q1_who",
+   "repeat": 1,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q1_who",
+   "seconds": 2.5,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "Q2는 Zoe가 맡고 있으며, 목요일 오후부터 금요일 오전까지 진행됩니다. 현재 Zoe는 금요일 오전에 Q2를 진행할 수 있습니다.",
+   "calls": 1
+  },
+  {
+   "case": "q1_who",
+   "repeat": 2,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q1_who",
+   "seconds": 1.8,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "Q2는 Zoe가 맡고 있으며, 목요일 오후부터 금요일 오전까지 진행됩니다. 현재 Zoe는 금요일 오전에 Q2를 진행할 수 있습니다.",
+   "calls": 1
+  },
+  {
+   "case": "q1_who",
+   "repeat": 3,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q1_who",
+   "seconds": 2.0,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "Q2는 Zoe가 맡고 있습니다. Zoe는 목요일 오후부터 금요일 오전까지 Q2 · 통합 QA 업무를 진행할 예정입니다. 다른 팀원들은 이 시간에 비어 있습니다.",
+   "calls": 1
+  },
+  {
+   "case": "q2_free_slot",
+   "repeat": 1,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q2_free_slot",
+   "seconds": 1.7,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "목요일 오후에는 Leo와 Ben이 비어 있습니다. 따라서 이 시간에 작업을 맡길 수 있는 사람이 있습니다.",
+   "calls": 1
+  },
+  {
+   "case": "q2_free_slot",
+   "repeat": 2,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q2_free_slot",
+   "seconds": 1.9,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "목요일 오후에는 Leo와 Ben이 비어 있습니다. 따라서 이 시간에 작업을 맡길 수 있는 사람은 두 분입니다.",
+   "calls": 1
+  },
+  {
+   "case": "q2_free_slot",
+   "repeat": 3,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q2_free_slot",
+   "seconds": 2.0,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "목요일 오후에는 Leo와 Ben이 비어 있습니다. 따라서 이 시간에 작업을 맡길 수 있는 사람이 있습니다.",
+   "calls": 1
+  },
+  {
+   "case": "q3_ref_question",
+   "repeat": 1,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q3_ref_question",
+   "seconds": 2.8,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "업무 B2 · 메뉴 화면은 수요일 오후부터 목요일 오전까지 진행됩니다. 현재 진행 중인 업무는 화요일 오후에 시작하여 수요일 오전까지 이어지는 B1 · 스테이지3 배치입니다. B2의 종료 시점은 목요일 오전으로 예상됩니다.",
+   "calls": 1
+  },
+  {
+   "case": "q3_ref_question",
+   "repeat": 2,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q3_ref_question",
+   "seconds": 2.3,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "업무 B2 · 메뉴 화면은 수요일 오후부터 목요일 오전까지 진행됩니다. 현재로서는 수요일 오후에 Ben이 이 업무를 맡고 있습니다. 업무의 종료 시점에 대한 정보는 제공되지 않았습니다.",
+   "calls": 1
+  },
+  {
+   "case": "q3_ref_question",
+   "repeat": 3,
+   "expected_kind": "question",
+   "score": {
+    "kind": true,
+    "answer": true
+   },
+   "ok": true,
+   "id": "q3_ref_question",
+   "seconds": 2.2,
+   "error": null,
+   "kind": "question",
+   "task": null,
+   "change": {},
+   "answer": "업무 B2 · 메뉴 화면은 수요일 오후부터 목요일 오전까지 진행됩니다. 현재로서는 수요일 오후에 Ben이 이 업무를 맡고 있습니다. 업무의 종료 시점은 명시되어 있지 않으므로, 추가적인 정보가 필요합니다.",
+   "calls": 1
+  },
+  {
+   "case": "o1_greeting",
+   "repeat": 1,
+   "expected_kind": "other",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "o1_greeting",
+   "seconds": 1.1,
+   "error": null,
+   "kind": "other",
+   "task": null,
+   "change": {},
+   "answer": "이 창에는 이번 주 일정에 생긴 변경을 적어 주세요. 보드에 대한 질문에도 답할 수 있어요.",
+   "calls": 1
+  },
+  {
+   "case": "o1_greeting",
+   "repeat": 2,
+   "expected_kind": "other",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "o1_greeting",
+   "seconds": 1.1,
+   "error": null,
+   "kind": "other",
+   "task": null,
+   "change": {},
+   "answer": "이 창에는 이번 주 일정에 생긴 변경을 적어 주세요. 보드에 대한 질문에도 답할 수 있어요.",
+   "calls": 1
+  },
+  {
+   "case": "o1_greeting",
+   "repeat": 3,
+   "expected_kind": "other",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "o1_greeting",
+   "seconds": 1.2,
+   "error": null,
+   "kind": "other",
+   "task": null,
+   "change": {},
+   "answer": "이 창에는 이번 주 일정에 생긴 변경을 적어 주세요. 보드에 대한 질문에도 답할 수 있어요.",
+   "calls": 1
+  },
+  {
+   "case": "o2_unrelated",
+   "repeat": 1,
+   "expected_kind": "other",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "o2_unrelated",
+   "seconds": 1.2,
+   "error": null,
+   "kind": "other",
+   "task": null,
+   "change": {},
+   "answer": "이 창에는 이번 주 일정에 생긴 변경을 적어 주세요. 보드에 대한 질문에도 답할 수 있어요.",
+   "calls": 1
+  },
+  {
+   "case": "o2_unrelated",
+   "repeat": 2,
+   "expected_kind": "other",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "o2_unrelated",
+   "seconds": 3.2,
+   "error": null,
+   "kind": "other",
+   "task": null,
+   "change": {},
+   "answer": "이 창에는 이번 주 일정에 생긴 변경을 적어 주세요. 보드에 대한 질문에도 답할 수 있어요.",
+   "calls": 1
+  },
+  {
+   "case": "o2_unrelated",
+   "repeat": 3,
+   "expected_kind": "other",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "o2_unrelated",
+   "seconds": 1.5,
+   "error": null,
+   "kind": "other",
+   "task": null,
+   "change": {},
+   "answer": "이 창에는 이번 주 일정에 생긴 변경을 적어 주세요. 보드에 대한 질문에도 답할 수 있어요.",
+   "calls": 1
+  },
+  {
+   "case": "u1_vague",
+   "repeat": 1,
+   "expected_kind": "clarify",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "u1_vague",
+   "seconds": 2.4,
+   "error": null,
+   "kind": "clarify",
+   "task": null,
+   "change": {},
+   "answer": "어떤 일정이 꼬였는지 구체적으로 알려주실 수 있나요?",
+   "calls": 1
+  },
+  {
+   "case": "u1_vague",
+   "repeat": 2,
+   "expected_kind": "clarify",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "u1_vague",
+   "seconds": 1.9,
+   "error": null,
+   "kind": "clarify",
+   "task": null,
+   "change": {},
+   "answer": "어떤 일정이 꼬였는지 구체적으로 알려주실 수 있나요?",
+   "calls": 1
+  },
+  {
+   "case": "u1_vague",
+   "repeat": 3,
+   "expected_kind": "clarify",
+   "score": {
+    "kind": true
+   },
+   "ok": true,
+   "id": "u1_vague",
+   "seconds": 1.8,
+   "error": null,
+   "kind": "clarify",
+   "task": null,
+   "change": {},
+   "answer": "어떤 일정이 꼬였는지 구체적으로 알려주실 수 있나요?",
+   "calls": 1
+  }
+ ]
+}

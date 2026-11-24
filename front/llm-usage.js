@@ -54,6 +54,6 @@
   document.addEventListener('click',function(e){if(!panel.hidden&&!wrap.contains(e.target)){panel.hidden=true;chip.setAttribute('aria-expanded','false');}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden){panel.hidden=true;chip.setAttribute('aria-expanded','false');chip.focus();}});
   document.addEventListener('visibilitychange',schedule);
-  document.addEventListener('pb-language',function(){if(last)render(last);});
+  document.addEventListener('pb-language',function(){if(last)render(last);else chip.textContent=t('사용량','Usage');});
   schedule();
 })();

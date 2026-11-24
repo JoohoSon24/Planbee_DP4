@@ -1,5 +1,11 @@
-default: m4_t1_rescheduling
+default: m4_g4_free
 scenarios:
+- m4_g4_free
+test_set:
+- m4_g1_qa_absence
+- m4_g2_art_slip
+- m4_g3_deploy_slot
+archived:
 - m4_t1_rescheduling
 - m4_t2_reallocation
 - m4_t3_scope_reduction

@@ -1,0 +1,29 @@
+impact:
+  broken_any:
+  - h_A1_G2
+  - h_G2_Q2
+  owner: mia
+  involved_any:
+  - leo
+  - zoe
+  not_involved:
+  - sam
+  - ben
+candidates:
+  restructure_any:
+  - G2
+  - Q2
+  unchanged:
+  - G3
+participants:
+  exclude:
+  - sam
+  - ben
+  include:
+  - mia
+  - leo
+behaviour:
+  non_prefer_acts_min: 1
+pm:
+  options_min: 1
+  options_max: 3

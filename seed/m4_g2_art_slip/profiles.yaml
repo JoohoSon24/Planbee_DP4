@@ -1,0 +1,147 @@
+# Display copy of people/notes.profile and the source task schema. Built by scripts/build_game_scenarios.py
+people:
+  mia:
+    role: 그림 중심
+    skills:
+      아트: 능숙
+      UI: 가능
+    takes: 아트, UI
+    refuses: 서버, QA, 게임플레이
+    limit: 하루 8시간 · 0.5일까지 프록시가 받음
+    wish: 이펙트 A2를 이번 데모에 직접 완성
+  leo:
+    role: 게임플레이 중심
+    skills:
+      게임플레이: 능숙
+    takes: 보스 AI, 게임플레이 연결, 데모 빌드
+    refuses: 아트, 서버, UI, 독립 QA
+    limit: 0.5일까지 프록시가 받음
+    wish: 금요일 오후 빌드 직전에는 새 변경을 받지 않기
+  sam:
+    role: 서버 중심
+    skills:
+      서버: 능숙
+      UI: 가능
+      테스트: 가능
+    takes: 서버, 저장
+    refuses: 아트, 게임플레이
+    limit: 1일까지 프록시가 받음 · 테스트는 받는 일 밖(예외로만)
+    wish: 랭킹 S3를 이번 데모 스테이징에서 보여주기
+  ben:
+    role: UI·레벨 중심
+    skills:
+      UI: 능숙
+      레벨: 능숙
+      테스트: 가능
+    takes: UI, 레벨, 스모크 QA
+    refuses: 서버, 아트, 보스 게임플레이
+    limit: 1일까지 프록시가 받음
+    wish: 스테이지3와 메뉴 화면을 직접 완성
+  zoe:
+    role: 테스트 중심
+    skills:
+      테스트: 능숙
+      UI: 가능
+    takes: 테스트
+    refuses: 서버, 아트, 게임플레이 구현
+    limit: 0.5일까지 프록시가 받음 · Q2 1일 QA는 줄일 수 없음
+    wish: 최종 회귀 전에 스모크 결과를 직접 검토
+tasks:
+  A1:
+    kind: art
+    start: 없음
+    pieces:
+    - 러프 0.5일
+    - 최종 0.5일
+    fixed: 최종 보스 그림
+    note: 러프는 화요일 오후에 전달됨
+  A2:
+    kind: art
+    start: A1 완료
+    fixed: 없음 · P1이므로 연기·제외 가능
+  G1:
+    kind: game
+    start: 없음
+    fixed: 보스 기본 동작
+  G2:
+    kind: game
+    start: A1 최종 + G1 완료
+    pieces:
+    - 임시 연결 0.5일
+    - 최종 아트 반영 0.5일
+    fixed: 최종 아트 반영과 작동 확인
+    note: 임시 연결은 최종 아트가 목요일 오전 시작 전에 올 때만
+  G3:
+    kind: game
+    start: G2 · S2 · B1 · Q2 최종 승인 완료
+    fixed: 금 16시까지 유효한 P0 빌드
+  S1:
+    kind: server
+    start: 없음
+    fixed: 저장 동작
+  S2:
+    kind: server
+    start: S1 완료
+    fixed: P0 데모 환경 정상 배포
+    pieces:
+    - 분할 금지 (PM이 허락하면 준비 0.5일 + 최종 0.5일)
+  S3:
+    kind: server
+    start: S2 완료
+    pieces:
+    - 통째 1일 이동만 가능
+    fixed: 없음 · 기본 feature flag OFF
+    note: P0 빌드와 독립
+  B1:
+    kind: level
+    start: 월요일 스테이지3 배경 완료
+    fixed: 플레이 가능한 스테이지3
+  B2:
+    kind: ui
+    start: B1 완료
+    pieces:
+    - 통째 1일 이동만 가능
+    fixed: 없음 · P0 데모 필수 아님
+  Q1:
+    kind: test
+    start: 스테이지1·2 구현 완료
+    fixed: 스테이지1·2 QA 완료
+  Q2:
+    kind: test
+    start: G2 · S2 · B1 · Q1 완료
+    pieces:
+    - 목 오후 스모크 0.5일
+    - 금 오전 최종 회귀 0.5일
+    fixed: 총 1일 QA · Zoe 최종 회귀와 서명
+    note: 스모크 담당자는 바꿀 수 있음
+handoffs:
+  h_A1_A2:
+    what: 보스 그림 최종본
+  h_A1_G2:
+    what: 보스 그림 최종본
+  h_G1_G2:
+    what: 보스 AI
+  h_S1_S2:
+    what: 저장 기능
+  h_S2_S3:
+    what: 배포된 서버
+  h_B1_B2:
+    what: 스테이지3 배치
+  h_G2_Q2:
+    what: 연결된 보스전
+  h_S2_Q2:
+    what: 배포된 서버
+  h_B1_Q2:
+    what: 스테이지3 배치
+  h_Q1_Q2:
+    what: 스테이지1·2 테스트 결과
+  h_G2_G3:
+    what: 연결된 보스전
+  h_S2_G3:
+    what: 배포된 서버
+  h_B1_G3:
+    what: 스테이지3 배치
+  h_Q2_G3:
+    what: 통합 QA 최종 승인
+  h_G3_milestone:
+    what: 데모 빌드

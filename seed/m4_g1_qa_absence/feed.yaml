@@ -1,0 +1,11 @@
+issue:
+  task: Q2
+  label: ① QA 부재 · Zoe 목요일 오후 스모크
+  now: 1.5
+  next_phase: end
+  narr: Zoe가 목요일 오후 Q2 통합 QA 스모크를 진행할 수 없대요. 스모크는 다른 적격자에게 넘겨도 되고, 금요일 오전 최종 회귀와 서명은 Zoe가 맡는대요.
+  records:
+  - who: pm
+    about: zoe
+    src: PM이 팀원 보고를 전달
+    text: Zoe가 목요일 오후 Q2 통합 QA 스모크를 진행할 수 없대요. 스모크는 다른 적격자에게 넘겨도 되고, 금요일 오전 최종 회귀와 서명은 Zoe가 맡는대요.

@@ -1,0 +1,5290 @@
+[
+  {
+    "scenario": "m4_g1_qa_absence",
+    "repeat": 1,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 22,
+    "dominated": 19,
+    "final_ids": [
+      "c_c9837b7e309f029a",
+      "c_4ae82c7d599e993f",
+      "c_8007efcc71b1244c"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 9,
+    "seconds": 25.8,
+    "generation": {
+      "attempted": 301,
+      "rejected": 201,
+      "duplicates": 78,
+      "reasons": {
+        "데드라인 위반: h_Q2_G3, h_G3_milestone": 99,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 20,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 26,
+        "변경 계획 전체 제약 위반: S2 → S3 수 저녁 → 17주차 수 저녁; S2 → Q2 목 오전 → 17주차 수 저녁; S2 → G3 금 오전 → 17주차 수 저녁; Q2 → G3 금 오전 → 17주차 화 저녁; G3 → milestone 금 저녁 → 17주차 수 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S2 · 서버 배포 · Task 완료 기한 초과; S3 · 랭킹 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S2 · 서버 배포 제출일 뒤로 밀림; S3 · 랭킹 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 2,
+        "선후 의존 일정이 수렴하지 않음": 12,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; B2 · 메뉴 화면 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S3 · 랭킹 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 스모크 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 스모크 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "전체 분담 일정 검증 실패: B2 · 메뉴 화면 · Task 완료 기한 초과; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: B2 · 메뉴 화면 · Task 완료 기한 초과; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S3 · 랭킹 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; B2 · 메뉴 화면 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6
+      },
+      "templates": 9,
+      "unauthorized_actions_removed": 1,
+      "feasible": 22,
+      "retained": 22,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "Q2",
+      "owner": "zoe",
+      "chain": [
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo"
+      ],
+      "may_help": [
+        "ben",
+        "sam"
+      ],
+      "not_involved": [
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "ben",
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 3,
+    "behaviour": {
+      "acts": {
+        "PREFER": 1,
+        "PASS": 2
+      },
+      "by_person": {
+        "ben": {
+          "PREFER": 1
+        },
+        "leo": {
+          "PASS": 1
+        },
+        "sam": {
+          "PASS": 1
+        }
+      },
+      "messages": 3,
+      "with_basis": 1,
+      "with_reply_to": 0,
+      "spoken": 1,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": 0.0,
+      "harmed_pairs": 3,
+      "preference_consistency": 0.0,
+      "preferences": 1,
+      "missed": [
+        "ben:c_c9837b",
+        "sam:c_4ae82c",
+        "sam:c_8007ef"
+      ]
+    },
+    "evidence": {
+      "valid": 3,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.25,
+      "questions": 0,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "ben",
+        "A",
+        "PREFER"
+      ],
+      [
+        "leo",
+        "A",
+        "PASS"
+      ],
+      [
+        "sam",
+        "A",
+        "PASS"
+      ]
+    ],
+    "families": [
+      [
+        "ben",
+        "zoe"
+      ],
+      [
+        "sam",
+        "zoe"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_c9837b7e309f029a",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "ben",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 1,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": 2,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "ben",
+              "action": "PREFER"
+            },
+            {
+              "who": "leo",
+              "action": "PASS"
+            },
+            {
+              "who": "sam",
+              "action": "PASS"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_4ae82c7d599e993f",
+        "title": "Task에 명시된 산출물 분담 + S3 · 랭킹 이관",
+        "work": [
+          [
+            "sam",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "defer:S3"
+        ],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 0,
+          "deferred": 1,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": []
+        }
+      },
+      {
+        "id": "c_8007efcc71b1244c",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "sam",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S3",
+            "start": 4.0
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 3
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -2,
+          "rule_rank": 3,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "zoe"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo"
+          ],
+          "may_help": [
+            "ben",
+            "sam"
+          ]
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "mia"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "candidates.families",
+        "ok": true,
+        "detail": [
+          [
+            "ben"
+          ],
+          [
+            "sam"
+          ]
+        ]
+      },
+      {
+        "check": "candidates.keep_parts.Q2",
+        "ok": true,
+        "detail": {
+          "regression": "zoe"
+        }
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": false,
+        "detail": 0
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "Q2 · 통합 QA 변경으로 깨지는 인계: Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo · 대신 맡거나 일정을 바꿀 수 있는 사람: Ben, Sam · 부르지 않음: Mia",
+        "candidate_id": null,
+        "reason_en": "Q2 · Integration QA breaks these handoffs: Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo · Could take work or move tasks: Ben, Sam · Not called: Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 22개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "22 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 3개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 19개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "3 plans that change the least go to discussion. 19 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "ben",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "안 A를 선호합니다. 목요일 오후에 Q2 스모크를 진행할 수 있어야 하며, Zoe가 금요일 오전 최종 회귀와 서명을 맡는 것이 좋습니다. 제 일정과 바람에 부합합니다.",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "COPY_SKIPPED",
+        "reason": "Zoe의 발언은 앞 발언과 같아 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "Skipping Zoe's message: it repeats another participant."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 1 · 반대 0 · 조건 0 · 질문 0 / 안 B: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 안 C: 선호 0 · 반대 0 · 조건 0 · 질문 0",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 1 · object 0 · conditions 0 · questions 0 / Plan B: prefer 0 · object 0 · conditions 0 · questions 0 / Plan C: prefer 0 · object 0 · conditions 0 · questions 0"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 3개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 3 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-14-29_512412_0dae7ba0.md"
+  },
+  {
+    "scenario": "m4_g1_qa_absence",
+    "repeat": 2,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 22,
+    "dominated": 19,
+    "final_ids": [
+      "c_c9837b7e309f029a",
+      "c_4ae82c7d599e993f",
+      "c_8007efcc71b1244c"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 8,
+    "seconds": 21.9,
+    "generation": {
+      "attempted": 274,
+      "rejected": 201,
+      "duplicates": 51,
+      "reasons": {
+        "데드라인 위반: h_Q2_G3, h_G3_milestone": 99,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 20,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 26,
+        "변경 계획 전체 제약 위반: S2 → S3 수 저녁 → 17주차 수 저녁; S2 → Q2 목 오전 → 17주차 수 저녁; S2 → G3 금 오전 → 17주차 수 저녁; Q2 → G3 금 오전 → 17주차 화 저녁; G3 → milestone 금 저녁 → 17주차 수 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S2 · 서버 배포 · Task 완료 기한 초과; S3 · 랭킹 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S2 · 서버 배포 제출일 뒤로 밀림; S3 · 랭킹 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 2,
+        "선후 의존 일정이 수렴하지 않음": 12,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; B2 · 메뉴 화면 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S3 · 랭킹 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 스모크 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 스모크 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "전체 분담 일정 검증 실패: B2 · 메뉴 화면 · Task 완료 기한 초과; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: B2 · 메뉴 화면 · Task 완료 기한 초과; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S3 · 랭킹 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; B2 · 메뉴 화면 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6
+      },
+      "templates": 8,
+      "unauthorized_actions_removed": 1,
+      "feasible": 22,
+      "retained": 22,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "Q2",
+      "owner": "zoe",
+      "chain": [
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo"
+      ],
+      "may_help": [
+        "ben",
+        "sam"
+      ],
+      "not_involved": [
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "ben",
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 3,
+    "behaviour": {
+      "acts": {
+        "PREFER": 2,
+        "PASS": 1
+      },
+      "by_person": {
+        "ben": {
+          "PREFER": 1
+        },
+        "leo": {
+          "PASS": 1
+        },
+        "zoe": {
+          "PREFER": 1
+        }
+      },
+      "messages": 3,
+      "with_basis": 2,
+      "with_reply_to": 0,
+      "spoken": 2,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": 0.0,
+      "harmed_pairs": 3,
+      "preference_consistency": 0.5,
+      "preferences": 2,
+      "missed": [
+        "ben:c_c9837b",
+        "sam:c_4ae82c",
+        "sam:c_8007ef"
+      ]
+    },
+    "evidence": {
+      "valid": 3,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.25,
+      "questions": 0,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "ben",
+        "A",
+        "PREFER"
+      ],
+      [
+        "leo",
+        "A",
+        "PASS"
+      ],
+      [
+        "zoe",
+        "A",
+        "PREFER"
+      ]
+    ],
+    "families": [
+      [
+        "ben",
+        "zoe"
+      ],
+      [
+        "sam",
+        "zoe"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_c9837b7e309f029a",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "ben",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 2,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": 4,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "ben",
+              "action": "PREFER"
+            },
+            {
+              "who": "leo",
+              "action": "PASS"
+            },
+            {
+              "who": "zoe",
+              "action": "PREFER"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_4ae82c7d599e993f",
+        "title": "Task에 명시된 산출물 분담 + S3 · 랭킹 이관",
+        "work": [
+          [
+            "sam",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "defer:S3"
+        ],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 0,
+          "deferred": 1,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": []
+        }
+      },
+      {
+        "id": "c_8007efcc71b1244c",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "sam",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S3",
+            "start": 4.0
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 3
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -2,
+          "rule_rank": 3,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "zoe"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo"
+          ],
+          "may_help": [
+            "ben",
+            "sam"
+          ]
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "mia"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "candidates.families",
+        "ok": true,
+        "detail": [
+          [
+            "ben"
+          ],
+          [
+            "sam"
+          ]
+        ]
+      },
+      {
+        "check": "candidates.keep_parts.Q2",
+        "ok": true,
+        "detail": {
+          "regression": "zoe"
+        }
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": false,
+        "detail": 0
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "Q2 · 통합 QA 변경으로 깨지는 인계: Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo · 대신 맡거나 일정을 바꿀 수 있는 사람: Ben, Sam · 부르지 않음: Mia",
+        "candidate_id": null,
+        "reason_en": "Q2 · Integration QA breaks these handoffs: Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo · Could take work or move tasks: Ben, Sam · Not called: Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 22개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "22 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 3개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 19개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "3 plans that change the least go to discussion. 19 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "ben",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "안 A를 선호합니다. 목요일 오후에 스모크 QA를 진행할 수 있어야 하며, Zoe가 금요일 오전 최종 회귀와 서명을 맡는 것이 좋습니다. 제 일정과 바람에 부합합니다.",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "COPY_SKIPPED",
+        "reason": "Sam의 발언은 앞 발언과 같아 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "Skipping Sam's message: it repeats another participant."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "안 A를 선호합니다. 목요일 오후 스모크 QA를 Ben이 맡고, 금요일 오전 최종 회귀와 서명을 제가 맡는 것이 제 일정과 바람에 부합합니다.",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 2 · 반대 0 · 조건 0 · 질문 0 / 안 B: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 안 C: 선호 0 · 반대 0 · 조건 0 · 질문 0",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 2 · object 0 · conditions 0 · questions 0 / Plan B: prefer 0 · object 0 · conditions 0 · questions 0 / Plan C: prefer 0 · object 0 · conditions 0 · questions 0"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 3개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 3 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-14-55_234403_81ee54fd.md"
+  },
+  {
+    "scenario": "m4_g1_qa_absence",
+    "repeat": 3,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 22,
+    "dominated": 19,
+    "final_ids": [
+      "c_c9837b7e309f029a",
+      "c_4ae82c7d599e993f",
+      "c_8007efcc71b1244c"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 7,
+    "seconds": 23.9,
+    "generation": {
+      "attempted": 301,
+      "rejected": 201,
+      "duplicates": 78,
+      "reasons": {
+        "데드라인 위반: h_Q2_G3, h_G3_milestone": 99,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 20,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 26,
+        "변경 계획 전체 제약 위반: S2 → S3 수 저녁 → 17주차 수 저녁; S2 → Q2 목 오전 → 17주차 수 저녁; S2 → G3 금 오전 → 17주차 수 저녁; Q2 → G3 금 오전 → 17주차 화 저녁; G3 → milestone 금 저녁 → 17주차 수 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S2 · 서버 배포 · Task 완료 기한 초과; S3 · 랭킹 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S2 · 서버 배포 제출일 뒤로 밀림; S3 · 랭킹 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 2,
+        "선후 의존 일정이 수렴하지 않음": 12,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; B2 · 메뉴 화면 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S3 · 랭킹 · Task 완료 기한 초과; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 스모크 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 스모크 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "전체 분담 일정 검증 실패: B2 · 메뉴 화면 · Task 완료 기한 초과; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "변경 계획 전체 제약 위반: B2 · 메뉴 화면 · Task 완료 기한 초과; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; S3 · 랭킹 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; B2 · 메뉴 화면 · Task 완료 기한 초과; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6
+      },
+      "templates": 9,
+      "unauthorized_actions_removed": 1,
+      "feasible": 22,
+      "retained": 22,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "Q2",
+      "owner": "zoe",
+      "chain": [
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo"
+      ],
+      "may_help": [
+        "ben",
+        "sam"
+      ],
+      "not_involved": [
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "ben",
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 3,
+    "behaviour": {
+      "acts": {
+        "PREFER": 3
+      },
+      "by_person": {
+        "ben": {
+          "PREFER": 1
+        },
+        "leo": {
+          "PREFER": 1
+        },
+        "zoe": {
+          "PREFER": 1
+        }
+      },
+      "messages": 3,
+      "with_basis": 3,
+      "with_reply_to": 0,
+      "spoken": 3,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": 0.0,
+      "harmed_pairs": 3,
+      "preference_consistency": 0.67,
+      "preferences": 3,
+      "missed": [
+        "ben:c_c9837b",
+        "sam:c_4ae82c",
+        "sam:c_8007ef"
+      ]
+    },
+    "evidence": {
+      "valid": 3,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.25,
+      "questions": 0,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "ben",
+        "A",
+        "PREFER"
+      ],
+      [
+        "leo",
+        "A",
+        "PREFER"
+      ],
+      [
+        "zoe",
+        "A",
+        "PREFER"
+      ]
+    ],
+    "families": [
+      [
+        "ben",
+        "zoe"
+      ],
+      [
+        "sam",
+        "zoe"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_c9837b7e309f029a",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "ben",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 3,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": 6,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "ben",
+              "action": "PREFER"
+            },
+            {
+              "who": "leo",
+              "action": "PREFER"
+            },
+            {
+              "who": "zoe",
+              "action": "PREFER"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_4ae82c7d599e993f",
+        "title": "Task에 명시된 산출물 분담 + S3 · 랭킹 이관",
+        "work": [
+          [
+            "sam",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "defer:S3"
+        ],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 0,
+          "deferred": 1,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": []
+        }
+      },
+      {
+        "id": "c_8007efcc71b1244c",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "sam",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S3",
+            "start": 4.0
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 3
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -2,
+          "rule_rank": 3,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "zoe"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo"
+          ],
+          "may_help": [
+            "ben",
+            "sam"
+          ]
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "mia"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "candidates.families",
+        "ok": true,
+        "detail": [
+          [
+            "ben"
+          ],
+          [
+            "sam"
+          ]
+        ]
+      },
+      {
+        "check": "candidates.keep_parts.Q2",
+        "ok": true,
+        "detail": {
+          "regression": "zoe"
+        }
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": false,
+        "detail": 0
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "Q2 · 통합 QA 변경으로 깨지는 인계: Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo · 대신 맡거나 일정을 바꿀 수 있는 사람: Ben, Sam · 부르지 않음: Mia",
+        "candidate_id": null,
+        "reason_en": "Q2 · Integration QA breaks these handoffs: Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo · Could take work or move tasks: Ben, Sam · Not called: Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 22개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "22 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 3개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 19개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "3 plans that change the least go to discussion. 19 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "ben",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "안 A를 선호합니다. 목요일 오후에 스모크 QA를 진행할 수 있어야 하며, Zoe가 금요일 오전 최종 회귀와 서명을 맡는 것이 좋습니다. 제 일정과 바람에 부합합니다.",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "안 A를 선호합니다. Zoe가 금요일 오전 최종 회귀와 서명을 맡는 것이 좋고, 목요일 오후에 스모크 QA를 진행할 수 있어야 합니다. 제 일정과 바람에 부합합니다.",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "COPY_SKIPPED",
+        "reason": "Sam의 발언은 앞 발언과 같아 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "Skipping Sam's message: it repeats another participant."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "안 A를 선호합니다. 목요일 오후 스모크 QA를 Ben이 맡고, 금요일 오전 최종 회귀와 서명을 제가 맡는 것이 제 일정과 바람에 부합합니다.",
+        "candidate_id": "c_c9837b7e309f029a",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 3 · 반대 0 · 조건 0 · 질문 0 / 안 B: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 안 C: 선호 0 · 반대 0 · 조건 0 · 질문 0",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 3 · object 0 · conditions 0 · questions 0 / Plan B: prefer 0 · object 0 · conditions 0 · questions 0 / Plan C: prefer 0 · object 0 · conditions 0 · questions 0"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 3개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 3 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-15-17_210558_8203689a.md"
+  },
+  {
+    "scenario": "m4_g2_art_slip",
+    "repeat": 1,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 12,
+    "dominated": 10,
+    "final_ids": [
+      "c_83fba8879a500c81",
+      "c_0ccc7e91ebe4feed"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 6,
+    "seconds": 25.3,
+    "generation": {
+      "attempted": 378,
+      "rejected": 288,
+      "duplicates": 78,
+      "reasons": {
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 68,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 34,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 21,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 17,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 21,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 11,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 19,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 9,
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 12,
+        "선후 의존 일정이 수렴하지 않음": 7,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 저녁; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 저녁; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; A2 · 이펙트 다듬기 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A2 · 이펙트 다듬기 · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; A2 · 이펙트 다듬기 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 22주차 월 오전; G2 → G3 금 오전 → 22주차 월 오전; Q2 → G3 금 오전 → 21주차 금 오전; G3 → milestone 금 저녁 → 21주차 금 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 14주차 수 오전; Q2 → G3 금 오전 → 14주차 화 오전; G3 → milestone 금 저녁 → 14주차 화 오전; G2 원문 산출물 목 저녁 → 14주차 수 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 14주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 15주차 월 오전; Q2 → G3 금 오전 → 14주차 금 오전; G3 → milestone 금 저녁 → 14주차 금 오전; G2 원문 산출물 목 저녁 → 15주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 14주차 금 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1
+      },
+      "templates": 16,
+      "unauthorized_actions_removed": 0,
+      "feasible": 12,
+      "retained": 12,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "A1",
+      "owner": "mia",
+      "chain": [
+        {
+          "id": "h_A1_A2",
+          "source": "A1",
+          "target": "A2",
+          "due": 3.0,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_A1_G2",
+          "source": "A1",
+          "target": "G2",
+          "due": 2.5,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_Q2",
+          "source": "G2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_G3",
+          "source": "G2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.5,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 6.0,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_A1_A2",
+        "h_A1_G2",
+        "h_G2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "sam"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "leo",
+      "mia",
+      "zoe"
+    ],
+    "shortlist": 2,
+    "behaviour": {
+      "acts": {
+        "CONDITION": 1,
+        "QUESTION": 1
+      },
+      "by_person": {
+        "leo": {
+          "CONDITION": 1
+        },
+        "zoe": {
+          "QUESTION": 1
+        }
+      },
+      "messages": 2,
+      "with_basis": 2,
+      "with_reply_to": 1,
+      "spoken": 2,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": 1.0,
+      "objections": 1,
+      "harm_recall": 0.0,
+      "harmed_pairs": 2,
+      "preference_consistency": null,
+      "preferences": 0,
+      "missed": [
+        "leo:c_83fba8",
+        "zoe:c_0ccc7e"
+      ]
+    },
+    "evidence": {
+      "valid": 2,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.33,
+      "questions": 0,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "leo",
+        "B",
+        "CONDITION"
+      ],
+      [
+        "zoe",
+        "B",
+        "QUESTION"
+      ]
+    ],
+    "families": [
+      [
+        "mia"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_0ccc7e91ebe4feed",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "restructure:Q2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 3,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 1,
+          "question": 1,
+          "answer": 0,
+          "objections": [],
+          "score": -2,
+          "rule_rank": 2,
+          "by": [
+            {
+              "who": "leo",
+              "action": "CONDITION"
+            },
+            {
+              "who": "zoe",
+              "action": "QUESTION"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_83fba8879a500c81",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "restructure:G2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_A1_A2",
+          "h_A1_G2",
+          "h_G2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "mia"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "sam"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 2
+      },
+      {
+        "check": "candidates.restructure_any.G2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.restructure_any.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 2
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "A1 · 보스 그림 변경으로 깨지는 인계: A1 → A2 (수 저녁 → 목 오전), A1 → G2 (수 오전 → 목 오전), G2 → Q2 (목 오전 → 금 오전), Q2 → G3 (금 오전 → 2주차 월 오전), G3 → milestone (금 저녁 → 2주차 월 저녁) · 영향: Leo, Zoe · 부르지 않음: Ben, Sam",
+        "candidate_id": null,
+        "reason_en": "A1 · Boss art breaks these handoffs: A1 → A2 (Wed eve → Thu AM), A1 → G2 (Wed AM → Thu AM), G2 → Q2 (Thu AM → Fri AM), Q2 → G3 (Fri AM → wk2 Mon AM), G3 → milestone (Fri eve → wk2 Mon eve) · Affected: Leo, Zoe · Not called: Ben, Sam"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 12개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "12 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 2개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 10개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "2 plans that change the least go to discussion. 10 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": "mia",
+        "response": "CONDITION",
+        "reason": "최종 아트가 수요일 오후에 전달된다고 하셨는데, 이 경우 목요일 오전 시작 전에 도착하지 않아서 G2를 임시 아트로 연결할 수 없습니다. 이 점을 어떻게 해결할 수 있을까요? 조건: 최종 아트가 목요일 오전 시작 전에 도착해야 함",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "COPY_SKIPPED",
+        "reason": "Mia의 발언은 앞 발언과 같아 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "Skipping Mia's message: it repeats another participant."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "QUESTION",
+        "reason": "Mia가 수요일 오후에 최종본을 전달한다고 했는데, 이 경우 목요일 오전에 G2를 임시 아트로 연결할 수 없게 됩니다. 이 문제를 어떻게 해결할 수 있을까요?",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "history:4"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 안 B: 선호 0 · 반대 0 · 조건 1 · 질문 1",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 0 · object 0 · conditions 0 · questions 0 / Plan B: prefer 0 · object 0 · conditions 1 · questions 1"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 2개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 2 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-15-41_202163_ae5c59bc.md"
+  },
+  {
+    "scenario": "m4_g2_art_slip",
+    "repeat": 2,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 12,
+    "dominated": 10,
+    "final_ids": [
+      "c_83fba8879a500c81",
+      "c_0ccc7e91ebe4feed"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 7,
+    "seconds": 21.6,
+    "generation": {
+      "attempted": 378,
+      "rejected": 288,
+      "duplicates": 78,
+      "reasons": {
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 35,
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 45,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 34,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 21,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 17,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 21,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 11,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 19,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 9,
+        "선후 의존 일정이 수렴하지 않음": 7,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 저녁; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 저녁; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; A2 · 이펙트 다듬기 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A2 · 이펙트 다듬기 · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; A2 · 이펙트 다듬기 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 22주차 월 오전; G2 → G3 금 오전 → 22주차 월 오전; Q2 → G3 금 오전 → 21주차 금 오전; G3 → milestone 금 저녁 → 21주차 금 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 14주차 수 오전; Q2 → G3 금 오전 → 14주차 화 오전; G3 → milestone 금 저녁 → 14주차 화 오전; G2 원문 산출물 목 저녁 → 14주차 수 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 14주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 15주차 월 오전; Q2 → G3 금 오전 → 14주차 금 오전; G3 → milestone 금 저녁 → 14주차 금 오전; G2 원문 산출물 목 저녁 → 15주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 14주차 금 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1
+      },
+      "templates": 15,
+      "unauthorized_actions_removed": 0,
+      "feasible": 12,
+      "retained": 12,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "A1",
+      "owner": "mia",
+      "chain": [
+        {
+          "id": "h_A1_A2",
+          "source": "A1",
+          "target": "A2",
+          "due": 3.0,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_A1_G2",
+          "source": "A1",
+          "target": "G2",
+          "due": 2.5,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_Q2",
+          "source": "G2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_G3",
+          "source": "G2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.5,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 6.0,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_A1_A2",
+        "h_A1_G2",
+        "h_G2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "sam"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "leo",
+      "mia",
+      "zoe"
+    ],
+    "shortlist": 2,
+    "behaviour": {
+      "acts": {
+        "QUESTION": 3,
+        "PASS": 1
+      },
+      "by_person": {
+        "leo": {
+          "QUESTION": 1,
+          "PASS": 1
+        },
+        "mia": {
+          "QUESTION": 1
+        },
+        "zoe": {
+          "QUESTION": 1
+        }
+      },
+      "messages": 4,
+      "with_basis": 3,
+      "with_reply_to": 2,
+      "spoken": 3,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 2
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": 0.0,
+      "harmed_pairs": 2,
+      "preference_consistency": null,
+      "preferences": 0,
+      "missed": [
+        "leo:c_83fba8",
+        "zoe:c_0ccc7e"
+      ]
+    },
+    "evidence": {
+      "valid": 4,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 2,
+      "echo_rate": 0.0,
+      "questions": 1,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "leo",
+        "B",
+        "PASS"
+      ],
+      [
+        "leo",
+        "B",
+        "QUESTION"
+      ],
+      [
+        "mia",
+        "B",
+        "QUESTION"
+      ],
+      [
+        "zoe",
+        "B",
+        "QUESTION"
+      ]
+    ],
+    "families": [
+      [
+        "mia"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_0ccc7e91ebe4feed",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "restructure:Q2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 3,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 3,
+          "answer": 0,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": [
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            },
+            {
+              "who": "mia",
+              "action": "QUESTION"
+            },
+            {
+              "who": "zoe",
+              "action": "QUESTION"
+            },
+            {
+              "who": "leo",
+              "action": "PASS"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_83fba8879a500c81",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "restructure:G2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_A1_A2",
+          "h_A1_G2",
+          "h_G2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "mia"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "sam"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 2
+      },
+      {
+        "check": "candidates.restructure_any.G2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.restructure_any.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 3
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "A1 · 보스 그림 변경으로 깨지는 인계: A1 → A2 (수 저녁 → 목 오전), A1 → G2 (수 오전 → 목 오전), G2 → Q2 (목 오전 → 금 오전), Q2 → G3 (금 오전 → 2주차 월 오전), G3 → milestone (금 저녁 → 2주차 월 저녁) · 영향: Leo, Zoe · 부르지 않음: Ben, Sam",
+        "candidate_id": null,
+        "reason_en": "A1 · Boss art breaks these handoffs: A1 → A2 (Wed eve → Thu AM), A1 → G2 (Wed AM → Thu AM), G2 → Q2 (Thu AM → Fri AM), Q2 → G3 (Fri AM → wk2 Mon AM), G3 → milestone (Fri eve → wk2 Mon eve) · Affected: Leo, Zoe · Not called: Ben, Sam"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 12개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "12 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 2개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 10개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "2 plans that change the least go to discussion. 10 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "QUESTION",
+        "reason": "Mia가 수요일 오전에 마무리 작업을 할 수 없다고 하니, 최종본이 수요일 오후에 전달되는 것이 G2 임시 아트 연결에 영향을 줄 것 같습니다. 최종 아트가 목요일 오전 시작 전에 도착할 수 있을까요?",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "mia",
+        "recipient": "leo",
+        "response": "QUESTION",
+        "reason": "최종본이 수요일 오후에 전달되면 G2 임시 아트 연결에 영향을 줄 것 같은데, 최종 아트가 목요일 오전 시작 전에 도착할 수 있을까요?",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "history:4"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "QUESTION",
+        "reason": "Mia가 수요일 오후에 최종본을 전달한다고 하니, G2 임시 아트 연결에 영향을 줄 것 같습니다. 최종 아트가 목요일 오전 시작 전에 도착할 수 있을까요?",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "history:5"
+        ],
+        "reply_to": 5
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "history:6"
+        ],
+        "reply_to": 6
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 안 B: 선호 0 · 반대 0 · 조건 0 · 질문 3",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 0 · object 0 · conditions 0 · questions 0 / Plan B: prefer 0 · object 0 · conditions 0 · questions 3"
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 2개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 2 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-16-06_597403_49646dae.md"
+  },
+  {
+    "scenario": "m4_g2_art_slip",
+    "repeat": 3,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 12,
+    "dominated": 10,
+    "final_ids": [
+      "c_83fba8879a500c81",
+      "c_0ccc7e91ebe4feed"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 6,
+    "seconds": 16.4,
+    "generation": {
+      "attempted": 378,
+      "rejected": 288,
+      "duplicates": 78,
+      "reasons": {
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 35,
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 45,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 34,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 21,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 17,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 21,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 11,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 19,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 9,
+        "선후 의존 일정이 수렴하지 않음": 7,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 저녁; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 저녁; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; A2 · 이펙트 다듬기 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A2 · 이펙트 다듬기 · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남": 6,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; A2 · 이펙트 다듬기 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 금 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 금 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 2주차 월 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 화 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 22주차 월 오전; G2 → G3 금 오전 → 22주차 월 오전; Q2 → G3 금 오전 → 21주차 금 오전; G3 → milestone 금 저녁 → 21주차 금 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 2,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 14주차 수 오전; Q2 → G3 금 오전 → 14주차 화 오전; G3 → milestone 금 저녁 → 14주차 화 오전; G2 원문 산출물 목 저녁 → 14주차 수 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 14주차 화 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G2 원문 산출물 목 저녁 → 금 저녁; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 저녁; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 저녁; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 저녁; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G2 원문 산출물 목 저녁 → 금 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 2주차 월 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G2 원문 산출물 목 저녁 → 2주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 2주차 월 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1,
+        "변경 계획 전체 제약 위반: A1 → G2 수 오전 → 목 오전; G2 → Q2 목 오전 → 금 오전; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 2주차 월 오전; G3 → milestone 금 저녁 → 2주차 화 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일을 넘겨 2주차 월 오전에 끝남": 1,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; A1 → G2 수 오전 → 목 오전; G2 → G3 금 오전 → 15주차 월 오전; Q2 → G3 금 오전 → 14주차 금 오전; G3 → milestone 금 저녁 → 14주차 금 오전; G2 원문 산출물 목 저녁 → 15주차 월 오전; 금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명 금 저녁 → 14주차 금 오전; G2 · 보스전 연결 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 최종 회귀·Zoe 서명 · Task 완료 기한 초과; G2 · 보스전 연결 제출일 뒤로 밀림; G3 · 데모 빌드 제출일 뒤로 밀림; Q2 · 통합 QA 제출일 뒤로 밀림; Q2 최종 회귀·Zoe 서명 제출일 뒤로 밀림": 1
+      },
+      "templates": 15,
+      "unauthorized_actions_removed": 0,
+      "feasible": 12,
+      "retained": 12,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "A1",
+      "owner": "mia",
+      "chain": [
+        {
+          "id": "h_A1_A2",
+          "source": "A1",
+          "target": "A2",
+          "due": 3.0,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_A1_G2",
+          "source": "A1",
+          "target": "G2",
+          "due": 2.5,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_Q2",
+          "source": "G2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_G3",
+          "source": "G2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.5,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 6.0,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_A1_A2",
+        "h_A1_G2",
+        "h_G2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "sam"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "leo",
+      "mia",
+      "zoe"
+    ],
+    "shortlist": 2,
+    "behaviour": {
+      "acts": {
+        "QUESTION": 1,
+        "ANSWER": 1,
+        "PASS": 1
+      },
+      "by_person": {
+        "leo": {
+          "QUESTION": 1
+        },
+        "mia": {
+          "ANSWER": 1
+        },
+        "zoe": {
+          "PASS": 1
+        }
+      },
+      "messages": 3,
+      "with_basis": 2,
+      "with_reply_to": 1,
+      "spoken": 2,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": 0.0,
+      "harmed_pairs": 2,
+      "preference_consistency": null,
+      "preferences": 0,
+      "missed": [
+        "leo:c_83fba8",
+        "zoe:c_0ccc7e"
+      ]
+    },
+    "evidence": {
+      "valid": 3,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.0,
+      "questions": 1,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "leo",
+        "B",
+        "QUESTION"
+      ],
+      [
+        "mia",
+        "B",
+        "ANSWER"
+      ],
+      [
+        "zoe",
+        "B",
+        "PASS"
+      ]
+    ],
+    "families": [
+      [
+        "mia"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_0ccc7e91ebe4feed",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "restructure:Q2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 3,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 1,
+          "answer": 1,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": [
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            },
+            {
+              "who": "mia",
+              "action": "ANSWER"
+            },
+            {
+              "who": "zoe",
+              "action": "PASS"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_83fba8879a500c81",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "restructure:G2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_A1_A2",
+          "h_A1_G2",
+          "h_G2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "mia"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "sam"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 2
+      },
+      {
+        "check": "candidates.restructure_any.G2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.restructure_any.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 2
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "A1 · 보스 그림 변경으로 깨지는 인계: A1 → A2 (수 저녁 → 목 오전), A1 → G2 (수 오전 → 목 오전), G2 → Q2 (목 오전 → 금 오전), Q2 → G3 (금 오전 → 2주차 월 오전), G3 → milestone (금 저녁 → 2주차 월 저녁) · 영향: Leo, Zoe · 부르지 않음: Ben, Sam",
+        "candidate_id": null,
+        "reason_en": "A1 · Boss art breaks these handoffs: A1 → A2 (Wed eve → Thu AM), A1 → G2 (Wed AM → Thu AM), G2 → Q2 (Thu AM → Fri AM), Q2 → G3 (Fri AM → wk2 Mon AM), G3 → milestone (Fri eve → wk2 Mon eve) · Affected: Leo, Zoe · Not called: Ben, Sam"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 12개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "12 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 2개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 10개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "2 plans that change the least go to discussion. 10 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": "mia",
+        "response": "QUESTION",
+        "reason": "Mia, 최종본이 수요일 오후에 전달된다고 하셨는데, 그럼 목요일 오전 시작 전에 최종 아트가 도착할 수 있을까요?",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "mia",
+        "recipient": "leo",
+        "response": "ANSWER",
+        "reason": "최종본은 수요일 오후에 전달될 예정입니다. 따라서 목요일 오전 시작 전에 최종 아트가 도착할 수 있습니다.",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_0ccc7e91ebe4feed",
+        "basis": [
+          "history:5"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 안 B: 선호 0 · 반대 0 · 조건 0 · 질문 1",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 0 · object 0 · conditions 0 · questions 0 / Plan B: prefer 0 · object 0 · conditions 0 · questions 1"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 2개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 2 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-16-28_282518_af1a6a11.md"
+  },
+  {
+    "scenario": "m4_g3_deploy_slot",
+    "repeat": 1,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 4,
+    "dominated": 3,
+    "final_ids": [
+      "c_0d2d965cf67155f5"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 18,
+    "seconds": 71.0,
+    "generation": {
+      "attempted": 72,
+      "rejected": 49,
+      "duplicates": 19,
+      "reasons": {
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_Q2_G3, h_G3_milestone": 32,
+        "변경 계획 전체 제약 위반: S2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 1,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 10,
+        "선후 의존 일정이 수렴하지 않음": 3,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 3
+      },
+      "templates": 7,
+      "unauthorized_actions_removed": 1,
+      "feasible": 4,
+      "retained": 4,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "S2",
+      "owner": "sam",
+      "chain": [
+        {
+          "id": "h_S2_S3",
+          "source": "S2",
+          "target": "S3",
+          "due": 3.0,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_Q2",
+          "source": "S2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_G3",
+          "source": "S2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.0,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_S2_S3",
+        "h_S2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "waiting_pm",
+      "termination": "needs_rule_relaxation",
+      "relaxation_options": [
+        {
+          "id": "R1",
+          "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+          "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+          "authorizer": "pm",
+          "feasible": 4,
+          "baseline_ok": false,
+          "example": {
+            "id": "c_0d2d965cf67155f5",
+            "title": "Task에 명시된 산출물 분담",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": [],
+          "tally": {
+            "prefer": 6,
+            "reject": 0,
+            "by": [
+              {
+                "who": "sam",
+                "action": "PREFER"
+              },
+              {
+                "who": "leo",
+                "action": "PREFER"
+              },
+              {
+                "who": "zoe",
+                "action": "PREFER"
+              },
+              {
+                "who": "sam",
+                "action": "PREFER"
+              },
+              {
+                "who": "leo",
+                "action": "PREFER"
+              },
+              {
+                "who": "zoe",
+                "action": "PREFER"
+              }
+            ]
+          }
+        },
+        {
+          "id": "R3",
+          "label": "Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청",
+          "rule": "당사자 가용 시간 변경 (PM 권한 밖 · Sam 본인 결정)",
+          "authorizer": "sam",
+          "feasible": 4,
+          "baseline_ok": true,
+          "example": {
+            "id": "c_98f10582100cf721",
+            "title": "원 업무 전체 유지·양도",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": [],
+          "tally": {
+            "prefer": 0,
+            "reject": 0,
+            "by": []
+          }
+        },
+        {
+          "id": "R2",
+          "label": "랭킹 S3를 다음 스프린트로 이관",
+          "rule": "P1 범위 이관",
+          "authorizer": "pm",
+          "feasible": 0,
+          "baseline_ok": false,
+          "example": null,
+          "remaining": [
+            "S2 → Q2 목 오전 → 목 저녁",
+            "Q2 → G3 금 오전 → 금 저녁",
+            "G3 → milestone 금 저녁 → 2주차 월 오전",
+            "G3 · 데모 빌드 · Task 완료 기한 초과"
+          ],
+          "tally": {
+            "prefer": 0,
+            "reject": 0,
+            "by": []
+          }
+        }
+      ]
+    },
+    "granted_rules": [
+      {
+        "id": "R1",
+        "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+        "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+        "authorizer": "pm",
+        "reason": "자동 시험: 정답지에 적힌 규칙을 허락"
+      }
+    ],
+    "participants": [
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 1,
+    "behaviour": {
+      "acts": {
+        "PREFER": 6,
+        "QUESTION": 1
+      },
+      "by_person": {
+        "sam": {
+          "PREFER": 2
+        },
+        "leo": {
+          "PREFER": 2,
+          "QUESTION": 1
+        },
+        "zoe": {
+          "PREFER": 2
+        }
+      },
+      "messages": 7,
+      "with_basis": 7,
+      "with_reply_to": 0,
+      "spoken": 7,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": null,
+      "harmed_pairs": 0,
+      "preference_consistency": null,
+      "preferences": 0,
+      "missed": []
+    },
+    "evidence": {
+      "valid": 7,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.67,
+      "questions": 0,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "leo",
+        "A",
+        "QUESTION"
+      ]
+    ],
+    "families": [
+      [
+        "sam"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_0d2d965cf67155f5",
+        "title": "S2 서버 배포 분할",
+        "work": [
+          [
+            "sam",
+            "서버 배포 스크립트·환경 준비 0.5일"
+          ],
+          [
+            "sam",
+            "데모 환경 최종 배포와 확인 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 1,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 1,
+          "answer": 0,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            }
+          ]
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_S2_S3",
+          "h_S2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "sam"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "mia"
+        ]
+      },
+      {
+        "check": "first_pass.termination",
+        "ok": true,
+        "detail": "needs_rule_relaxation"
+      },
+      {
+        "check": "first_pass.feasible.R1",
+        "ok": true,
+        "detail": 4
+      },
+      {
+        "check": "first_pass.feasible.R2",
+        "ok": true,
+        "detail": 0
+      },
+      {
+        "check": "first_pass.feasible.R3",
+        "ok": true,
+        "detail": 4
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 1
+      },
+      {
+        "check": "candidates.split",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 1
+      },
+      {
+        "check": "behaviour.constraint_reviews",
+        "ok": true,
+        "detail": 3
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "S2 · 서버 배포 변경으로 깨지는 인계: S2 → S3 (수 저녁 → 목 저녁), S2 → Q2 (목 오전 → 목 저녁), Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo, Zoe · 부르지 않음: Ben, Mia",
+        "candidate_id": null,
+        "reason_en": "S2 · Server deploy breaks these handoffs: S2 → S3 (Wed eve → Thu eve), S2 → Q2 (Thu AM → Thu eve), Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo, Zoe · Not called: Ben, Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPAIR_REQUEST",
+        "reason": "현재 구조로 통과한 계획이 없어요. 제약 위반을 근거로 한 번만 구조를 다시 요청합니다.",
+        "candidate_id": null,
+        "reason_en": "No plan passed with the current structures. Hive asks once more, citing the violations."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "sam",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 S2 서버 배포가 수요일 오후에 진행할 수 없기 때문에, 목요일 오전으로 부재 시간을 변경 요청합니다. 이 변경이 가능할지 확인 부탁드립니다. 또한, S2 배포 준비와 최종 배포를 각각 0.5일로 나누어 진행할 수 있도록 허용해 주실 수 있는지도 궁금합니다. 부재 시간 변경 및 S2 배포 진행 방식에 대한 승인 요청",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "zoe",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Sam이 수요일 오후에 서버 배포를 진행할 수 없다고 합니다. 대신 수요일 오전과 목요일 종일은 가능하다고 하니, 이 변경이 가능한지 확인 부탁드립니다. 또한, S2 배포 준비와 최종 배포를 각각 0.5일로 나누어 진행할 수 있도록 허용해 주실 수 있는지도 궁금합니다. 부재 시간 변경 및 S2 배포 진행 방식에 대한 승인 요청",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "leo",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Sam이 수요일 오후에 서버 배포를 진행할 수 없다고 합니다. 대신 수요일 오전과 목요일 종일은 가능하다고 하니, 이 변경이 가능한지 확인 부탁드립니다. 또한, S2 배포 준비와 최종 배포를 각각 0.5일로 나누어 진행할 수 있도록 허용해 주실 수 있는지도 궁금합니다. 부재 시간 변경 및 S2 배포 진행 방식에 대한 승인 요청입니다. 부재 시간 변경 및 S2 배포 진행 방식에 대한 승인 요청",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "RULE_OPTIONS",
+        "reason": "규칙 안에서는 마감을 지키는 계획이 없어요. 풀 수 있는 규칙마다 다시 계산했어요 — R1 S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용: 계획 4개 (PM 결정) / R3 Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청: 계획 4개 (Sam 결정) / R2 랭킹 S3를 다음 스프린트로 이관: 계획 0개 (PM 결정)",
+        "candidate_id": null,
+        "reason_en": "No plan meets the deadline inside the rules. Hive recomputed each rule that could be relaxed — R1 Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM: 4 plans (PM decides) / R3 Ask Sam to move his absence from Wed PM to Thu AM: 4 plans (Sam decides) / R2 Defer leaderboard S3 to the next sprint: 0 plans (PM decides)"
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있도록 허용하며, 4개의 계획이 가능합니다. 이는 S3 랭킹을 이번 데모에서 보여주고 싶다는 제 바람과도 일치합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있도록 허용하며, 4개의 계획이 가능합니다. 이는 S3 랭킹을 이번 데모에서 보여주고 싶다는 제 바람과도 일치합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있도록 허용하며, 4개의 계획이 가능합니다. 이는 S3 랭킹을 이번 데모에서 보여주고 싶다는 제 바람과도 일치합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있도록 허용하며, 4개의 계획이 가능합니다. 이는 S3 랭킹을 이번 데모에서 보여주고 싶다는 제 바람과도 일치합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있도록 허용하며, 4개의 계획이 가능합니다. 이는 S3 랭킹을 이번 데모에서 보여주고 싶다는 제 바람과도 일치합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있도록 허용하며, 4개의 계획이 가능합니다. 이는 S3 랭킹을 이번 데모에서 보여주고 싶다는 제 바람과도 일치합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "pm",
+        "recipient": null,
+        "response": "RULE_GRANTED",
+        "reason": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용 — 이 규칙을 허락합니다. 자동 시험: 정답지에 적힌 규칙을 허락",
+        "candidate_id": null,
+        "reason_en": "Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM — I allow this rule. 자동 시험: 정답지에 적힌 규칙을 허락"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 4개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "4 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 1개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 3개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "1 plans that change the least go to discussion. 3 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "QUESTION",
+        "reason": "현재 Sam이 수요일 오후에 서버 배포를 진행할 수 없다고 합니다. 대신 수요일 오전과 목요일 종일은 가능하다고 하니, 이 변경이 가능한지 확인 부탁드립니다. 또한, S2 배포 준비와 최종 배포를 각각 0.5일로 나누어 진행할 수 있도록 허용해 주실 수 있는지도 궁금합니다.",
+        "candidate_id": "c_0d2d965cf67155f5",
+        "basis": [
+          "history:5"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "COPY_SKIPPED",
+        "reason": "Sam의 발언은 앞 발언과 같아 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "Skipping Sam's message: it repeats another participant."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 0 · 반대 0 · 조건 0 · 질문 1",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 0 · object 0 · conditions 0 · questions 1"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 1개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 1 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-16-44_669073_e3dcb002.md"
+  },
+  {
+    "scenario": "m4_g3_deploy_slot",
+    "repeat": 2,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 4,
+    "dominated": 3,
+    "final_ids": [
+      "c_0d2d965cf67155f5"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 18,
+    "seconds": 69.2,
+    "generation": {
+      "attempted": 44,
+      "rejected": 35,
+      "duplicates": 5,
+      "reasons": {
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_Q2_G3, h_G3_milestone": 24,
+        "변경 계획 전체 제약 위반: S2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 1,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "선후 의존 일정이 수렴하지 않음": 3,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 3
+      },
+      "templates": 6,
+      "unauthorized_actions_removed": 0,
+      "feasible": 4,
+      "retained": 4,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "S2",
+      "owner": "sam",
+      "chain": [
+        {
+          "id": "h_S2_S3",
+          "source": "S2",
+          "target": "S3",
+          "due": 3.0,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_Q2",
+          "source": "S2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_G3",
+          "source": "S2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.0,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_S2_S3",
+        "h_S2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "waiting_pm",
+      "termination": "needs_rule_relaxation",
+      "relaxation_options": [
+        {
+          "id": "R1",
+          "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+          "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+          "authorizer": "pm",
+          "feasible": 4,
+          "baseline_ok": false,
+          "example": {
+            "id": "c_0d2d965cf67155f5",
+            "title": "Task에 명시된 산출물 분담",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": [],
+          "tally": {
+            "prefer": 6,
+            "reject": 0,
+            "by": [
+              {
+                "who": "sam",
+                "action": "PREFER"
+              },
+              {
+                "who": "leo",
+                "action": "PREFER"
+              },
+              {
+                "who": "zoe",
+                "action": "PREFER"
+              },
+              {
+                "who": "sam",
+                "action": "PREFER"
+              },
+              {
+                "who": "leo",
+                "action": "PREFER"
+              },
+              {
+                "who": "zoe",
+                "action": "PREFER"
+              }
+            ]
+          }
+        },
+        {
+          "id": "R3",
+          "label": "Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청",
+          "rule": "당사자 가용 시간 변경 (PM 권한 밖 · Sam 본인 결정)",
+          "authorizer": "sam",
+          "feasible": 4,
+          "baseline_ok": true,
+          "example": {
+            "id": "c_98f10582100cf721",
+            "title": "원 업무 전체 유지·양도",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": [],
+          "tally": {
+            "prefer": 0,
+            "reject": 0,
+            "by": []
+          }
+        },
+        {
+          "id": "R2",
+          "label": "랭킹 S3를 다음 스프린트로 이관",
+          "rule": "P1 범위 이관",
+          "authorizer": "pm",
+          "feasible": 0,
+          "baseline_ok": false,
+          "example": null,
+          "remaining": [
+            "S2 → Q2 목 오전 → 목 저녁",
+            "Q2 → G3 금 오전 → 금 저녁",
+            "G3 → milestone 금 저녁 → 2주차 월 오전",
+            "G3 · 데모 빌드 · Task 완료 기한 초과"
+          ],
+          "tally": {
+            "prefer": 0,
+            "reject": 0,
+            "by": []
+          }
+        }
+      ]
+    },
+    "granted_rules": [
+      {
+        "id": "R1",
+        "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+        "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+        "authorizer": "pm",
+        "reason": "자동 시험: 정답지에 적힌 규칙을 허락"
+      }
+    ],
+    "participants": [
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 1,
+    "behaviour": {
+      "acts": {
+        "PREFER": 6,
+        "PASS": 2
+      },
+      "by_person": {
+        "sam": {
+          "PREFER": 2,
+          "PASS": 1
+        },
+        "leo": {
+          "PREFER": 2,
+          "PASS": 1
+        },
+        "zoe": {
+          "PREFER": 2
+        }
+      },
+      "messages": 8,
+      "with_basis": 6,
+      "with_reply_to": 0,
+      "spoken": 6,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": null,
+      "harmed_pairs": 0,
+      "preference_consistency": null,
+      "preferences": 0,
+      "missed": []
+    },
+    "evidence": {
+      "valid": 8,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.33,
+      "questions": 0,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "leo",
+        "A",
+        "PASS"
+      ],
+      [
+        "sam",
+        "A",
+        "PASS"
+      ]
+    ],
+    "families": [
+      [
+        "sam"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_0d2d965cf67155f5",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "sam",
+            "서버 배포 스크립트·환경 준비 0.5일"
+          ],
+          [
+            "sam",
+            "데모 환경 최종 배포와 확인 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 1,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "leo",
+              "action": "PASS"
+            },
+            {
+              "who": "sam",
+              "action": "PASS"
+            }
+          ]
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_S2_S3",
+          "h_S2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "sam"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "mia"
+        ]
+      },
+      {
+        "check": "first_pass.termination",
+        "ok": true,
+        "detail": "needs_rule_relaxation"
+      },
+      {
+        "check": "first_pass.feasible.R1",
+        "ok": true,
+        "detail": 4
+      },
+      {
+        "check": "first_pass.feasible.R2",
+        "ok": true,
+        "detail": 0
+      },
+      {
+        "check": "first_pass.feasible.R3",
+        "ok": true,
+        "detail": 4
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 1
+      },
+      {
+        "check": "candidates.split",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": false,
+        "detail": 0
+      },
+      {
+        "check": "behaviour.constraint_reviews",
+        "ok": true,
+        "detail": 3
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "S2 · 서버 배포 변경으로 깨지는 인계: S2 → S3 (수 저녁 → 목 저녁), S2 → Q2 (목 오전 → 목 저녁), Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo, Zoe · 부르지 않음: Ben, Mia",
+        "candidate_id": null,
+        "reason_en": "S2 · Server deploy breaks these handoffs: S2 → S3 (Wed eve → Thu eve), S2 → Q2 (Thu AM → Thu eve), Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo, Zoe · Not called: Ben, Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPAIR_REQUEST",
+        "reason": "현재 구조로 통과한 계획이 없어요. 제약 위반을 근거로 한 번만 구조를 다시 요청합니다.",
+        "candidate_id": null,
+        "reason_en": "No plan passed with the current structures. Hive asks once more, citing the violations."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "sam",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 S2 서버 배포가 수요일 오후에 진행할 수 없기 때문에, 목요일 오전으로 부재 시간을 변경 요청합니다. 이 변경이 가능할지 확인 부탁드립니다. 또한, 랭킹 S3를 이번 데모에서 보여주고 싶습니다. 이와 관련하여 어떤 조치를 취할 수 있을지 논의하고 싶습니다. 부재 시간 변경 승인 및 랭킹 S3 관련 조치 논의",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "zoe",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Sam이 수요일 오후에 서버 배포를 진행할 수 없다고 합니다. 대신 수요일 오전과 목요일 종일 일할 수 있다고 하니, 이 변경이 가능할지 확인 부탁드립니다. 또한, 랭킹 S3를 이번 데모에서 보여주고 싶다고 하니, 이와 관련하여 어떤 조치를 취할 수 있을지 논의하고 싶습니다. 부재 시간 변경 승인 및 랭킹 S3 관련 조치 논의",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "leo",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Sam이 수요일 오후에 서버 배포를 진행할 수 없다고 합니다. 대신 수요일 오전과 목요일 종일 일할 수 있다고 하니, 이 변경이 가능할지 확인 부탁드립니다. 또한, 랭킹 S3를 이번 데모에서 보여주고 싶다고 하니, 이와 관련하여 어떤 조치를 취할 수 있을지 논의하고 싶습니다. 부재 시간 변경 승인 및 랭킹 S3 관련 조치 논의 부재 시간 변경 승인 및 랭킹 S3 관련 조치 논의",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "RULE_OPTIONS",
+        "reason": "규칙 안에서는 마감을 지키는 계획이 없어요. 풀 수 있는 규칙마다 다시 계산했어요 — R1 S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용: 계획 4개 (PM 결정) / R3 Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청: 계획 4개 (Sam 결정) / R2 랭킹 S3를 다음 스프린트로 이관: 계획 0개 (PM 결정)",
+        "candidate_id": null,
+        "reason_en": "No plan meets the deadline inside the rules. Hive recomputed each rule that could be relaxed — R1 Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM: 4 plans (PM decides) / R3 Ask Sam to move his absence from Wed PM to Thu AM: 4 plans (Sam decides) / R2 Defer leaderboard S3 to the next sprint: 0 plans (PM decides)"
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 서버 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있게 해주며, 이는 제 일정과 바람에 부합합니다. R3 규칙도 가능하지만, 제 부재 시간을 변경하는 것은 제 업무에 직접적인 영향을 미치므로 R1이 더 적합합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 서버 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있게 해주며, 이는 제 일정과 바람에 부합합니다. R3 규칙도 가능하지만, 제 부재 시간을 변경하는 것은 제 업무에 직접적인 영향을 미치므로 R1이 더 적합합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 서버 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있게 해주며, 이는 제 일정과 바람에 부합합니다. R3 규칙도 가능하지만, 제 부재 시간을 변경하는 것은 제 업무에 직접적인 영향을 미치므로 R1이 더 적합합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 서버 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있게 해주며, 이는 제 일정과 바람에 부합합니다. R3 규칙도 가능하지만, 제 부재 시간을 변경하는 것은 제 업무에 직접적인 영향을 미치므로 R1이 더 적합합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 서버 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있게 해주며, 이는 제 일정과 바람에 부합합니다. R3 규칙도 가능하지만, 제 부재 시간을 변경하는 것은 제 업무에 직접적인 영향을 미치므로 R1이 더 적합합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 S2 서버 배포를 수요일 오전과 목요일 오전으로 나누어 진행할 수 있게 해주며, 이는 제 일정과 바람에 부합합니다. R3 규칙도 가능하지만, 제 부재 시간을 변경하는 것은 제 업무에 직접적인 영향을 미치므로 R1이 더 적합합니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "pm",
+        "recipient": null,
+        "response": "RULE_GRANTED",
+        "reason": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용 — 이 규칙을 허락합니다. 자동 시험: 정답지에 적힌 규칙을 허락",
+        "candidate_id": null,
+        "reason_en": "Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM — I allow this rule. 자동 시험: 정답지에 적힌 규칙을 허락"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "TEMPLATE_DROPPED",
+        "reason": "형식이 맞지 않는 계획 구조 1개는 제외하고, 나머지 2개와 Task에 명시된 기본 구조로 후보를 만듭니다.",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 4개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "4 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 1개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 3개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "1 plans that change the least go to discussion. 3 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SPEECH_REPAIR",
+        "reason": "발언이 토론 후보 목록에 없는 후보를 가리켜, 정확한 후보 ID로 한 번만 다시 요청합니다.",
+        "candidate_id": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_0d2d965cf67155f5",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PASS",
+        "reason": "",
+        "candidate_id": "c_0d2d965cf67155f5",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 0 · 반대 0 · 조건 0 · 질문 0",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 0 · object 0 · conditions 0 · questions 0"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 1개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 1 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-17-55_765651_3484aceb.md"
+  },
+  {
+    "scenario": "m4_g3_deploy_slot",
+    "repeat": 3,
+    "llm": "live",
+    "language": "ko",
+    "condition": "llm",
+    "pool": 4,
+    "dominated": 3,
+    "final_ids": [
+      "c_0d2d965cf67155f5"
+    ],
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 18,
+    "seconds": 65.7,
+    "generation": {
+      "attempted": 58,
+      "rejected": 35,
+      "duplicates": 19,
+      "reasons": {
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_Q2_G3, h_G3_milestone": 24,
+        "변경 계획 전체 제약 위반: S2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 1,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "선후 의존 일정이 수렴하지 않음": 3,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 3
+      },
+      "templates": 7,
+      "unauthorized_actions_removed": 1,
+      "feasible": 4,
+      "retained": 4,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "S2",
+      "owner": "sam",
+      "chain": [
+        {
+          "id": "h_S2_S3",
+          "source": "S2",
+          "target": "S3",
+          "due": 3.0,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_Q2",
+          "source": "S2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_G3",
+          "source": "S2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.0,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_S2_S3",
+        "h_S2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "waiting_pm",
+      "termination": "needs_rule_relaxation",
+      "relaxation_options": [
+        {
+          "id": "R1",
+          "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+          "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+          "authorizer": "pm",
+          "feasible": 4,
+          "baseline_ok": false,
+          "example": {
+            "id": "c_0d2d965cf67155f5",
+            "title": "Task에 명시된 산출물 분담",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": [],
+          "tally": {
+            "prefer": 6,
+            "reject": 0,
+            "by": [
+              {
+                "who": "sam",
+                "action": "PREFER"
+              },
+              {
+                "who": "leo",
+                "action": "PREFER"
+              },
+              {
+                "who": "zoe",
+                "action": "PREFER"
+              },
+              {
+                "who": "sam",
+                "action": "PREFER"
+              },
+              {
+                "who": "leo",
+                "action": "PREFER"
+              },
+              {
+                "who": "zoe",
+                "action": "PREFER"
+              }
+            ]
+          }
+        },
+        {
+          "id": "R3",
+          "label": "Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청",
+          "rule": "당사자 가용 시간 변경 (PM 권한 밖 · Sam 본인 결정)",
+          "authorizer": "sam",
+          "feasible": 4,
+          "baseline_ok": true,
+          "example": {
+            "id": "c_98f10582100cf721",
+            "title": "원 업무 전체 유지·양도",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": [],
+          "tally": {
+            "prefer": 0,
+            "reject": 0,
+            "by": []
+          }
+        },
+        {
+          "id": "R2",
+          "label": "랭킹 S3를 다음 스프린트로 이관",
+          "rule": "P1 범위 이관",
+          "authorizer": "pm",
+          "feasible": 0,
+          "baseline_ok": false,
+          "example": null,
+          "remaining": [
+            "S2 → Q2 목 오전 → 목 저녁",
+            "Q2 → G3 금 오전 → 금 저녁",
+            "G3 → milestone 금 저녁 → 2주차 월 오전",
+            "G3 · 데모 빌드 · Task 완료 기한 초과"
+          ],
+          "tally": {
+            "prefer": 0,
+            "reject": 0,
+            "by": []
+          }
+        }
+      ]
+    },
+    "granted_rules": [
+      {
+        "id": "R1",
+        "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+        "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+        "authorizer": "pm",
+        "reason": "자동 시험: 정답지에 적힌 규칙을 허락"
+      }
+    ],
+    "participants": [
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 1,
+    "behaviour": {
+      "acts": {
+        "PREFER": 6,
+        "QUESTION": 1,
+        "ANSWER": 1
+      },
+      "by_person": {
+        "sam": {
+          "PREFER": 2,
+          "ANSWER": 1
+        },
+        "leo": {
+          "PREFER": 2,
+          "QUESTION": 1
+        },
+        "zoe": {
+          "PREFER": 2
+        }
+      },
+      "messages": 8,
+      "with_basis": 8,
+      "with_reply_to": 2,
+      "spoken": 8,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 1
+    },
+    "fidelity": {
+      "objection_precision": null,
+      "objections": 0,
+      "harm_recall": null,
+      "harmed_pairs": 0,
+      "preference_consistency": null,
+      "preferences": 0,
+      "missed": []
+    },
+    "evidence": {
+      "valid": 8,
+      "invalid": 0,
+      "rate": 1.0,
+      "invalid_refs": []
+    },
+    "live": {
+      "rounds": 1,
+      "echo_rate": 0.33,
+      "questions": 1,
+      "open_questions": 0,
+      "failed": false
+    },
+    "pattern": [
+      [
+        "leo",
+        "A",
+        "QUESTION"
+      ],
+      [
+        "sam",
+        "A",
+        "ANSWER"
+      ]
+    ],
+    "families": [
+      [
+        "sam"
+      ]
+    ],
+    "options": [
+      {
+        "id": "c_0d2d965cf67155f5",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "sam",
+            "서버 배포 스크립트·환경 준비 0.5일"
+          ],
+          [
+            "sam",
+            "데모 환경 최종 배포와 확인 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 1,
+          "max_load": 3.5,
+          "dominated_by": null,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 1,
+          "answer": 1,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            },
+            {
+              "who": "sam",
+              "action": "ANSWER"
+            }
+          ]
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_S2_S3",
+          "h_S2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "sam"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "mia"
+        ]
+      },
+      {
+        "check": "first_pass.termination",
+        "ok": true,
+        "detail": "needs_rule_relaxation"
+      },
+      {
+        "check": "first_pass.feasible.R1",
+        "ok": true,
+        "detail": 4
+      },
+      {
+        "check": "first_pass.feasible.R2",
+        "ok": true,
+        "detail": 0
+      },
+      {
+        "check": "first_pass.feasible.R3",
+        "ok": true,
+        "detail": 4
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 1
+      },
+      {
+        "check": "candidates.split",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 2
+      },
+      {
+        "check": "behaviour.constraint_reviews",
+        "ok": true,
+        "detail": 3
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "보고를 받았어요.",
+        "candidate_id": null,
+        "reason_en": "Report received."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "S2 · 서버 배포 변경으로 깨지는 인계: S2 → S3 (수 저녁 → 목 저녁), S2 → Q2 (목 오전 → 목 저녁), Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo, Zoe · 부르지 않음: Ben, Mia",
+        "candidate_id": null,
+        "reason_en": "S2 · Server deploy breaks these handoffs: S2 → S3 (Wed eve → Thu eve), S2 → Q2 (Thu AM → Thu eve), Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo, Zoe · Not called: Ben, Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPAIR_REQUEST",
+        "reason": "현재 구조로 통과한 계획이 없어요. 제약 위반을 근거로 한 번만 구조를 다시 요청합니다.",
+        "candidate_id": null,
+        "reason_en": "No plan passed with the current structures. Hive asks once more, citing the violations."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "sam",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 S2 서버 배포가 수요일 오후에 진행할 수 없기 때문에, 목요일 오전으로 부재 시간을 변경 요청합니다. 이 변경이 가능할지 확인 부탁드립니다. 또한, 랭킹 S3를 이번 데모에서 보여주고 싶으니, 이 일정이 지켜질 수 있도록 조정해 주시면 감사하겠습니다. 부재 시간 변경 승인 및 랭킹 S3 일정 조정 여부",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "zoe",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Sam이 수요일 오후에 서버 배포를 진행할 수 없다고 합니다. 대신 수요일 오전과 목요일 종일은 가능하다고 하니, 이 일정 변경이 가능한지 확인 부탁드립니다. 또한, 랭킹 S3의 일정 조정 여부도 함께 검토해 주시면 감사하겠습니다. Sam의 부재 시간 변경 승인 및 랭킹 S3 일정 조정 여부",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "leo",
+        "recipient": null,
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 Sam이 수요일 오후에 서버 배포를 진행할 수 없다고 합니다. 대신 수요일 오전과 목요일 종일은 가능하다고 하니, 이 일정 변경이 가능한지 확인 부탁드립니다. 또한, 랭킹 S3의 일정 조정 여부도 함께 검토해 주시면 감사하겠습니다. Sam의 부재 시간 변경 승인 및 랭킹 S3 일정 조정 여부",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "RULE_OPTIONS",
+        "reason": "규칙 안에서는 마감을 지키는 계획이 없어요. 풀 수 있는 규칙마다 다시 계산했어요 — R1 S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용: 계획 4개 (PM 결정) / R3 Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청: 계획 4개 (Sam 결정) / R2 랭킹 S3를 다음 스프린트로 이관: 계획 0개 (PM 결정)",
+        "candidate_id": null,
+        "reason_en": "No plan meets the deadline inside the rules. Hive recomputed each rule that could be relaxed — R1 Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM: 4 plans (PM decides) / R3 Ask Sam to move his absence from Wed PM to Thu AM: 4 plans (Sam decides) / R2 Defer leaderboard S3 to the next sprint: 0 plans (PM decides)"
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 Sam이 수요일 오전에 S2 배포 준비를 하고 목요일 오전에 최종 배포를 진행할 수 있도록 허용하여, 랭킹 S3를 이번 데모에서 보여주고 싶다는 바람을 충족할 수 있습니다. R3 규칙도 가능하지만, R1이 더 직접적으로 랭킹 S3 일정에 도움이 됩니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 Sam이 수요일 오전에 S2 배포 준비를 하고 목요일 오전에 최종 배포를 진행할 수 있도록 허용하여, 랭킹 S3를 이번 데모에서 보여주고 싶다는 바람을 충족할 수 있습니다. R3 규칙도 가능하지만, R1이 더 직접적으로 랭킹 S3 일정에 도움이 됩니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "rule_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 Sam이 수요일 오전에 S2 배포 준비를 하고 목요일 오전에 최종 배포를 진행할 수 있도록 허용하여, 랭킹 S3를 이번 데모에서 보여주고 싶다는 바람을 충족할 수 있습니다. R3 규칙도 가능하지만, R1이 더 직접적으로 랭킹 S3 일정에 도움이 됩니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 Sam이 수요일 오전에 S2 배포 준비를 하고 목요일 오전에 최종 배포를 진행할 수 있도록 허용하여, 랭킹 S3를 이번 데모에서 보여주고 싶다는 바람을 충족할 수 있습니다. R3 규칙도 가능하지만, R1이 더 직접적으로 랭킹 S3 일정에 도움이 됩니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 Sam이 수요일 오전에 S2 배포 준비를 하고 목요일 오전에 최종 배포를 진행할 수 있도록 허용하여, 랭킹 S3를 이번 데모에서 보여주고 싶다는 바람을 충족할 수 있습니다. R3 규칙도 가능하지만, R1이 더 직접적으로 랭킹 S3 일정에 도움이 됩니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "rule_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "PREFER",
+        "reason": "R1 규칙을 선택합니다. 이 규칙은 Sam이 수요일 오전에 S2 배포 준비를 하고 목요일 오전에 최종 배포를 진행할 수 있도록 허용하여, 랭킹 S3를 이번 데모에서 보여주고 싶다는 바람을 충족할 수 있습니다. R3 규칙도 가능하지만, R1이 더 직접적으로 랭킹 S3 일정에 도움이 됩니다.",
+        "candidate_id": "R1",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "pm",
+        "recipient": null,
+        "response": "RULE_GRANTED",
+        "reason": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용 — 이 규칙을 허락합니다. 자동 시험: 정답지에 적힌 규칙을 허락",
+        "candidate_id": null,
+        "reason_en": "Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM — I allow this rule. 자동 시험: 정답지에 적힌 규칙을 허락"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "마감을 지키는 계획 4개를 찾았어요.",
+        "candidate_id": null,
+        "reason_en": "4 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "바뀌는 일이 적은 순으로 1개를 토론에 올려요. 같은 배분에 불필요한 이동만 더한 3개는 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "1 plans that change the least go to discussion. 3 plans that only add needless moves to the same split were left out."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": "sam",
+        "response": "QUESTION",
+        "reason": "Sam, 수요일 오전에 S2 배포 준비를 진행할 수 있다고 하셨는데, 목요일 오전에 최종 배포를 진행하는 것이 가능하신가요? 이 일정이 랭킹 S3의 데모에 영향을 줄 수 있어서 확인이 필요합니다.",
+        "candidate_id": "c_0d2d965cf67155f5",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 3
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "sam",
+        "recipient": "leo",
+        "response": "ANSWER",
+        "reason": "네, 목요일 오전에 최종 배포를 진행하는 것이 가능합니다. 수요일 오전에 S2 배포 준비를 마친 후, 목요일 오전에 최종 배포를 진행할 수 있습니다. 이 일정이 랭킹 S3의 데모에 영향을 주지 않도록 하겠습니다.",
+        "candidate_id": "c_0d2d965cf67155f5",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 16
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "COPY_SKIPPED",
+        "reason": "Zoe의 발언은 앞 발언과 같아 뺐어요.",
+        "candidate_id": null,
+        "reason_en": "Skipping Zoe's message: it repeats another participant."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "남은 질문이 없어 토론을 마칩니다.",
+        "candidate_id": null,
+        "reason_en": "No open questions remain; the discussion ends."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 안 A: 선호 0 · 반대 0 · 조건 0 · 질문 1",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan A: prefer 0 · object 0 · conditions 0 · questions 1"
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "계획 1개 중에서 골라 주세요.",
+        "candidate_id": null,
+        "reason_en": "Choose one of 1 plans."
+      }
+    ],
+    "transcript_file": "live/2026-11-25_02-19-05_055315_0248081a.md"
+  }
+]

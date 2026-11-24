@@ -1,0 +1,1863 @@
+[
+  {
+    "scenario": "m4_g1_qa_absence",
+    "repeat": 1,
+    "llm": "live",
+    "language": "ko",
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 14,
+    "seconds": 38.2,
+    "generation": {
+      "attempted": 189,
+      "rejected": 118,
+      "duplicates": 64,
+      "reasons": {
+        "데드라인 위반: h_Q2_G3, h_G3_milestone": 99,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 4,
+        "전체 분담 일정 검증 실패: B2 · 메뉴 화면 · Task 완료 기한 초과; B2 · 메뉴 화면 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "선후 의존 일정이 수렴하지 않음": 6,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6
+      },
+      "templates": 5,
+      "unauthorized_actions_removed": 2,
+      "feasible": 7,
+      "retained": 7,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "Q2",
+      "owner": "zoe",
+      "chain": [
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo"
+      ],
+      "may_help": [
+        "ben",
+        "sam"
+      ],
+      "not_involved": [
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "ben",
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 6,
+    "behaviour": {
+      "acts": {
+        "REJECT": 4
+      },
+      "by_person": {
+        "ben": {
+          "REJECT": 1
+        },
+        "leo": {
+          "REJECT": 1
+        },
+        "sam": {
+          "REJECT": 1
+        },
+        "zoe": {
+          "REJECT": 1
+        }
+      },
+      "messages": 4,
+      "with_basis": 4,
+      "with_reply_to": 2,
+      "spoken": 4,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 3
+    },
+    "options": [
+      {
+        "id": "c_d31c1b869a999fc0",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "sam",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S3",
+            "start": 4.0
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 3.0,
+          "objective_rank": 3
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -2,
+          "rule_rank": 3,
+          "by": []
+        }
+      },
+      {
+        "id": "c_acc8aef678321f35",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "ben",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "B2",
+            "start": 4.0
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 2.5,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": []
+        }
+      },
+      {
+        "id": "c_2eae997ba1dfb255",
+        "title": "Task에 명시된 산출물 분담",
+        "work": [
+          [
+            "ben",
+            "목요일 오후 통합 스모크 0.5일: G2·S2·B1·Q1 결과 확인"
+          ],
+          [
+            "zoe",
+            "금요일 오전 최종 회귀 0.5일 및 Zoe 최종 서명"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S3",
+            "start": 4.0
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 1,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 3,
+          "max_load": 2.5,
+          "objective_rank": 4
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -3,
+          "rule_rank": 4,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "zoe"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo"
+          ],
+          "may_help": [
+            "ben",
+            "sam"
+          ]
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "mia"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "candidates.families",
+        "ok": true,
+        "detail": [
+          [
+            "ben"
+          ],
+          [
+            "sam"
+          ]
+        ]
+      },
+      {
+        "check": "candidates.keep_parts.Q2",
+        "ok": true,
+        "detail": {
+          "regression": "zoe"
+        }
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "ben",
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 4
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+        "candidate_id": null,
+        "reason_en": "Issue received. Hive first builds new milestone plans that fit the deadline."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "Q2 · 통합 QA 변경으로 깨지는 인계: Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo · 대신 맡거나 일정을 바꿀 수 있는 사람: Ben, Sam · 부르지 않음: Mia",
+        "candidate_id": null,
+        "reason_en": "Q2 · Integration QA breaks these handoffs: Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo · Could take work or move tasks: Ben, Sam · Not called: Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "일정 검증을 통과한 새 milestone 계획 7개를 준비했어요. 규칙 기준으로 정렬해 관련된 사람들과 토론합니다.",
+        "candidate_id": null,
+        "reason_en": "7 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "규칙 기준(다른 사람에게 넘기는 일 → 다른 업무 이동 → 이관 → 바뀌는 사람 수 → 최대 부하)으로 6개를 골라 토론에 올려요.",
+        "candidate_id": null,
+        "reason_en": "Ordered by the fixed rule (work moved to others → other tasks moved → deferrals → people changed → peak load); 6 plans go to discussion."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "ben",
+        "recipient": null,
+        "response": "REJECT",
+        "reason": "목요일 오후에 Q2 스모크를 진행해야 해서 이 후보를 수락할 수 없습니다.",
+        "candidate_id": "c_217265d758be9c18",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "REJECT",
+        "reason": "목요일 오후에 Q2 스모크를 진행해야 해서 이 후보를 수락할 수 없습니다.",
+        "candidate_id": "c_217265d758be9c18",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "sam",
+        "recipient": null,
+        "response": "REJECT",
+        "reason": "목요일 오후에 Q2 스모크를 진행해야 해서 이 후보를 수락할 수 없습니다.",
+        "candidate_id": "c_217265d758be9c18",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "REJECT",
+        "reason": "목요일 오후에 Q2 스모크를 진행해야 해서 이 후보를 수락할 수 없습니다.",
+        "candidate_id": "c_217265d758be9c18",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Leo의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Leo."
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Sam의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Sam."
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Ben의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Ben."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Sam의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Sam."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Ben의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Ben."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Leo의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Leo."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "새 쟁점이나 응답이 없는 두 라운드를 확인해 최종 평가로 이동합니다.",
+        "candidate_id": null,
+        "reason_en": "Two rounds with no new point. Moving to the final tally."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 후보 1: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 후보 2: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 후보 3: 선호 0 · 반대 0 · 조건 0 · 질문 0",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan 1: prefer 0 · object 0 · conditions 0 · questions 0 / Plan 2: prefer 0 · object 0 · conditions 0 · questions 0 / Plan 3: prefer 0 · object 0 · conditions 0 · questions 0"
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "후보 3개를 추렸어요. 반대가 있는 안도 숨기지 않아요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.",
+        "candidate_id": null,
+        "reason_en": "3 plans for the PM. Plans with objections stay visible. Nothing applies until the PM chooses, even with one plan."
+      }
+    ],
+    "transcript_file": "live/2026-11-24_22-44-11_146949_8acea638.md"
+  },
+  {
+    "scenario": "m4_g2_art_slip",
+    "repeat": 1,
+    "llm": "live",
+    "language": "ko",
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 14,
+    "seconds": 45.4,
+    "generation": {
+      "attempted": 136,
+      "rejected": 99,
+      "duplicates": 32,
+      "reasons": {
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 22,
+        "데드라인 위반: h_A1_A2, h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 32,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_Q2_G3, h_G3_milestone": 21,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; G3 · 데모 빌드 제출일 뒤로 밀림": 11,
+        "선후 의존 일정이 수렴하지 않음": 3,
+        "변경 계획 전체 제약 위반: A1 → A2 수 저녁 → 목 오전; G2 → Q2 목 오전 → 목 저녁; Q2 → G3 금 오전 → 금 저녁; G3 → milestone 금 저녁 → 2주차 월 오전; A1 원문 산출물 수 저녁 → 목 오전; A2 · 이펙트 다듬기 · Task 완료 기한 초과; G3 · 데모 빌드 · Task 완료 기한 초과; G3 · 데모 빌드 · 고정 시작 시각 변경 금지; Q2 · 통합 QA · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남; G3 · 데모 빌드 제출일 뒤로 밀림": 3,
+        "변경 계획 전체 제약 위반: A2 · 이펙트 다듬기 · Task 완료 기한 초과; A2 · 이펙트 다듬기 제출일을 넘겨 2주차 월 오전에 끝남": 3,
+        "데드라인 위반: h_A1_G2, h_G2_Q2, h_G2_G3, h_Q2_G3, h_G3_milestone": 4
+      },
+      "templates": 7,
+      "unauthorized_actions_removed": 0,
+      "feasible": 5,
+      "retained": 5,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "A1",
+      "owner": "mia",
+      "chain": [
+        {
+          "id": "h_A1_A2",
+          "source": "A1",
+          "target": "A2",
+          "due": 3.0,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_A1_G2",
+          "source": "A1",
+          "target": "G2",
+          "due": 2.5,
+          "expected": 3.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_Q2",
+          "source": "G2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G2_G3",
+          "source": "G2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.5,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.5,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 6.0,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_A1_A2",
+        "h_A1_G2",
+        "h_G2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "sam"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "awaiting_pm_selection",
+      "termination": null,
+      "relaxation_options": null
+    },
+    "granted_rules": null,
+    "participants": [
+      "leo",
+      "mia",
+      "zoe"
+    ],
+    "shortlist": 5,
+    "behaviour": {
+      "acts": {
+        "QUESTION": 5,
+        "ANSWER": 1
+      },
+      "by_person": {
+        "leo": {
+          "QUESTION": 2
+        },
+        "mia": {
+          "ANSWER": 1,
+          "QUESTION": 1
+        },
+        "zoe": {
+          "QUESTION": 2
+        }
+      },
+      "messages": 6,
+      "with_basis": 6,
+      "with_reply_to": 4,
+      "spoken": 6,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 4
+    },
+    "options": [
+      {
+        "id": "c_6cdf2256f70bdd86",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [],
+        "actions": [
+          "restructure:G2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 2.5,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 5,
+          "answer": 1,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            },
+            {
+              "who": "mia",
+              "action": "ANSWER"
+            },
+            {
+              "who": "zoe",
+              "action": "QUESTION"
+            },
+            {
+              "who": "mia",
+              "action": "QUESTION"
+            },
+            {
+              "who": "zoe",
+              "action": "QUESTION"
+            },
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_5aa2f66b9beae274",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "A2",
+            "start": 3.75
+          }
+        ],
+        "actions": [
+          "restructure:G2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 2.5,
+          "objective_rank": 3
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -2,
+          "rule_rank": 3,
+          "by": []
+        }
+      },
+      {
+        "id": "c_5945c595dd6e542e",
+        "title": "산출물 분담과 후속 단계별 재설계",
+        "work": [
+          [
+            "mia",
+            "보스 러프 그림 0.5일"
+          ],
+          [
+            "mia",
+            "보스 최종 그림 0.5일"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "A2",
+            "start": 3.5
+          }
+        ],
+        "actions": [
+          "restructure:G2"
+        ],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 2,
+          "max_load": 2.5,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_A1_A2",
+          "h_A1_G2",
+          "h_G2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "mia"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "sam"
+        ]
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "candidates.restructure",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "mia",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 6
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+        "candidate_id": null,
+        "reason_en": "Issue received. Hive first builds new milestone plans that fit the deadline."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "A1 · 보스 그림 변경으로 깨지는 인계: A1 → A2 (수 저녁 → 목 오전), A1 → G2 (수 오전 → 목 오전), G2 → Q2 (목 오전 → 금 오전), Q2 → G3 (금 오전 → 2주차 월 오전), G3 → milestone (금 저녁 → 2주차 월 저녁) · 영향: Leo, Zoe · 부르지 않음: Ben, Sam",
+        "candidate_id": null,
+        "reason_en": "A1 · Boss art breaks these handoffs: A1 → A2 (Wed eve → Thu AM), A1 → G2 (Wed AM → Thu AM), G2 → Q2 (Thu AM → Fri AM), Q2 → G3 (Fri AM → wk2 Mon AM), G3 → milestone (Fri eve → wk2 Mon eve) · Affected: Leo, Zoe · Not called: Ben, Sam"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "일정 검증을 통과한 새 milestone 계획 5개를 준비했어요. 규칙 기준으로 정렬해 관련된 사람들과 토론합니다.",
+        "candidate_id": null,
+        "reason_en": "5 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "규칙 기준(다른 사람에게 넘기는 일 → 다른 업무 이동 → 이관 → 바뀌는 사람 수 → 최대 부하)으로 5개를 골라 토론에 올려요.",
+        "candidate_id": null,
+        "reason_en": "Ordered by the fixed rule (work moved to others → other tasks moved → deferrals → people changed → peak load); 5 plans go to discussion."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": "mia",
+        "response": "QUESTION",
+        "reason": "최종 아트가 목요일 오전 시작 전에 도착할 수 있을까요? 그렇지 않으면 임시 아트로 보스전을 연결할 수 없습니다.",
+        "candidate_id": "c_6cdf2256f70bdd86",
+        "basis": [
+          "card"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "mia",
+        "recipient": "leo",
+        "response": "ANSWER",
+        "reason": "최종 아트는 목요일 오전 시작 전에 도착할 수 있습니다. 따라서 보스전을 임시 아트로 연결할 수 있습니다.",
+        "candidate_id": "c_6cdf2256f70bdd86",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": null,
+        "response": "QUESTION",
+        "reason": "최종 아트가 목요일 오전 시작 전에 도착할 수 있을까요? 그렇지 않으면 임시 아트로 보스전을 연결할 수 없습니다.",
+        "candidate_id": "c_6cdf2256f70bdd86",
+        "basis": [
+          "history:4"
+        ],
+        "reply_to": null
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "mia",
+        "recipient": "leo",
+        "response": "QUESTION",
+        "reason": "A1 최종 그림을 수요일 오후에 전달할 예정인데, 이 일정이 G2 최종 반영에 영향을 미칠까요?",
+        "candidate_id": "c_6cdf2256f70bdd86",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": "leo",
+        "response": "QUESTION",
+        "reason": "최종 아트가 수요일 오후에 전달될 예정인데, 이 일정이 G2 최종 반영에 영향을 미칠까요?",
+        "candidate_id": "c_6cdf2256f70bdd86",
+        "basis": [
+          "history:7"
+        ],
+        "reply_to": 7
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": "mia",
+        "response": "QUESTION",
+        "reason": "A1 최종 그림이 수요일 오후에 전달될 예정인데, 이 일정이 G2 최종 반영에 영향을 미칠까요?",
+        "candidate_id": "c_6cdf2256f70bdd86",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 7
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Leo의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Leo."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Mia의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Mia."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Leo의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Leo."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Mia의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Mia."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "새 쟁점이나 응답이 없는 두 라운드를 확인해 최종 평가로 이동합니다.",
+        "candidate_id": null,
+        "reason_en": "Two rounds with no new point. Moving to the final tally."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 후보 1: 선호 0 · 반대 0 · 조건 0 · 질문 5 / 후보 2: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 후보 3: 선호 0 · 반대 0 · 조건 0 · 질문 0",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan 1: prefer 0 · object 0 · conditions 0 · questions 5 / Plan 2: prefer 0 · object 0 · conditions 0 · questions 0 / Plan 3: prefer 0 · object 0 · conditions 0 · questions 0"
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "후보 3개를 추렸어요. 반대가 있는 안도 숨기지 않아요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.",
+        "candidate_id": null,
+        "reason_en": "3 plans for the PM. Plans with objections stay visible. Nothing applies until the PM chooses, even with one plan."
+      }
+    ],
+    "transcript_file": "live/2026-11-24_22-44-49_357656_567d4ccb.md"
+  },
+  {
+    "scenario": "m4_g3_deploy_slot",
+    "repeat": 1,
+    "llm": "live",
+    "language": "ko",
+    "status": "awaiting_pm_selection",
+    "termination": null,
+    "model_error": null,
+    "llm_calls": 19,
+    "seconds": 71.6,
+    "generation": {
+      "attempted": 56,
+      "rejected": 26,
+      "duplicates": 27,
+      "reasons": {
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_Q2_G3, h_G3_milestone": 12,
+        "데드라인 위반: h_S2_S3, h_S2_Q2, h_S2_G3, h_Q2_G3, h_G3_milestone": 2,
+        "선후 의존 일정이 수렴하지 않음": 6,
+        "전체 분담 일정 검증 실패: S3 · 랭킹 · Task 완료 기한 초과; S3 · 랭킹 제출일을 넘겨 2주차 월 오전에 끝남": 6
+      },
+      "templates": 5,
+      "unauthorized_actions_removed": 0,
+      "feasible": 3,
+      "retained": 3,
+      "truncated": false,
+      "search_complete": true,
+      "search_stop": "enumerated",
+      "raw_limit": 1500,
+      "retention_limit": 40
+    },
+    "impact": {
+      "task": "S2",
+      "owner": "sam",
+      "chain": [
+        {
+          "id": "h_S2_S3",
+          "source": "S2",
+          "target": "S3",
+          "due": 3.0,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_Q2",
+          "source": "S2",
+          "target": "Q2",
+          "due": 3.5,
+          "expected": 4.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_S2_G3",
+          "source": "S2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 4.0,
+          "state": "ok"
+        },
+        {
+          "id": "h_Q2_G3",
+          "source": "Q2",
+          "target": "G3",
+          "due": 4.5,
+          "expected": 5.0,
+          "state": "risk"
+        },
+        {
+          "id": "h_G3_milestone",
+          "source": "G3",
+          "target": "milestone",
+          "due": 5.0,
+          "expected": 5.5,
+          "state": "risk"
+        }
+      ],
+      "broken": [
+        "h_S2_S3",
+        "h_S2_Q2",
+        "h_Q2_G3",
+        "h_G3_milestone"
+      ],
+      "involved": [
+        "leo",
+        "zoe"
+      ],
+      "may_help": [],
+      "not_involved": [
+        "ben",
+        "mia"
+      ],
+      "task_issues": [
+        {
+          "task": "G3",
+          "code": "TASK_DEADLINE",
+          "text": "G3 · 데모 빌드 · Task 완료 기한 초과"
+        },
+        {
+          "task": "G3",
+          "code": "TASK_FIXED_START",
+          "text": "G3 · 데모 빌드 · 고정 시작 시각 변경 금지"
+        },
+        {
+          "task": "Q2",
+          "code": "TASK_DEADLINE",
+          "text": "Q2 · 통합 QA · Task 완료 기한 초과"
+        }
+      ]
+    },
+    "first_stop": {
+      "status": "waiting_pm",
+      "termination": "needs_rule_relaxation",
+      "relaxation_options": [
+        {
+          "id": "R1",
+          "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+          "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+          "authorizer": "pm",
+          "feasible": 3,
+          "baseline_ok": false,
+          "example": {
+            "id": "c_e0b5722c34b157ab",
+            "title": "Task에 명시된 산출물 분담",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": []
+        },
+        {
+          "id": "R3",
+          "label": "Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청",
+          "rule": "당사자 가용 시간 변경 (PM 권한 밖 · Sam 본인 결정)",
+          "authorizer": "sam",
+          "feasible": 3,
+          "baseline_ok": true,
+          "example": {
+            "id": "c_e963c96b2362d4c6",
+            "title": "원 업무 전체 유지·양도",
+            "affected": [
+              "sam"
+            ]
+          },
+          "remaining": []
+        },
+        {
+          "id": "R2",
+          "label": "랭킹 S3를 다음 스프린트로 이관",
+          "rule": "P1 범위 이관",
+          "authorizer": "pm",
+          "feasible": 0,
+          "baseline_ok": false,
+          "example": null,
+          "remaining": [
+            "S2 → Q2 목 오전 → 목 저녁",
+            "Q2 → G3 금 오전 → 금 저녁",
+            "G3 → milestone 금 저녁 → 2주차 월 오전",
+            "G3 · 데모 빌드 · Task 완료 기한 초과"
+          ]
+        }
+      ]
+    },
+    "granted_rules": [
+      {
+        "id": "R1",
+        "label": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용",
+        "rule": "S2 분할 금지 해제 · S2→S3 인계 약속을 목 정오로",
+        "authorizer": "pm",
+        "reason": "자동 시험: 정답지에 적힌 규칙을 허락"
+      }
+    ],
+    "participants": [
+      "leo",
+      "sam",
+      "zoe"
+    ],
+    "shortlist": 3,
+    "behaviour": {
+      "acts": {
+        "QUESTION": 4,
+        "ANSWER": 1
+      },
+      "by_person": {
+        "leo": {
+          "QUESTION": 2
+        },
+        "sam": {
+          "QUESTION": 1,
+          "ANSWER": 1
+        },
+        "zoe": {
+          "QUESTION": 1
+        }
+      },
+      "messages": 5,
+      "with_basis": 5,
+      "with_reply_to": 5,
+      "spoken": 5,
+      "invites": 0,
+      "supplements": 0,
+      "rounds": 4
+    },
+    "options": [
+      {
+        "id": "c_e0b5722c34b157ab",
+        "title": "S2 서버 배포 오전 준비",
+        "work": [
+          [
+            "sam",
+            "서버 배포 스크립트·환경 준비 0.5일"
+          ],
+          [
+            "sam",
+            "데모 환경 최종 배포와 확인 0.5일"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S2",
+            "start": 2.0,
+            "support": [],
+            "basis": ""
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 0,
+          "deferred": 0,
+          "people_changed": 1,
+          "max_load": 2.5,
+          "objective_rank": 1
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 4,
+          "answer": 1,
+          "objections": [],
+          "score": 0,
+          "rule_rank": 1,
+          "by": [
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            },
+            {
+              "who": "sam",
+              "action": "QUESTION"
+            },
+            {
+              "who": "zoe",
+              "action": "QUESTION"
+            },
+            {
+              "who": "sam",
+              "action": "ANSWER"
+            },
+            {
+              "who": "leo",
+              "action": "QUESTION"
+            }
+          ]
+        }
+      },
+      {
+        "id": "c_e053cc8b9a2eb7db",
+        "title": "S2 서버 배포 오전 준비",
+        "work": [
+          [
+            "sam",
+            "서버 배포 스크립트·환경 준비 0.5일"
+          ],
+          [
+            "sam",
+            "데모 환경 최종 배포와 확인 0.5일"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S2",
+            "start": 2.0,
+            "support": [],
+            "basis": ""
+          },
+          {
+            "task": "S3",
+            "start": 3.75
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 1,
+          "max_load": 2.5,
+          "objective_rank": 3
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -2,
+          "rule_rank": 3,
+          "by": []
+        }
+      },
+      {
+        "id": "c_207e9fec63b180f2",
+        "title": "S2 서버 배포 오전 준비",
+        "work": [
+          [
+            "sam",
+            "서버 배포 스크립트·환경 준비 0.5일"
+          ],
+          [
+            "sam",
+            "데모 환경 최종 배포와 확인 0.5일"
+          ]
+        ],
+        "changes": [
+          {
+            "task": "S2",
+            "start": 2.0,
+            "support": [],
+            "basis": ""
+          },
+          {
+            "task": "S3",
+            "start": 4.0
+          }
+        ],
+        "actions": [],
+        "metrics": {
+          "reassigned": 0,
+          "other_tasks_moved": 1,
+          "deferred": 0,
+          "people_changed": 1,
+          "max_load": 2.5,
+          "objective_rank": 2
+        },
+        "tally": {
+          "prefer": 0,
+          "reject": 0,
+          "condition": 0,
+          "question": 0,
+          "answer": 0,
+          "objections": [],
+          "score": -1,
+          "rule_rank": 2,
+          "by": []
+        }
+      }
+    ],
+    "checks": [
+      {
+        "check": "impact.broken",
+        "ok": true,
+        "detail": [
+          "h_S2_S3",
+          "h_S2_Q2",
+          "h_Q2_G3",
+          "h_G3_milestone"
+        ]
+      },
+      {
+        "check": "impact.owner",
+        "ok": true,
+        "detail": "sam"
+      },
+      {
+        "check": "impact.involved",
+        "ok": true,
+        "detail": {
+          "involved": [
+            "leo",
+            "zoe"
+          ],
+          "may_help": []
+        }
+      },
+      {
+        "check": "impact.not_involved",
+        "ok": true,
+        "detail": [
+          "ben",
+          "mia"
+        ]
+      },
+      {
+        "check": "first_pass.termination",
+        "ok": true,
+        "detail": "needs_rule_relaxation"
+      },
+      {
+        "check": "first_pass.feasible.R1",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "first_pass.feasible.R2",
+        "ok": true,
+        "detail": 0
+      },
+      {
+        "check": "first_pass.feasible.R3",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "pm.options",
+        "ok": true,
+        "detail": 3
+      },
+      {
+        "check": "candidates.split",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.Q2",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "candidates.unchanged.G3",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "participants.include",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "participants.exclude",
+        "ok": true,
+        "detail": [
+          "leo",
+          "sam",
+          "zoe"
+        ]
+      },
+      {
+        "check": "behaviour.disagreement_or_questions",
+        "ok": true,
+        "detail": 5
+      },
+      {
+        "check": "behaviour.constraint_reviews",
+        "ok": true,
+        "detail": 3
+      }
+    ],
+    "history": [
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "ISSUE",
+        "reason": "이슈를 받았어요. 시간 안에 가능한 새 milestone 계획부터 만들겠습니다.",
+        "candidate_id": null,
+        "reason_en": "Issue received. Hive first builds new milestone plans that fit the deadline."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "IMPACT",
+        "reason": "S2 · 서버 배포 변경으로 깨지는 인계: S2 → S3 (수 저녁 → 목 저녁), S2 → Q2 (목 오전 → 목 저녁), Q2 → G3 (금 오전 → 금 저녁), G3 → milestone (금 저녁 → 2주차 월 오전) · 영향: Leo, Zoe · 부르지 않음: Ben, Mia",
+        "candidate_id": null,
+        "reason_en": "S2 · Server deploy breaks these handoffs: S2 → S3 (Wed eve → Thu eve), S2 → Q2 (Thu AM → Thu eve), Q2 → G3 (Fri AM → Fri eve), G3 → milestone (Fri eve → wk2 Mon AM) · Affected: Leo, Zoe · Not called: Ben, Mia"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPAIR_REQUEST",
+        "reason": "현재 구조로 통과한 계획이 없어요. 제약 위반을 근거로 한 번만 구조를 다시 요청합니다.",
+        "candidate_id": null,
+        "reason_en": "No plan passed with the current structures. Hive asks once more, citing the violations."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "sam",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 S2 · 서버 배포 작업이 수요일 오후에 진행할 수 없기 때문에, 이 작업을 목요일 오전으로 변경할 수 있도록 요청드립니다. 또한, 랭킹 S3 작업은 이번 데모에서 보여주고 싶으므로, 다음 스프린트로 미루는 것은 피하고 싶습니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다. S2 작업 시간 변경 및 S3 작업 일정 결정",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "leo",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 S2 · 서버 배포 작업이 수요일 오후에 진행할 수 없기 때문에, 이 작업을 목요일 오전으로 변경할 수 있도록 요청드립니다. 또한, 랭킹 S3 작업은 이번 데모에서 보여주고 싶으므로, 다음 스프린트로 미루는 것은 피하고 싶습니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다. S2 작업 시간 변경 및 S3 작업 일정 결정",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "zoe",
+        "recipient": "pm",
+        "response": "CONSTRAINT_REVIEW",
+        "reason": "현재 S2 · 서버 배포 작업이 수요일 오후에 진행할 수 없기 때문에, 이 작업을 목요일 오전으로 변경할 수 있도록 요청드립니다. 또한, 랭킹 S3 작업은 이번 데모에서 보여주고 싶으므로, 다음 스프린트로 미루는 것은 피하고 싶습니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다. S2 작업 시간 변경 및 S3 작업 일정 결정",
+        "candidate_id": null
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "RULE_OPTIONS",
+        "reason": "규칙 안에서는 마감을 지키는 계획이 없어요. 풀 수 있는 규칙마다 다시 계산했어요 — R1 S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용: 계획 3개 (PM 결정) / R3 Sam의 부재 시간을 수요일 오후에서 목요일 오전으로 바꿔 달라고 요청: 계획 3개 (Sam 결정) / R2 랭킹 S3를 다음 스프린트로 이관: 계획 0개 (PM 결정)",
+        "candidate_id": null,
+        "reason_en": "No plan meets the deadline inside the rules. Hive recomputed each rule that could be relaxed — R1 Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM: 3 plans (PM decides) / R3 Ask Sam to move his absence from Wed PM to Thu AM: 3 plans (Sam decides) / R2 Defer leaderboard S3 to the next sprint: 0 plans (PM decides)"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "pm",
+        "recipient": null,
+        "response": "RULE_GRANTED",
+        "reason": "S2를 Sam이 수 오전 준비 0.5일 + 목 오전 최종 0.5일로 나눠 진행하도록 허용 — 이 규칙을 허락합니다. 자동 시험: 정답지에 적힌 규칙을 허락",
+        "candidate_id": null,
+        "reason_en": "Let Sam split S2: prep 0.5 d Wed AM + final 0.5 d Thu AM — I allow this rule. 자동 시험: 정답지에 적힌 규칙을 허락"
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "CANDIDATES",
+        "reason": "일정 검증을 통과한 새 milestone 계획 3개를 준비했어요. 규칙 기준으로 정렬해 관련된 사람들과 토론합니다.",
+        "candidate_id": null,
+        "reason_en": "3 new plans passed the schedule check. They are ordered by the fixed rule and discussed with the people involved."
+      },
+      {
+        "round": 0,
+        "phase": "generate",
+        "requester": "hive",
+        "recipient": null,
+        "response": "SHORTLIST",
+        "reason": "규칙 기준(다른 사람에게 넘기는 일 → 다른 업무 이동 → 이관 → 바뀌는 사람 수 → 최대 부하)으로 3개를 골라 토론에 올려요.",
+        "candidate_id": null,
+        "reason_en": "Ordered by the fixed rule (work moved to others → other tasks moved → deferrals → people changed → peak load); 3 plans go to discussion."
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": null,
+        "response": "QUESTION",
+        "reason": "S2 서버 배포 오전 준비 계획에 대해 질문이 있습니다. 현재 S2 작업이 수요일 오후에 진행할 수 없기 때문에, 이 작업을 목요일 오전으로 변경할 수 있도록 요청드렸습니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다.",
+        "candidate_id": "c_e0b5722c34b157ab",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 4
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "sam",
+        "recipient": "leo",
+        "response": "QUESTION",
+        "reason": "S2 서버 배포 오전 준비 계획에 대해 질문이 있습니다. 수요일 오전에 준비 작업을 진행하고, 목요일 오전에 최종 배포를 진행할 수 있도록 나누어 진행하는 것이 가능합니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다.",
+        "candidate_id": "c_e0b5722c34b157ab",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 10
+      },
+      {
+        "round": 1,
+        "phase": "fairness_discussion",
+        "requester": "zoe",
+        "recipient": "sam",
+        "response": "QUESTION",
+        "reason": "S2 서버 배포 오전 준비 계획에 대해, 수요일 오전에 준비 작업을 진행하고 목요일 오전에 최종 배포를 진행하는 것이 가능합니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다.",
+        "candidate_id": "c_e0b5722c34b157ab",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 10
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "sam",
+        "recipient": "leo",
+        "response": "ANSWER",
+        "reason": "S2 서버 배포 오전 준비 계획에 대해, 수요일 오전에 준비 작업을 진행하고 목요일 오전에 최종 배포를 진행하는 것이 가능합니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다.",
+        "candidate_id": "c_e0b5722c34b157ab",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 10
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 2,
+        "phase": "fairness_discussion",
+        "requester": "leo",
+        "recipient": "sam",
+        "response": "QUESTION",
+        "reason": "S2 서버 배포 오전 준비 계획에 대해, 수요일 오전에 준비 작업을 진행하고 목요일 오전에 최종 배포를 진행하는 것이 가능합니다. 이와 관련하여 어떤 결정을 내려주실 수 있는지 확인 부탁드립니다.",
+        "candidate_id": "c_e0b5722c34b157ab",
+        "basis": [
+          "card"
+        ],
+        "reply_to": 10
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Leo의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Leo."
+      },
+      {
+        "round": 3,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Sam의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Sam."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Leo의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Leo."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Sam의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Sam."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "REPEAT_SKIPPED",
+        "reason": "Zoe의 동일 발언 반복을 건너뜁니다.",
+        "candidate_id": null,
+        "reason_en": "Skipping a repeated message from Zoe."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_STABLE",
+        "reason": "새 쟁점이나 응답이 없는 두 라운드를 확인해 최종 평가로 이동합니다.",
+        "candidate_id": null,
+        "reason_en": "Two rounds with no new point. Moving to the final tally."
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "DISCUSSION_TALLY",
+        "reason": "토론 집계 — 후보 1: 선호 0 · 반대 0 · 조건 0 · 질문 4 / 후보 2: 선호 0 · 반대 0 · 조건 0 · 질문 0 / 후보 3: 선호 0 · 반대 0 · 조건 0 · 질문 0",
+        "candidate_id": null,
+        "reason_en": "Discussion tally — Plan 1: prefer 0 · object 0 · conditions 0 · questions 4 / Plan 2: prefer 0 · object 0 · conditions 0 · questions 0 / Plan 3: prefer 0 · object 0 · conditions 0 · questions 0"
+      },
+      {
+        "round": 4,
+        "phase": "fairness_discussion",
+        "requester": "hive",
+        "recipient": null,
+        "response": "PM_OPTIONS",
+        "reason": "후보 3개를 추렸어요. 반대가 있는 안도 숨기지 않아요. PM이 최종 결정해 주세요. 후보가 하나여도 자동 적용하지 않습니다.",
+        "candidate_id": null,
+        "reason_en": "3 plans for the PM. Plans with objections stay visible. Nothing applies until the PM chooses, even with one plan."
+      }
+    ],
+    "transcript_file": "live/2026-11-24_22-45-34_772596_bcac1a03.md"
+  }
+]

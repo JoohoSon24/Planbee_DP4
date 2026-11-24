@@ -25,8 +25,8 @@ def directory(mode=None):
 
 def ensure_metadata(run):
     from .llm import runtime_mode
-    current=runtime_mode()
     ctx=run.ctx
+    current=ctx.get('proxy_mode') or runtime_mode()   # a scenario may pin its proxies to Mock
     name=ctx.get('transcript_file')
     previous=ctx.get('llm_mode')
     if not previous and name:
@@ -83,7 +83,7 @@ def start_turn(db, run, node):
     from . import progress,store
     progress.publish(run,stage,store.DEMO)
     from .llm import runtime_mode
-    return dict(llm_mode=runtime_mode(), stage=stage, node=node, before=run.step, status_before=run.status,
+    return dict(llm_mode=run.ctx.get('proxy_mode') or runtime_mode(), stage=stage, node=node, before=run.step, status_before=run.status,
                 round=run.ctx.get('round', 0), message_after=last,
                 narration_before=(prior_narration.value or {}).get('v', '') if prior_narration else '',
                 milestones_before=milestones(db))

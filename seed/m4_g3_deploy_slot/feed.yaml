@@ -1,0 +1,11 @@
+issue:
+  task: S2
+  label: ③ 규칙 밖 · Sam 서버 배포 슬롯 상실
+  now: 1.5
+  next_phase: end
+  narr: Sam이 S2 서버 배포를 수요일 오후에는 진행할 수 없대요. 수요일 오전과 목요일 종일은 일할 수 있대요.
+  records:
+  - who: pm
+    about: sam
+    src: PM이 팀원 보고를 전달
+    text: Sam이 S2 서버 배포를 수요일 오후에는 진행할 수 없대요. 수요일 오전과 목요일 종일은 일할 수 있대요.

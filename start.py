@@ -26,7 +26,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Plan Bee 데모 화면 실행")
     parser.add_argument("--host", default="127.0.0.1", help="접속 주소 (기본: 127.0.0.1)")
     parser.add_argument("--port", type=int, default=8000, help="포트 (기본: 8000)")
-    parser.add_argument("--demo", help="처음 열 시나리오 (생략하면 m4_t1_rescheduling)")
+    parser.add_argument("--demo", help="처음 열 시나리오 (생략하면 seed/catalog.yaml의 default)")
     parser.add_argument("--llm", choices=("mock", "live"), help="프록시 모드 (기본: 기존 환경값 또는 mock)")
     parser.add_argument("--no-browser", action="store_true", help="브라우저를 자동으로 열지 않음")
     parser.add_argument('--negotiation-mode', choices=('candidate_discussion','legacy'),default='candidate_discussion',help='기본: 후보 생성·토론·PM 최종 선택')
@@ -52,6 +52,9 @@ def main() -> None:
 
     available = store.service_demos() if args.negotiation_mode=='candidate_discussion' else store.demos()
     demo = args.demo or os.environ.get("PLANBEE_DEMO", store.DEFAULT_DEMO if args.negotiation_mode=='candidate_discussion' else 'demo1')
+    if demo not in available and not args.demo and args.negotiation_mode=='candidate_discussion':
+        print(f"[plan bee] '{demo}' is not in the demo list any more; opening {store.DEFAULT_DEMO}.")
+        demo = store.DEFAULT_DEMO
     if demo not in available:
         raise SystemExit(f"알 수 없는 데모: {demo}\n선택 가능: {', '.join(available)}")
 

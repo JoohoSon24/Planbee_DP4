@@ -1,0 +1,35 @@
+impact:
+  broken_any:
+  - h_S2_Q2
+  owner: sam
+  involved_any:
+  - zoe
+  - leo
+  not_involved:
+  - mia
+  - ben
+first_pass:
+  termination: needs_rule_relaxation
+  feasible:
+    R1: '>0'
+    R2: '0'
+    R3: '>0'
+grant: R1
+candidates:
+  all_split: S2
+  unchanged:
+  - Q2
+  - G3
+participants:
+  exclude:
+  - mia
+  - ben
+  include:
+  - sam
+  - zoe
+behaviour:
+  non_prefer_acts_min: 1
+  constraint_reviews_min: 1
+pm:
+  options_min: 1
+  options_max: 3

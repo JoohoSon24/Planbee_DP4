@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plan Bee 게임팀: 목표 변경과 재배치 (Copy)</title>
+<title>Plan Bee</title>
 <script>try{var m=localStorage.getItem("pb-theme");document.documentElement.setAttribute("data-theme",m==="light"?"light":"dark");}catch(e){document.documentElement.setAttribute("data-theme","dark");}</script>
+<link rel="icon" type="image/png" href="/front/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
@@ -424,6 +425,8 @@ html[data-lang="ko"] .i-en,html[data-lang="en"] .i-ko{display:none}
 .grid.hfocus .hb:not(.hon){opacity:.25}
 .grid.hfocus .ov g:not(.hon){opacity:.12}
 .grid.hfocus .ov g.hon path{stroke-width:3;opacity:1}
+.ov g.quiet{opacity:0;transition:opacity .2s}.hb.quiet{display:none}
+.grid.hfocus .ov g.quiet.hon{opacity:1}.grid.hfocus .hb.quiet.hon{display:flex;opacity:1}
 .hsum{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12.5px}
 .hsum .chip{padding:1px 9px}
 .hsum .chip.c{border-color:var(--honey);border-style:solid;color:var(--ink)}
@@ -509,11 +512,11 @@ html[data-lang="en"] .ag-items li.pm>span:last-child::after{content:"PM decides"
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="hex" aria-hidden="true"></span>Plan Bee</div>
+  <div class="brand"><img class="logo" src="/front/planbee-logo.png" alt="" width="28" height="28">Plan Bee</div>
   <div class="sprint"><span class="i-ko">2D 액션 게임 · 스프린트 11/23–27</span><span class="i-en">2D action game · sprint Nov 23–27</span></div>
   <div class="sp"></div>
   <span class="badge"><span class="i-ko">예시 화면</span><span class="i-en">Example</span></span>
-  <div class="langs" role="group" aria-label="Language"><button type="button" data-lang="ko" aria-pressed="true">한국어</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+  <div class="langs" role="group" aria-label="Language" data-no-translate><button type="button" data-lang="ko" aria-pressed="true">한국어</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
   <div class="langs" id="themes" role="group" aria-label="Theme"><button type="button" data-mode="dark" aria-pressed="true"><span class="i-ko">다크</span><span class="i-en">Dark</span></button><button type="button" data-mode="light" aria-pressed="false"><span class="i-ko">라이트</span><span class="i-en">Light</span></button></div>
   <button class="btn sm" id="help-open" type="button"><span class="i-ko">화면 읽는 법</span><span class="i-en">How to read</span></button>
   <button class="btn sm" id="reset" type="button"><span class="i-ko">초기화</span><span class="i-en">Reset</span></button>
@@ -657,7 +660,7 @@ function whenText(at){return T(whenK(at));}
    Game: a 2D casual action game, one-week sprint. Original goal: Stages 1–3 + boss fight demo.
    Priorities: P0 = must be in the demo · P1 = this sprint if possible · P2 = can wait. */
 function t(id,who,title,start,dur,cls,note,pr,est){return {id:id,who:who,title:title,start:start,dur:dur,cls:cls||"",note:note||"",pr:pr==null?0:pr,est:est||0};}
-function H(id,from,to,what,lv,need,at,cls,note,wait){return {id:id,from:from,to:to,what:what,lv:lv,need:need,at:at,cls:cls||"",note:note||"",wait:wait||""};}
+function H(id,from,to,what,lv,need,at,cls,note,wait,due){return {id:id,from:from,to:to,what:what,lv:lv,need:need,at:at,cls:cls||"",note:note||"",wait:wait||"",due:due==null?at:due};}
 var NEWH=K("새 Handoff","New Handoff"),NEWT=K("새로 생김","New");
 var GOAL0={title:K("스테이지 1~3 + 보스전 데모","Stages 1–3 + boss fight demo"),p0:[K("스테이지 1~3","Stages 1–3"),K("보스전","Boss fight")],p1:[K("랭킹","Ranking"),K("이펙트","Effects")],p2:[K("스킨 상점","Skin shop")]};
 var GOAL1={title:K("스테이지 1~3 + 스킨 상점 데모","Stages 1–3 + skin shop demo"),p0:[K("스테이지 1~3","Stages 1–3"),K("스킨 상점","Skin shop")],p1:[K("랭킹","Ranking"),K("이펙트","Effects")],p2:[K("보스전","Boss fight")],prev:GOAL0.title};
@@ -747,10 +750,10 @@ function taskOf(id){return find(plan,id);}
 function handOf(id){return findH(plan,id);}
 function renderBoard(){
   var h='<div class="row-g"><div></div><div class="days" style="--cols:'+plan.cols+'">';
-  for(var i=0;i<plan.cols;i++)h+='<span class="'+(i===Math.floor(NOW)?"today":"")+(i===5?" extra":"")+'">'+T(DAYS[i])+(i===Math.floor(NOW)?T(K(" · 오늘"," · today")):"")+'</span>';
+  for(var i=0;i<plan.cols;i++)h+='<span class="'+(i===Math.floor(NOW)?"today":"")+(i>=Math.ceil(plan.demo0!=null?plan.demo0:5)?" extra":"")+'">'+T(DAYS[i])+(i===Math.floor(NOW)?T(K(" · 오늘"," · today")):"")+'</span>';
   h+='</div></div><div id="lanes" style="position:relative">';
   PEOPLE.forEach(function(p){
-    h+='<div class="row-g lane'+(window.PlanBeeViewerRole==='person:'+p.id?' viewer-self':'')+'"><button class="who" type="button" data-p="'+p.id+'" draggable="true" title="'+esc(T(K("누르면 자세히, 끌면 메시지에 인용","Click for details, drag to quote")))+'"><b>'+p.id+'</b><span>'+T(p.role)+'</span></button><div class="track" style="--cols:'+plan.cols+'">';
+    h+='<div class="row-g lane'+(window.PlanBeeViewerRole==='person:'+p.id?' viewer-self':'')+'"><button class="who" type="button" data-p="'+p.id+'" draggable="true" title="'+esc(T(K("누르면 자세히, 끌면 메시지에 인용","Click for details, drag to quote")))+'"><b>'+esc(p.name||p.id)+'</b><span>'+T(p.role)+'</span></button><div class="track" style="--cols:'+plan.cols+'">';
     var ghosts="";
     if(compare)basePlan().tasks.filter(function(b){return b.who===p.id;}).forEach(function(b){
       var c=taskOf(b.id);if(c&&c.who===b.who&&c.start===b.start&&c.dur===b.dur&&T(c.title)===T(b.title))return;
@@ -759,25 +762,26 @@ function renderBoard(){
     plan.tasks.filter(function(x){return x.who===p.id;}).forEach(function(x){
       var l=x.start/plan.cols*100,w=x.dur/plan.cols*100,ph=phase(x);
       var pc=x.est||pct(x);
-      var st=ph==="done"?'<i class="ts done">'+T(K("끝남","Done"))+'</i>':ph==="doing"?'<i class="ts now">'+(x.est?T(K("추정 ","Est. ")):T(K("진행 중 ","In progress ")))+pc+'%</i>':'';
-      var pg=ph==="doing"?'<span class="pg" style="width:'+pc+'%"></span>':'';
-      h+='<div class="tile '+x.cls+' ph-'+ph+' p'+x.pr+(x.dur<1?" half":"")+'" data-id="'+x.id+'" data-t="'+x.id+'" role="button" tabindex="0" draggable="true" title="'+esc(T(x.title))+'" style="left:calc('+l+'% + 3px);width:calc('+w+'% - 6px)"><b>'+(ph==="done"?'<span class="okmk" aria-hidden="true"></span>':'')+esc(T(x.title))+'</b>'+st+'<small>'+esc(T(x.note)||durText(x.dur))+'</small><span class="pr">P'+x.pr+'</span>'+pg+'</div>';
+      var st=ph==="done"?'<i class="ts done">'+T(K("끝남","Done"))+'</i>':(ph==="doing"||x.est)?'<i class="ts now">'+(x.est?T(K("추정 ","Est. ")):T(K("진행 중 ","In progress ")))+pc+'%</i>':'';
+      var pg=(ph==="doing"||x.est)?'<span class="pg" style="width:'+pc+'%"></span>':'';
+      h+='<div class="tile '+x.cls+' ph-'+ph+(x.pr>=0?' p'+x.pr:'')+(x.dur<1?" half":"")+'" data-id="'+x.id+'" data-t="'+x.id+'" role="button" tabindex="0" draggable="true" title="'+esc(T(x.title))+'" style="left:calc('+l+'% + 3px);width:calc('+w+'% - 6px)"><b>'+(ph==="done"?'<span class="okmk" aria-hidden="true"></span>':'')+'<span class="tt">'+esc(T(x.title))+'</span></b>'+st+'<small>'+esc(T(x.note)||durText(x.dur))+'</small>'+(x.pr>=0?'<span class="pr">P'+x.pr+'</span>':'')+pg+'</div>';
     });
     h+=ghosts+'</div></div>';
   });
   h+='<svg class="ov" id="ov" aria-hidden="true"><defs><marker id="ah" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" style="fill:context-stroke;stroke:none"/></marker></defs></svg>';
-  h+='<div class="past" id="past" aria-hidden="true"></div><div class="nowl" id="nowl"><span>'+T(NOWK)+'</span></div><div id="badges"></div><div class="demo'+(plan.demo!==5?" moved":"")+'" id="demo"><span>'+T(K("주간 마감","Deadline"))+'</span></div></div>';
+  h+='<div class="past" id="past" aria-hidden="true"></div><div class="nowl" id="nowl"><span>'+T(NOWK)+'</span></div><div id="badges"></div><div class="demo'+(plan.demo!==(plan.demo0!=null?plan.demo0:5)?" moved":"")+'" id="demo"><span>'+T(plan.deadlineLabel||K("주간 마감","Deadline"))+'</span></div></div>';
   grid.innerHTML=h;
   var PT=[K("P0 · 데모에 꼭 들어가야 함","P0 · must be in the demo"),K("P1 · 이번 스프린트에 되면 좋음","P1 · this sprint if possible"),K("P2 · 미뤄도 됨","P2 · can wait")];
-  var gb=plan.goal,gbar=document.getElementById("goalbar"),pl=function(n,arr){return arr.length?'<span class="pq p'+n+'" title="'+esc(T(PT[n]))+'"><em>P'+n+'</em>'+arr.map(T).join(", ")+'</span>':'';};
+  var gb=plan.goal,gbar=document.getElementById("goalbar"),pl=function(n,arr){return arr.length?'<span class="pq p'+n+'" title="'+esc(T(PT[n]))+'"><em>P'+n+'</em><span>'+arr.map(function(x){return '<span>'+esc(T(x))+'</span>';}).join(", ")+'</span></span>':'';};
   gbar.innerHTML='<span class="gl">'+T(K("스프린트 목표","Sprint goal"))+'</span><b>'+T(gb.title)+'</b>'+(gb.prev?'<s>'+T(gb.prev)+'</s><span class="chip c">'+T(K("바뀜","Changed"))+'</span>':'')+
     '<span class="pqs">'+pl(0,gb.p0)+pl(1,gb.p1)+pl(2,gb.p2)+'</span>';
-  var s=plan.status,changed=plan.demo!==5||plan.later.length||plan.tasks.some(function(x){return x.cls;})||plan.hand.some(function(x){return x.cls;});
-  if(!changed)compare=false;
+  var s=plan.status,changed=plan.demo!==(plan.demo0!=null?plan.demo0:5)||plan.later.length||plan.tasks.some(function(x){return x.cls;})||plan.hand.some(function(x){return x.cls;});
+  var moved=plan.demo!==(plan.demo0!=null?plan.demo0:5)||plan.later.length||plan.tasks.some(function(x){return x.cls==='chg'||x.cls==='new';});
+  if(!moved)compare=false;
   statusEl.innerHTML='<span class="pill '+s.cls+'">'+esc(T(s.text))+'</span><span>'+esc(T(s.detail))+'</span>'+(plan.later.length?'<span class="later">'+T(K("다음으로 미룸: ","Moved later: "))+esc(plan.later.map(T).join(", "))+'</span>':'')+
-    (changed?'<label class="switch inline"><input type="checkbox" id="cmp"'+(compare?" checked":"")+'><span>'+T(K("이전 위치 점선으로 보기","Show previous positions"))+'</span></label>':'');
+    (moved?'<label class="switch inline"><input type="checkbox" id="cmp"'+(compare?" checked":"")+'><span>'+T(K("이전 위치 점선으로 보기","Show previous positions"))+'</span></label>':'');
   var nC=plan.hand.filter(function(x){return x.cls==="chg"||x.cls==="new";}).length,nL=plan.hand.filter(function(x){return x.cls==="late";}).length,nW=plan.hand.filter(function(x){return x.wait;}).length;
-  hsumEl.innerHTML='<span class="chip">Handoff '+plan.hand.length+'</span>'+(nC?'<span class="chip c">'+T(K("바뀜 ","Changed "))+nC+'</span>':'')+(nL?'<span class="chip l">'+T(K("데모 뒤 ","After demo "))+nL+'</span>':'')+(nW?'<span class="chip">'+T(K("확인 대기 ","Waiting "))+nW+'</span>':'');
+  hsumEl.innerHTML='<span class="hseg" role="group" aria-label="'+esc(T(K('Handoff 보기','Handoff view')))+'" title="'+esc(T(K('관련만: 늦어지거나 바뀌거나 지금 이슈와 이어진 Handoff만 보여요. 업무에 마우스를 올리면 그 업무의 Handoff도 보여요.','Related: only late, changed or issue-linked Handoffs. Hover a task to see its Handoffs.')))+'"><span class="hseg-l">Handoff <b>'+plan.hand.length+'</b></span><button type="button" data-hall="0" aria-pressed="'+(!plan.showAll)+'">'+T(K('관련만','Related'))+'</button><button type="button" data-hall="1" aria-pressed="'+(!!plan.showAll)+'">'+T(K('모두','All'))+'</button></span>'+(nC?'<span class="chip c">'+T(K("바뀜 ","Changed "))+nC+'</span>':'')+(nL?'<span class="chip l">'+T(K("데모 뒤 ","After demo "))+nL+'</span>':'')+(nW?'<span class="chip">'+T(K("확인 대기 ","Waiting "))+nW+'</span>':'');
   drawOverlay();renderDrawer();
 }
 function drawOverlay(){
@@ -788,6 +792,13 @@ function drawOverlay(){
   document.getElementById("nowl").style.left=(nx-1)+"px";
   var past=document.getElementById("past");past.style.left=(tr.left-lr.left)+"px";past.style.width=(NOW/plan.cols*tr.width)+"px";
   var paths="",badges="";
+  /* Show the Handoffs that matter: late, changed, or downstream of the task under discussion.
+     The rest stay hidden until a task is hovered or "Show all Handoffs" is on. */
+  var focus=(window.PlanBeeFocus||[]).slice(),down={};
+  focus.forEach(function(id){down[id]=1;});
+  for(var it=0;it<20;it++){var grew=false;plan.hand.forEach(function(x){if(down[x.from]&&!down[x.to]){down[x.to]=1;grew=true;}});if(!grew)break;}
+  plan.tasks.forEach(function(x){if(x.cls==='chg'||x.cls==='new'){var c=(x.id.split('__')[0]);down[x.id]=1;}});
+  function keyH(hd){return plan.showAll||hd.cls==='late'||hd.cls==='chg'||hd.cls==='new'||(down[hd.from]&&down[hd.to])||(taskOf(hd.to)&&taskOf(hd.to).start<hd.at-1e-6);}
   plan.hand.forEach(function(hd){
     var a=lanes.querySelector('.tile[data-id="'+hd.from+'"]'),b=lanes.querySelector('.tile[data-id="'+hd.to+'"]');if(!a||!b)return;
     var ar=a.getBoundingClientRect(),br=b.getBoundingClientRect(),down=br.top>ar.top,tk=a.parentElement.getBoundingClientRect();
@@ -801,14 +812,15 @@ function drawOverlay(){
       x1=Math.max(ar.left+10,Math.min(ar.right,xa)-12)-lr.left;y1=(down?ar.bottom:ar.top)-lr.top;x2=br.left-lr.left+12;y2=(down?br.top:br.bottom)-lr.top+(down?-2:2);
       var my=(y1+y2)/2;d='M'+x1+' '+y1+' C'+x1+' '+my+','+x2+' '+my+','+x2+' '+y2;by=(down?tlane.top:tlane.bottom)-lr.top;
     }
-    paths+='<g data-h="'+hd.id+'" class="'+(late?"late":hd.cls)+'"><circle cx="'+x1+'" cy="'+y1+'" r="3.5"/><path marker-end="url(#ah)" d="'+d+'"/></g>';
+    var quiet=keyH(hd)?'':' quiet';
+    paths+='<g data-h="'+hd.id+'" class="'+(late?"late":hd.cls)+quiet+'"><circle cx="'+x1+'" cy="'+y1+'" r="3.5"/><path marker-end="url(#ah)" d="'+d+'"/></g>';
     var hint=T(K("인계: ","Transfer: "))+T(hd.what)+" · "+taskOf(hd.from).who+" → "+taskOf(hd.to).who+" · "+whenText(hd.at);
-    badges+='<button class="hb hb-compact '+(late?"late":hd.cls)+(sel&&sel.t==="h"&&sel.id===hd.id?" hl":"")+'" type="button" draggable="true" data-h="'+hd.id+'" style="left:'+(x2+5)+'px;top:'+by+'px" title="'+esc(hint)+'" aria-label="'+esc(hint)+'"><span class="handoff-arrow" aria-hidden="true">↗</span><span class="hw">D'+Number(hd.at.toFixed(2))+'</span></button>';
+    badges+='<button class="hb hb-compact '+(late?"late":hd.cls)+quiet+(sel&&sel.t==="h"&&sel.id===hd.id?" hl":"")+'" type="button" draggable="true" data-h="'+hd.id+'" style="left:'+(x2+5)+'px;top:'+by+'px" title="'+esc(hint)+'" aria-label="'+esc(hint)+'"><span class="handoff-arrow" aria-hidden="true">'+(late?'!':'↗')+'</span><span class="hw">'+esc(whenText(hd.due!=null?hd.due:hd.at))+'</span></button>';
   });
   var bwrap=document.getElementById("badges");bwrap.innerHTML=badges;
   /* Compact edge markers stay within the task area. Overflow wraps to another
      row instead of pushing a long chain across person labels. */
-  var bs=[].slice.call(bwrap.children),maxR=lr.width-6,minL=tr.left-lr.left+4,groups={};
+  var bs=[].slice.call(bwrap.children).filter(function(n){return !n.classList.contains('quiet');}),maxR=lr.width-6,minL=tr.left-lr.left+4,groups={};
   bs.forEach(function(n){var k=Math.round(parseFloat(n.style.top));(groups[k]=groups[k]||[]).push(n);});
   Object.keys(groups).forEach(function(k){
     var rows=[],base=Number(k),direction=base<45?1:-1;
@@ -832,7 +844,7 @@ function drawOverlay(){
   var g=document.createElementNS("http://www.w3.org/2000/svg","g");g.innerHTML=paths;
   while(g.firstChild)ov.appendChild(g.firstChild);
 }
-function setPlan(p){plan=p;renderBoard();}
+function setPlan(p){p.showAll=!!window.PlanBeeShowAll;plan=p;renderBoard();}
 function showOnBoard(){
   var sc=document.getElementById("scroll");
   if(window.matchMedia("(max-width:900px)").matches&&sc.scrollIntoView)sc.scrollIntoView({behavior:fast?"auto":"smooth",block:"start"});
@@ -858,8 +870,9 @@ grid.addEventListener("mouseleave",focusOff);
 window.addEventListener("resize",function(){drawOverlay();placePop();});
 if(window.ResizeObserver)new ResizeObserver(drawOverlay).observe(grid);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawOverlay);
-var statusCmp=function(e){if(e.target.id==="cmp"){compare=e.target.checked;renderBoard();}};
+var statusCmp=function(e){if(e.target.id==="cmp"){compare=e.target.checked;renderBoard();}if(e.target.id==="hall"){plan.showAll=e.target.checked;window.PlanBeeShowAll=plan.showAll;renderBoard();}};
 statusEl.addEventListener("change",statusCmp);
+hsumEl.addEventListener("click",function(e){var hb=e.target.closest("[data-hall]");if(!hb)return;plan.showAll=hb.dataset.hall==="1";window.PlanBeeShowAll=plan.showAll;renderBoard();});
 
 /* ---------- details popover: Handoff, task or person ---------- */
 var drawer=document.getElementById("drawer"),reveal=false,ptab="state",selRow=null;
@@ -867,7 +880,8 @@ var STATE_ROWS={load:1,today:1,hand:1,pend:1,week:1,pace:1,sched:1,prog:1,chg:1}
 /* recent pace is shared scenario data, not private */
 function privRow(k){if(k[0]==="pace")return row(k[0],RL[k[0]],T(k[1]));return '<div data-row="'+k[0]+'"><dt><span class="lock">'+IC.lock+'</span>'+T(RL[k[0]])+'</dt><dd'+(reveal?'':' class="mask" aria-label="hidden"')+'>'+(reveal?T(k[1]):"●●●●●")+'</dd></div>';}
 function row(key,label,val,cls){return '<div data-row="'+key+'"><dt>'+T(label)+'</dt><dd'+(cls?' class="'+cls+'"':'')+'>'+val+'</dd></div>';}
-function hli(x,dir,other){return '<li>'+dir+' '+other+' · '+esc(T(x.what))+' '+lvHTML(x.lv)+' · '+whenText(x.at)+'</li>';}
+function nm(id){var q=person(id);return q?(q.name||q.id):id;}
+function hli(x,dir,other){return '<li>'+dir+' '+nm(other)+' · '+esc(T(x.what))+(x.lv?' '+lvHTML(x.lv):'')+' · '+whenText(x.due!=null?x.due:x.at)+(x.cls==='late'?' <span class="t-wait">'+T(K('늦어짐','late'))+'</span>':'')+'</li>';}
 function tabs(){return '<div class="tabs" role="tablist"><button class="tab" role="tab" type="button" data-tab="state" aria-selected="'+(ptab==="state")+'">'+T(K("지금 상태","Now"))+'</button><button class="tab" role="tab" type="button" data-tab="profile" aria-selected="'+(ptab==="profile")+'">'+T(K("프로필 · 정의","Profile"))+'</button></div>';}
 function renderDrawer(){
   var c=null,p=null,tk=null,h="";
@@ -882,18 +896,19 @@ function renderDrawer(){
   var head=function(title,sub){return '<div class="dr-h"><div><h3>'+title+'</h3><p>'+sub+'</p></div><button class="btn sm" type="button" data-quote>'+T(K("메시지에 인용","Quote"))+'</button><button class="icon" type="button" data-close aria-label="Close">'+IC.x+'</button></div><div class="dr-b">';};
   if(c){
     var a=taskOf(c.from),b=taskOf(c.to);
-    h=head(esc(T(c.what)),'Handoff · '+a.who+' → '+b.who)+
-      '<div class="scale" data-row="level">'+[1,2,3].map(function(n){
-        return '<div class="st'+(n<=c.lv?" on":"")+'"><b>'+T(LV[n])+'</b><span>'+T(LVDEF[n].mean)+'</span>'+(n===c.lv?'<em class="mk give">'+T(K("넘기는 수준","Handed over"))+'</em>':'')+(n===c.need?'<em class="mk need">'+T(K("받는 쪽 최소","Receiver minimum"))+'</em>':'')+'</div>';}).join("")+'</div>'+
-      '<dl class="facts">'+row("when",K("언제까지","By"),whenText(c.at))+
-      row("need",K("받는 쪽 최소가 "+LV[c.need].ko+"인 이유","Why the minimum is "+LV[c.need].en),b.who+' · '+esc(T(b.title))+T(K("의 시작 조건"," needs it to start")))+
-      row("agree",K("동의","Agreement"),c.wait?T(c.wait):a.who+", "+b.who+T(K(" 모두 동의"," agreed")),c.wait?"t-wait":"t-okc")+
+    var bd=TASKDEF[b.id]||{};
+    h=head(esc(T(c.what)),'Handoff · '+nm(a.who)+' → '+nm(b.who))+
+      (c.lv?'<div class="scale" data-row="level">'+[1,2,3].map(function(n){
+        return '<div class="st'+(n<=c.lv?" on":"")+'"><b>'+T(LV[n])+'</b><span>'+T(LVDEF[n].mean)+'</span>'+(n===c.lv?'<em class="mk give">'+T(K("넘기는 수준","Handed over"))+'</em>':'')+(n===c.need?'<em class="mk need">'+T(K("받는 쪽 최소","Receiver minimum"))+'</em>':'')+'</div>';}).join("")+'</div>':'')+
+      '<dl class="facts">'+row("when",K("약속 시각","Due"),whenText(c.due))+
+      row("expect",K("예상 도착","Expected"),whenText(c.at)+(c.cls==='late'?' · '+T(K('약속보다 늦음','later than promised')):''),c.cls==='late'?"t-wait":"t-okc")+
+      row("need",K("받는 쪽","Receiver"),esc(nm(b.who))+' · '+esc(T(b.title))+(bd.start?' · '+T(K('시작 조건: ','starts after: '))+T(bd.start):''))+
       (c.note?row("note",K("이번 조정","This adjustment"),esc(T(c.note))):'')+'</dl></div>';
   }else if(tk){
     var d=TASKDEF[tk.id]||{kind:"ui"},own=person(tk.who),sk=own.skill.filter(function(k){return k[0]===d.kind;})[0];
     var ins=plan.hand.filter(function(x){return x.to===tk.id;}),outs=plan.hand.filter(function(x){return x.from===tk.id;});
     var end=tk.start+tk.dur,dn=[K("월","Mon"),K("화","Tue"),K("수","Wed"),K("목","Thu"),K("금","Fri"),K("다음 주 월","next Mon")];
-    h=head(esc(T(tk.title)),tk.who+' · '+T(KIND[d.kind]))+tabs();
+    h=head(esc(T(tk.title)),nm(tk.who)+' · '+T(KIND[d.kind]||K(d.kind,d.kind)))+tabs();
     if(ptab==="state"){
       h+='<dl class="facts">'+row("sched",K("일정","Schedule"),T(dn[Math.floor(tk.start)])+T(tk.start%1?K(" 오후"," pm"):K(" 오전"," am"))+' – '+whenText(end)+' · '+durText(tk.dur))+
         row("prog",K("진행","Progress"),(phase(tk)==="done"?T(K("끝남","Done")):phase(tk)==="doing"?T(K("진행 중 · ","In progress · "))+pct(tk)+'%':T(K("시작 전","Not started"))))+
@@ -901,18 +916,19 @@ function renderDrawer(){
         (tk.cls?row("chg",K("이번 조정","This adjustment"),esc(T(tk.note))):'')+'</dl>';
     }else{
       h+='<dl class="facts">'+row("kind",K("산출물 종류","Deliverable"),T(KIND[d.kind]))+
-        row("skill",K("담당의 숙련도","Owner's skill"),'<span class="chip '+(sk?sk[1]:"c")+'">'+tk.who+' · '+T(sk?SKL[sk[1]]:K("기록 없음","No record"))+'</span>',"chips")+
-        row("start",K("시작 조건","Start condition"),ins.length?ins.map(function(x){return esc(T(x.what))+" "+T(LV[x.need])+T(K(" 이상"," or better"));}).join(", "):T(K("없음","None")))+
+        (d.deliverable?row("deliv",K("산출물","Deliverable"),esc(d.deliverable)):'')+
+        row("skill",K("담당의 숙련도","Owner's skill"),'<span class="chip '+(sk?sk[1]:"c")+'">'+esc(nm(tk.who))+' · '+T(sk?SKL[sk[1]]:K("기록 없음","No record"))+'</span>',"chips")+
+        row("start",K("시작 조건","Start condition"),d.start?T(d.start):ins.length?ins.map(function(x){return esc(T(x.what));}).join(", "):T(K("없음","None")))+
         row("pieces",K("나눌 수 있는 조각","Can be split into"),d.pieces?d.pieces.map(function(x){return '<span class="chip">'+T(x)+'</span>';}).join(""):T(K("나누지 않음","Not split")),"chips")+
-        row("fixed",K("줄일 수 없는 것","Cannot shrink"),d.fixed?T(d.fixed):T(K("없음","None")))+'</dl>';
+        row("fixed",K("줄일 수 없는 것","Cannot shrink"),d.fixed?T(d.fixed):T(K("없음","None")))+(d.note?row("note",K("추가 제약","Extra rule"),T(d.note)):'')+'</dl>';
     }
     h+='</div>';
   }else{
-    var load=plan.tasks.filter(function(x){return x.who===p.id&&x.start<5;}).reduce(function(m,x){return m+Math.min(x.dur,5-x.start);},0);
+    var wend=plan.demo0||5,load=plan.tasks.filter(function(x){return x.who===p.id&&x.start<wend&&!/milestone/.test(x.cls);}).reduce(function(m,x){return m+Math.min(x.dur,wend-x.start);},0);
     var today=plan.tasks.filter(function(x){return x.who===p.id&&phase(x)==="doing";}).map(function(x){return T(x.title);});
     var give=plan.hand.filter(function(x){return taskOf(x.from).who===p.id;}),take=plan.hand.filter(function(x){return taskOf(x.to).who===p.id;});
     var pend=plan.hand.filter(function(x){return x.wait&&T(x.wait).indexOf(p.id)>=0;});
-    h=head(p.id,T(p.role))+tabs();
+    h=head(esc(p.name||p.id),T(p.role))+tabs();
     if(ptab==="state"){
       h+='<dl class="facts">'+row("load",K("배정","Load"),durText(load)+' / '+p.cap+T(K("일"," d"))+'<div class="meter'+(load>p.cap?" over":"")+'"><i style="width:'+Math.min(100,load/p.cap*100)+'%"></i></div>')+
         row("today",K("오늘 하는 일","Today"),today.length?esc(today.join(", ")):T(K("없음","None")))+
@@ -923,7 +939,7 @@ function renderDrawer(){
       h+='<dl class="facts">'+row("skill",K("산출물 종류별 숙련도","Skill by deliverable"),p.skill.map(function(k){return '<span class="chip '+k[1]+'">'+T(KIND[k[0]])+' · '+T(SKL[k[1]])+'</span>';}).join(""),"chips")+
         row("cap",K("한 주 용량","Weekly capacity"),p.cap+T(K("일"," d")))+p.profile.map(privRow).join("")+'</dl>';
     }
-    h+='<label class="switch"><input type="checkbox" id="reveal-sw"'+(reveal?" checked":"")+'><span>'+T(K(p.id+"의 프록시만 보는 값 열어 보기 (예시용)","Show values only "+p.id+"'s proxy sees (example only)"))+'</span></label></div>';
+    h+='<label class="switch"><input type="checkbox" id="reveal-sw"'+(reveal?" checked":"")+'><span>'+T(K((p.name||p.id)+"의 프록시만 보는 값 열어 보기 (예시용)","Show values only "+(p.name||p.id)+"'s proxy sees (example only)"))+'</span></label></div>';
   }
   drawer.innerHTML=h;
   if(selRow){var fr=drawer.querySelector('[data-row="'+selRow+'"]');if(fr){fr.classList.add("flash");if(fr.scrollIntoView)fr.scrollIntoView({block:"nearest"});}}
@@ -943,6 +959,8 @@ function pick(t,id){
   sel=(sel&&sel.t===t&&sel.id===id)?null:{t:t,id:id};
   renderDrawer();
 }
+/* evidence links from the channel open the same details popover on a given tab and row */
+window.PlanBeePick=function(t,id,tab,rowKey){if(tab)ptab=tab;sel={t:t,id:id};selRow=rowKey||null;renderDrawer();};
 grid.addEventListener("click",function(e){
   var b=e.target.closest("[data-h]"),w=e.target.closest("[data-p]"),tl=e.target.closest("[data-t]");
   if(b)pick("h",b.dataset.h);else if(w)pick("p",w.dataset.p);else if(tl)pick("t",tl.dataset.t);
@@ -1001,11 +1019,13 @@ function guard(){
 }
 
 /* Persistent backend adapter; the scripted issue scenes are removed. */
+function prOf(c){var m=String((c||{}).priority||'').match(/P\s*(\d)/i);return m?Number(m[1]):-1;}
+window.PlanBeePriority=prOf;
 function addQuote(type,id){if(window.PlanBeeApp)window.PlanBeeApp.quote(type,id);}
 // Server data (roles, time labels, scenario titles) arrives in Korean; give the EN view English equivalents.
 var ROLE_EN={'기획':'Design','아트':'Art','개발':'Dev','그림':'Art','화면':'Frontend','에이전트':'Agent','테스트':'Test','백엔드':'Backend','QA':'QA'};
 function roleEn(r){return ROLE_EN[r]||r;}
-function dayLabelEn(now){var k=Math.floor(now||0),days=['Mon','Tue','Wed','Thu','Fri'];return 'Week '+(Math.floor(k/5)+1)+' · '+days[k%5]+' morning';}
+function dayLabelEn(now){var k=Math.floor(now||0),days=['Mon','Tue','Wed','Thu','Fri'];return 'Week '+(Math.floor(k/5)+1)+' · '+days[k%5]+((now||0)%1>=.5?' afternoon':' morning');}
 function titleEn(x){x=String(x||'');var parts=x.split(' · ').filter(function(s){return !/[\uAC00-\uD7A3]/.test(s);});return parts.length?parts.join(' · '):x;}
 function labelEn(x){x=String(x||'');return x.replace(/(\d+)주차/g,'Week $1').replace(/월요일|월(?=\s|$)/g,'Mon').replace(/화요일|화(?=\s|$)/g,'Tue').replace(/수요일|수(?=\s|$)/g,'Wed').replace(/목요일|목(?=\s|$)/g,'Thu').replace(/금요일|금(?=\s|$)/g,'Fri').replace(/오전/g,'morning').replace(/저녁/g,'evening').replace(/마감/g,'deadline');}
 window.PlanBeeTitleEn=titleEn;window.PlanBeeRoleEn=roleEn;
@@ -1014,29 +1034,54 @@ window.PlanBeeView={
   render:function(state,board,preview){
     NOW=state.now;window.PlanBeeViewerRole=state.viewer_role||'pm';
     NOWK=K(state.now_label,dayLabelEn(state.now));
-    var source=board?board.tasks:Object.values(state.tasks).filter(function(x){return !x.cut;}).map(function(x){return {id:x.id,who:x.who,title:x.title,start:x.s,days:x.d,kind:x.kind,context:x.context};});
-    PEOPLE=state.people.map(function(p){var card=(state.cards||[]).find(function(c){return c.who===p.id;})||{};return {id:p.id,name:p.name,role:K(esc(p.role),esc(roleEn(p.role))),cap:state.capacities[p.id]===undefined?p.cap:state.capacities[p.id],skill:[[p.role,'b']],profile:[['limit',K(esc('자동 수락 권한 '+card.auto_days+'일'),esc('Auto authority '+card.auto_days+' days'))],['refuses',K(esc((card.refuse_tags||[]).join(', ')||'명시 태그 없음'),esc((card.refuse_tags||[]).join(', ')||'No tags'))],['takes',K(esc(card.note||'추가 메모 없음'),esc(card.note||'No notes'))]],week:[]};});
-    PEOPLE.forEach(function(p){if(state.viewer_role!=='person:'+p.id)p.profile=[['role',K('공개 역할: '+p.role.ko,'Public role: '+p.role.en)],['private',K('본인 역할로 전환하면 위임카드를 볼 수 있습니다.','Switch to this person to view their delegation card.')]];});
-    KIND={};TASKDEF={};
-    PEOPLE.forEach(function(p){KIND[p.role.ko]=p.role;});
-    source.forEach(function(x){var owner=person(x.who);TASKDEF[x.id]={kind:owner.role.ko,pieces:(x.context||{}).split_boundary?[K(esc(x.context.split_boundary),esc(x.context.split_boundary))]:null,fixed:K(esc((x.context||{}).description||''),esc((x.context||{}).description||''))};});
-    DAYS=Array.from({length:20},function(_,i){return K(['월','화','수','목','금'][i%5]+(i>=5?' +'+Math.floor(i/5)+'주':''),['Mon','Tue','Wed','Thu','Fri'][i%5]);});
-    var hands=board?(board.handoffs||[]).filter(function(h){return source.some(function(t){return t.id===h.source;})&&source.some(function(t){return t.id===h.target;});}).map(function(h){return H(h.id,h.source,h.target,K(esc(h.title),esc(h.title)),3,3,h.expected,h.expected>h.due?'late':'',K('기한 '+h.due+'일','Due day '+h.due));}):Object.values(state.hand).filter(function(h){return source.some(function(t){return t.id===h.from;})&&source.some(function(t){return t.id===h.to;});}).map(function(h){return H(h.id,h.from,h.to,K(esc(h.title),esc(h.title)),3,3,h.pred,h.pred>h.t?'late':'',K(esc(h.basis||''),esc(h.basis||'')));});
+    var source=(board?board.tasks:Object.values(state.tasks).filter(function(x){return !x.cut;}).map(function(x){return {id:x.id,who:x.who,title:x.title,start:x.s,days:x.d,kind:x.kind,context:x.context};})).filter(function(x){return x.kind!=='milestone';});   /* milestones are the deadline line, not tiles over real work */
+    var PR=state.profiles||{},PP=PR.people||{},PT=PR.tasks||{},PH=PR.handoffs||{};
+    var KMAP={'아트':'art','그림':'art','UI':'ui','화면':'ui','게임플레이':'game','개발':'game','서버':'server','백엔드':'server','레벨':'level','테스트':'test','QA':'test'},SMAP={'능숙':'a','가능':'b','처음':'c'};
+    function sk(x){return SMAP[x]||(/능숙|strong/i.test(x)?'a':/처음|new/i.test(x)?'c':'b');}
+    PEOPLE=state.people.map(function(p){var card=(state.cards||[]).find(function(c){return c.who===p.id;})||{},pf=PP[p.id]||{};
+      var skill=Object.keys(pf.skills||{}).map(function(k){return [k,sk(pf.skills[k])];});
+      if(!skill.length)skill=Object.keys(p.skills||{}).map(function(k){return [KMAP[k]||k,sk(p.skills[k])];});
+      if(!skill.length)skill=[[p.role,'b']];
+      var limit=pf.limit||('자동 수락 '+card.auto_days+'일까지'+((card.refuse_tags||[]).length?' · 받지 않는 태그 '+card.refuse_tags.join(', '):''));
+      var profile=[['takes',K(esc(pf.takes||card.note||'기록 없음'),esc(pf.takes||card.note||'No record'))]];
+      if(pf.refuses)profile.push(['refuses',K(esc(pf.refuses),esc(pf.refuses))]);
+      profile.push(['limit',K(esc(limit),esc(limit))]);
+      var wish=pf.wish||(p.wants||[]).join(', ');if(wish)profile.push(['wish',K(esc(wish),esc(wish))]);
+      var week=[];
+      ((card.policy||{}).unavailable||[]).forEach(function(u){var d=['월','화','수','목','금'][Math.floor(u.start)%5]+(u.start%1>=.5?' 오후':' 오전');week.push(['week',K(esc(d+' 부재'),esc(d+' unavailable'))]);});
+      Object.values(state.tasks).forEach(function(x){var c=x.context||{};if(x.who===p.id&&c.progress_claim!=null&&!x.cut)week.push(['pace',K(esc(x.title+' · '+Math.round(c.progress_claim*100)+'% 진행 ('+(c.progress_basis||'작성자 추정')+')'),esc(x.title+' · '+Math.round(c.progress_claim*100)+'% done (owner estimate)'))]);});
+      var role=pf.role||p.role;
+      return {id:p.id,name:p.name,role:K(esc(role),esc(roleEn(role))),cap:state.capacities[p.id]===undefined?p.cap:state.capacities[p.id],skill:skill,profile:profile,week:week};});
+    KIND={art:K("그림","Art"),game:K("게임플레이 코드","Gameplay code"),ui:K("화면","UI"),server:K("서버","Server"),level:K("레벨 배치","Level layout"),test:K("테스트","Testing")};TASKDEF={};
+    PEOPLE.forEach(function(p){p.skill.forEach(function(k){if(!KIND[k[0]])KIND[k[0]]=K(esc(k[0]),esc(roleEn(k[0])));});});
+    source.forEach(function(x){var owner=person(x.who)||{skill:[]},c=x.context||{},pt=PT[x.id]||PT[c.partition_of]||{};
+      var kind=pt.kind||(owner.skill[0]||[''])[0];if(!KIND[kind])KIND[kind]=K(esc(kind),esc(kind));
+      var pieces=(pt.pieces||(c.parts_description?[c.parts_description]:c.split_boundary?[c.split_boundary]:null));
+      TASKDEF[x.id]={kind:kind,pieces:pieces?pieces.map(function(v){return K(esc(v),esc(v));}):null,fixed:pt.fixed?K(esc(pt.fixed),esc(pt.fixed)):c.minimum_days?K('최소 '+c.minimum_days+'일',c.minimum_days+' d minimum'):null,
+        start:pt.start?K(esc(pt.start),esc(pt.start)):null,note:pt.note?K(esc(pt.note),esc(pt.note)):null,desc:c.description||'',deliverable:c.deliverable||''};});
+    function hwhat(id,fallback,from){var w=(PH[id]||{}).what;if(w)return w;var f=state.tasks[from];return /원문 산출물/.test(fallback||'')&&f&&(f.context||{}).deliverable?f.context.deliverable:fallback;}
+    DAYS=Array.from({length:20},function(_,i){return K(['월','화','수','목','금'][i%5]+(i>=5?' +'+Math.floor(i/5)+'주':''),['Mon','Tue','Wed','Thu','Fri'][i%5]+(i>=5?' +'+Math.floor(i/5)+'w':''));});
+    var hands=board?(board.handoffs||[]).filter(function(h){return source.some(function(t){return t.id===h.source;})&&source.some(function(t){return t.id===h.target;});}).map(function(h){var w=hwhat(h.id,h.title,h.source);return H(h.id,h.source,h.target,K(esc(w),esc(w)),0,0,h.expected,h.expected>h.due+1e-6?'late':'','','',h.due);}):Object.values(state.hand).filter(function(h){return source.some(function(t){return t.id===h.from;})&&source.some(function(t){return t.id===h.to;});}).map(function(h){var w=hwhat(h.id,h.what||h.title,h.from);return H(h.id,h.from,h.to,K(esc(w),esc(w)),0,0,h.pred,h.pred>h.t+1e-6?'late':'',K(esc(h.basis||''),esc(h.basis||'')),'',h.t);});
     var cols=Math.max(5,Math.ceil(Math.max.apply(null,source.map(function(x){return x.start+x.days;}))));
     var current={};Object.values(state.tasks).forEach(function(x){current[x.id]=x;});
     var milestoneCounts={};
-    var tasks=source.map(function(x){var old=current[x.id];var changed=preview&&(!old||old.who!==x.who||old.s!==x.start||old.d!==x.days);var slot=milestoneCounts[x.who+':'+x.start]||0;if(x.kind==='milestone')milestoneCounts[x.who+':'+x.start]=slot+1;return t(x.id,x.who,K(x.title,x.title),x.start,x.days,x.kind==='milestone'?'milestone ms'+slot:changed?'chg':'',K(x.kind==='milestone'?'Milestone':x.days+'일',x.kind==='milestone'?'Milestone':x.days+' days'),0);});
+    var tasks=source.map(function(x){var old=current[x.id];var changed=preview&&(!old||old.who!==x.who||old.s!==x.start||old.d!==x.days);var slot=milestoneCounts[x.who+':'+x.start]||0;if(x.kind==='milestone')milestoneCounts[x.who+':'+x.start]=slot+1;return t(x.id,x.who,K(x.title,x.title),x.start,x.days,x.kind==='milestone'?'milestone ms'+slot:changed?'chg':'',K(x.kind==='milestone'?'Milestone':x.days+'일',x.kind==='milestone'?'Milestone':x.days+(Math.abs(x.days-1)<1e-9?' day':' days')),x.kind==='milestone'?-1:prOf(x.context),(x.context||{}).progress_claim?Math.round(x.context.progress_claim*100):0);});
     // Comparison ghosts are the actual server board, not the original HTML demo.
-    var beforeTasks=Object.values(state.tasks).filter(function(x){return !x.cut;}).map(function(x){return t(x.id,x.who,K(x.title,x.title),x.s,x.d);});
+    var beforeTasks=Object.values(state.tasks).filter(function(x){return !x.cut;}).map(function(x){return t(x.id,x.who,K(x.title,x.title),x.s,x.d,'','',prOf(x.context));});
+    var goal={0:[],1:[],2:[]};source.forEach(function(x){var n=prOf(x.context);if(x.kind!=='milestone'&&x.kind!=='done'&&n>=0&&n<=2)goal[n].push(x.title);});
+    function goalList(n){var a=goal[n];if(!a.length)return [];return n===0?[K(a.length+'개 업무',a.length+' tasks')]:a.map(function(x){return K(x,x);});}
     basePlan=function(){return {tasks:beforeTasks};};
     var gate=board?board.gate:state.gate;
-    setPlan({cols:Math.min(20,Math.max(cols,state.week_end||5)),demo:state.week_end||5,later:(board?(board.deferred||[]):Object.values(state.tasks).filter(function(x){return x.cut&&(x.context||{}).deferred_to;}).map(function(x){return {title:x.title,to:x.context.deferred_to};})).map(function(x){return K(x.title+' → '+x.to,x.title+' → '+x.to);}),goal:{title:K(esc(state.demo.title)+(preview?' · 후보 미리보기':''),esc(titleEn(state.demo.title))+(preview?' · candidate preview':'')),p0:[],p1:[],p2:[]},tasks:tasks,hand:hands,status:{cls:preview?'need':gate.ok?'ok':'warn',text:K(preview?'후보 미리보기 · 미적용':gate.ok?'Hive 제약 충족':'마감 회복 필요',preview?'Preview · not applied':gate.ok?'Hive verified':'Recovery needed'),detail:K(esc(state.deadline_label||''),esc(labelEn(state.deadline_label||'')))}});
+    setPlan({deadlineLabel:state.deadline_label?K(esc(state.deadline_label),esc(labelEn(state.deadline_label))):null,cols:Math.min(20,Math.max(cols,state.week_end||5)),demo:state.week_end||5,demo0:state.week_end||5,later:(board?(board.deferred||[]):Object.values(state.tasks).filter(function(x){return x.cut&&(x.context||{}).deferred_to;}).map(function(x){return {title:x.title,to:x.context.deferred_to};})).map(function(x){return K(x.title+' → '+x.to,x.title+' → '+x.to);}),goal:{title:K(esc(state.demo.title)+(preview?' · 후보 미리보기':''),esc(titleEn(state.demo.title))+(preview?' · candidate preview':'')),p0:goalList(0),p1:goalList(1),p2:goalList(2)},tasks:tasks,hand:hands,status:{cls:preview?'need':gate.ok?'ok':'warn',text:K(preview?'후보 미리보기 · 미적용':gate.ok?'Hive 제약 충족':'마감 회복 필요',preview?'Preview · not applied':gate.ok?'Hive verified':'Recovery needed'),detail:K(esc(state.deadline_label||''),esc(labelEn(state.deadline_label||'')))}});
   },
   language:function(lang){LANG=lang;document.documentElement.lang=lang;document.documentElement.setAttribute('data-lang',lang);renderBoard();},
   theme:function(mode){document.documentElement.setAttribute('data-theme',mode);}
 };
 lvHTML=function(){return '<span class="chip">Handoff</span>';};
-whenText=function(at){return T(K(Number(at.toFixed(2))+'일','day '+Number(at.toFixed(2))));};
+whenText=function(at){at=Number(at)||0;var dk=['월','화','수','목','금'],de=['Mon','Tue','Wed','Thu','Fri'],d=Math.floor(at+1e-9),f=at-d;
+  if(f<1e-6){d-=1;var w=Math.floor(d/5),n=((d%5)+5)%5;return T(K(dk[n]+(w>0?' +'+w+'주':'')+' 저녁',de[n]+(w>0?' +'+w+'w':'')+' eve'));}
+  var w2=Math.floor(d/5),n2=d%5,part=Math.abs(f-.5)<1e-6?K(' 정오',' noon'):f<.5?K(' 오전',' am'):K(' 오후',' pm');
+  return T(K(dk[n2]+(w2>0?' +'+w2+'주':'')+part.ko,de[n2]+(w2>0?' +'+w2+'w':'')+part.en));};
 durText=function(d){return T(K(Number(d.toFixed(2))+'일',Number(d.toFixed(2))+' d'));};
 pct=function(x){return x.dur?Math.max(0,Math.min(100,Math.round((NOW-x.start)/x.dur*100))):100;};
 })();
