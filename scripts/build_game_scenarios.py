@@ -199,11 +199,21 @@ def s3():
 TASK_EN = {'A1': 'Boss art', 'A2': 'Effects polish', 'G1': 'Boss AI', 'G2': 'Boss fight integration', 'G3': 'Demo build',
            'S1': 'Save feature', 'S2': 'Server deploy', 'S3': 'Leaderboard', 'B1': 'Stage 3 layout', 'B2': 'Menu screen',
            'Q1': 'Stage 1–2 tests', 'Q2': 'Integration QA'}
+EXAMPLES = [  # each checked offline to reach PM options on the free board
+    ('Ben이 B2 메뉴 화면을 수요일 오후에는 시작할 수 없대요. 목요일 오후부터 할 수 있대요.', "Ben can't start the B2 menu screen on Wednesday afternoon. He can work on it from Thursday afternoon."),
+    ('Zoe가 목요일 오후에 Q2 통합 QA 스모크를 못 한대요.', "Zoe can't run the Q2 integration QA smoke on Thursday afternoon."),
+    ('Mia가 목요일 하루 쉬어요.', 'Mia is off all Thursday.'),
+    ('S3 랭킹 작업이 반나절 더 걸린대요.', 'S3 Leaderboard will take half a day more.'),
+    ('목요일 오후에 비어 있는 사람이 누구예요?', 'Who is free on Thursday afternoon?'),
+]
+
+
 WORDS_EN = {
     '[사람] 님이 [요일 오전/오후]에 [업무] 작업을 못 한대요. [요일 오전/오후]부터 할 수 있대요.': '[person] can’t do [task] on [day AM/PM]. They can work from [day AM/PM].',
     '[업무] 작업이 [반나절/하루] 더 걸린대요.': '[task] will take [half a day / a day] more.',
     '[사람] 님이 [요일] 하루 쉬어요.': '[person] is off all [day].',
     '[업무] 작업은 언제 끝나요?': 'When does [task] finish?',
+    **{ko: en for ko, en in EXAMPLES},
     '부재': 'Absence', '작업량': 'Workload', '휴가': 'Day off', '질문': 'Question',
     '그림': 'Art', '개발': 'Gameplay', '서버': 'Server', '레벨': 'Level', '테스트': 'QA',
     '그림 중심': 'Art', '게임플레이 중심': 'Gameplay', '서버 중심': 'Server', 'UI·레벨 중심': 'UI · Level', '테스트 중심': 'QA',
@@ -299,7 +309,8 @@ def s4():
                      templates=[dict(tag='부재', text='[사람] 님이 [요일 오전/오후]에 [업무] 작업을 못 한대요. [요일 오전/오후]부터 할 수 있대요.'),
                                 dict(tag='작업량', text='[업무] 작업이 [반나절/하루] 더 걸린대요.'),
                                 dict(tag='휴가', text='[사람] 님이 [요일] 하루 쉬어요.'),
-                                dict(tag='질문', text='[업무] 작업은 언제 끝나요?')])
+                                dict(tag='질문', text='[업무] 작업은 언제 끝나요?')],
+                     examples=[ko for ko, _ in EXAMPLES])
     return 'm4_g4_free', d, dict(task='B2', who='ben', text=text), None
 
 

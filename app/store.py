@@ -495,7 +495,7 @@ def state_json(db: Session) -> dict:
         "week_end": b.week_end,
         "can_previous_day": bool(meta(db,"day_history",[])),
         "demo": {"id": meta(db,"demo",DEMO), "title": meta(db, "title", DEMO), "all": service_demos(), "catalog": demo_catalog(), "engine_support": meta(db,"engine_support",""), "source_task": meta(db,"source_task",None), "normalization_note": meta(db,"normalization_note",""),
-                 "timeline": timeline, "llm_mode": meta(db, "llm_mode", None), "free_input": bool(meta(db, "free_input", False)), "templates": meta(db, "templates", None), "issue_reporter": ((load_yaml('feed.yaml').get('issue') or {}).get('records') or [{}])[0].get('who'), "issue_example": (available[0]["text"] if available else "") if timeline else '\n'.join(r['text'] for r in (load_yaml('feed.yaml').get('issue') or {}).get('records',[]))},
+                 "timeline": timeline, "llm_mode": meta(db, "llm_mode", None), "free_input": bool(meta(db, "free_input", False)), "templates": meta(db, "templates", None), "examples": meta(db, "examples", None), "issue_reporter": ((load_yaml('feed.yaml').get('issue') or {}).get('records') or [{}])[0].get('who'), "issue_example": (available[0]["text"] if available else "") if timeline else '\n'.join(r['text'] for r in (load_yaml('feed.yaml').get('issue') or {}).get('records',[]))},
         "workflow_progress": workflow_progress(db),
         "demo_step": meta(db,"demo_step",None),
         "feed_label": ((load_yaml("feed.yaml").get(meta(db, "phase")) or {}).get("label")

@@ -87,7 +87,7 @@
   daily.addEventListener('click',function(e){var b=e.target.closest('[data-daily-issue]');if(!b||busy)return;var event=state.demo.timeline.events.find(function(x){return x.id===b.dataset.dailyIssue;});if(!event||!event.available)return;if(lang()==='en'&&window.PlanBeeEnglish){window.PlanBeeEnglish.resolve([event.text]).then(function(values){setDraft(values[0]);datedDraft={text:values[0],source:event.text};input.focus();resizeInput();}).catch(function(){error(new Error('Example translation unavailable.'));});}else{setDraft(event.text);input.focus();resizeInput();}});
   var UI={scenario:['시나리오','Scenario'],myRole:['보고자','Reported by'],continue:['계속 진행','Continue'],pause:['일시정지','Pause'],currentBoard:['실제 보드로 돌아가기','Back to actual board'],previousDay:['‹ 이전 날','‹ Prev day'],nextDay:['다음 날 ›','Next day ›']};
   function defaultPlaceholder(){return t('무엇이 바뀌었나요? 업무를 고르지 않고 자유롭게 적어 주세요.','What changed? Describe it freely; the team will identify the task.');}
-  function helpText(){return t('Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력','Ctrl / ⌘ + Enter: send · Tab in an empty box: insert example');}
+  function helpText(){var n=examples().length,c=n>1?' ('+(exampleIdx%n+1)+'/'+n+')':'';return t('Ctrl / ⌘ + Enter 보내기 · 빈 입력창에서 Tab 예시 입력'+c,'Ctrl / ⌘ + Enter: send · Tab in an empty box: insert example'+c);}
   function chrome(){
     document.querySelectorAll('[data-t]').forEach(function(n){var v=UI[n.dataset.t];if(v)n.textContent=t(v[0],v[1]);});
     document.getElementById('demo-select').setAttribute('aria-label',t('시나리오','Scenario'));
@@ -125,11 +125,15 @@
     if(e.target!==input)return;
     if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();this.requestSubmit();return;}
     if(e.key==='Tab'&&!e.isComposing&&BLANK.test(input.value)){BLANK.lastIndex=0;e.preventDefault();selectBlank(e.shiftKey?input.selectionStart:input.selectionEnd,e.shiftKey);return;}
-    var example=state&&state.demo&&state.demo.issue_example;
-    if(e.key==='Tab'&&!e.shiftKey&&!e.isComposing&&!input.value.trim()&&example){
-      e.preventDefault();
-      if(lang()==='en'&&window.PlanBeeEnglish){var role=viewerRole,demo=state.demo.id;window.PlanBeeEnglish.resolve([example]).then(function(values){if(lang()!=='en'||viewerRole!==role||state.demo.id!==demo||input.value)return;setDraft(values[0]);datedDraft={text:values[0],source:example};input.focus();input.setSelectionRange(input.value.length,input.value.length);status();}).catch(function(){error(new Error('Example translation unavailable. Please enter your issue in English.'));});}
-      else{setDraft(example);input.focus();input.setSelectionRange(example.length,example.length);status();}
+    // Tab in an empty box inserts the next example; Tab again on an untouched example moves on to the following one.
+    var list=examples();
+    if(e.key==='Tab'&&!e.shiftKey&&!e.isComposing&&list.length&&(!input.value.trim()||input.value===lastExample)){
+      e.preventDefault();var src=list[exampleIdx%list.length];exampleIdx=(exampleIdx+1)%list.length;try{localStorage.setItem('pb-example-'+state.demo.id,String(exampleIdx));}catch(err){}
+      var put=function(v){setDraft(v);lastExample=v;input.focus();input.setSelectionRange(v.length,v.length);resizeInput();status();paintExampleHint();};
+      var g=state.glossary_en||{};
+      if(lang()==='en'&&g[src])put(g[src]);
+      else if(lang()==='en'&&window.PlanBeeEnglish){var demo=state.demo.id;window.PlanBeeEnglish.resolve([src]).then(function(values){if(lang()!=='en'||state.demo.id!==demo)return;put(values[0]);datedDraft={text:values[0],source:src};}).catch(function(){error(new Error('Example translation unavailable. Please enter your issue in English.'));});}
+      else put(src);
     }
   });
   document.getElementById('form').addEventListener('input',function(e){if(e.target===input)resizeInput();});
@@ -215,7 +219,7 @@
     var demo=document.getElementById('demo-select');demo.innerHTML=state.demo.catalog.map(function(d){return '<option value="'+E(d.id)+'"'+(d.id===state.demo.id?' selected':'')+'>'+E(scenarioTitle(d.title))+'</option>';}).join('');
     paintDailyIssues();
     var src=state.tasks[state.demo.source_task];
-    var example=state.demo.issue_example;input.placeholder=example?(example.length>110?example.slice(0,110)+'…':example):defaultPlaceholder();
+    var example=state.demo.issue_example;input.placeholder=example?(example.length>110?example.slice(0,110)+'…':example):defaultPlaceholder();paintExampleHint();
     paintRefs();
     window.PlanBeeFocus=run&&run.task&&run.status!=='done'?[run.task]:[];
     V.render(state,preview&&preview.board,!!preview);paint();status();syncHeight();
@@ -277,6 +281,16 @@
     daily.innerHTML='<summary>'+E(t('오늘 입력 가능한 이슈 '+available.length+'개 · 누적 협상 '+history.length+'회','Issues available today: '+available.length+' · negotiations: '+history.length))+'</summary><div class="daily-content">'+timeline.events.map(function(e){return '<div class="daily-row"><button type="button" class="btn sm" data-daily-issue="'+E(e.id)+'"'+(!e.available||busy?' disabled':'')+'>'+E(e.title)+'</button><small>'+E(e.available?t('예시만 입력 · 보내기를 눌러 실행','Insert example only · press Send to start'):e.reason)+'</small></div>';}).join('')+(history.length?'<details><summary>'+E(t('이전 협상 기록','Previous negotiations'))+'</summary>'+history.map(function(r){return '<p class="daily-history">#'+r.id+' · D'+r.day+' · '+E(r.status)+'<br>'+E(r.issue)+'</p>';}).join('')+'</details>':'')+'</div>';
   }
 
+  /* ---------- example sentences (Tab) ---------- */
+  var exampleIdx=0,lastExample=null,exampleDemo=null;
+  function examples(){if(!state||!state.demo)return [];var x=state.demo.examples;if(x&&x.length)return x;return state.demo.issue_example?[state.demo.issue_example]:[];}
+  function paintExampleHint(){
+    if(!state||!state.demo)return;if(exampleDemo!==state.demo.id){exampleDemo=state.demo.id;try{exampleIdx=Number(localStorage.getItem('pb-example-'+exampleDemo))||0;}catch(err){exampleIdx=0;}}
+    var list=examples(),help=document.querySelector('.composer-help');if(!list.length)return;
+    var n=list.length,i=exampleIdx%n,src=list[i],g=state.glossary_en||{},shown=lang()==='en'?(g[src]||src):src;
+    input.placeholder=shown.length>110?shown.slice(0,110)+'…':shown;
+    if(help&&!help.classList.contains('blocked'))help.textContent=helpText();
+  }
   /* ---------- references (quotes) ---------- */
   // References are optional shared context, never a forced issue-task selection.
   function refLabel(r){
@@ -301,6 +315,7 @@
     if(!state||!((type==='t'&&state.tasks[id])||(type==='p'&&state.people.some(function(p){return p.id===id;}))||(type==='h'&&state.hand[id])))return;
     if(!refs.some(function(r){return r.type===type&&r.id===id;}))refs.push({type:type,id:id});
     var name=type==='p'?label(id):type==='t'?(state.tasks[id].title||id):null;
+    if(name&&lang()==='en'&&/[가-힣]/.test(name)){var g=state.glossary_en||{};name=g[name]||(window.PlanBeeEnglish&&window.PlanBeeEnglish.cached?window.PlanBeeEnglish.cached(name):'')||id;}
     paintRefs();if(!(name&&fillBlank(type,name)))input.focus();status();
   }};
   function issueWithRefs(text){
