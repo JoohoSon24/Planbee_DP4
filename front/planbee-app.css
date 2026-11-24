@@ -297,3 +297,6 @@ details.round .rq{display:flex;flex-wrap:nowrap;gap:5px;overflow:hidden;margin:0
 .blank-pick button{font-size:12.5px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 10px;white-space:nowrap}
 .blank-pick button:hover{border-color:var(--honey);background:var(--honey-soft,var(--soft))}
 .blank-pick button.mine{border-color:var(--honey);color:var(--ink)}
+/* Templates: let the row wrap so the hint takes its own full line instead of a one-word column */
+.composer .sugg.has-tpl{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none}
+.composer .sugg.has-tpl .tpl-hint{flex:1 0 100%;white-space:normal}

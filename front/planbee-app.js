@@ -223,7 +223,7 @@
 
   function paintSugg(){
     var el=document.getElementById('sugg');if(!el)return;if(!state){el.innerHTML='';return;}
-    var tps=state.demo.templates;if(tps&&tps.length){var g=state.glossary_en||{};
+    var tps=state.demo.templates;el.classList.toggle('has-tpl',!!(tps&&tps.length));if(tps&&tps.length){var g=state.glossary_en||{};
       el.innerHTML='<span class="sl">'+E(t('문장 틀','Templates'))+'</span>'+tps.map(function(x){var tx=lang()==='en'&&g[x.text]?g[x.text]:x.text,tg=lang()==='en'&&g[x.tag]?g[x.tag]:x.tag;return '<button type="button" class="tpl" data-template="1" data-text="'+E(tx)+'" title="'+E(tx)+'">'+E(tg)+'</button>';}).join('')+
         '<span class="tpl-hint">'+E(t('[빈칸]을 고르면 선택지가 나와요 · Tab으로 다음 빈칸 · 보드에서 사람·업무를 끌어와도 돼요','Pick a [blank] to see its choices · Tab for the next one · or drag a person or task from the board'))+'</span>';return;}
     var tl=state.demo.timeline,items=tl?tl.events.filter(function(e){return e.available;}).map(function(e){return {id:e.id,tag:t('오늘','Today'),title:e.title,text:e.text};}):(state.demo.issue_example?(function(){var ex=String(state.demo.issue_example);if(lang()==='en'&&englishCache.has(ex))ex=englishCache.get(ex);return [{id:'',tag:t('예시','Example'),title:ex.slice(0,46)+(ex.length>46?'…':''),text:ex}];})():[]);
