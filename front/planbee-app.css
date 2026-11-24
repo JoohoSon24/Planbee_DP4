@@ -303,3 +303,14 @@ details.round .rq{display:flex;flex-wrap:nowrap;gap:5px;overflow:hidden;margin:0
 /* Short windows: keep the thread readable; the template hint is optional */
 @media (max-height:820px){.composer .sugg.has-tpl .tpl-hint{display:none}}
 .chan #feed{min-height:180px}
+/* Smooth open/close of the chat: keep the three grid tracks and animate their widths */
+@media(min-width:901px){
+  .app.resizable-panels{transition:grid-template-columns .34s cubic-bezier(.22,.8,.24,1)}
+  .app.resizable-panels.panel-resizing{transition:none}
+  .app.resizable-panels.chat-collapsed{grid-template-columns:0px 0px minmax(0,1fr)}
+  .resizable-panels.chat-collapsed>.board{grid-column:3}
+  .resizable-panels>.chan{transition:opacity .22s ease,visibility 0s linear 0s}
+  .resizable-panels.chat-collapsed>.chan{display:flex;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .34s}
+  .resizable-panels.chat-collapsed>.panel-divider{display:block;visibility:hidden;border:0}
+}
+@media(prefers-reduced-motion:reduce){.app.resizable-panels,.resizable-panels>.chan{transition:none}}

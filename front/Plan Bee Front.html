@@ -1072,7 +1072,7 @@ window.PlanBeeView={
     function goalList(n){var a=goal[n];if(!a.length)return [];return n===0?[K(a.length+'개 업무',a.length+' tasks')]:a.map(function(x){return K(x,x);});}
     basePlan=function(){return {tasks:beforeTasks};};
     var gate=board?board.gate:state.gate;
-    setPlan({deadlineLabel:state.deadline_label?K(esc(state.deadline_label),esc(labelEn(state.deadline_label))):null,cols:Math.min(20,Math.max(cols,state.week_end||5)),demo:state.week_end||5,demo0:state.week_end||5,later:(board?(board.deferred||[]):Object.values(state.tasks).filter(function(x){return x.cut&&(x.context||{}).deferred_to;}).map(function(x){return {title:x.title,to:x.context.deferred_to};})).map(function(x){return K(x.title+' → '+x.to,x.title+' → '+x.to);}),goal:{title:K(esc(state.demo.title)+(preview?' · 후보 미리보기':''),esc(titleEn(state.demo.title))+(preview?' · candidate preview':'')),p0:goalList(0),p1:goalList(1),p2:goalList(2)},tasks:tasks,hand:hands,status:{cls:preview?'need':gate.ok?'ok':'warn',text:K(preview?'후보 미리보기 · 미적용':gate.ok?'Hive 제약 충족':'마감 회복 필요',preview?'Preview · not applied':gate.ok?'Hive verified':'Recovery needed'),detail:K(esc(state.deadline_label||''),esc(labelEn(state.deadline_label||'')))}});
+    setPlan({deadlineLabel:state.deadline_label?K(esc(state.deadline_label),esc(labelEn(state.deadline_label))):null,cols:Math.min(20,Math.max(cols,state.week_end||5)),demo:state.week_end||5,demo0:state.week_end||5,later:(board?(board.deferred||[]):Object.values(state.tasks).filter(function(x){return x.cut&&(x.context||{}).deferred_to;}).map(function(x){return {title:x.title,to:x.context.deferred_to};})).map(function(x){return K(x.title+' → '+x.to,x.title+' → '+x.to);}),goal:{title:K(esc(state.demo.sprint_goal||state.demo.title)+(preview?' · 후보 미리보기':''),esc(state.demo.sprint_goal?((state.glossary_en||{})[state.demo.sprint_goal]||state.demo.sprint_goal):titleEn(state.demo.title))+(preview?' · candidate preview':'')),p0:goalList(0),p1:goalList(1),p2:goalList(2)},tasks:tasks,hand:hands,status:{cls:preview?'need':gate.ok?'ok':'warn',text:K(preview?'후보 미리보기 · 미적용':gate.ok?'Hive 제약 충족':'마감 회복 필요',preview?'Preview · not applied':gate.ok?'Hive verified':'Recovery needed'),detail:K(esc(state.deadline_label||''),esc(labelEn(state.deadline_label||'')))}});
   },
   language:function(lang){LANG=lang;document.documentElement.lang=lang;document.documentElement.setAttribute('data-lang',lang);renderBoard();},
   theme:function(mode){document.documentElement.setAttribute('data-theme',mode);}
@@ -1086,9 +1086,9 @@ durText=function(d){return T(K(Number(d.toFixed(2))+'일',Number(d.toFixed(2))+'
 pct=function(x){return x.dur?Math.max(0,Math.min(100,Math.round((NOW-x.start)/x.dur*100))):100;};
 })();
 </script>
-<link rel="stylesheet" href="/front/planbee-app.css?v=20261125">
+<link rel="stylesheet" href="/front/planbee-app.css?v=20261125c">
 <script src="/front/planbee-app.js?v=20261125c"></script>
 <script src="/front/llm-usage.js"></script>
-<script src="/front/panel-layout.js"></script>
+<script src="/front/panel-layout.js?v=20261125c"></script>
 <script src="/front/english-display.js?v=20261125b"></script></body>
 </html>

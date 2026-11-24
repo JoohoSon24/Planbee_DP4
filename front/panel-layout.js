@@ -21,7 +21,7 @@
     reopen.innerHTML='<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M6 2.5v11" stroke="currentColor" stroke-width="1.4"/><path d="M9 6l2 2-2 2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>'+(en()?'Open chat':'채팅 열기')+'</span>';reopen.hidden=!collapsed;reopen.setAttribute('aria-expanded',String(!collapsed));
   }
   reopen.onclick=function(){toggle.onclick();};
-  toggle.onclick=function(){collapsed=!collapsed;draw();save();window.dispatchEvent(new Event('resize'));if(!collapsed)document.getElementById('change-input').focus();};
+  toggle.onclick=function(){collapsed=!collapsed;draw();save();window.dispatchEvent(new Event('resize'));setTimeout(function(){window.dispatchEvent(new Event('resize'));},360);if(!collapsed)document.getElementById('change-input').focus();};
   divider.addEventListener('pointerdown',function(e){if(e.button!==0||window.innerWidth<=900)return;e.preventDefault();divider.setPointerCapture(e.pointerId);app.classList.add('panel-resizing');});
   divider.addEventListener('pointermove',function(e){if(!divider.hasPointerCapture(e.pointerId))return;width=e.clientX-app.getBoundingClientRect().left;draw();});
   function snap(w){var W=app.clientWidth,b=bounds(),best=null;SNAPS.forEach(function(r){var x=Math.max(b.min,Math.min(b.max,W*r));if(best===null||Math.abs(x-w)<Math.abs(best-w))best=x;});return best===null?w:best;}

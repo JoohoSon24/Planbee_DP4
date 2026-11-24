@@ -110,7 +110,8 @@ def base():
                                      context=dict(description=title, done_basis=basis, priority='P0')))
     data['meta'] = {k: v for k, v in data['meta'].items() if k in ('now', 'week_start', 'deadline_label', 'phase')}
     data['meta'].update(consent_mode='discussion', llm_mode='mock', source='M4 시연용 시나리오 export (장여경, 2026-11-23) · 게임팀 공통 보드',
-                        team='game', normalization_note=BASE['meta']['normalization_note'])
+                        team='game', normalization_note=BASE['meta']['normalization_note'],
+                        sprint_goal='금 17:00 데모 빌드 · 스테이지 1~3 + 보스전')
     return data
 
 
@@ -214,6 +215,7 @@ WORDS_EN = {
     '[사람] 님이 [요일] 하루 쉬어요.': '[person] is off all [day].',
     '[업무] 작업은 언제 끝나요?': 'When does [task] finish?',
     **{ko: en for ko, en in EXAMPLES},
+    '금 17:00 데모 빌드 · 스테이지 1~3 + 보스전': 'Fri 17:00 demo build · Stages 1–3 + boss fight',
     '부재': 'Absence', '작업량': 'Workload', '휴가': 'Day off', '질문': 'Question',
     '그림': 'Art', '개발': 'Gameplay', '서버': 'Server', '레벨': 'Level', '테스트': 'QA',
     '그림 중심': 'Art', '게임플레이 중심': 'Gameplay', '서버 중심': 'Server', 'UI·레벨 중심': 'UI · Level', '테스트 중심': 'QA',
