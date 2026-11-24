@@ -686,7 +686,16 @@ install_candidates(app, get_db, busy)
 
 @app.get('/', include_in_schema=False)
 def frontend():
-    return FileResponse(store.ROOT / 'front' / 'Plan Bee Front.html')
+    return FileResponse(store.ROOT / 'front' / 'Plan Bee Front.html', headers={'Cache-Control': 'no-cache'})
+
+
+@app.middleware('http')
+async def revalidate_front(request: Request, call_next):
+    # The page and its scripts change between deploys: make browsers revalidate instead of reusing a stale copy.
+    response = await call_next(request)
+    if request.url.path == '/' or request.url.path.startswith('/front/'):
+        response.headers['Cache-Control'] = 'no-cache'
+    return response
 
 
 app.mount('/front', StaticFiles(directory=store.ROOT / 'front'), name='front')
