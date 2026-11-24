@@ -300,3 +300,6 @@ details.round .rq{display:flex;flex-wrap:nowrap;gap:5px;overflow:hidden;margin:0
 /* Templates: let the row wrap so the hint takes its own full line instead of a one-word column */
 .composer .sugg.has-tpl{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none}
 .composer .sugg.has-tpl .tpl-hint{flex:1 0 100%;white-space:normal}
+/* Short windows: keep the thread readable; the template hint is optional */
+@media (max-height:820px){.composer .sugg.has-tpl .tpl-hint{display:none}}
+.chan #feed{min-height:180px}
