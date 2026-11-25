@@ -214,7 +214,9 @@ with sync_playwright() as pw:
 
         @step('Evidence opens from a discussion message')
         def _():
-            page.click('details.round >> nth=0 >> summary'); page.wait_for_timeout(300)
+            # open a round only if it is closed (the latest round starts open; clicking would close it)
+            page.evaluate("document.querySelectorAll('details.round').forEach(function(d){d.open=true})"); page.wait_for_timeout(300)
+            page.locator('details.bas >> nth=0').scroll_into_view_if_needed()
             page.click('details.bas >> nth=0 >> summary'); page.wait_for_timeout(300)
             page.click('details.bas[open] li >> nth=0'); page.wait_for_timeout(600)
             assert page.locator('#drawer.open').count() == 1 or page.locator('.tile.chg, .tile.new').count() > 0, 'no drawer or preview'
