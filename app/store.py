@@ -58,6 +58,17 @@ def make_engine(url: str | None = None):
     if url in ("sqlite://", "sqlite:///:memory:"):
         kw["poolclass"] = StaticPool
     eng = create_engine(url, **kw)
+    if url.startswith("sqlite") and url not in ("sqlite://", "sqlite:///:memory:"):
+        from sqlalchemy import event
+
+        @event.listens_for(eng, "connect")
+        def _sqlite_concurrency(conn, _record):
+            # A live run writes while other requests read (another viewer, a reload): let readers
+            # see the last commit instead of failing on a busy file, and wait rather than error.
+            cur = conn.cursor()
+            cur.execute("PRAGMA journal_mode=WAL")
+            cur.execute("PRAGMA busy_timeout=30000")
+            cur.close()
     # Add the new JSON fields in place. Never drop a user's existing schedules.
     insp = inspect(eng)
     for name, table in Base.metadata.tables.items():

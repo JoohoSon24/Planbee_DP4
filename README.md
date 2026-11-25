@@ -64,9 +64,12 @@ Open http://127.0.0.1:8000. Free-text input needs `--llm live`.
 
 # 18 labelled free-text sentences: changes, questions, unrelated text
 .venv/bin/python scripts/probe_free_input.py
+
+# end-to-end UI test in a real browser (needs: pip install playwright && python -m playwright install chromium)
+.venv/bin/python scripts/e2e_ui.py --url http://127.0.0.1:8000
 ```
 
-Results are written to `eval/game_scenarios/` and `eval/free_input/` as `report.md` and `summary.json`.
+Results are written to `eval/game_scenarios/`, `eval/free_input/` and `eval/e2e/` as `report.md` and `summary.json`.
 
 | Scenario | Change | Checked |
 |---|---|---|
