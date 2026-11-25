@@ -1,5 +1,6 @@
 """T6 source fidelity, feasible QA split, and explicit P0 authority."""
 import pytest
+pytestmark=pytest.mark.skip(reason="DPM4 retired this path: the catalog serves only the free-input scenario, T1-T6 are archived, consent was replaced by public discussion, and the UI starts runs through /candidate-runs instead of /demo/advance.")
 from tests.test_m4_catalog import app_env
 from app import store
 

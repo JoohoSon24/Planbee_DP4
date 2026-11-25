@@ -19,6 +19,7 @@ def app_env(monkeypatch):
     store.use_demo(old);eng.dispose()
 
 
+@pytest.mark.skip(reason="DPM4 retired this path: the catalog serves only the free-input scenario, T1-T6 are archived, consent was replaced by public discussion, and the UI starts runs through /candidate-runs instead of /demo/advance.")
 def test_published_scenarios_and_source_assets(app_env):
     c,_=app_env
     assert c.get('/demos').json()['all']==IDS+['m4_t6_game_demo']
@@ -319,6 +320,7 @@ def test_live_task_router_uses_public_tasks_and_validates_reference(app_env,task
     else:assert r['termination']=='model_output_invalid' and not r['candidates']
 
 
+@pytest.mark.skip(reason="DPM4 retired this path: the catalog serves only the free-input scenario, T1-T6 are archived, consent was replaced by public discussion, and the UI starts runs through /candidate-runs instead of /demo/advance.")
 def test_t4_demo_uses_algorithm_consent_but_still_waits_for_pm(app_env,monkeypatch):
     from app.models import Confirmation
     from sqlalchemy import select
